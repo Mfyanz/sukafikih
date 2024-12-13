@@ -1,42 +1,145 @@
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Sukafikih</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <title>Menu</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #a8d5ba, #00b4d8);
+        }
+        .header {
+            background-color: #a8d5ba;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .header img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .menu {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .menu h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .menu-item {
+            background: linear-gradient(to right, #d4fc79, #96e6a1);
+            border: 2px solid black;
+            border-radius: 10px;
+            margin: 10px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.2s;
+        }
+        .menu-item:hover {
+            transform: scale(1.05);
+        }
+        .menu-item img {
+            height: 50px;
+            position: absolute;
+            left: 20px;
+        }
+        .menu-item span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+        }
+        .back-button {
+            background-color: #d4fc79;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px auto;
+            display: block;
+            width: 120px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #96e6a1;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+        }
+        @media (max-width: 768px) {
+            .menu-item {
+                width: 90%;
+                padding: 15px;
+            }
+            .menu-item img {
+                height: 40px;
+            }
+            .menu-item span {
+                font-size: 20px;
+            }
+            .back-button {
+                width: 100px;
+                font-size: 18px;
+            }
+        }
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 20px;
+            }
+            .menu h2 {
+                font-size: 24px;
+            }
+            .menu-item {
+                width: 85%;
+                padding: 15px;
+            }
+            .menu-item img {
+                height: 35px;
+            }
+            .menu-item span {
+                font-size: 18px;
+            }
+            .back-button {
+                width: 90px;
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-r from-green-300 to-teal-400 min-h-screen flex flex-col items-center justify-between">
-  <div class="w-full bg-blue-300 p-4 flex items-center">
-    <img alt="Logo with hands holding Kaaba" class="h-12 w-12 mr-2" height="50" src="https://storage.googleapis.com/a1aa/image/6yWOE4Gto675OZGmV1IXofrGAuofAor3mbG337TifuhhzqynA.jpg" width="50"/>
-    <h1 class="text-2xl font-bold">sukafikih</h1>
-  </div>
-  <div class="flex flex-col items-center mt-8 w-full">
-    <h2 class="text-3xl font-bold mb-8">MENU</h2>
-<a href="./haji.html"
-  <div class="flex flex-col items-center space-y-6 w-full px-4 mt-4">
-    <div class="bg-gradient-to-r from-green-200 to-blue-200 w-full max-w-2xl p-6 rounded-lg border-2 border-black flex items-center">
-      <img alt="Image of Hajj pilgrimage" class="h-16 w-16 mr-6" height="64" src="https://storage.googleapis.com/a1aa/image/2geoIXbJZ5UfDUOXMzh6wJOK5UYFneY91axmIO7dATmdzqynA.jpg" width="64"/>
-      <span class="text-2xl font-bold">MATERI HAJI</span>
+<body>
+    <div class="header">
+        <img alt="Logo with hands holding a Kaaba" src="https://storage.googleapis.com/a1aa/image/HEYOZACxOM6fJi1dG0KxWCiPrp9Kp9fBf3qh87dCruBw090nA.jpg"/>
+        <h1>sukafikih</h1>
     </div>
-</a>
-<a href="./umrah.html"
-<div class="flex flex-col items-center space-y-6 w-full px-4 mt-4">
-    <div class="bg-gradient-to-r from-green-200 to-blue-200 w-full max-w-2xl p-6 rounded-lg border-2 border-black flex items-center">
-      <img alt="Image of Umrah pilgrimage" class="h-16 w-16 mr-6" height="64" src="https://storage.googleapis.com/a1aa/image/glMBA6JcTgZYM9jkcnrQSNFI8p0ThWkifLadehsPVeKYzqynA.jpg" width="64"/>
-      <span class="text-2xl font-bold">MATERI UMROH</span>
+    <div class="menu">
+        <h2>MENU</h2>
+        <div class="menu-item">
+            <img alt="Image of a mountain with people around it" src="https://storage.googleapis.com/a1aa/image/YpiOo46Ehe0pZSDyADQa2IMXe11teQV92ZyGXRzUP9uu090nA.jpg"/>
+            <span>MATERI HAJI</span>
+        </div>
+        <div class="menu-item">
+            <img alt="Image of Kaaba with people around it" src="https://storage.googleapis.com/a1aa/image/Zy0MHKFVKZoyEVuT2LL6SPzOBouGU2Q8H9UPC7BZvkqmuneJA.jpg"/>
+            <span>MATERI UMROH</span>
+        </div>
+        <div class="menu-item">
+            <img alt="Image of a graduation cap" src="https://storage.googleapis.com/a1aa/image/L0mrVORGPnpUIdoE4z8YHHLwont4SDcHQCTyFqfgEB4MdP9JA.jpg"/>
+            <span>AYO LATIHAN!</span>
+        </div>
     </div>
-</a>
-<a href="./ayo latihan.html"
-<div class="flex flex-col items-center space-y-6 w-full px-4 mt-4">
-    <div class="bg-gradient-to-r from-green-200 to-blue-200 w-full max-w-2xl p-6 rounded-lg border-2 border-black flex items-center">
-      <img alt="Image of graduation cap" class="h-16 w-16 mr-6" height="64" src="https://storage.googleapis.com/a1aa/image/mPvT40ge0rWsTiYEosTbL2vUqCSbxUqnhcaLEwJgeE6xZV5TA.jpg" width="64"/>
-      <span class="text-2xl font-bold">AYO LATIHAN!</span>
+    <div class="footer">
+        <button class="back-button">BACK</button>
     </div>
-</a>
-  </div>
-  <div class="w-full bg-blue-300 p-4 text-center mt-4">
-    <button class="text-xl font-bold">BACK</button>
-  </div>
 </body>
 </html>
