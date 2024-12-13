@@ -1,145 +1,52 @@
-<html>
-<head>
-    <title>Menu</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, #a8d5ba, #00b4d8);
-        }
-        .header {
-            background-color: #a8d5ba;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .header img {
-            height: 40px;
-            margin-right: 10px;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .menu {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .menu h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-        .menu-item {
-            background: linear-gradient(to right, #d4fc79, #96e6a1);
-            border: 2px solid black;
-            border-radius: 10px;
-            margin: 10px auto;
-            padding: 20px;
-            width: 80%;
-            max-width: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            transition: transform 0.2s;
-        }
-        .menu-item:hover {
-            transform: scale(1.05);
-        }
-        .menu-item img {
-            height: 50px;
-            position: absolute;
-            left: 20px;
-        }
-        .menu-item span {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-        }
-        .back-button {
-            background-color: #d4fc79;
-            border: none;
-            border-radius: 20px;
-            padding: 10px 20px;
-            font-size: 20px;
-            font-weight: bold;
-            margin: 20px auto;
-            display: block;
-            width: 120px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        .back-button:hover {
-            background-color: #96e6a1;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            transform: translateY(-3px);
-        }
-        @media (max-width: 768px) {
-            .menu-item {
-                width: 90%;
-                padding: 15px;
-            }
-            .menu-item img {
-                height: 40px;
-            }
-            .menu-item span {
-                font-size: 20px;
-            }
-            .back-button {
-                width: 100px;
-                font-size: 18px;
-            }
-        }
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 20px;
-            }
-            .menu h2 {
-                font-size: 24px;
-            }
-            .menu-item {
-                width: 85%;
-                padding: 15px;
-            }
-            .menu-item img {
-                height: 35px;
-            }
-            .menu-item span {
-                font-size: 18px;
-            }
-            .back-button {
-                width: 90px;
-                font-size: 16px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <img alt="Logo with hands holding a Kaaba" src="https://storage.googleapis.com/a1aa/image/HEYOZACxOM6fJi1dG0KxWCiPrp9Kp9fBf3qh87dCruBw090nA.jpg"/>
-        <h1>sukafikih</h1>
-    </div>
-    <div class="menu">
-        <h2>MENU</h2>
-        <div class="menu-item">
-            <img alt="Image of a mountain with people around it" src="https://storage.googleapis.com/a1aa/image/YpiOo46Ehe0pZSDyADQa2IMXe11teQV92ZyGXRzUP9uu090nA.jpg"/>
-            <span>MATERI HAJI</span>
-        </div>
-        <div class="menu-item">
-            <img alt="Image of Kaaba with people around it" src="https://storage.googleapis.com/a1aa/image/Zy0MHKFVKZoyEVuT2LL6SPzOBouGU2Q8H9UPC7BZvkqmuneJA.jpg"/>
-            <span>MATERI UMROH</span>
-        </div>
-        <div class="menu-item">
-            <img alt="Image of a graduation cap" src="https://storage.googleapis.com/a1aa/image/L0mrVORGPnpUIdoE4z8YHHLwont4SDcHQCTyFqfgEB4MdP9JA.jpg"/>
-            <span>AYO LATIHAN!</span>
-        </div>
-    </div>
-    <div class="footer">
-        <button class="back-button">BACK</button>
-    </div>
-</body>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Menu
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body class="bg-gradient-to-r from-green-300 to-teal-400 min-h-screen flex flex-col items-center">
+  <div class="w-full bg-blue-200 flex justify-between items-center p-4">
+   <div class="flex items-center">
+    <img alt="Kaaba icon" class="mr-2" height="50" src="https://storage.googleapis.com/a1aa/image/L0RQVRrUbrqEA1fMObDUViufSFXJuKukddFveOGSuiLM8fpPB.jpg" width="50"/>
+    <span class="text-xl font-bold">
+     sukafikih
+    </span>
+   </div>
+   <div>
+    <span class="text-xl font-bold">
+     BACK
+    </span>
+   </div>
+  </div>
+  <div class="mt-8 text-center">
+   <h1 class="text-3xl font-bold">
+    MENU
+   </h1>
+  </div>
+  <div class="mt-8 w-11/12 md:w-3/4 lg:w-2/3 space-y-8">
+   <div class="bg-gradient-to-r from-green-100 to-blue-100 p-6 rounded-lg border-4 border-black flex items-center">
+    <img alt="Mountain with people icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/iCsrH7h6KJp0HNHxgIbirIHlNQW01Ga6SdXloqfNJp4Dff0nA.jpg" width="70"/>
+    <span class="text-3xl font-bold">
+     MATERI HAJI
+    </span>
+   </div>
+   <div class="bg-gradient-to-r from-green-100 to-blue-100 p-6 rounded-lg border-4 border-black flex items-center">
+    <img alt="Kaaba with people icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/asgHfoSP9q1jcqhPDnLb36mMLoG0xol2dDU3d3QmcNZEff0nA.jpg" width="70"/>
+    <span class="text-3xl font-bold">
+     MATERI UMROH
+    </span>
+   </div>
+   <div class="bg-gradient-to-r from-green-100 to-blue-100 p-6 rounded-lg border-4 border-black flex items-center">
+    <img alt="Graduation cap icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/mnSUTf5nmz3MKKEefJAO4EJakE4fgfzNhGX1ZDd0wVYUxfneJA.jpg" width="70"/>
+    <span class="text-3xl font-bold">
+     AYO LATIHAN!
+    </span>
+   </div>
+  </div>
+ </body>
 </html>
