@@ -6,8 +6,20 @@
   <title>Menu</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    .hajj-bg {
+      background-image: url('https://storage.googleapis.com/a1aa/image/L0RQVRrUbrqEA1fMObDUViufSFXJuKukddFveOGSuiLM8fpPB.jpg'); /* Replace with a Hajj-related image */
+      background-size: cover;
+      background-position: center;
+      transition: background 1s ease-in-out;
+    }
+
+    .hajj-bg:hover {
+      background-image: url('https://storage.googleapis.com/a1aa/image/iCsrH7h6KJp0HNHxgIbirIHlNQW01Ga6SdXloqfNJp4Dff0nA.jpg'); /* Another Hajj-related image for hover effect */
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-r from-green-300 to-teal-400 min-h-screen flex flex-col items-center">
+<body class="hajj-bg min-h-screen flex flex-col items-center">
   <!-- Header -->
   <div class="w-full bg-blue-200 flex justify-between items-center p-4">
     <div class="flex items-center">
@@ -15,13 +27,13 @@
       <span class="text-xl font-bold">sukafikih</span>
     </div>
     <div>
-      <span class="text-xl font-bold">BACK</span>
+      <a href="#" class="text-xl font-bold">BACK</a>
     </div>
   </div>
 
   <!-- Main Menu -->
   <div class="mt-8 text-center">
-    <h1 class="text-3xl font-bold">MENU</h1>
+    <h1 class="text-3xl font-bold text-black">MENU</h1> <!-- Changed text color to black -->
   </div>
 
   <!-- Cards Section -->
