@@ -1,12 +1,62 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wajib Haji</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        /* Custom button styles */
+        .btn {
+            position: relative;
+            font-size: 17px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 1em 2.5em;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 6em;
+            transition: all 0.2s;
+            border: none;
+            font-family: inherit;
+            font-weight: 500;
+            color: black;
+            background-color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn::after {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            border-radius: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all 0.4s;
+            background-color: #fff;
+        }
+
+        .btn:hover::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    </style>
 </head>
 <body class="bg-gradient-to-b from-green-400 to-blue-400 min-h-screen flex flex-col justify-between">
+
     <header class="bg-blue-200 p-4 flex justify-between items-center">
         <div class="flex items-center">
             <img alt="Logo with hands holding a Kaaba" class="mr-2" height="50" src="https://storage.googleapis.com/a1aa/image/d8x2mibg74ISLBuarClfxGIoXi4ameRmqi04FO7OwbYf3yynA.jpg" width="50"/>
@@ -16,21 +66,24 @@
             <button class="text-lg font-bold">MENU</button>
         </nav>
     </header>
+
     <main class="flex-grow flex flex-col items-center justify-center">
-        <h2 class="text-2xl font-bold mb-6">Wajib Haji</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <button class="bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Memakai Pakaian Ihram</button>
-            <button class="bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Melontar Jumroh</button>
-            <button class="bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Niat Ihram Dari Miqat</button>
-            <button class="bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Menyembelih Hewan Kurban</button>
-            <button class="bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Mabit Di Muzdalifah</button>
-            <button class="bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Tawaf wada’</button>
-            <button class="bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Mabit Di Mina</button>
-            <button class="bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Mematuhi Larangan Ihram</button>
+        <h2 class="text-2xl font-bold mb-6 text-black">Wajib Haji</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full px-8">
+            <button class="btn bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Memakai Pakaian Ihram</button>
+            <button class="btn bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Melontar Jumroh</button>
+            <button class="btn bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Niat Ihram Dari Miqat</button>
+            <button class="btn bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Menyembelih Hewan Kurban</button>
+            <button class="btn bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Mabit Di Muzdalifah</button>
+            <button class="btn bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Tawaf wada’</button>
+            <button class="btn bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Mabit Di Mina</button>
+            <button class="btn bg-purple-600 text-white py-4 px-8 rounded-lg shadow-md hover:bg-purple-700 text-lg md:text-xl lg:text-2xl">Mematuhi Larangan Ihram</button>
         </div>
     </main>
+
     <footer class="bg-blue-200 p-4 text-center">
-        <button class="text-lg font-bold">BACK</button>
+        <button class="btn font-bold text-lg">BACK</button>
     </footer>
+
 </body>
 </html>
