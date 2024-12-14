@@ -30,7 +30,7 @@
   </div>
   <a href="./haji.html"
   <div class="mt-8 w-11/12 md:w-3/4 lg:w-2/3 space-y-8">
-   <div class="bg-gradient-to-r from-green-100 to-blue-100 p-6 rounded-lg border-4 border-black flex items-center">
+   <div class=" button-effect bg-blue-200 p-6 rounded-lg border-4 border-black flex items-center">
     <img alt="Mountain with people icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/iCsrH7h6KJp0HNHxgIbirIHlNQW01Ga6SdXloqfNJp4Dff0nA.jpg" width="70"/>
     <span class="text-2xl font-bold">
      MATERI HAJI
@@ -39,7 +39,7 @@
 </a>
 <a href="./umrah.html"
     <div class="mt-8 w-11/12 md:w-3/4 lg:w-2/3 space-y-8">
-   <div class="bg-gradient-to-r from-green-100 to-blue-100 p-6 rounded-lg border-4 border-black flex items-center">
+   <div class="button-effect bg-blue-200 p-6 rounded-lg border-4 border-black flex items-center">
     <img alt="Kaaba with people icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/asgHfoSP9q1jcqhPDnLb36mMLoG0xol2dDU3d3QmcNZEff0nA.jpg" width="70"/>
     <span class="text-2xl font-bold">
      MATERI UMROH
@@ -48,7 +48,7 @@
 </a>
 <a href="./ayo latihan.html"
 <div class="mt-8 w-11/12 md:w-3/4 lg:w-2/3 space-y-8"></div>
-   <div class="bg-gradient-to-r from-green-100 to-blue-100 p-6 rounded-lg border-4 border-black flex items-center">
+   <div class="button-effect bg-blue-200 p-6 rounded-lg border-4 border-black flex items-center">
     <img alt="Graduation cap icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/mnSUTf5nmz3MKKEefJAO4EJakE4fgfzNhGX1ZDd0wVYUxfneJA.jpg" width="70"/>
     <span class="text-2xl font-bold">
      AYO LATIHAN!
@@ -57,4 +57,36 @@
 </a>
   </div>
  </body>
+ <style>
+    .button-effect {
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .button-effect::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.4s ease, height 0.4s ease;
+        z-index: 0;
+    }
+    .button-effect:hover::before {
+        width: 300%;
+        height: 300%;
+    }
+    .button-effect:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .button-effect span {
+        position: relative;
+        z-index: 1;
+    }
+</style>
 </html>
