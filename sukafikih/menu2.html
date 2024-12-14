@@ -1,92 +1,54 @@
+<!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Menu
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body class="bg-gradient-to-r from-green-300 to-teal-400 min-h-screen flex flex-col items-center">
+</head>
+<body class="bg-gradient-to-r from-green-300 to-teal-400 min-h-screen flex flex-col items-center">
+  <!-- Header -->
   <div class="w-full bg-blue-200 flex justify-between items-center p-4">
-   <div class="flex items-center">
-    <img alt="Kaaba icon" class="mr-2" height="50" src="https://storage.googleapis.com/a1aa/image/L0RQVRrUbrqEA1fMObDUViufSFXJuKukddFveOGSuiLM8fpPB.jpg" width="50"/>
-    <span class="text-xl font-bold">
-     sukafikih
-    </span>
-   </div>
-   <div>
-    <span class="text-xl font-bold">
-     BACK
-    </span>
-   </div>
+    <div class="flex items-center">
+      <img alt="Kaaba icon" class="mr-2" height="50" src="https://storage.googleapis.com/a1aa/image/L0RQVRrUbrqEA1fMObDUViufSFXJuKukddFveOGSuiLM8fpPB.jpg" width="50"/>
+      <span class="text-xl font-bold">sukafikih</span>
+    </div>
+    <div>
+      <span class="text-xl font-bold">BACK</span>
+    </div>
   </div>
+
+  <!-- Main Menu -->
   <div class="mt-8 text-center">
-   <h1 class="text-3xl font-bold">
-    MENU
-   </h1>
+    <h1 class="text-3xl font-bold">MENU</h1>
   </div>
-  <a href="./haji.html"
-  <div class="mt-8 w-11/12 md:w-3/4 lg:w-2/3 space-y-8">
-   <div class=" button-effect bg-blue-200 p-6 rounded-lg border-4 border-black flex items-center">
-    <img alt="Mountain with people icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/iCsrH7h6KJp0HNHxgIbirIHlNQW01Ga6SdXloqfNJp4Dff0nA.jpg" width="70"/>
-    <span class="text-2xl font-bold">
-     MATERI HAJI
-    </span>
-   </div>
-</a>
-<a href="./umrah.html"
-    <div class="mt-8 w-11/12 md:w-3/4 lg:w-2/3 space-y-8">
-   <div class="button-effect bg-blue-200 p-6 rounded-lg border-4 border-black flex items-center">
-    <img alt="Kaaba with people icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/asgHfoSP9q1jcqhPDnLb36mMLoG0xol2dDU3d3QmcNZEff0nA.jpg" width="70"/>
-    <span class="text-2xl font-bold">
-     MATERI UMROH
-    </span>
-   </div>
-</a>
-<a href="./ayo latihan.html"
-<div class="mt-8 w-11/12 md:w-3/4 lg:w-2/3 space-y-8"></div>
-   <div class="button-effect bg-blue-200 p-6 rounded-lg border-4 border-black flex items-center">
-    <img alt="Graduation cap icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/mnSUTf5nmz3MKKEefJAO4EJakE4fgfzNhGX1ZDd0wVYUxfneJA.jpg" width="70"/>
-    <span class="text-2xl font-bold">
-     AYO LATIHAN!
-    </span>
-   </div>
-</a>
+
+  <!-- Cards Section -->
+  <div class="mt-8 w-11/12 md:w-3/4 lg:w-2/3 flex flex-col gap-8 group">
+    <!-- Haji Card -->
+    <a href="./haji.html" class="group-hover:blur-sm hover:!blur-none">
+      <div class="bg-red-500 text-white p-6 rounded-lg border-4 border-black flex items-center transform transition duration-400 hover:scale-110">
+        <img alt="Mountain with people icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/iCsrH7h6KJp0HNHxgIbirIHlNQW01Ga6SdXloqfNJp4Dff0nA.jpg" width="70"/>
+        <span class="text-2xl font-bold">MATERI HAJI</span>
+      </div>
+    </a>
+
+    <!-- Umrah Card -->
+    <a href="./umrah.html" class="group-hover:blur-sm hover:!blur-none">
+      <div class="bg-blue-500 text-white p-6 rounded-lg border-4 border-black flex items-center transform transition duration-400 hover:scale-110">
+        <img alt="Kaaba with people icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/asgHfoSP9q1jcqhPDnLb36mMLoG0xol2dDU3d3QmcNZEff0nA.jpg" width="70"/>
+        <span class="text-2xl font-bold">MATERI UMROH</span>
+      </div>
+    </a>
+
+    <!-- Latihan Card -->
+    <a href="./ayo_latihan.html" class="group-hover:blur-sm hover:!blur-none">
+      <div class="bg-green-500 text-white p-6 rounded-lg border-4 border-black flex items-center transform transition duration-400 hover:scale-110">
+        <img alt="Graduation cap icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/mnSUTf5nmz3MKKEefJAO4EJakE4fgfzNhGX1ZDd0wVYUxfneJA.jpg" width="70"/>
+        <span class="text-2xl font-bold">AYO LATIHAN!</span>
+      </div>
+    </a>
   </div>
- </body>
- <style>
-    .button-effect {
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .button-effect::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: width 0.4s ease, height 0.4s ease;
-        z-index: 0;
-    }
-    .button-effect:hover::before {
-        width: 300%;
-        height: 300%;
-    }
-    .button-effect:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-    .button-effect span {
-        position: relative;
-        z-index: 1;
-    }
-</style>
+</body>
 </html>
