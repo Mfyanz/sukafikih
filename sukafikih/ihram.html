@@ -7,6 +7,21 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <style>
+    /* Keyframes for fade-in effect */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    
+    /* Class to apply the fade-in animation */
+    .animate-fade-in {
+      animation: fadeIn 2s ease-out forwards; /* Adjust the timing as needed */
+    }
+
     @keyframes slideIn {
       0% {
         transform: translateY(-20px);
@@ -19,18 +34,6 @@
     }
     .animate-slide {
       animation: slideIn 1s ease-out;
-    }
-
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-    .animate-fade-in {
-      animation: fadeIn 1s ease-out;
     }
 
     @keyframes moveImageVertical {
@@ -57,11 +60,11 @@
         sukafikih
       </span>
     </div>
-   <a href="./menu2.html"
-    <div class="text-3xl font-bold animate-fade-in">
-      MENU
-    </div>
-</a>
+    <a href="./menu2.html">
+      <div class="text-3xl font-bold animate-fade-in">
+        MENU
+      </div>
+    </a>
   </div>
 
   <div class="flex flex-col items-center mt-4 animate-slide">
@@ -76,12 +79,12 @@
       Ihram adalah berniat untuk memulai mengerjakan haji dengan memakai pakaian putih dan tidak berjahit. Kain tersebut diletakkan di bawah ketiak kanan dan dua ujungnya di pundak sebelah kiri. Makna yang terkandung dari pemakaian pakaian putih ini adalah kesetaraan dan kesederhanaan. Semua umat di hadapan Allah Swt. itu sama, yang membedakannya hanyalah ketakwaannya. Dengan pakaian putih juga merupakan simbol latihan meninggal dunia sehingga manusia lebih siap menghadapi kematian.
     </p>
   </div>
-<a href="./rukun haji.html"
-  <div class="bg-blue-200 w-full flex justify-center p-4 mt-4 animate-fade-in">
-    <div class="text-3xl font-bold">
+
+  <a href="./rukun haji.html">
+    <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full">
       BACK
-    </div>
-</a>
-  </div>
+    </button>
+    
+  </a>
 </body>
 </html>
