@@ -1,33 +1,98 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Pengertian Haji</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Pengertian Haji</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* Keyframes for the image moving forward and backward */
+    @keyframes moveForwardBackward {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(10px); /* Move right */
+      }
+      100% {
+        transform: translateX(0); /* Return to original position */
+      }
+    }
+
+    /* Apply the forward-backward animation to the images */
+    .animate-move {
+      animation: moveForwardBackward 2s ease-in-out infinite;
+    }
+
+    /* Keyframes for text fade-in transition */
+    @keyframes fadeInText {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Apply the fade-in effect to the text */
+    .animate-fade-in {
+      animation: fadeInText 2s ease-in-out forwards;
+    }
+
+    /* Ensures text within the box transitions */
+    .text-box {
+      opacity: 0;
+      animation: fadeInText 2s ease-in-out forwards;
+    }
+  </style>
 </head>
-<body class="bg-green-200 flex flex-col items-center justify-between min-h-screen">
-    <div class="bg-blue-200 w-full flex justify-between items-center p-4 fixed top-0 left-0 right-0">
-        <div class="flex items-center">
-            <i class="fas fa-kaaba text-2xl mr-2"></i>
-            <span class="font-bold text-xl">sukafikih</span>
-        </div>
-        <div>
-            <span class="font-bold text-xl">MENU</span>
-        </div>
+<body class="bg-green-200 font-roboto">
+
+  <!-- Header Section -->
+  <div class="bg-blue-200 p-4 flex justify-between items-center">
+    <div class="flex items-center">
+      <img alt="Logo with hands holding Kaaba" class="mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/UAZKEXjfCftZgkMcP3gqaDGLMe1ILZmUgWRQgfKsJRAeEvXfE.jpg" width="40"/>
+      <span class="font-bold text-lg">
+        sukafikih
+      </span>
     </div>
-    <div class="text-center mt-20 px-4 md:px-0">
-        <h1 class="text-2xl md:text-3xl font-bold mb-4">Pengertian Haji</h1>
-        <div class="flex flex-col md:flex-row justify-center items-center mb-4">
-            <img alt="Illustration of people performing Hajj" class="w-32 h-32 md:w-40 md:h-40 mr-0 md:mr-4 mb-4 md:mb-0" src="https://storage.googleapis.com/a1aa/image/Q19vEHbiUGozO5YAOsvlNEV3OJyKTKzEfT67SQ9Mk2XJYk8JA.jpg"/>
-            <img alt="Kaaba" class="w-32 h-32 md:w-40 md:h-40" src="https://storage.googleapis.com/a1aa/image/A8cwVBoEYgqnCBeO3AujVk9gVzviwDtBGvmZiZ0BYJ9IYk8JA.jpg"/>
-        </div>
-        <p class="text-base md:text-lg px-4 md:px-8">
-            Secara bahasa haji berasal dari kata al-H|ajj yang artinya “menyengaja sesuatu”. Sedangkan menurut syara, haji berarti menyengaja mengunjungi Baitullah di Makkah untuk melaksanakan rangkaian ibadah yang telah diatur ketentuan dan tata caranya dalam syariat Islam. Adapun hukum melaksanakan ibadah haji adalah wajib bagi orang Islam yang mampu. Kewajiban ini hanya sekali dalam seumur hidupnya
-        </p>
+    <a href="./menu2.html"
+    <div>
+      <span class="font-bold text-lg">
+        MENU
+      </span>
     </div>
-    <div class="bg-blue-200 w-full text-center p-4 fixed bottom-0 left-0 right-0">
-        <span class="font-bold text-xl">BACK</span>
+</a>
+  </div>
+
+  <!-- Main Content Section -->
+  <div class="text-center mt-12 px-4 md:px-0">
+    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold animate-fade-in">
+      Pengertian Haji
+    </h1>
+    <div class="flex justify-center mt-4 animate-move">
+      <!-- Smaller images -->
+      <img alt="Illustration of people performing Hajj" class="mr-4 w-36 h-36 md:w-40 md:h-40 lg:w-48 lg:h-48" height="120" width="120" src="https://storage.googleapis.com/a1aa/image/zs9EPnZM2h4eUCfB99JjQHaKV92OEEfCQT7bJWNKs8hNx71nA.jpg"/>
+      <img alt="Kaaba illustration" class="w-36 h-36 md:w-40 md:h-40 lg:w-48 lg:h-48" height="120" width="120" src="https://storage.googleapis.com/a1aa/image/RFxt3fWqNtUoYiiFSjfsCYtnyfmasARwBfiACgfNMYhDFvXfE.jpg"/>
     </div>
+  </div>
+
+  <!-- Content Box with Definition of Hajj -->
+  <div class="bg-blue-200 mx-4 mt-4 p-6 rounded-lg shadow-lg w-full md:w-2/3 lg:w-1/2 mx-auto animate-fade-in text-box">
+    <p class="text-center text-lg md:text-xl lg:text-2xl">
+      Secara bahasa haji berasal dari kata al-H|ajj yang artinya “menyengaja sesuatu”. Sedangkan menurut syara, haji berarti menyengaja mengunjungi Baitullah di Makkah untuk melaksanakan rangkaian ibadah yang telah diatur ketentuan dan tata caranya dalam syariat Islam. Adapun hukum melaksanakan ibadah haji adalah wajib bagi orang Islam yang mampu. Kewajiban ini hanya sekali dalam seumur hidupnya.
+    </p>
+  </div>
+
+ 
+  <div class="bg-blue-200 py-2 text-center mt-6 fixed bottom-0 w-full">
+    <a href="./haji.html"
+    <button class="font-bold text-black bg-white p-2 rounded-lg hover:bg-gray-300">
+      BACK
+    </button>
+</a>
+  </div>
+
 </body>
 </html>
