@@ -1,88 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Sa'i</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Shaking effect for the image (making it appear as walking) */
-    @keyframes walk {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      75% { transform: translateX(-5px); }
-      100% { transform: translateX(0); }
-    }
-
-    .walk-animation {
-      animation: walk 1s ease-in-out infinite;
-    }
-
-    /* Bubble-like transition for the text */
-    @keyframes bubble {
-      0% { opacity: 0; transform: translateY(10px); }
-      50% { opacity: 0.5; transform: translateY(0px); }
-      100% { opacity: 1; transform: translateY(0px); }
-    }
-
-    .bubble {
-      animation: bubble 1s ease-out forwards;
-    }
-
-    /* Background image for the page */
-    body {
-      background-image: url('https://storage.googleapis.com/a1aa/image/Kaaba_Hajj_2024.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ihram</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        /* Custom shadow and hover effects */
+        .card {
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3), 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        .button:hover {
+            background-color: #1E40AF; /* Darker blue */
+            transform: scale(1.05);
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        body {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Kaaba_Masjid_Haram_Mecca.jpg/1920px-Kaaba_Masjid_Haram_Mecca.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
-<body class="bg-green-100 font-sans text-white">
-
-  <!-- Header -->
-  <div class="bg-blue-200 p-4 flex justify-between items-center">
-    <div class="flex items-center">
-      <img alt="Logo with hands holding a book" class="mr-2" height="50" src="https://storage.googleapis.com/a1aa/image/ehMlXbGaOCTEN6quLliSEOoJT5BOu5EhaDzEBKQkOJEzJf6TA.jpg" width="50"/>
-      <span class="text-xl font-bold text-black">sukafikih</span>
+<body class="bg-white flex flex-col items-center justify-center min-h-screen">
+    <!-- Header -->
+    <div class="w-full bg-blue-200 p-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <img alt="Logo with hands holding a book" class="mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/HGyU8IKep6Q2XqNov1ByhdZPrAfWkWtzuXNjNso6QPbTeR2nA.jpg" width="40"/>
+            <span class="font-bold text-lg">sukafikih</span>
+        </div>
+        <div class="font-bold text-lg cursor-pointer hover:text-blue-700 transition">MENU</div>
     </div>
-    <a href="./menu2.html"
-    <div class="text-xl font-bold text-black">MENU
+
+    <!-- Main Content -->
+    <div class="flex-grow flex flex-col items-center justify-center px-4">
+        <h1 class="text-2xl font-black mb-4 text-center">Sa'i</h1>
+        <div class="card border rounded-lg p-6 max-w-3xl bg-white">
+            <p class="text-lg font-semibold text-gray-700">
+                Sa’i adalah kegiatan berjalan antara bukit Safa dan Marwah sebanyak 7 kali dengan ketentuan:
+            </p>
+            <ul class="list-disc pl-6 text-lg font-semibold text-gray-700 mt-4">
+                <li>Dilakukan setelah tawaf.</li>
+                <li>Dilakukan dalam keadaan suci dan menutup aurat.</li>
+                <li>Seluruh rangkaian dilakukan lengkap sebanyak 7 kali, tidak ada yang tersisa.</li>
+                <li>Dimulai dari bukit Safa dan diakhiri di bukit Marwah. Perjalanan dari Safa ke Marwah dianggap satu kali.</li>
+                <li>Berdoa di bukit Safa dan Marwah.</li>
+                <li>Bagi laki-laki, disunahkan berlari-lari kecil di antara dua lampu hijau.</li>
+            </ul>
+        </div>
     </div>
-</a>
-  </div>
 
-  <!-- Content -->
-  <div class="text-center mt-12 bubble">
-    <h1 class="text-3xl font-bold">Sa’i</h1>
-  </div>
-
-  <div class="flex justify-center mt-4 bubble">
-    <img alt="Illustration of people walking between Safa and Marwah hills" height="150" src="https://storage.googleapis.com/a1aa/image/vN5UTVLMqy50KBaTzd8YLKm9ayAbrR7nSB2Seg91QUI0Jf6TA.jpg" width="300" class="walk-animation"/>
-  </div>
-
-  <div class="mt-6 px-6 bubble">
-    <p class="text-black font-semibold">
-      Sa’i adalah kegiatan berjalan antara bukit Safa dan Marwah sebanyak 7 kali dengan ketentuan:
-    </p>
-    <ul class="list-disc list-inside mt-2 text-black">
-      <li> dilakukan setelah tawaf</li>
-      <li> dilakukan dalam keadaan suci dan menutup aurat</li>
-      <li> seluruh rangkaian dilakukan lengkap sebanyak 7 kali tidak ada yang tersisa</li>
-      <li> dimulai dari bukit Safa dan diakhiri di bukit Marwah. Perjalanan dari Safa ke Marwah dianggap satu kali</li>
-      <li> berdoa di bukit Safa dan Marwah;</li>
-      <li> bagi laki-laki, disunahkan berlari-lari kecil di antara dua lampu hijau.</li>
-    </ul>
-  </div>
-
-  <div class="bg-blue-200 p-4 text-center mt-6">
-    <a href="./menu2.html"
-    <button class="text-xl font-bold text-black">BACK
-    </button>
-</a>
-  </div>
-
-
+    <!-- Footer -->
+    <div class="w-full bg-blue-200 p-4 flex justify-center">
+        <div class="font-bold text-lg cursor-pointer hover:text-blue-700 button rounded-md p-2 transition">BACK</div>
+    </div>
 </body>
 </html>
