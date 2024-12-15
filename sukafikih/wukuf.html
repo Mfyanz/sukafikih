@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
@@ -5,26 +6,68 @@
   <title>Wukuf</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    /* Keyframe animation for the fade in and out effect */
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* Apply the fade-in and fade-out animation to the images */
+    .animate-fade {
+      animation: fadeInOut 4s ease-in-out infinite;
+    }
+
+    /* Adjusting font size for larger screens */
+    @media (min-width: 1024px) {
+      .text-lg-md { font-size: 1.5rem; }
+      .text-xl-md { font-size: 2rem; }
+      .text-2xl-md { font-size: 3rem; }
+    }
+
+    /* For mobile and tablet devices */
+    @media (max-width: 1024px) {
+      .text-lg-md { font-size: 1.25rem; }
+      .text-xl-md { font-size: 1.5rem; }
+      .text-2xl-md { font-size: 2rem; }
+    }
+  </style>
 </head>
 <body class="bg-green-200 flex flex-col min-h-screen">
-  <div class="bg-blue-200 p-4 flex justify-between items-center w-full fixed top-0">
+
+  <!-- Header -->
+  <div class="bg-blue-200 p-4 flex justify-between items-center w-full fixed top-0 z-10">
     <div class="flex items-center">
       <img alt="Logo with hands raised in prayer" class="mr-2" height="50" src="https://storage.googleapis.com/a1aa/image/Z89eUXdY4hUULSdwt3rJBDJReHYjZHMKlfKOVIfOGkGBzjkPB.jpg" width="50"/>
       <span class="text-xl font-bold">sukafikih</span>
     </div>
+    <a href="./menu2.html"
     <div>
       <button class="text-lg font-bold">MENU</button>
     </div>
   </div>
-  <div class="flex flex-col items-center mt-20 md:mt-24 flex-grow">
-    <h1 class="text-3xl font-bold mb-4">WUKUF</h1>
-    <div class="flex flex-col md:flex-row items-center">
-      <img alt="Illustration of a person in white clothing standing near a rocky hill" class="w-64 h-64 md:w-80 md:h-80 mb-4 md:mb-0 md:mr-8" height="300" src="https://storage.googleapis.com/a1aa/image/125BhABwZFoDAJirpsxfJGKT1nAD7DawGk6CWLS57shYeI5TA.jpg" width="300"/>
+</a>
+
+  <!-- Main Content Section -->
+  <div class="flex flex-col items-center mt-28 md:mt-32 flex-grow px-4">
+    <h1 class="text-3xl md:text-4xl font-bold mb-6 text-center">WUKUF</h1>
+    <div class="flex flex-col md:flex-row items-center justify-center w-full">
+      <!-- Slightly larger image with fade-in and fade-out effect -->
+      <img alt="Illustration of a person in white clothing standing near a rocky hill" class="w-72 h-72 md:w-96 md:h-96 mb-4 md:mb-0 md:mr-8 animate-fade" height="300" src="https://storage.googleapis.com/a1aa/image/125BhABwZFoDAJirpsxfJGKT1nAD7DawGk6CWLS57shYeI5TA.jpg" width="300"/>
+
+      <!-- Text Content -->
       <div class="text-center md:text-left">
-        <p class="mb-4">
-          Wukuf di Arafah adalah berhenti di Padang Arafah dari tergelincirnya matahari (waktu duhur) tanggal 9 Zulhijah sampai dengan terbenam matahari, baik dalam keadaan suci maupun tidak suci. Sunah yang dkerjakan selama wukuf antara lain:
+        <p class="text-lg-md md:text-xl-md mb-6">
+          Wukuf di Arafah adalah berhenti di Padang Arafah dari tergelincirnya matahari (waktu duhur) tanggal 9 Zulhijah sampai dengan terbenam matahari, baik dalam keadaan suci maupun tidak suci. Sunah yang dikerjakan selama wukuf antara lain:
         </p>
-        <ul class="list-disc list-inside">
+        <ul class="list-disc list-inside text-lg-md md:text-xl-md">
           <li>melakukan salat duhur dan Asar dengan dijama qasar takdim</li>
           <li>mendengarkan khotbah Arafah</li>
           <li>memperbanyak zikir, doa atau membaca al-Qur'an</li>
@@ -33,8 +76,12 @@
       </div>
     </div>
   </div>
-  <div class="bg-blue-200 p-4 text-center w-full fixed bottom-0">
+
+  <!-- Footer Section -->
+   <a href="./haji.html"
+  <div class="bg-blue-200 p-4 text-center w-full fixed bottom-0 z-10">
     <button class="text-lg font-bold">BACK</button>
   </div>
+</a>
 </body>
 </html>
