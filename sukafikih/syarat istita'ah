@@ -29,7 +29,9 @@
             <img src="https://via.placeholder.com/30" alt="Logo" class="w-8">
             <span>sukafikih</span>
         </div>
+        <a href="./menu2.html"
         <div class="text-base">MENU</div>
+    </a>
     </header>
 
     <!-- Main Content -->
@@ -48,8 +50,10 @@
     </main>
 
     <!-- Footer -->
+     <a href="./Hukum haji.html"
     <footer class="bg-blue-200 py-3 font-bold text-center">
         BACK
     </footer>
+</a>
 </body>
 </html>
