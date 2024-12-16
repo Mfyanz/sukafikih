@@ -18,7 +18,7 @@
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3), 0 6px 10px rgba(0, 0, 0, 0.2);
         }
         .button:hover {
-            background-color: #1E40AF; /* Darker blue */
+            background-color: #bec4d8; /* Darker blue */
             transform: scale(1.05);
         }
         @keyframes float {
@@ -40,14 +40,16 @@
         }
     </style>
 </head>
-<body class="bg-white flex flex-col items-center justify-center min-h-screen">
+<body class="bg-white flex flex-col items-center justify-between min-h-screen">
     <!-- Header -->
     <div class="w-full bg-blue-200 p-4 flex justify-between items-center">
         <div class="flex items-center">
             <img alt="Logo with hands holding a book" class="mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/HGyU8IKep6Q2XqNov1ByhdZPrAfWkWtzuXNjNso6QPbTeR2nA.jpg" width="40"/>
             <span class="font-bold text-lg">sukafikih</span>
         </div>
-        <div class="font-bold text-lg cursor-pointer hover:text-blue-700 transition">MENU</div>
+        <a href="./menu2.html">
+            <div class="font-bold text-lg cursor-pointer hover:text-blue-700 transition">MENU</div>
+        </a>
     </div>
 
     <!-- Main Content -->
@@ -65,8 +67,11 @@
     </div>
 
     <!-- Footer -->
-    <div class="w-full bg-blue-200 p-4 flex justify-center">
-        <div class="font-bold text-lg cursor-pointer hover:text-blue-700 button rounded-md p-2 transition">BACK</div>
-    </div>
+     <a href="./Larangan Umrah.html"
+    <footer class="w-full bg-blue-200 p-0 mt-auto">
+            <div class="font-bold text-lg cursor-pointer bg-blue-200 button rounded-none p-4 w-full text-center transition">BACK
+            </div>
+    </footer>
+</a>
 </body>
 </html>
