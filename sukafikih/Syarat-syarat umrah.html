@@ -8,6 +8,26 @@
   <script src="https://cdn.tailwindcss.com">
   </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    @keyframes shadow-move {
+      0% {
+        box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+        transform: translateY(0);
+      }
+      50% {
+        box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.4);
+        transform: translateY(-5px);
+      }
+      100% {
+        box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+        transform: translateY(0);
+      }
+    }
+
+    .button-animate:not(.no-animate) {
+      animation: shadow-move 1.5s infinite;
+    }
+  </style>
  </head>
  <body class="bg-blue-200 flex flex-col items-center justify-between min-h-screen">
   <header class="w-full bg-blue-300 p-4 flex justify-between items-center">
@@ -27,46 +47,30 @@
    <div class="flex flex-col md:flex-row justify-around w-full max-w-4xl">
     <div class="flex flex-col items-center">
      <h2 class="text-3xl font-bold mb-4">
-      syarat sah
+      Syarat-Syarat umrah
      </h2>
-     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64">
+     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64 button-animate">
       Islam
      </div>
-     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64">
+     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64 button-animate">
       Baliqh
      </div>
-     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64">
+     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64 button-animate">
       Berakal sehat
      </div>
-     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64">
+     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64 button-animate">
       Merdeka
      </div>
-    </div>
-    <div class="flex flex-col items-center">
-     <h2 class="text-3xl font-bold mb-4">
-      syarat wajib
-     </h2>
-     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64">
-      Islam
-     </div>
-     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64">
-      Baliqh
-     </div>
-     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64">
-      Berakal sehat
-     </div>
-     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64">
-      Merdeka
-     </div>
-     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64">
+     <div class="bg-purple-600 text-white text-center py-4 px-16 mb-4 rounded-lg border-2 border-black text-xl w-64 button-animate">
       Mampu
      </div>
+    </div>
     </div>
    </div>
   </main>
   <footer class="w-full bg-blue-300 p-4 text-center">
-    <a href="./umrah.html"
-    <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full">
+    <a href="./umrah.html">
+      <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full no-animate">
         BACK
       </button>
     </a>
