@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syarat Istita'ah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        .floating-box {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-blue-200 py-4 px-6 flex justify-between items-center font-bold text-lg">
+        <div class="flex items-center gap-2">
+            <img src="https://via.placeholder.com/30" alt="Logo" class="w-8">
+            <span>sukafikih</span>
+        </div>
+        <div class="text-base">MENU</div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col items-center justify-center px-4">
+        <h1 class="italic text-3xl font-serif my-4 font-bold">SYARAT ISTITA’AH</h1>
+        <div class="bg-white rounded-lg border-2 border-black shadow-xl floating-box max-w-4xl p-6">
+            <ul class="list-disc list-inside text-lg font-medium leading-relaxed">
+                <li>Memiliki biaya untuk pergi ke Makkah dan kembali atau disebut biaya penyelenggaraan ibadah haji (BPIH). Istilah ini dahulu dinamakan ongkos naik haji (ONH).</li>
+                <li>Sehat jasmani maupun rohani.</li>
+                <li>Memiliki pengetahuan tentang tata cara melaksanakan haji.</li>
+                <li>Aman selama perjalanan dari pergi hingga pulang.</li>
+                <li>Ada kendaraan, baik milik pribadi, pemerintah, atau swasta.</li>
+                <li>Wanita harus disertai mahram.</li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-200 py-3 font-bold text-center">
+        BACK
+    </footer>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hukum Haji</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .floating-box {
+            animation: float 3s ease-in-out infinite;
+        }
+        .fade-in-button {
+            animation: fadeIn 1.5s ease-out forwards;
+            opacity: 0;
+            animation-delay: 0.5s;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-blue-200 py-4 px-6 flex justify-between items-center font-bold text-lg">
+        <div class="flex items-center gap-2">
+            <img src="https://via.placeholder.com/30" alt="Logo" class="w-8">
+            <span>sukafikih</span>
+        </div>
+        <div class="text-base">MENU</div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col items-center justify-center px-4">
+        <h1 class="italic text-3xl font-serif my-4 font-bold">HUKUM HAJI</h1>
+        <div class="bg-white rounded-lg border-2 border-black shadow-xl floating-box max-w-4xl p-6">
+            <p class="text-justify text-lg font-medium leading-relaxed">
+                Hukum ibadah haji adalah fardu 'ain. Dalam pelaksanaannya, hukum haji adalah fardu 'ain, sekali dalam seumur hidup bagi seorang mukalaf yang telah mampu menunaikannya. Adapun hukum ibadah haji kedua dan seterusnya adalah sunah. Kewajiban melaksanakan ibadah haji ditujukan kepada umat Islam yang memiliki kemampuan (istita'ah) untuk melakukan ibadah haji.
+            </p>
+            <div class="flex justify-center mt-6">
+                <a href="#" class="bg-blue-300 hover:bg-blue-400 text-black font-bold py-2 px-6 rounded-full border-2 border-black shadow transition-all fade-in-button">
+                    SYARAT-SYARAT ISTITA’AH
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-200 py-3 font-bold text-center">
+        BACK
+    </footer>
+</body>
+</html>
