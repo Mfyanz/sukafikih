@@ -1,114 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Sukafikih
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body class="bg-gradient-to-r from-green-400 to-teal-500 min-h-screen flex flex-col justify-between">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syarat Sah & Wajib</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .floating-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    .floating-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Keyframes for the floating effect */
+    @keyframes floating {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between bg-gradient-to-r from-green-300 to-teal-400">
+
+  <!-- Header -->
   <header class="bg-blue-200 p-4 flex justify-between items-center">
-   <div class="flex items-center">
-    <img alt="Logo with hands holding a book" class="mr-2" height="50" src="https://storage.googleapis.com/a1aa/image/VJAnhBcV34aLPllphLWUpfZuDP2A0Gpg3yVx2lwWRvQYvs8JA.jpg" width="50"/>
-    <h1 class="text-xl font-bold">
-     sukafikih
-    </h1>
-   </div>
-   <nav>
-    <a href="./menu2.html"
-    <button class="text-lg font-bold">
-     MENU
-    </button>
-</a>
-   </nav>
+    <div class="flex items-center">
+      <img src="https://storage.googleapis.com/a1aa/image/BFcIzoOhCMIaMJX56f2uRCe9WXfvsSeWxhaxPIeyH0fzDc0eJA.jpg" alt="Logo" width="40" height="40" class="mr-2">
+      <span class="font-bold text-xl">sukafikih</span>
+    </div>
+    <span class="font-bold text-lg">MENU</span>
   </header>
-  <main class="flex-grow flex flex-col items-center justify-center mb-8">
-   <div class="flex flex-col md:flex-row justify-center items-start md:space-x-16">
-    <div class="text-center mb-8 md:mb-0">
-     <h2 class="text-3xl font-bold mb-4">
-      syarat sah
-     </h2>
-     <div class="space-y-4">
-      <button class="button-effect bg-blue-500 py-4 px-8 rounded-lg shadow-md text-lg md:text-xl lg:text-2xl w-48 md:w-64 lg:w-80 font-bold">
-       Islam
-      </button>
-      <button class="button-effect bg-blue-500 py-4 px-8 rounded-lg shadow-md text-lg md:text-xl lg:text-2xl w-48 md:w-64 lg:w-80 font-bold">
-       Baliqh
-      </button>
-      <button class="button-effect bg-blue-500 py-4 px-8 rounded-lg shadow-md text-lg md:text-xl lg:text-2xl w-48 md:w-64 lg:w-80 font-bold">
-       Berakal sehat
-      </button>
-      <button class="button-effect bg-blue-500 py-4 px-8 rounded-lg shadow-md text-lg md:text-xl lg:text-2xl w-48 md:w-64 lg:w-80 font-bold">
-       Merdeka
-      </button>
-     </div>
+
+  <!-- Main Content -->
+  <main class="flex-grow px-4 py-6 sm:py-12 flex flex-col items-center justify-center">
+    <div class="flex flex-wrap justify-center gap-8 w-full max-w-7xl">
+      <!-- Syarat Sah -->
+      <div class="floating-card bg-white/40 shadow-2xl border rounded-lg p-6 sm:p-8 w-full sm:w-3/4 lg:w-2/5 relative">
+        <h2 class="text-center font-bold italic text-2xl sm:text-3xl mb-6">syarat sah</h2>
+        <ul class="space-y-4 sm:space-y-6">
+          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Islam</li>
+          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Baliqh</li>
+          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Berakal sehat</li>
+          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Merdeka</li>
+        </ul>
+      </div>
+
+      <!-- Syarat Wajib -->
+      <div class="floating-card bg-white/40 shadow-2xl border rounded-lg p-6 sm:p-8 w-full sm:w-3/4 lg:w-2/5 relative">
+        <h2 class="text-center font-bold italic text-2xl sm:text-3xl mb-6">syarat wajib</h2>
+        <ul class="space-y-4 sm:space-y-6">
+          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Islam</li>
+          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Baliqh</li>
+          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Berakal sehat</li>
+          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Merdeka</li>
+          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Mampu</li>
+        </ul>
+      </div>
     </div>
-    <div class="text-center">
-     <h2 class="text-3xl font-bold mb-4">
-      syarat wajib
-     </h2>
-     <div class="space-y-4">
-      <button class="button-effect bg-blue-500 py-4 px-8 rounded-lg shadow-md text-lg md:text-xl lg:text-2xl w-48 md:w-64 lg:w-80 font-bold">
-       Islam
-      </button>
-      <button class="button-effect bg-blue-500  py-4 px-8 rounded-lg shadow-md text-lg md:text-xl lg:text-2xl w-48 md:w-64 lg:w-80 font-bold">
-       Baliqh
-      </button>
-      <button class="button-effect bg-blue-500  py-4 px-8 rounded-lg shadow-md text-lg md:text-xl lg:text-2xl w-48 md:w-64 lg:w-80 font-bold">
-       Berakal sehat
-      </button>
-      <button class="button-effect bg-blue-500 py-4 px-8 rounded-lg shadow-md text-lg md:text-xl lg:text-2xl w-48 md:w-64 lg:w-80 font-bold">
-       Merdeka
-      </button>
-      <button class="button-effect bg-blue-500 py-4 px-8 rounded-lg shadow-md text-lg md:text-xl lg:text-2xl w-48 md:w-64 lg:w-80 font-bold">
-       Mampu
-      </button>
-     </div>
-    </div>
-   </div>
   </main>
+
+  <!-- Footer -->
   <footer class="bg-blue-200 p-4 text-center">
-    <a href="./haji.html"
-    <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full">
-        BACK
-      </button>
-    </a>
+    <button class="text-lg font-bold tracking-widest">BACK</button>
   </footer>
- </body>
- <style>
-    .button-effect {
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .button-effect::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: width 0.4s ease, height 0.4s ease;
-        z-index: 0;
-    }
-    .button-effect:hover::before {
-        width: 300%;
-        height: 300%;
-    }
-    .button-effect:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-    .button-effect span {
-        position: relative;
-        z-index: 1;
-    }
- </style>
+
+</body>
 </html>
