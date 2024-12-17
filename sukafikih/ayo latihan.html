@@ -1,2 +1,27 @@
-<iframe style="max-width:100%" src="https://wordwall.net/embed/f8a196b23a204443997628279e8c1787?themeId=1&templateId=2&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe>
-<iframe style="max-width:100%" src="https://wordwall.net/embed/38dda5db2874457fa5567fd950357662?themeId=1&templateId=5&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe>
+<style>
+    .floating {
+      display: inline-block;
+      animation: float 3s ease-in-out infinite;
+    }
+  
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  </style>
+  
+  <div class="floating">
+    <iframe style="max-width:100%" src="https://wordwall.net/embed/f8a196b23a204443997628279e8c1787?themeId=1&templateId=2&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe>
+  </div>
+  
+  <div class="floating" style="margin-top: 20px;">
+    <iframe style="max-width:100%" src="https://wordwall.net/embed/38dda5db2874457fa5567fd950357662?themeId=1&templateId=5&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe>
+  </div>
+  
