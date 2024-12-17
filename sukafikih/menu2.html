@@ -7,15 +7,27 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <style>
-    .hajj-bg {
-      background-image: url('https://storage.googleapis.com/a1aa/image/L0RQVRrUbrqEA1fMObDUViufSFXJuKukddFveOGSuiLM8fpPB.jpg'); /* Replace with a Hajj-related image */
-      background-size: cover;
-      background-position: center;
-      transition: background 1s ease-in-out;
+    /* Keyframes for changing background images */
+    @keyframes backgroundCycle {
+      0% {
+        background-image: url('https://storage.googleapis.com/a1aa/image/L0RQVRrUbrqEA1fMObDUViufSFXJuKukddFveOGSuiLM8fpPB.jpg');
+      }
+      33% {
+        background-image: url('../image/mekkah.jpg');
+      }
+      66% {
+        background-image: url('https://storage.googleapis.com/a1aa/image/iCsrH7h6KJp0HNHxgIbirIHlNQW01Ga6SdXloqfNJp4Dff0nA.jpg');
+      }
+      100% {
+        background-image: url('https://storage.googleapis.com/a1aa/image/L0RQVRrUbrqEA1fMObDUViufSFXJuKukddFveOGSuiLM8fpPB.jpg');
+      }
     }
 
-    .hajj-bg:hover {
-      background-image: url('../image/mekkah.jpg'); 
+    /* Applying the animation to the background */
+    .hajj-bg {
+      background-size: cover;
+      background-position: center;
+      animation: backgroundCycle 15s infinite ease-in-out; /* 15 seconds cycle */
     }
   </style>
 </head>
@@ -32,11 +44,10 @@
   </div>
 
   <div class="mt-8 text-center">
-    <h1 class="text-3xl font-bold text-black">MENU</h1> <!-- Changed text color to black -->
+    <h1 class="text-3xl font-bold text-black">MENU</h1>
   </div>
 
   <div class="mt-8 w-11/12 md:w-3/4 lg:w-2/3 flex flex-col gap-8 group">
-    
     <a href="./haji.html" class="group-hover:blur-sm hover:!blur-none">
       <div class="bg-red-500 text-white p-6 rounded-lg border-4 border-black flex items-center transform transition duration-400 hover:scale-110 opacity-90 hover:opacity-100">
         <img alt="Mountain with people icon" class="mr-4" height="70" src="https://storage.googleapis.com/a1aa/image/iCsrH7h6KJp0HNHxgIbirIHlNQW01Ga6SdXloqfNJp4Dff0nA.jpg" width="70"/>
@@ -59,4 +70,4 @@
     </a>
   </div>
 </body>
-</html> 
+</html>
