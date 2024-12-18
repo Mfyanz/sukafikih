@@ -6,6 +6,66 @@
     <title>Haji</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .button-effect {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .button-effect::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            z-index: 0;
+        }
+        .button-effect:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+        .button-effect:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .button-effect span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Fix Header and Footer */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+        }
+        /* Padding for main content to prevent overlap with header and footer */
+        main {
+            padding-top: 80px; /* Adjust according to header height */
+            padding-bottom: 80px; /* Adjust according to footer height */
+        }
+
+        @media (max-width: 640px) {
+            body {
+                background-size: contain;
+                background-position: top;
+            }
+        }
+    </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between" style="background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../image/Haji.png') no-repeat center center fixed; background-size: cover; background-attachment: fixed;">
     <header class="bg-blue-200 p-4 flex justify-between items-center">
@@ -17,9 +77,9 @@
             <div class="font-bold">MENU</div>
         </a>
     </header>
-    <main class="flex-grow flex flex-col items-center justify-center pb-8"> <!-- Tambahan pb-8 untuk jarak -->
+    <main class="flex-grow flex flex-col items-center justify-center pb-8">
         <h1 class="text-3xl font-bold mb-8">HAJI</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl px-4"> <!-- Responsif grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl px-4">
             <a href="pengertian haji.html">
                 <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
                     PENGERTIAN HAJI
@@ -70,43 +130,4 @@
         </a>
     </footer>
 </body>
-<style>
-    .button-effect {
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .button-effect::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: width 0.4s ease, height 0.4s ease;
-        z-index: 0;
-    }
-    .button-effect:hover::before {
-        width: 300%;
-        height: 300%;
-    }
-    .button-effect:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-    .button-effect span {
-        position: relative;
-        z-index: 1;
-    }
-
-    @media (max-width: 640px) {
-        body {
-            background-size: contain;
-            background-position: top;
-        }
-    }
-</style>
 </html>
