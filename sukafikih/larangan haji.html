@@ -5,17 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Larangan Haji</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('../image/logo larangan haji.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                background-attachment: scroll; /* Responsif untuk perangkat kecil */
+                background-position: top;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-r from-green-400 to-cyan-400 min-h-screen flex flex-col text-center text-black font-sans">
+<body class="min-h-screen flex flex-col text-center text-black font-sans">
     <!-- Header -->
     <header class="bg-blue-200 py-4 px-6 flex justify-between items-center font-bold text-lg">
         <div class="flex items-center gap-2">
             <img src="../image/logo.png" alt="logo.png" height="50" width="50">
             <span>sukafikih</span>
         </div>
-        <a href="./menu2.html"
-        <div class="text-base">MENU</div>
-    </a>
+        <a href="./menu2.html">
+            <div class="text-base">MENU</div>
+        </a>
     </header>
 
     <!-- Title -->
@@ -40,10 +55,8 @@
     </div>
 
     <!-- Footer -->
-     <a href="./haji.html"
     <footer class="bg-blue-200 py-3 font-bold">
-        BACK
-    </a>
+        <a href="./haji.html" class="text-lg">BACK</a>
     </footer>
 </body>
 </html>
