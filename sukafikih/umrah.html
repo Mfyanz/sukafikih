@@ -9,18 +9,62 @@
     <style>
         body {
             font-family: 'Arial Black', Arial, sans-serif;
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+                        url('../image/logo\ umrah.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                background-position: top;
+                background-attachment: scroll; /* Non-fixed untuk perangkat kecil */
+            }
+        }
+
+        .button-effect {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .button-effect::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            z-index: 0;
+        }
+
+        .button-effect:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+
+        .button-effect:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-effect span {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
-<body class="bg-gradient-to-r from-green-300 to-blue-300 min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between">
     <header class="bg-blue-200 p-4 flex justify-between items-center">
         <div class="flex items-center">
             <img alt="logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
             <span class="text-xl">sukafikih</span>
         </div>
-        <a href="./menu2.html"
-        <div class="text-xl">MENU
-        </div>
+        <a href="./menu2.html">
+            <div class="text-xl">MENU</div>
         </a>
     </header>
     <main class="font-bold flex flex-col items-center justify-center">
@@ -41,51 +85,19 @@
                     SYARAT SYARAT UMROH
                 </button>
             </a>
-            <a href="./Larangan Umrah.html"
-            <button class="button-effect bg-gradient-to-r from-blue-200 to-green-200 p-6 md:p-8 lg:p-10 rounded-lg border-2 border-black w-72 md:w-80 lg:w-96 text-center">
-                LARANGAN UMROH
-            </button>
-        </a>
+            <a href="./Larangan Umrah.html">
+                <button class="button-effect bg-gradient-to-r from-blue-200 to-green-200 p-6 md:p-8 lg:p-10 rounded-lg border-2 border-black w-72 md:w-80 lg:w-96 text-center">
+                    LARANGAN UMROH
+                </button>
+            </a>
         </div>
     </main>
     <footer class="bg-blue-200 p-4 text-center">
-        <a href="./menu2.html"
-        <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full">
-            BACK
-          </button>
+        <a href="./menu2.html">
+            <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full">
+                BACK
+            </button>
         </a>
     </footer>
 </body>
-<style>
-    .button-effect {
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .button-effect::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: width 0.4s ease, height 0.4s ease;
-        z-index: 0;
-    }
-    .button-effect:hover::before {
-        width: 300%;
-        height: 300%;
-    }
-    .button-effect:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-    .button-effect span {
-        position: relative;
-        z-index: 1;
-    }
-</style>
 </html>
