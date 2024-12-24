@@ -30,12 +30,6 @@
       animation: backgroundCycle 15s infinite ease-in-out; /* 15 seconds cycle */
     }
 
-    /* Padding for main content to prevent overlap with header and footer */
-    main {
-      padding-top: 80px; /* Adjust according to header height */
-      padding-bottom: 80px; /* Adjust according to footer height */
-    }
-
     /* Adjust main container width for smaller screens */
     @media (max-width: 640px) {
       body {
@@ -47,7 +41,7 @@
 </head>
 <body class="hajj-bg min-h-screen flex flex-col items-center">
   <!-- Fixed Header (sukafikih and Back) -->
-  <header class="w-full bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 shadow-md flex justify-between items-center p-4">
+  <header class="fixed top-0 w-full bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 shadow-md flex justify-between items-center p-4 z-50">
     <div class="flex items-center">
       <img alt="logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
       <span class="text-xl font-extrabold text-white">sukafikih</span>
@@ -56,9 +50,11 @@
       <a href="../index.html" class="text-xl font-bold text-white hover:text-gray-300 transition">BACK</a>
     </div>
   </header>
+  
   <div class="mt-20 text-center">
     <h1 class="text-3xl font-bold text-black">MENU</h1>
   </div>
+  
   <div class="mt-8 w-11/12 md:w-3/4 lg:w-2/3 flex flex-col gap-8 group">
     <a href="./haji.html" class="group-hover:blur-sm hover:!blur-none">
       <div class="bg-red-500 text-white p-6 rounded-lg border-4 border-black flex items-center transform transition duration-400 hover:scale-110 shadow-lg hover:shadow-xl hover:translate-y-1 opacity-90 hover:opacity-100">
