@@ -19,6 +19,18 @@
             }
         }
 
+        /* Fade-in and Slide-up Effect */
+        @keyframes fadeInSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Fixed Header and Footer */
         header, footer {
             background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);  /* Blue-White-Blue gradient */
@@ -53,7 +65,7 @@
 
         /* Background and Main Layout */
         body {
-            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Kaaba_Masjid_Haram_Mecca.jpg/1920px-Kaaba_Masjid_Haram_Mecca.jpg') no-repeat center center fixed;
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../image/mekkah.jpg') no-repeat center center fixed;
             background-size: cover;
             background-attachment: fixed;
             min-height: 100vh;
@@ -78,22 +90,14 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        /* Keyframes for Floating Effect */
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-
         .floating-card:hover {
             transform: translateY(-15px);
             box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Apply fade-in and slide-up animation to the button */
+        .fade-in-button {
+            animation: fadeInSlideUp 1.5s ease-out forwards;
         }
 
     </style>
@@ -118,9 +122,10 @@
             <p class="text-lg">
                 Hukum ibadah haji adalah fardu 'ain. Dalam pelaksanaannya, hukum haji adalah fardu 'ain, sekali dalam seumur hidup bagi seorang mukalaf yang telah mampu menunaikannya. Adapun hukum ibadah haji kedua dan seterusnya adalah sunah. Kewajiban melaksanakan ibadah haji ditujukan kepada umat Islam yang memiliki kemampuan (istita'ah) untuk melakukan ibadah haji.
             </p>
+            <!-- Button with Fade-In Animation -->
             <a href="./syarat istita'ah.html">
                 <div class="flex justify-center mt-6">
-                    <button class="bg-blue-300 hover:bg-blue-400 text-black font-bold py-2 px-6 rounded-full border-2 border-black shadow transition-all">
+                    <button class="fade-in-button bg-blue-300 hover:bg-blue-400 text-black font-bold py-2 px-6 rounded-full border-2 border-black shadow transition-all">
                         SYARAT-SYARAT ISTITA’AH
                     </button>
                 </div>
