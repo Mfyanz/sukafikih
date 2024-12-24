@@ -44,16 +44,40 @@
             z-index: 1;
         }
 
+        .button-effect {
+            background: linear-gradient(135deg, #F4E1D2, #C7E2D3);
+            color: #4A4A4A;
+            padding: 16px 40px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        /* Additional Effects for Buttons */
+        .button-effect {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .button-effect:hover {
+            transform: translateY(-4px) translateX(-2px);
+            box-shadow: 2px 5px 0 0 rgba(0, 0, 0, 1);
+        }
+
+        .button-effect:active {
+            transform: translateY(2px) translateX(1px);
+            box-shadow: none;
+        }
+
         /* Fixed Header and Footer */
         header, footer {
-            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);  /* Blue-White-Blue gradient */
+            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);
             position: fixed;
             width: 100%;
             left: 0;
             z-index: 10;
             padding: 10px 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 30px; /* Rounded corners on both sides */
+            border-radius: 30px;
         }
 
         header {
@@ -72,8 +96,8 @@
 
         /* Main Content Padding to avoid overlap with fixed header and footer */
         main {
-            padding-top: 120px; /* Adjust according to header height */
-            padding-bottom: 120px; /* Adjust according to footer height */
+            padding-top: 120px;
+            padding-bottom: 120px;
         }
 
         /* Background and Main Layout */
@@ -91,27 +115,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-        }
-
-        /* Ensuring Main Content Scrolls */
-        .main-content {
             overflow-y: auto;
-        }
-
-        /* Button Styling */
-        .button-effect {
-            background: linear-gradient(135deg, #F4E1D2, #C7E2D3); /* Soft pastel gradient */
-            color: #4A4A4A; /* Darker text for better contrast */
-            padding: 16px 40px; /* Padding for better size and legibility */
-            border-radius: 15px; /* Rounded corners for a subtle curve */
-            font-size: 1.1rem; /* Slightly larger font */
-            text-transform: uppercase; /* Make button text uppercase */
-        }
-
-        /* Button Hover */
-        .button-effect:hover {
-            background: linear-gradient(135deg, #F0C2A3, #A9D8B4); /* Slightly darker gradient for hover */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
 
         /* Responsive Layout for Mobile Devices */
