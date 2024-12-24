@@ -7,25 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <style>
-        body {
-            font-family: 'Arial Black', Arial, sans-serif;
-            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
-                        url('../image/logo\ umrah.png') no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed; /* Tetap untuk perangkat besar */
-            margin: 0;
-        }
-
-        @media (max-width: 640px) {
-            body {
-                background-attachment: scroll; /* Non-fixed untuk perangkat kecil */
-            }
-        }
-
+        /* Button Effect */
         .button-effect {
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 20px; /* More rounded corners */
         }
 
         .button-effect::before {
@@ -57,52 +44,146 @@
             z-index: 1;
         }
 
+        /* Fixed Header and Footer */
+        header, footer {
+            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);  /* Blue-White-Blue gradient */
+            position: fixed;
+            width: 100%;
+            left: 0;
+            z-index: 10;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 0 0 20px 20px; /* Rounded bottom corners only */
+        }
+
+        header {
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0; /* No rounded corners on the top */
+        }
+
+        footer {
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px 20px 0 0; /* Rounded top corners only */
+        }
+
+        /* Main Content Padding to avoid overlap with fixed header and footer */
         main {
-            flex: 1;
+            padding-top: 100px; /* Adjust according to header height */
+            padding-bottom: 100px; /* Adjust according to footer height */
+        }
+
+        /* Background and Main Layout */
+        body {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../image/logo\ umrah.png') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* Ensuring Main Content Scrolls */
+        .main-content {
+            overflow-y: auto;
+        }
+
+        /* Button Styling */
+        .button-effect {
+            background: linear-gradient(135deg, #F4E1D2, #C7E2D3); /* Soft pastel gradient */
+            color: #4A4A4A; /* Darker text for better contrast */
+            padding: 16px 40px; /* Padding for better size and legibility */
+            border-radius: 15px; /* Rounded corners for a subtle curve */
+            font-size: 1.1rem; /* Slightly larger font */
+            text-transform: uppercase; /* Make button text uppercase */
+        }
+
+        /* Button Hover */
+        .button-effect:hover {
+            background: linear-gradient(135deg, #F0C2A3, #A9D8B4); /* Slightly darker gradient for hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive Layout for Mobile Devices */
+        @media (max-width: 640px) {
+            body {
+                background-size: contain;
+                background-position: top;
+            }
+            header {
+                padding: 10px;
+                border-radius: 15px;
+            }
+            footer button {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+            .grid-cols-1 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
-    <header class="bg-blue-200 p-4 flex justify-between items-center">
+<body>
+    <!-- Fixed Header -->
+    <header>
         <div class="flex items-center">
-            <img alt="logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
-            <span class="text-xl">sukafikih</span>
+            <img alt="Logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
+            <span class="font-bold text-lg text-white">sukafikih</span>
         </div>
-        <a href="./menu2.html">
-            <div class="text-xl">MENU</div>
-        </a>
+        <div>
+            <a href="./menu2.html" class="text-xl font-bold text-white hover:text-gray-300 transition">BACK</a>
+        </div>
     </header>
-    <main class="font-bold flex flex-col items-center justify-center">
-        <h1 class="text-3xl mb-8">UMROH</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="text-3xl font-bold mb-8 text-center text-dark">UMROH</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl px-4 mx-auto">
             <a href="./pengertian umroh.html">
-                <button class="button-effect bg-gradient-to-r from-blue-200 to-green-200 p-6 md:p-8 lg:p-10 rounded-lg border-2 border-black w-72 md:w-80 lg:w-96 text-center">
+                <button class="button-effect bg-gradient-to-r from-blue-200 to-green-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
                     PENGERTIAN UMROH
                 </button>
             </a>
             <a href="./rukun umroh.html">
-                <button class="button-effect bg-gradient-to-r from-blue-200 to-green-200 p-6 md:p-8 lg:p-10 rounded-lg border-2 border-black w-72 md:w-80 lg:w-96 text-center">
+                <button class="button-effect bg-gradient-to-r from-blue-200 to-green-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
                     RUKUN UMROH
                 </button>
             </a>
             <a href="./Syarat-syarat umrah.html">
-                <button class="button-effect bg-gradient-to-r from-blue-200 to-green-200 p-6 md:p-8 lg:p-10 rounded-lg border-2 border-black w-72 md:w-80 lg:w-96 text-center">
+                <button class="button-effect bg-gradient-to-r from-blue-200 to-green-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
                     SYARAT SYARAT UMROH
                 </button>
             </a>
             <a href="./Larangan Umrah.html">
-                <button class="button-effect bg-gradient-to-r from-blue-200 to-green-200 p-6 md:p-8 lg:p-10 rounded-lg border-2 border-black w-72 md:w-80 lg:w-96 text-center">
+                <button class="button-effect bg-gradient-to-r from-blue-200 to-green-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
                     LARANGAN UMROH
                 </button>
             </a>
         </div>
     </main>
-    <footer class="bg-blue-200 p-4 text-center">
+
+    <!-- Fixed Footer -->
+    <footer class="bg-gradient-to-r from-blue-500 via-white to-blue-500 p-4 text-center">
         <a href="./menu2.html">
-            <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full">
+            <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full transition-all duration-300">
                 BACK
             </button>
         </a>
     </footer>
 </body>
 </html>
+
