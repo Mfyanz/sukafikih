@@ -7,75 +7,185 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <style>
-        /* Custom shadow and transform effects */
-        .btn-effect {
+        /* Button Effect */
+        .button-effect {
             position: relative;
-            transform-style: preserve-3d;
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background-color 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 20px; /* More rounded corners */
         }
-        .btn-effect::before {
+
+        .button-effect::before {
             content: '';
             position: absolute;
-            top: 0;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            z-index: 0;
+        }
+
+        .button-effect:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+
+        .button-effect:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-effect span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Fixed Header and Footer */
+        header, footer {
+            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);  /* Blue-White-Blue gradient */
+            position: fixed;
+            width: 100%;
             left: 0;
-            right: 0;
+            z-index: 10;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 30px; /* Rounded corners on both sides */
+        }
+
+        header {
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer {
             bottom: 0;
-            background: #f9c4d2;
-            border-radius: inherit;
-            box-shadow: 0 0 0 2px #b18597, 0 10px 0 0 #ffe3e2;
-            transform: translate3d(0, 10px, -10px);
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
-            z-index: -1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .btn-effect:hover {
-            background-color: #ffe9e9;
-            transform: translateY(5px);
+
+        /* Main Content Padding to avoid overlap with fixed header and footer */
+        main {
+            padding-top: 120px; /* Adjust according to header height */
+            padding-bottom: 120px; /* Adjust according to footer height */
         }
-        .btn-effect:hover::before {
-            box-shadow: 0 0 0 2px #b18597, 0 8px 0 0 #ffe3e2;
-            transform: translate3d(0, 8px, -10px);
+
+        /* Background and Main Layout */
+        body {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Kaaba_Masjid_Haram_Mecca.jpg/1920px-Kaaba_Masjid_Haram_Mecca.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .btn-effect:active {
-            transform: translateY(10px);
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
-        .btn-effect:active::before {
-            box-shadow: 0 0 0 2px #b18597, 0 0px 0 0 #ffe3e2;
-            transform: translate3d(0, 0, -10px);
+
+        /* Ensuring Main Content Scrolls */
+        .main-content {
+            overflow-y: auto;
+        }
+
+        /* Button Styling */
+        .button-effect {
+            background: linear-gradient(135deg, #F4E1D2, #C7E2D3); /* Soft pastel gradient */
+            color: #4A4A4A; /* Darker text for better contrast */
+            padding: 16px 40px; /* Padding for better size and legibility */
+            border-radius: 15px; /* Rounded corners for a subtle curve */
+            font-size: 1.1rem; /* Slightly larger font */
+            text-transform: uppercase; /* Make button text uppercase */
+        }
+
+        /* Button Hover */
+        .button-effect:hover {
+            background: linear-gradient(135deg, #F0C2A3, #A9D8B4); /* Slightly darker gradient for hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive Layout for Mobile Devices */
+        @media (max-width: 640px) {
+            body {
+                background-size: contain;
+                background-position: top;
+            }
+            header {
+                padding: 10px;
+                border-radius: 15px;
+            }
+            footer button {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+            .grid-cols-1 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
         }
     </style>
 </head>
-<body class="bg-gradient-to-r from-green-400 to-teal-500 min-h-screen flex flex-col justify-between">
-    <header class="bg-blue-200 p-4 flex justify-between items-center">
+<body>
+    <!-- Fixed Header -->
+    <header>
         <div class="flex items-center">
-            <img alt="logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
-            <span class="font-bold text-xl">sukafikih</span>
+            <img alt="Logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
+            <span class="font-bold text-lg text-white">sukafikih</span>
         </div>
-        <a href="./menu2.html" class="font-bold text-lg">MENU</a>
+        <div>
+            <a href="./menu2.html" class="text-xl font-bold text-white hover:text-gray-300 transition">BACK</a>
+        </div>
     </header>
 
-    <main class="flex-grow flex flex-col items-center justify-center">
-        <h1 class="text-3xl font-bold mb-8">Rukun Umroh</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12"> <!-- Added margin-bottom to create space from footer -->
-            <a href="./ihram u.html"
-            class="btn-effect bg-purple-600 text-black font-bold py-6 px-32 rounded-full text-lg md:text-xl lg:text-2xl text-center">Ihram
-        </a>
-            <a href="./tawaf u.html" 
-            class="btn-effect bg-purple-600 text-black font-bold py-6 px-32 rounded-full text-lg md:text-xl lg:text-2xl text-center">Tawaf
-        </a>
-            <a href="./sai u.html" 
-            class="btn-effect bg-purple-600 text-black font-bold py-6 px-32 rounded-full text-lg md:text-xl lg:text-2xl text-center">Sa’i
-        </a>
-            <a href="./Tahallul u.html" 
-            class="btn-effect bg-purple-600 text-black font-bold py-6 px-32 rounded-full text-lg md:text-xl lg:text-2xl text-center">Tahallul
-        </a>
-            <a href="./tertib u.html" 
-            class="btn-effect bg-purple-600 text-black font-bold py-6 px-32 rounded-full text-lg md:text-xl lg:text-2xl text-center">Tertib
-        </a>
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="text-3xl font-bold mb-8 text-center text-dark">Rukun Umroh</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl px-4 mx-auto">
+            <a href="./ihram u.html">
+                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
+                    Ihram
+                </button>
+            </a>
+            <a href="./tawaf u.html">
+                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
+                    Tawaf
+                </button>
+            </a>
+            <a href="./sai u.html">
+                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
+                    Sa’i
+                </button>
+            </a>
+            <a href="./Tahallul u.html">
+                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
+                    Tahallul
+                </button>
+            </a>
+            <a href="./tertib u.html">
+                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
+                    Tertib
+                </button>
+            </a>
         </div>
     </main>
 
-    <footer class="bg-blue-200 p-4 text-center">
-        <a href="./umrah.html" class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full inline-block">BACK</a>
+    <!-- Fixed Footer -->
+    <footer class="bg-gradient-to-r from-blue-500 via-white to-blue-500 p-4 text-center">
+        <a href="./umrah.html">
+            <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full transition-all duration-300">
+                BACK
+            </button>
+        </a>
     </footer>
 </body>
 </html>

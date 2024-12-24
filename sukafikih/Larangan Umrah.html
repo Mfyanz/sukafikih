@@ -5,59 +5,177 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Larangan Umroh</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <style>
-        body {
-            background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
-                        url('../image/logo\ larangan\ haji.png') no-repeat center center fixed;
-            background-size: cover;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
+        /* Button Effect */
+        .button-effect {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 20px; /* More rounded corners */
         }
 
+        .button-effect::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            z-index: 0;
+        }
+
+        .button-effect:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+
+        .button-effect:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-effect span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Fixed Header and Footer */
+        header, footer {
+            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF); /* Blue-White-Blue gradient */
+            position: fixed;
+            width: 100%;
+            left: 0;
+            z-index: 10;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 30px; /* Rounded corners on both sides */
+        }
+
+        header {
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer {
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Main Content Padding to avoid overlap with fixed header and footer */
+        main {
+            padding-top: 120px; /* Adjust according to header height */
+            padding-bottom: 120px; /* Adjust according to footer height */
+        }
+
+        /* Background and Main Layout */
+        body {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../image/logo larangan haji.png') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .main-content {
+            overflow-y: auto;
+        }
+
+        /* Button Styling */
+        .button-effect {
+            background: linear-gradient(135deg, #F4E1D2, #C7E2D3); /* Soft pastel gradient */
+            color: #4A4A4A; /* Darker text for better contrast */
+            padding: 16px 40px; /* Padding for better size and legibility */
+            border-radius: 15px; /* Rounded corners for a subtle curve */
+            font-size: 1.1rem; /* Slightly larger font */
+            text-transform: uppercase; /* Make button text uppercase */
+        }
+
+        /* Button Hover */
+        .button-effect:hover {
+            background: linear-gradient(135deg, #F0C2A3, #A9D8B4); /* Slightly darker gradient for hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive Layout for Mobile Devices */
         @media (max-width: 640px) {
             body {
-                background-attachment: scroll; /* Responsif untuk perangkat kecil */
+                background-size: contain;
                 background-position: top;
+            }
+            header {
+                padding: 10px;
+                border-radius: 15px;
+            }
+            footer button {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+            .grid-cols-1 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col text-center text-black font-sans">
-    <!-- Header -->
-    <header class="bg-blue-200 py-4 px-6 flex justify-between items-center font-bold text-lg">
-        <div class="flex items-center gap-2">
-            <img src="../image/logo.png" alt="Logo" height="50" width="50">
-            <span>sukafikih</span>
+<body>
+    <!-- Fixed Header -->
+    <header>
+        <div class="flex items-center">
+            <img alt="Logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
+            <span class="font-bold text-lg text-white">sukafikih</span>
         </div>
-        <a href="./menu2.html">
-            <div class="text-base">MENU</div>
-        </a>
+        <div>
+            <a href="./menu2.html" class="text-xl font-bold text-white hover:text-gray-300 transition">MENU</a>
+        </div>
     </header>
 
-    <!-- Title -->
-    <h1 class="font-black text-2xl font-bold mt-6 mb-8">
-        <em>Larangan Umroh</em>
-    </h1>
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="text-3xl font-bold mb-8 text-center text-dark">Larangan Umroh</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl px-4 mx-auto">
+            <a href="./Larangan Umrah lk.html">
+                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
+                    Bagi Laki Laki
+                </button>
+            </a>
+            <a href="./Larangan umrah pr.html">
+                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
+                    Bagi Perempuan
+                </button>
+            </a>
+            <a href="./larangan u lk dan pr.html">
+                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
+                    Bagi Laki Laki dan Perempuan
+                </button>
+            </a>
+        </div>
+    </main>
 
-    <!-- Button Container -->
-    <div class="flex flex-col gap-4 items-center flex-grow">
-        <a href="./Larangan Umrah lk.html"
-            class="bg-indigo-600 text-white font-bold py-4 px-6 rounded-full shadow-md border-2 border-black w-4/5 max-w-md text-lg transition-transform hover:bg-indigo-700 hover:-translate-y-1">
-            Bagi Laki Laki
+    <!-- Fixed Footer -->
+    <footer class="bg-gradient-to-r from-blue-500 via-white to-blue-500 p-4 text-center">
+        <a href="./umrah.html">
+            <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full transition-all duration-300">
+                BACK
+            </button>
         </a>
-        <a href="./Larangan umrah pr.html" 
-            class="bg-indigo-600 text-white font-bold py-4 px-6 rounded-full shadow-md border-2 border-black w-4/5 max-w-md text-lg transition-transform hover:bg-indigo-700 hover:-translate-y-1">
-            Bagi Perempuan
-        </a>
-        <a href="./larangan u lk dan pr.html" 
-            class="bg-indigo-600 text-white font-bold py-4 px-6 rounded-full shadow-md border-2 border-black w-4/5 max-w-md text-lg transition-transform hover:bg-indigo-700 hover:-translate-y-1">
-            Bagi Laki Laki dan Perempuan
-        </a>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-blue-200 py-3 font-bold">
-        <a href="./umrah.html" class="text-lg">BACK</a>
     </footer>
 </body>
 </html>
