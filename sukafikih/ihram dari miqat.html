@@ -19,6 +19,18 @@
             }
         }
 
+        /* Fade-in and Slide-up Effect */
+        @keyframes fadeInSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Fixed Header and Footer */
         header, footer {
             background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);  /* Blue-White-Blue gradient */
@@ -131,6 +143,20 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
 
+        /* Apply fade-in and slide-up animation to the buttons */
+        .fade-in-buttons {
+            animation: fadeInSlideUp 1.5s ease-out forwards;
+        }
+
+        /* Delay for individual buttons */
+        .fade-in-buttons:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        .fade-in-buttons:nth-child(2) {
+            animation-delay: 1s;
+        }
+
     </style>
 </head>
 <body>
@@ -153,15 +179,15 @@
             <p class="text-lg mb-6">
                 Calon haji harus memulai niatnya dan dari titik awal tempat itu yang berniat melaksanakan haji/umrah sudah harus memakai pakaian ihram. Yalamlam adalah tempat berihram calon jamaah haji yang datang dari arah Indonesia bila ia langsung akan menuju ke Makkah dan Bir Ali adalah tempat berihram calon jamaah haji yang datang dari arah Indonesia menuju ke Madinah terlebih dahulu. Miqat terbagi menjadi 2 antara lain:
             </p>
-            <!-- Two buttons side by side -->
+            <!-- Two buttons side by side with fade-in effect -->
             <div class="flex justify-center gap-4">
                 <a href="./Miqat Zamani.html">
-                    <button class="button-effect text-black font-bold rounded-lg border-2 border-black w-full text-center">
+                    <button class="button-effect fade-in-buttons text-black font-bold rounded-lg border-2 border-black w-full text-center">
                         MIQAT ZAMANI
                     </button>
                 </a>
                 <a href="./miqat Makani.html">
-                    <button class="button-effect text-black font-bold rounded-lg border-2 border-black w-full text-center">
+                    <button class="button-effect fade-in-buttons text-black font-bold rounded-lg border-2 border-black w-full text-center">
                         MIQAT MAKANI
                     </button>
                 </a>
