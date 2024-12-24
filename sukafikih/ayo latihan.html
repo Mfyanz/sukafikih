@@ -1,27 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Haji</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        /* Fixed Header and Footer */
+        header, footer {
+            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);  /* Blue-White-Blue gradient */
+            position: fixed;
+            width: 100%;
+            left: 0;
+            z-index: 10;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 30px; /* Rounded corners on both sides */
+        }
 
-<style>
-    .floating {
-      display: inline-block;
-      animation: float 3s ease-in-out infinite;
-    }
-  
-    @keyframes float {
-      0% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-      100% {
-        transform: translateY(0);
-      }
-    }
-  </style>
-  
-  <div class="floating">
-    <iframe style="max-width:100%" src="https://wordwall.net/embed/f8a196b23a204443997628279e8c1787?themeId=1&templateId=2&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe>
-  </div>
-  
-  <div class="floating" style="margin-top: 20px;">
-    <iframe style="max-width:100%" src="https://wordwall.net/embed/38dda5db2874457fa5567fd950357662?themeId=1&templateId=5&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe>
-  </div>
+        header {
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer {
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Main Content Padding to avoid overlap with fixed header and footer */
+        main {
+            padding-top: 120px; /* Adjust according to header height */
+            padding-bottom: 120px; /* Adjust according to footer height */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Background and Main Layout */
+        body {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../image/haji.png') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* Ensuring Main Content Scrolls */
+        .main-content {
+            overflow-y: auto;
+        }
+
+        .floating {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+            max-width: 100%;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive iframe */
+        iframe {
+            width: 100%; /* Default to full width on smaller screens */
+            height: 380px;
+            border: none;
+            max-width: 500px; /* Limit maximum width of iframes */
+        }
+
+        /* Adjusting Layout on Larger Screens (Laptop and up) */
+        @media (min-width: 768px) {
+            iframe {
+                width: 48%; /* Set width to 48% to allow space between iframes */
+                height: 500px; /* Larger height for better display on larger screens */
+            }
+        }
+
+        /* Adjusting Layout on Extra Large Screens (Laptop and up) */
+        @media (min-width: 1024px) {
+            iframe {
+                width: 60%; /* Make iframe even larger on laptop-sized screens */
+                height: 600px; /* Even larger height for better visibility */
+            }
+        }
+
+        /* Ensure responsiveness */
+        @media (max-width: 768px) {
+            iframe {
+                height: 280px; /* Adjust iframe size on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header>
+        <div class="flex items-center">
+            <img alt="Logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
+            <span class="font-bold text-lg text-white">sukafikih</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="floating">
+            <iframe src="https://wordwall.net/embed/f8a196b23a204443997628279e8c1787?themeId=1&templateId=2&fontStackId=0" allowfullscreen></iframe>
+        </div>
+        
+        <div class="floating">
+            <iframe src="https://wordwall.net/embed/38dda5db2874457fa5567fd950357662?themeId=1&templateId=5&fontStackId=0" allowfullscreen></iframe>
+        </div>
+    </main>
+
+    <!-- Fixed Footer -->
+    <footer class="bg-gradient-to-r from-blue-500 via-white to-blue-500 p-4 text-center">
+        <a href="./menu2.html">
+            <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full transition-all duration-300">
+                BACK
+            </button>
+        </a>
+    </footer>
+</body>
+</html>
