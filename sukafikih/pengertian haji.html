@@ -1,78 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Pengertian Haji</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <style>
-    /* Floating Box Animation */
-    .floating-card {
-        animation: float 3s ease-in-out infinite; /* Floating animation */
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Box shadow */
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    /* Keyframes for Floating Effect */
-    @keyframes float {
-        0% {
-            transform: translateY(0); /* Start position */
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Pengertian Haji</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        /* Button Effect */
+        .button-effect {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 20px; /* More rounded corners */
         }
-        50% {
-            transform: translateY(-10px); /* Move up */
-        }
-        100% {
-            transform: translateY(0); /* Return to start */
-        }
-    }
 
-    /* Hover effect for extra interaction */
-    .floating-card:hover {
-        transform: translateY(-15px); /* Slightly move up when hovered */
-        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
-    }
+        .button-effect::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            z-index: 0;
+        }
 
-    body {
-        background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Kaaba_Masjid_Haram_Mecca.jpg/1920px-Kaaba_Masjid_Haram_Mecca.jpg');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
-  </style>
+        .button-effect:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+
+        .button-effect:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-effect span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Fixed Header and Footer */
+        header, footer {
+            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);  /* Blue-White-Blue gradient */
+            position: fixed;
+            width: 100%;
+            left: 0;
+            z-index: 10;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 30px; /* Rounded corners on both sides */
+        }
+
+        header {
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer {
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Main Content Padding to avoid overlap with fixed header and footer */
+        main {
+            padding-top: 120px; /* Adjust according to header height */
+            padding-bottom: 120px; /* Adjust according to footer height */
+        }
+
+        /* Background and Main Layout */
+        body {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Kaaba_Masjid_Haram_Mecca.jpg/1920px-Kaaba_Masjid_Haram_Mecca.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* Ensuring Main Content Scrolls */
+        .main-content {
+            overflow-y: auto;
+        }
+
+        .floating-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Keyframes for Floating Effect */
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .floating-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
+        }
+
+    </style>
 </head>
-<body class="bg-white flex flex-col items-center justify-between min-h-screen">
+<body>
 
-  <!-- Header -->
-  <header class="w-full bg-blue-200 flex justify-between items-center p-4">
-    <div class="flex items-center">
-      <img alt="logo.png" class="mr-2" height="40" src="../image/logo.png" width="40"/>
-      <span class="text-xl font-bold">sukafikih</span>
-    </div>
-    <a href="./menu2.html"
-    <button class="text-lg font-bold">MENU</button>
-  </a>
-  </header>
+    <!-- Fixed Header -->
+    <header>
+        <div class="flex items-center">
+            <img alt="Logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
+            <span class="font-bold text-lg text-white">sukafikih</span>
+        </div>
+        <div>
+            <a href="./menu2.html" class="text-xl font-bold text-white hover:text-gray-300 transition">BACK</a>
+        </div>
+    </header>
 
-  <!-- Main Content -->
-  <main class="flex-grow flex flex-col items-center justify-center px-4">
-    <div class="text-center">
-      <img alt="Kaaba icon" class="mx-auto mb-4" height="60" src="https://storage.googleapis.com/a1aa/image/kfe9dWJVT4pKeJf2X82b8cInWsYLjLt1fZSJmgERLcrvBOafE.jpg" width="60"/>
-      <h1 class="text-2xl font-bold mb-4">Pengertian Haji</h1>
-      <div class="floating-card bg-white rounded-lg p-6 max-w-3xl mx-auto">
-        <p class="text-lg">
-          Secara bahasa haji berasal dari kata al-H|ajj yang artinya “menyengaja sesuatu”. Sedangkan menurut syara, haji berarti menyengaja mengunjungi Baitullah di Makkah untuk melaksanakan rangkaian ibadah yang telah diatur ketentuan dan tata caranya dalam syariat Islam. Adapun hukum melaksanakan ibadah haji adalah wajib bagi orang Islam yang mampu. Kewajiban ini hanya sekali dalam seumur hidupnya.
-        </p>
-      </div>
-    </div>
-  </main>
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="text-3xl font-bold mb-8 text-center text-dark">PENGERTIAN HAJI</h1>
+        <div class="floating-card w-full max-w-3xl mx-auto">
+            <p class="text-lg">
+                Secara bahasa haji berasal dari kata al-H|ajj yang artinya “menyengaja sesuatu”. Sedangkan menurut syara, haji berarti menyengaja mengunjungi Baitullah di Makkah untuk melaksanakan rangkaian ibadah yang telah diatur ketentuan dan tata caranya dalam syariat Islam. Adapun hukum melaksanakan ibadah haji adalah wajib bagi orang Islam yang mampu. Kewajiban ini hanya sekali dalam seumur hidupnya.
+            </p>
+        </div>
+    </main>
 
-  <!-- Footer -->
-  <footer class="w-full bg-blue-200 p-4 text-center">
-    <a href="./haji.html"
-    <button class="text-lg font-bold p-2 rounded-md transition">BACK</button>
-  </a>
-  </footer>
+    <!-- Fixed Footer -->
+    <footer class="bg-gradient-to-r from-blue-500 via-white to-blue-500 p-4 text-center">
+        <a href="./haji.html">
+            <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full transition-all duration-300">
+                BACK
+            </button>
+        </a>
+    </footer>
 
 </body>
 </html>

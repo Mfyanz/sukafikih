@@ -3,24 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Larangan Haji laki-laki</title>
+    <title>Larangan Haji Laki-laki</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <style>
-        /* Custom shadow and hover effects */
-        .card {
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: float 3s ease-in-out infinite;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3), 0 6px 10px rgba(0, 0, 0, 0.2);
-        }
-        .button:hover {
-            background-color: #1E40AF; /* Darker blue */
-            transform: scale(1.05);
-        }
+        /* Floating Box Animation */
         @keyframes float {
             0% {
                 transform: translateY(0px);
@@ -32,31 +19,138 @@
                 transform: translateY(0px);
             }
         }
+
+        /* Fixed Header and Footer */
+        header, footer {
+            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);  /* Blue-White-Blue gradient */
+            position: fixed;
+            width: 100%;
+            left: 0;
+            z-index: 10;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 30px; /* Rounded corners on both sides */
+        }
+
+        header {
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer {
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Main Content Padding to avoid overlap with fixed header and footer */
+        main {
+            padding-top: 120px; /* Adjust according to header height */
+            padding-bottom: 120px; /* Adjust according to footer height */
+        }
+
+        /* Background and Main Layout */
         body {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Kaaba_Masjid_Haram_Mecca.jpg/1920px-Kaaba_Masjid_Haram_Mecca.jpg');
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Kaaba_Masjid_Haram_Mecca.jpg/1920px-Kaaba_Masjid_Haram_Mecca.jpg') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
             background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+
+        .floating-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Button Hover and Floating Effect */
+        .button-effect {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 20px; /* More rounded corners */
+        }
+
+        .button-effect::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            z-index: 0;
+        }
+
+        .button-effect:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+
+        .button-effect:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-effect span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Adjusted button size for MIQAT ZAMANI and MIQAT MAKANI */
+        .button-effect {
+            background: linear-gradient(135deg, #F4E1D2, #C7E2D3); /* Soft pastel gradient */
+            color: #4A4A4A; /* Darker text for better contrast */
+            padding: 12px 30px; /* Reduced padding */
+            border-radius: 15px; /* Rounded corners for a subtle curve */
+            font-size: 1rem; /* Slightly smaller font */
+            text-transform: uppercase; /* Make button text uppercase */
+        }
+
+        /* Button Hover */
+        .button-effect:hover {
+            background: linear-gradient(135deg, #F0C2A3, #A9D8B4); /* Slightly darker gradient for hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
     </style>
 </head>
-<body class="bg-white flex flex-col items-center justify-center min-h-screen">
-    <!-- Header -->
-    <div class="w-full bg-blue-200 p-4 flex justify-between items-center">
+<body>
+
+    <!-- Fixed Header -->
+    <header>
         <div class="flex items-center">
-            <img alt="logo.png" class="mr-2" height="40" src="../image/logo.png" width="40"/>
-            <span class="font-bold text-lg">sukafikih</span>
+            <img alt="Logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
+            <span class="font-bold text-lg text-white">sukafikih</span>
         </div>
-        <a href="./menu2.html"
-        <div class="font-bold text-lg cursor-pointer hover:text-blue-700 transition">MENU</div>
-    </a>
-    </div>
+        <div>
+            <a href="./menu2.html" class="text-xl font-bold text-white hover:text-gray-300 transition">BACK</a>
+        </div>
+    </header>
 
     <!-- Main Content -->
-    <div class="flex-grow flex flex-col items-center justify-center px-4">
-        <h1 class="text-2xl font-black mb-4 text-center">LARANGAN LAKI LAKI</h1>
-        <div class="card border rounded-lg p-6 max-w-3xl bg-white">
-            <p class="text-lg font-semibold text-gray-700">
+    <main class="main-content">
+        <h1 class="text-3xl font-bold mb-8 text-center text-dark">LARANGAN LAKI LAKI</h1>
+        <div class="floating-card w-full max-w-3xl mx-auto">
+            <p class="text-lg mb-6">
                 Larangan untuk jamaah haji laki-laki antara lain:
             </p>
             <ul class="list-disc pl-6 text-lg font-semibold text-gray-700">
@@ -64,13 +158,16 @@
                 <li>Menutup kepala, kecuali sesuatu hal dibolehkan. Akan tetapi harus membayar dam.</li>
             </ul>
         </div>
-    </div>
+    </main>
 
-    <!-- Footer -->
-    <div class="w-full bg-blue-200 p-4 flex justify-center">
-        <a href="./larangan haji.html"
-        <div class="font-bold text-lg cursor-pointer hover:text-blue-700 button rounded-md p-2 transition">BACK</div>
-    </a>
-    </div>
+    <!-- Fixed Footer -->
+    <footer class="bg-gradient-to-r from-blue-500 via-white to-blue-500 p-4 text-center">
+        <a href="./larangan haji.html">
+            <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full transition-all duration-300">
+                BACK
+            </button>
+        </a>
+    </footer>
+
 </body>
 </html>

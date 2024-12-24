@@ -6,77 +6,183 @@
   <title>Syarat Sah & Wajib</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .floating-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: floating 3s ease-in-out infinite;
-    }
-
-    .floating-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Keyframes for the floating effect */
-    @keyframes floating {
+    /* Floating Box Animation */
+    @keyframes float {
       0% {
-        transform: translateY(0);
+        transform: translateY(0px);
       }
       50% {
         transform: translateY(-10px);
       }
       100% {
-        transform: translateY(0);
+        transform: translateY(0px);
       }
     }
 
+    /* Fixed Header and Footer */
+    header, footer {
+      background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);  /* Blue-White-Blue gradient */
+      position: fixed;
+      width: 100%;
+      left: 0;
+      z-index: 10;
+      padding: 10px 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 30px; /* Rounded corners on both sides */
+    }
+
+    header {
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer {
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Main Content Padding to avoid overlap with fixed header and footer */
+    main {
+      padding-top: 120px; /* Adjust according to header height */
+      padding-bottom: 120px; /* Adjust according to footer height */
+    }
+
+    /* Background and Main Layout */
+    body {
+      background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Kaaba_Masjid_Haram_Mecca.jpg/1920px-Kaaba_Masjid_Haram_Mecca.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+
+    .floating-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Button Hover and Floating Effect */
+    .button-effect {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 20px; /* More rounded corners */
+    }
+
+    .button-effect::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+      z-index: 0;
+    }
+
+    .button-effect:hover::before {
+      width: 300%;
+      height: 300%;
+    }
+
+    .button-effect:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .button-effect span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Adjusted button size for MIQAT ZAMANI and MIQAT MAKANI */
+    .button-effect {
+      background: linear-gradient(135deg, #F4E1D2, #C7E2D3); /* Soft pastel gradient */
+      color: #4A4A4A; /* Darker text for better contrast */
+      padding: 12px 30px; /* Reduced padding */
+      border-radius: 15px; /* Rounded corners for a subtle curve */
+      font-size: 1rem; /* Slightly smaller font */
+      text-transform: uppercase; /* Make button text uppercase */
+    }
+
+    /* Button Hover */
+    .button-effect:hover {
+      background: linear-gradient(135deg, #F0C2A3, #A9D8B4); /* Slightly darker gradient for hover */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between bg-gradient-to-r from-green-300 to-teal-400">
+<body>
 
-  <!-- Header -->
-  <header class="bg-blue-200 p-4 flex justify-between items-center">
+  <!-- Fixed Header -->
+  <header>
     <div class="flex items-center">
-      <img src="../image/logo.png" alt="logo.png" width="40" height="40" class="mr-2">
-      <span class="font-bold text-xl">sukafikih</span>
+      <img alt="Logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
+      <span class="font-bold text-lg text-white">sukafikih</span>
     </div>
-    <a href="./menu2.html"
-    <span class="font-bold text-lg">MENU</span>
-  </a>
+    <div>
+      <a href="./menu2.html" class="text-xl font-bold text-white hover:text-gray-300 transition">MENU</a>
+    </div>
   </header>
 
   <!-- Main Content -->
-  <main class="flex-grow px-4 py-6 sm:py-12 flex flex-col items-center justify-center">
-    <div class="flex flex-wrap justify-center gap-8 w-full max-w-7xl">
-      <!-- Syarat Sah -->
-      <div class="floating-card bg-white/40 shadow-2xl border rounded-lg p-6 sm:p-8 w-full sm:w-3/4 lg:w-2/5 relative">
-        <h2 class="text-center font-bold italic text-2xl sm:text-3xl mb-6">syarat sah</h2>
-        <ul class="space-y-4 sm:space-y-6">
-          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Islam</li>
-          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Baliqh</li>
-          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Berakal sehat</li>
-          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Merdeka</li>
-        </ul>
-      </div>
+  <main class="main-content">
+    <h1 class="text-3xl font-bold mb-8 text-center text-dark">Syarat Sah & Wajib</h1>
+    <div class="floating-card w-full max-w-3xl mx-auto">
+      <div class="flex flex-wrap justify-center gap-8 w-full max-w-7xl">
+        <!-- Syarat Sah -->
+        <div class="floating-card bg-white/40 shadow-2xl border rounded-lg p-6 sm:p-8 w-full sm:w-3/4 lg:w-2/5 relative">
+          <h2 class="text-center font-bold italic text-2xl sm:text-3xl mb-6">syarat sah</h2>
+          <ul class="space-y-4 sm:space-y-6">
+            <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Islam</li>
+            <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Baliqh</li>
+            <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Berakal sehat</li>
+            <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Merdeka</li>
+          </ul>
+        </div>
 
-      <!-- Syarat Wajib -->
-      <div class="floating-card bg-white/40 shadow-2xl border rounded-lg p-6 sm:p-8 w-full sm:w-3/4 lg:w-2/5 relative">
-        <h2 class="text-center font-bold italic text-2xl sm:text-3xl mb-6">syarat wajib</h2>
-        <ul class="space-y-4 sm:space-y-6">
-          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Islam</li>
-          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Baliqh</li>
-          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Berakal sehat</li>
-          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Merdeka</li>
-          <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Mampu</li>
-        </ul>
+        <!-- Syarat Wajib -->
+        <div class="floating-card bg-white/40 shadow-2xl border rounded-lg p-6 sm:p-8 w-full sm:w-3/4 lg:w-2/5 relative">
+          <h2 class="text-center font-bold italic text-2xl sm:text-3xl mb-6">syarat wajib</h2>
+          <ul class="space-y-4 sm:space-y-6">
+            <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Islam</li>
+            <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Baliqh</li>
+            <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Berakal sehat</li>
+            <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Merdeka</li>
+            <li class="bg-purple-600 text-white text-center font-semibold py-3 rounded-lg shadow-md">Mampu</li>
+          </ul>
+        </div>
       </div>
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-blue-200 p-4 text-center">
-    <a href="./haji.html"
-    <button class="text-lg font-bold tracking-widest">BACK</button>
-  </a>
+  <!-- Fixed Footer -->
+  <footer class="bg-gradient-to-r from-blue-500 via-white to-blue-500 p-4 text-center">
+    <a href="./haji.html">
+      <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full transition-all duration-300">
+        BACK
+      </button>
+    </a>
   </footer>
 
 </body>

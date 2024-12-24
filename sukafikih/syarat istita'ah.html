@@ -6,6 +6,7 @@
     <title>Syarat Istita'ah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Floating Box Animation */
         @keyframes float {
             0% {
                 transform: translateY(0px);
@@ -17,28 +18,104 @@
                 transform: translateY(0px);
             }
         }
-        .floating-box {
+
+        /* Fixed Header and Footer */
+        header, footer {
+            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);  /* Blue-White-Blue gradient */
+            position: fixed;
+            width: 100%;
+            left: 0;
+            z-index: 10;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 30px; /* Rounded corners on both sides */
+        }
+
+        header {
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer {
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Main Content Padding to avoid overlap with fixed header and footer */
+        main {
+            padding-top: 120px; /* Adjust according to header height */
+            padding-bottom: 120px; /* Adjust according to footer height */
+        }
+
+        /* Background and Main Layout */
+        body {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Kaaba_Masjid_Haram_Mecca.jpg/1920px-Kaaba_Masjid_Haram_Mecca.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+
+        .floating-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             animation: float 3s ease-in-out infinite;
         }
+
+        /* Keyframes for Floating Effect */
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .floating-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
+        }
+
     </style>
 </head>
-<body class="bg-white min-h-screen flex flex-col">
-    <!-- Header -->
-    <header class="bg-blue-200 py-4 px-6 flex justify-between items-center font-bold text-lg">
-        <div class="flex items-center gap-2">
-            <img src="../image/logo.png" alt="Logo"  height="50" width="50">
-            <span>sukafikih</span>
+<body>
+
+    <!-- Fixed Header -->
+    <header>
+        <div class="flex items-center">
+            <img alt="Logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
+            <span class="font-bold text-lg text-white">sukafikih</span>
         </div>
-        <a href="./menu2.html"
-        <div class="text-base">MENU</div>
-    </a>
+        <div>
+            <a href="./menu2.html" class="text-xl font-bold text-white hover:text-gray-300 transition">BACK</a>
+        </div>
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow flex flex-col items-center justify-center px-4">
-        <h1 class="italic text-3xl font-serif my-4 font-bold">SYARAT ISTITA’AH</h1>
-        <div class="bg-white rounded-lg border-2 border-black shadow-xl floating-box max-w-4xl p-6">
-            <ul class="list-disc list-inside text-lg font-medium leading-relaxed">
+    <main class="main-content">
+        <h1 class="text-3xl font-bold mb-8 text-center text-dark">SYARAT ISTITA’AH</h1>
+        <div class="floating-card w-full max-w-3xl mx-auto">
+            <ul class="list-disc list-inside text-lg">
                 <li>Memiliki biaya untuk pergi ke Makkah dan kembali atau disebut biaya penyelenggaraan ibadah haji (BPIH). Istilah ini dahulu dinamakan ongkos naik haji (ONH).</li>
                 <li>Sehat jasmani maupun rohani.</li>
                 <li>Memiliki pengetahuan tentang tata cara melaksanakan haji.</li>
@@ -49,11 +126,14 @@
         </div>
     </main>
 
-    <!-- Footer -->
-     <a href="./Hukum haji.html"
-    <footer class="bg-blue-200 py-3 font-bold text-center">
-        BACK
+    <!-- Fixed Footer -->
+    <footer class="bg-gradient-to-r from-blue-500 via-white to-blue-500 p-4 text-center">
+        <a href="./Hukum haji.html">
+            <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full transition-all duration-300">
+                BACK
+            </button>
+        </a>
     </footer>
-</a>
+
 </body>
 </html>
