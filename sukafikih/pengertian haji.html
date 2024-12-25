@@ -12,7 +12,8 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 20px; /* More rounded corners */
+            border-radius: 9999px; /* Full oval shape */
+            padding: 5px 20px; /* Shorter button height */
         }
 
         .button-effect::before {
@@ -44,9 +45,9 @@
             z-index: 1;
         }
 
-        /* Fixed Header and Footer */
-        header, footer {
-            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);  /* Blue-White-Blue gradient */
+        /* Fixed Header */
+        header {
+            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);
             position: fixed;
             width: 100%;
             left: 0;
@@ -54,26 +55,32 @@
             padding: 10px 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             border-radius: 30px; /* Rounded corners on both sides */
-        }
-
-        header {
             top: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
+        /* Fixed Footer */
         footer {
+            background: linear-gradient(to right, #4B8DFF, #FFFFFF, #4B8DFF);
+            position: fixed;
             bottom: 0;
+            width: 100%;
+            left: 0;
+            z-index: 10;
+            padding: 3px 20px; /* Reduced padding for shorter height */
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 30px 30px 0 0; /* Rounded corners only on the top */
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Main Content Padding to avoid overlap with fixed header and footer */
+        /* Main Content Padding */
         main {
             padding-top: 120px; /* Adjust according to header height */
-            padding-bottom: 120px; /* Adjust according to footer height */
+            padding-bottom: 80px; /* Adjust according to footer height */
         }
 
         /* Background and Main Layout */
@@ -86,18 +93,6 @@
             flex-direction: column;
         }
 
-        .main-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        /* Ensuring Main Content Scrolls */
-        .main-content {
-            overflow-y: auto;
-        }
-
         .floating-card {
             background: white;
             border-radius: 20px;
@@ -107,7 +102,7 @@
             font-size: 1rem;
         }
 
-        /* Keyframes for Floating Effect */
+        /* Floating Animation */
         @keyframes float {
             0% {
                 transform: translateY(0);
@@ -144,11 +139,11 @@
     <!-- Fixed Header -->
     <header>
         <div class="flex items-center">
-            <img alt="Logo.png" class="mr-2" height="" src="../image/logo.png" width="50"/>
+            <img alt="Logo.png" class="mr-2" src="../image/logo.png" width="50"/>
             <span class="font-bold text-lg text-white">sukafikih</span>
         </div>
         <div>
-            <a href="./menu2.html" class="text-xl font-bold text-white hover:text-gray-300 transition">BACK</a>
+            <a href="./menu2.html" class="text-xl font-bold text-white hover:text-gray-300 transition">MENU</a>
         </div>
     </header>
 
@@ -163,9 +158,9 @@
     </main>
 
     <!-- Fixed Footer -->
-    <footer class="bg-gradient-to-r from-blue-500 via-white to-blue-500 p-4 text-center">
+    <footer>
         <a href="./haji.html">
-            <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-full transition-all duration-300">
+            <button class="font-bold text-lg bg-blue-700 hover:bg-blue-800 text-white transition-all duration-300 button-effect">
                 BACK
             </button>
         </a>
