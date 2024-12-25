@@ -104,6 +104,7 @@
             padding: 20px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             animation: float 3s ease-in-out infinite;
+            font-size: 1rem;
         }
 
         /* Keyframes for Floating Effect */
@@ -124,6 +125,18 @@
             box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
         }
 
+        /* Media Queries for Larger Screens */
+        @media (min-width: 1024px) {
+            .floating-card {
+                width: 80%;
+                padding: 40px;
+                font-size: 1.25rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -144,7 +157,7 @@
         <h1 class="text-3xl font-bold mb-8 text-center text-dark">PENGERTIAN HAJI</h1>
         <div class="floating-card w-full max-w-3xl mx-auto">
             <p class="text-lg">
-                Secara bahasa haji berasal dari kata al-H|ajj yang artinya “menyengaja sesuatu”. Sedangkan menurut syara, haji berarti menyengaja mengunjungi Baitullah di Makkah untuk melaksanakan rangkaian ibadah yang telah diatur ketentuan dan tata caranya dalam syariat Islam. Adapun hukum melaksanakan ibadah haji adalah wajib bagi orang Islam yang mampu. Kewajiban ini hanya sekali dalam seumur hidupnya.
+                Secara bahasa haji berasal dari kata al-Hajj yang artinya “menyengaja sesuatu”. Sedangkan menurut syara, haji berarti menyengaja mengunjungi Baitullah di Makkah untuk melaksanakan rangkaian ibadah yang telah diatur ketentuan dan tata caranya dalam syariat Islam. Adapun hukum melaksanakan ibadah haji adalah wajib bagi orang Islam yang mampu. Kewajiban ini hanya sekali dalam seumur hidupnya.
             </p>
         </div>
     </main>
