@@ -1,210 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Haji</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Haji</title>
     <style>
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .button-effect {
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease; /* Faster transition */
-            border-radius: 15px;
-        }
-
-        .button-effect::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.4s ease, height 0.4s ease; /* Faster transition */
-            z-index: 0;
-        }
-
-        .button-effect:hover::before {
-            width: 300%;
-            height: 300%;
-        }
-
-        .button-effect:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .animated-outline {
-            position: absolute;
-            inset: 0;
-            border: 2px solid transparent;
-            border-radius: 15px;
-            opacity: 0;
-            background: conic-gradient(from 180deg, transparent 60%, white 80%, transparent 100%);
-            animation: spin 2s linear infinite; /* Faster animation speed */
-            transition: opacity 1s ease; /* Faster opacity transition */
-        }
-
-        .button-effect:hover .animated-outline {
-            opacity: 1;
-        }
-
-        header, footer {
-            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);
-            position: fixed;
-            width: 100%;
-            left: 0;
-            z-index: 10;
-            padding: 10px 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 30px;
-        }
-
-        header {
-            top: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        footer {
-            background: linear-gradient(to right, #4B8DFF, #FFFFFF, #4B8DFF);
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            left: 0;
-            z-index: 10;
-            padding: 3px 20px; /* Reduced padding for shorter height */
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 30px 30px 0 0; /* Rounded corners only on the top */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        main {
-            padding-top: 120px;
-            padding-bottom: 120px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../image/materi\ haji.png') no-repeat center center fixed;
-            background-size: cover;
-            background-attachment: fixed;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
             display: flex;
             flex-direction: column;
-        }
-
-        .main-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: flex-start;
-            overflow-y: auto;
+            min-height: 100vh;
+            margin: 0;
+            padding-bottom: 80px; /* Space for footer */
         }
 
-        @media (max-width: 640px) {
-            body {
-                background-size: contain;
-                background-position: top;
+        /* Navigation bar styles */
+        .navbar {
+            width: 100%;
+            background-color: #f1f1f1; /* Bone white background */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 20;
+        }
+
+        .navbar .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333; /* Darker text for contrast */
+        }
+
+        .navbar .menu {
+            font-size: 1rem;
+            color: #333; /* Dark text for readability */
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .menu a {
+            text-decoration: none;
+            color: #333; /* Dark color */
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar .menu a:hover {
+            color: #ffcc00; /* Change color on hover */
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 100px; /* Space for the navbar */
+        }
+
+        .header {
+            background-color: #b3d9ff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+            opacity: 0; /* Start with opacity 0 */
+            animation: fadeIn 1s forwards; /* Animation for fade-in */
+        }
+
+        /* Keyframe animation for fade-in */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
             }
-            header {
-                padding: 10px;
-                border-radius: 15px;
+            to {
+                opacity: 1;
             }
         }
+
+        .card {
+            background-color: #f7f7f7; /* Bone white color */
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            min-height: 200px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Default shadow inside the card */
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+        }
+
+        .card img {
+            max-width: 100px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .header {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .header {
+                font-size: 1.5rem;
+            }
+
+            .card img {
+                max-width: 80px;
+            }
+
+            .card p {
+                font-size: 1.1rem;
+            }
+
+            .card {
+                padding: 15px;
+            }
+        }
+
+        /* Footer styles */
+        .footer {
+            width: 100%;
+            background-color: #f1f1f1; /* Matching footer with navbar */
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer .footer-text {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #333;
+        }
+
     </style>
 </head>
 <body>
-    <!-- Fixed Header -->
-    <header>
-        <div class="flex items-center">
-            <img alt="Logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
-            <span class="font-bold text-lg text-white">sukafikih</span>
-        </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <h1 class="text-3xl font-bold mb-8 text-center text-dark">HAJI</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl px-4 mx-auto">
-            <a href="pengertian haji.html">
-                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
-                    <span>PENGERTIAN HAJI</span>
-                    <div class="animated-outline"></div>
-                </button>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="title">sukafikih</div>
+        <div class="menu">
+            <a href="./menu2.html">Menu</a>
+            <a href="./menu2.html">Back</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">MATERI HAJI</div>
+        <div class="grid">
+            <a href="./pengertian haji.html" class="card">
+                <img src="../image/logo menu haji.png" alt="Pengertian Haji">
+                <p>Pengertian Haji</p>
             </a>
-            <a href="./Hukum haji.html">
-                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
-                    <span>HUKUM HAJI</span>
-                    <div class="animated-outline"></div>
-                </button>
+            <a href="./pengertian haji.html" class="card">
+                <img src="../image/larangan pr dan lk.png" alt="Rukun Haji">
+                <p>Rukun Haji</p>
             </a>
-            <a href="rukun haji.html">
-                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
-                    <span>RUKUN HAJI</span>
-                    <div class="animated-outline"></div>
-                </button>
+            <a href="./syarat wajib dan sah haji.html" class="card">
+                <img src="../image/logo menu umrah.png" alt="Syarat Sah & Wajib Haji">
+                <p>Syarat Sah & Wajib Haji</p>
             </a>
-            <a href="wajib haji.html">
-                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
-                    <span>WAJIB HAJI</span>
-                    <div class="animated-outline"></div>
-                </button>
+            <a href="./wajib haji.html" class="card">
+                <img src="../image/pengertian haji.png" alt="Wajib Haji">
+                <p>Wajib Haji</p>
             </a>
-            <a href="syarat wajib dan sah haji.html">
-                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
-                    <span>SYARAT SAH DAN WAJIB HAJI</span>
-                    <div class="animated-outline"></div>
-                </button>
+            <a href="./sunnah haji.html" class="card">
+                <img src="../image/rukun haji.png" alt="Sunnah Haji">
+                <p>Sunnah Haji</p>
             </a>
-            <a href="larangan haji.html">
-                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
-                    <span>LARANGAN HAJI</span>
-                    <div class="animated-outline"></div>
-                </button>
-            </a>
-            <a href="sunnah haji.html">
-                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
-                    <span>SUNNAH HAJI</span>
-                    <div class="animated-outline"></div>
-                </button>
-            </a>
-            <a href="./jenis haji.html">
-                <button class="button-effect bg-gradient-to-r from-green-200 to-blue-200 text-black font-bold py-6 rounded-lg border-2 border-black w-full text-center">
-                    <span>JENIS JENIS HAJI</span>
-                    <div class="animated-outline"></div>
-                </button>
+            <a href="./larangan haji.html" class="card">
+                <img src="../image/sah dan wajib.png" alt="Larangan Haji">
+                <p>Larangan Haji</p>
             </a>
         </div>
-    </main>
+    </div>
 
-    <!-- Fixed Footer -->
-    <footer class="bg-gradient-to-r from-blue-500 via-white to-blue-500 p-1 text-center" style="border-radius: 30px 30px 0 0;">
-        <a href="./menu2.html">
-            <button class="font-bold text-sm bg-blue-700 hover:bg-blue-800 text-white py-1 px-4 rounded-full transition-all duration-300">
-                BACK
-            </button>
-        </a>
-<footer class="bg-gradient-to-r from-blue-500 via-white to-blue-500 p-2 text-center" style="border-radius: 30px 30px 0 0;">
-            <a href="./menu2.html">
-                <button class="font-bold text-sm bg-blue-700 hover:bg-blue-800 text-white py-2 px-5 rounded-full transition-all duration-300">
-                    BACK
-                </button>
-            </a>
-        </footer> 
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-text">Haji & Umrah</div>
+    </div>
+
 </body>
 </html>
