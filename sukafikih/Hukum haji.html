@@ -31,16 +31,15 @@
             }
         }
 
-        /* Fixed Header and Footer */
+        /* Fixed Header and Footer with reduced padding */
         header, footer {
-            background: linear-gradient(135deg, #4B8DFF, #FFFFFF, #4B8DFF);  /* Blue-White-Blue gradient */
+            background-color: #f1f1f1; /* Bone white background */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
             left: 0;
             z-index: 10;
-            padding: 10px 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 30px; /* Rounded corners on both sides */
+            padding: 10px 20px; /* Reduced padding */
         }
 
         header {
@@ -51,15 +50,12 @@
         }
 
         footer {
-            background: linear-gradient(to right, #4B8DFF, #FFFFFF, #4B8DFF);
+            background-color: #f1f1f1; /* Matching footer with navbar */
             position: fixed;
             bottom: 0;
-            width: 100%;
             left: 0;
             z-index: 10;
-            padding: 3px 20px; /* Reduced padding for shorter height */
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 30px 30px 0 0; /* Rounded corners only on the top */
+            padding: 10px 20px; /* Reduced padding */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -93,9 +89,10 @@
         .floating-card {
             background: white;
             border-radius: 20px;
-            padding: 20px;
+            padding: 40px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             animation: float 3s ease-in-out infinite;
+            font-size: 1.5rem; /* Larger font size */
         }
 
         .floating-card:hover {
@@ -106,20 +103,78 @@
         /* Apply fade-in and slide-up animation to the button */
         .fade-in-button {
             animation: fadeInSlideUp 1.5s ease-out forwards;
+            padding: 10px 20px; /* Default padding */
+            font-size: 1.2rem; /* Default font size */
+        }
+
+        /* Navbar and Footer adjustments */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .navbar .title {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .navbar .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar .menu a:hover {
+            color: #ffcc00; /* Change color on hover */
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Larger card and text for laptop and larger screens */
+        @media (min-width: 1024px) {
+            .floating-card {
+                padding: 60px; /* Increased padding */
+                font-size: 2rem; /* Larger text */
+                width: 70%; /* Increased width of card */
+            }
+
+            .fade-in-button {
+                padding: 15px 30px; /* Slightly larger button */
+                font-size: 1.3rem; /* Button text size */
+            }
+        }
+
+        /* Smaller Button for Smartphones */
+        @media (max-width: 600px) {
+            .fade-in-button {
+                padding: 8px 16px; /* Reduced padding */
+                font-size: 1rem; /* Smaller font size */
+            }
         }
 
     </style>
 </head>
 <body>
 
-    <!-- Fixed Header -->
-    <header>
-        <div class="flex items-center">
-            <img alt="Logo.png" class="mr-2" height="50" src="../image/logo.png" width="50"/>
-            <span class="font-bold text-lg text-white">sukafikih</span>
-        </div>
-        <div>
-            <a href="./menu2.html" class="text-xl font-bold text-white hover:text-gray-300 transition">MENU</a>
+    <!-- Fixed Header with updated navigation -->
+    <header class="navbar">
+        <div class="title">sukafikih</div>
+        <div class="menu">
+            <a href="./menu2.html">Menu</a>
+            <a href="./haji.html">Back</a>
         </div>
     </header>
 
@@ -141,14 +196,10 @@
         </div>
     </main>
 
-    <!-- Fixed Footer -->
-    <footer class="bg-gradient-to-r from-blue-500 via-white to-blue-500 p-2 text-center" style="border-radius: 30px 30px 0 0;">
-        <a href="./haji.html">
-            <button class="font-bold text-sm bg-blue-700 hover:bg-blue-800 text-white py-2 px-5 rounded-full transition-all duration-300">
-                BACK
-            </button>
-        </a>
-    </footer> 
+    <!-- Fixed Footer with updated navigation -->
+    <footer>
+        <div class="footer-text">Haji & Umrah</div>
+    </footer>
 
 </body>
 </html>
