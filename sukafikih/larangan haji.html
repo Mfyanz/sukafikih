@@ -4,221 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Larangan Haji</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Toggle the visibility of the navbar on mobile
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Close the mobile menu if clicked outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobile-menu');
+            const button = document.querySelector('button[onclick="toggleMenu()"]');
+            if (!menu.contains(event.target) && !button.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Custom text shadow for the title */
+        .text-shadow {
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            margin: 0;
-            padding-bottom: 80px; /* Space for footer */
-        }
-
-        /* Navigation bar styles */
-        .navbar {
-            width: 100%;
-            background-color: #f1f1f1; /* Bone white background */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        /* Ensure header is fixed at the top */
+        header {
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 20;
+            right: 0;
+            z-index: 1000; /* Make sure it stays on top of other content */
+            background-color: #f5f5f5;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .navbar .title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333; /* Darker text for contrast */
+        /* Adjust the body content to account for the fixed header */
+        body {
+            padding-top: 80px; /* Adjust to the height of the header */
         }
 
-        .navbar .menu {
-            font-size: 1rem;
-            color: #333; /* Dark text for readability */
-            display: flex;
-            gap: 20px;
-        }
-
-        .navbar .menu a {
-            text-decoration: none;
-            color: #333; /* Dark color */
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .navbar .menu a:hover {
-            color: #ffcc00; /* Change color on hover */
-        }
-
-        .container {
-            width: 95%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 100px; /* Space for the navbar */
-        }
-
-        .header {
-            background-color: #b3d9ff;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-            opacity: 0; /* Start with opacity 0 */
-            animation: fadeIn 1s forwards; /* Animation for fade-in */
-        }
-
-        /* Keyframe animation for fade-in */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .card {
-            background-color: #f7f7f7; /* Bone white color */
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            min-height: 200px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Default shadow inside the card */
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
-        }
-
-        .card img {
-            max-width: 100px;
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        @media (max-width: 1024px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .container {
-                padding: 20px;
-            }
-
-            .header {
-                font-size: 1.8rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .grid {
-                grid-template-columns: repeat(1, 1fr);
-            }
-
-            .header {
-                font-size: 1.5rem;
-            }
-
-            .card img {
-                max-width: 80px;
-            }
-
-            .card p {
-                font-size: 1.1rem;
-            }
-
-            .card {
-                padding: 15px;
-            }
-        }
-
-        /* Footer styles */
-        .footer {
-            width: 100%;
-            background-color: #f1f1f1; /* Matching footer with navbar */
-            display: flex;
-            justify-content: center;
-            padding: 15px;
+        /* Ensure mobile menu appears below the hamburger button and stays fixed */
+        #mobile-menu {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+            top: 80px; /* Position it below the header */
+            right: 10px;
+            z-index: 1000; /* Make sure it appears above other content */
+            width: 200px;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .footer .footer-text {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: #333;
+        /* For mobile view, make sure content is scrollable */
+        body, html {
+            height: 100%;
+            overflow-y: auto;
         }
 
+        .scrollable-content {
+            overflow-y: auto;
+            flex: 1;
+        }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen bg-gray-50">
 
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <div class="title">sukafikih</div>
-        <div class="menu">
-            <a href="./menu2.html">Menu</a>
-            <a href="./haji.html">Back</a>
+    <!-- Header -->
+    <header class="bg-[#f5f5f5] border-b border-black p-6 shadow-md rounded-b-lg">
+        <div class="flex items-center justify-between">
+            <h1 class="text-3xl font-bold text-shadow">
+                <span class="text-blue-600">suka</span><span class="text-white">fikih</span>
+            </h1>
+            <!-- Hamburger Icon (only visible on small screens) -->
+            <button class="lg:hidden" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
+    </header>
+
+    <!-- Mobile Menu (hidden by default on large screens) -->
+    <div id="mobile-menu" class="lg:hidden hidden">
+        <nav class="space-y-2 p-2">
+            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">MENU</button>
+            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Materi Haji</button>
+            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Materi Umrah</button>
+            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Ayo Latihan</button>
+        </nav>
     </div>
 
-    <div class="container">
-        <div class="header">Larangan Haji</div>
-        <div class="grid">
-            <a href="./larangan laki.html" class="card">
-                <p>Bagi Laki Laki</p>
-            </a>
-            <a href="./larangan perempuan.html" class="card">
-                <p>Bagi Perempuan</p>
-            </a>
-            <a href="./larangan laki dan perempuan.html" class="card">
-                <p>Bagi Laki Laki dan Perempuan</p>
-            </a>
-        </div>
+    <!-- Main Content -->
+    <div class="flex flex-1 flex-col lg:flex-row">
+
+        <!-- Sidebar (Desktop) -->
+        <aside class="lg:w-1/6 w-full border-r border-black p-6 bg-[#f5f5f5] lg:block hidden">
+            <nav class="space-y-4">
+                <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg shadow-md hover:bg-gray-100 focus:outline-none">MENU</button>
+                <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg shadow-md hover:bg-gray-100 focus:outline-none">Materi Haji</button>
+                <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg shadow-md hover:bg-gray-100 focus:outline-none">Materi Umrah</button>
+                <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg shadow-md hover:bg-gray-100 focus:outline-none">Ayo Latihan</button>
+            </nav>
+        </aside>
+
+        <!-- Main Section -->
+        <main class="flex-1 p-6 content scrollable-content">
+            <!-- Larangan Haji Content -->
+            <div class="container mx-auto p-4">
+                <div class="header bg-[#b3d9ff] p-6 rounded-lg text-center text-2xl font-bold mb-6">
+                    Larangan Haji
+                </div>
+                <!-- Responsively adjusting the grid layout -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <a href="./larangan laki.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-4 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
+                        <img src="../image/logo menu haji.png" alt="Bagi Laki Laki" class="mx-auto mb-4 max-w-[80px]">
+                        <p class="font-semibold">Bagi Laki Laki</p>
+                    </a>
+                    <a href="./larangan perempuan.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-4 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
+                        <img src="../image/logo menu haji.png" alt="Bagi Perempuan" class="mx-auto mb-4 max-w-[80px]">
+                        <p class="font-semibold">Bagi Perempuan</p>
+                    </a>
+                    <a href="./larangan laki dan perempuan.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-4 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
+                        <img src="../image/logo menu haji.png" alt="Bagi Laki Laki dan Perempuan" class="mx-auto mb-4 max-w-[80px]">
+                        <p class="font-semibold">Bagi Laki Laki dan Perempuan</p>
+                    </a>
+                </div>
+            </div>
+        </main>
+
     </div>
 
     <!-- Footer -->
-    <div class="footer">
-        <div class="footer-text">Haji & Umrah</div>
-    </div>
+    <footer class="bg-[#f5f5f5] p-4 text-center border-t border-black">
+        <p class="text-lg font-semibold text-black-600">Haji & Umrah</p>
+    </footer>
 
 </body>
 </html>
