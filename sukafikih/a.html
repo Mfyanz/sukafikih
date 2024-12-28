@@ -44,6 +44,8 @@
         body {
             padding-top: 90px; /* Adjust based on header height */
         }
+
+        /* Sidebar (Desktop only) */
         aside {
             position: fixed;
             top: 90px; /* Adjusted to make space for the header */
@@ -58,7 +60,13 @@
             overflow-y: auto;
         }
 
-    
+        /* Main content */
+        main {
+            margin-left: 20%; /* Offset the main content from the sidebar */
+            padding: 16px;
+            flex: 1;
+        }
+
         /* Mobile Menu (fixed position at the top) */
         #mobile-menu {
             position: fixed;
@@ -91,7 +99,6 @@
         body.menu-open {
             overflow: hidden;
         }
-
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -114,8 +121,8 @@
     <!-- Main Content -->
     <div class="flex flex-1 flex-col lg:flex-row">
 
-        <!-- Sidebar (Desktop) -->
-        <aside class="lg:w-1/6 w-full border-r border-black p-6 bg-[#f5f5f5] lg:block hidden">
+        <!-- Sidebar (Desktop only) -->
+        <aside class="lg:block hidden">
             <nav class="space-y-4">
                 <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">MENU</div>
                 <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">Materi Haji</div>
@@ -125,14 +132,12 @@
         </aside>
 
         <!-- Main Section -->
-        <main class="flex-1 p-6">
+        <main class="w-full lg:w-5/6">
             <h1 class="text-3xl font-bold mb-8 text-center text-dark">Pengertian Haji</h1>
             <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
                 <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                Secara bahasa haji berasal dari kata al-Hajj yang artinya “menyengaja sesuatu”. Sedangkan menurut syara, haji berarti menyengaja mengunjungi Baitullah di Makkah untuk melaksanakan rangkaian ibadah yang telah diatur ketentuan dan tata caranya dalam syariat Islam. Adapun hukum melaksanakan ibadah haji adalah wajib bagi orang Islam yang mampu. Kewajiban ini hanya sekali dalam seumur hidupnya.
+                    Secara bahasa haji berasal dari kata al-Hajj yang artinya “menyengaja sesuatu”. Sedangkan menurut syara, haji berarti menyengaja mengunjungi Baitullah di Makkah untuk melaksanakan rangkaian ibadah yang telah diatur ketentuan dan tata caranya dalam syariat Islam. Adapun hukum melaksanakan ibadah haji adalah wajib bagi orang Islam yang mampu. Kewajiban ini hanya sekali dalam seumur hidupnya.
                 </p>
-                </ul>
-                <!-- Two buttons side by side with fade-in effect -->
             </div>
         </main>
 
