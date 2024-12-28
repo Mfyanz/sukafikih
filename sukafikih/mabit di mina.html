@@ -77,6 +77,70 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Styling the question card */
+        .question-card {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .question-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .question-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .question-card p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        /* Styling the main card */
+        .main-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .main-card h2 {
+            font-size: 2rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .main-card p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .main-card ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Styling for the arrow button */
+        .arrow-button {
+            font-size: 3rem;
+            color: #4CAF50;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .arrow-button:hover {
+            transform: translateY(4px);
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -111,12 +175,22 @@
 
         <!-- Main Section -->
         <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Mabit di Mina</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Mabit di Mina adalah bermalam selama 3-4 hari di suatu hamparan padang pasir yang panjangnya sekitar 3,5 km. Waktunya adalah malam tanggal 11, 12, dan 13 Dzulhijjah. Bermalam di Mina dilakukan semalam penuh, yang boleh dilakukan mulai sore hari sampai terbitnya fajar, dan juga boleh bermalam paling sedikit 2/3 malam.
-                </p>
-                <!-- Two buttons side by side with fade-in effect -->
+            <!-- Interactive question card -->
+            <div class="question-card">
+                <h3>Apa yang kamu ketahui tentang Mabit di Mina?</h3>
+                <p>Mabit di Mina adalah salah satu bagian dari ibadah haji yang sangat penting. Ayo, temukan lebih banyak informasi tentang ini dan kenali kenapa hal ini menjadi momen yang sangat berarti dalam perjalanan ibadah haji!</p>
+                <span class="arrow-button" onclick="document.getElementById('main-content').scrollIntoView({behavior: 'smooth'})">👇</span>
+            </div>
+
+            <!-- Main content card -->
+            <div id="main-content" class="main-card">
+                <h2>Mabit di Mina</h2>
+                <p>Mabit di Mina adalah bermalam selama 3-4 hari di suatu hamparan padang pasir yang panjangnya sekitar 3,5 km. Waktunya adalah malam tanggal 11, 12, dan 13 Dzulhijjah. Bermalam di Mina dilakukan semalam penuh, yang boleh dilakukan mulai sore hari sampai terbitnya fajar, dan juga boleh bermalam paling sedikit 2/3 malam.</p>
+                <ul>
+                    <li>Mabit di Mina dilakukan pada tanggal 11, 12, dan 13 Dzulhijjah.</li>
+                    <li>Waktu yang diperbolehkan untuk bermalam adalah antara sore hingga terbit fajar.</li>
+                    <li>Minimal tinggal di Mina adalah dua malam, namun idealnya adalah tiga malam.</li>
+                </ul>
             </div>
         </main>
 

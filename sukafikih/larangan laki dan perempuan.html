@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Larangan Haji laki-laki</title>
+    <title>Larangan Haji Laki-Laki dan Perempuan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -77,6 +77,43 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Styling for cards */
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Card Content */
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1E40AF;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .important {
+            font-weight: bold;
+            color: #DC2626;
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -112,19 +149,60 @@
         <!-- Main Section -->
         <main class="flex-1 p-6">
             <h1 class="text-3xl font-bold mb-8 text-center text-dark">Larangan Haji Laki-Laki dan Perempuan</h1>
+
+            <!-- Cards -->
             <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
                 <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
                     Ada juga larangan haji untuk laki-laki dan perempuan antara lain:
                 </p>
-                <ul class="list-disc pl-6 text-lg font-semibold text-gray-700">
-                    <li>Memakai wangi-wangian baik yang dipakainya pada badan maupun pada pakaian</li>
-                    <li>Menghilangkan rambut atau bulu badan yang lain termasuk memakai minyak rambut</li>
-                    <li>Memotong kuku</li>
-                    <li>Mengakadkan nikah yaitu menikahkan, menikah maupun menjadi wali nikah</li>
-                    <li>Melakukan hubungan bagi suami istri</li>
-                    <li>Berburu dan membunuh binatang darat yang liar dan halal dimakan</li>
-                </ul>
-                <!-- Two buttons side by side with fade-in effect -->
+
+                <!-- Card 1 -->
+                <div class="card">
+                    <h2><span class="emoji">🚫</span> **Memakai wangi-wangian**</h2>
+                    <p class="text-lg">
+                        Larangan ini berlaku untuk **baik laki-laki maupun perempuan**, yang **dilarang memakai wangi-wangian** baik pada badan ataupun pakaian. Ini adalah salah satu larangan yang harus diperhatikan dengan serius.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card">
+                    <h2><span class="emoji">💇‍♂️</span> **Menghilangkan rambut atau bulu**</h2>
+                    <p class="text-lg">
+                        **Menghilangkan rambut** atau **memotong kuku** dilarang bagi jemaah haji selama dalam keadaan ihram, baik laki-laki maupun perempuan.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card">
+                    <h2><span class="emoji">✂️</span> **Memotong kuku**</h2>
+                    <p class="text-lg">
+                        **Memotong kuku** juga termasuk dalam larangan haji, ini adalah bagian dari **disiplin ibadah haji** yang harus diikuti oleh seluruh jemaah.
+                    </p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card">
+                    <h2><span class="emoji">💍</span> **Mengakadkan nikah**</h2>
+                    <p class="text-lg">
+                        Jemaah haji **dilarang untuk menikah**, menikahkan, ataupun menjadi wali nikah selama dalam keadaan ihram. Hal ini untuk menjaga fokus ibadah.
+                    </p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="card">
+                    <h2><span class="emoji">👫</span> **Hubungan Suami Istri**</h2>
+                    <p class="text-lg">
+                        **Berhubungan intim** bagi suami istri adalah salah satu larangan yang harus dihindari selama dalam keadaan ihram, karena dapat membatalkan ibadah haji.
+                    </p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="card">
+                    <h2><span class="emoji">🐾</span> **Berburu binatang**</h2>
+                    <p class="text-lg">
+                        **Berburu dan membunuh binatang liar** yang halal dimakan juga **dilarang** selama pelaksanaan haji, sebagai bentuk menjaga kedamaian dan kesucian ibadah.
+                    </p>
+                </div>
             </div>
         </main>
 
@@ -132,9 +210,7 @@
 
     <!-- Footer -->
     <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto flex justify-between items-center">
-        <!-- Centered Haji & Umrah text with smaller font size -->
         <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <!-- Back link with arrow on the right side of the footer -->
         <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
             <span>Back</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">

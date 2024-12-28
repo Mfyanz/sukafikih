@@ -77,6 +77,35 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Card Style */
+        .card {
+            background: linear-gradient(135deg, #f5f5f5, #ffffff);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Improve button style */
+        .button {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -112,11 +141,35 @@
         <!-- Main Section -->
         <main class="flex-1 p-6">
             <h1 class="text-3xl font-bold mb-8 text-center text-dark">Mematuhi Larangan Ihram</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
+            <div class="w-full max-w-3xl mx-auto p-10 card">
+                <!-- Attention-grabbing statement before the explanation -->
+                <div class="mb-6 text-xl text-center font-semibold text-green-600">
+                    <p>Sudahkah kamu tahu mengapa ada larangan saat berihram? 🤔</p>
+                    <p><span class="text-black font-bold">Pahami apa yang membuat larangan Ihram begitu penting!</span> 🚫</p>
+                </div>
+
                 <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Setiap jamaah haji wajib meninggalkan seluruh kegiatan yang dilarang saat berihram.
+                    Dalam ibadah haji, ada <span class="font-bold text-black">larangan-larangan tertentu</span> yang harus dihindari oleh setiap jamaah yang sedang berihram. Larangan ini bukan tanpa alasan, tetapi untuk menjaga <span class="font-bold text-black">kesucian</span> dan fokus dalam beribadah. Oleh karena itu, <span class="font-bold text-black">penting</span> bagi kita untuk memahami apa saja yang termasuk dalam larangan Ihram dan mengapa kita harus <span class="font-bold text-black">mematuhinya</span>.
                 </p>
-                <!-- Two buttons side by side with fade-in effect -->
+
+                <div class="mb-6 text-lg text-justify leading-relaxed">
+                    <p class="font-semibold text-black">Apa saja yang dilarang saat berihram?</p>
+                    <ul class="list-disc pl-6 text-black-700 text-3xl">
+                        <li class="text-xl">Menikah atau melamar seseorang</li>
+                        <li class="text-xl">Menggunakan parfum atau minyak wangi</li>
+                        <li class="text-xl">Memotong rambut atau kuku</li>
+                        <li class="text-xl">Bertindak atau berbicara dengan cara yang tidak pantas</li>
+                    </ul>
+                </div>
+
+                <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
+                    Semua larangan ini bertujuan agar <span class="font-bold text-black">jiwa</span> dan <span class="font-bold text-black">raga</span> kita tetap fokus kepada <span class="font-bold text-black">ibadah</span> dan tidak terganggu oleh hal-hal duniawi. Dengan mematuhi larangan-larangan ini, kita menunjukkan <span class="font-bold text-black">ketulusan</span> dalam mengikuti perintah Allah, dan menjaga <span class="font-bold text-black">kemurnian</span> ibadah kita. 🌟
+                </p>
+
+                <!-- Button to learn more -->
+                <div class="text-center mt-8">
+                    <button class="button">Pelajari Lebih Lanjut</button>
+                </div>
             </div>
         </main>
 

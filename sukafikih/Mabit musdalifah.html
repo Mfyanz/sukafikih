@@ -77,6 +77,81 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Styling the card with shadow and rounded corners */
+        .content-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .content-card h2 {
+            font-size: 2rem;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .content-card p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .content-card ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            font-size: 1.1rem;
+        }
+
+        .content-card a {
+            color: #4CAF50;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .content-card a:hover {
+            color: #388E3C;
+        }
+
+        /* Centering the question card */
+        .question-card {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .question-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .question-card p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        /* Styling for the back link */
+        .back-link {
+            display: flex;
+            align-items: center;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #388E3C;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -111,12 +186,23 @@
 
         <!-- Main Section -->
         <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Mabit di Muzdalifah</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Mabit di Muzdalifah adalah menginap semalam di Muzdalifah pada malam tanggal 9 Dzulhijjah. Waktunya dikerjakan setelah wukuf di Arafah.
-                </p>
-                <!-- Two buttons side by side with fade-in effect -->
+            <!-- Question Card -->
+            <div class="question-card">
+                <h3>Mabit di Muzdalifah itu bagaimana sih?</h3>
+                <p>Mabit di Muzdalifah adalah salah satu momen penting dalam ibadah Haji yang penuh makna. Bagaimana pengalaman bermalam di sana? Yuk, kita simak lebih lanjut!</p>
+            </div>
+
+            <!-- Main Content Card -->
+            <div class="content-card">
+                <h2>Mabit di Muzdalifah</h2>
+                <p>Mabit di Muzdalifah adalah menginap semalam di Muzdalifah pada malam tanggal 9 Dzulhijjah, setelah pelaksanaan wukuf di Arafah. Pada malam ini, jamaah haji berkumpul di Muzdalifah untuk bermalam, memungut batu kerikil, dan bersiap untuk pelaksanaan ibadah lempar jumrah pada hari berikutnya.</p>
+                <p>Mabit di Muzdalifah memiliki tujuan spiritual yang sangat penting. Ini adalah saat untuk menenangkan hati, berdoa, dan memperdalam hubungan dengan Allah SWT setelah menjalani wukuf yang penuh makna di Arafah.</p>
+                <ul>
+                    <li>Jamaah haji menginap semalam di Muzdalifah setelah wukuf di Arafah.</li>
+                    <li>Pada malam tersebut, jamaah memungut batu kerikil untuk melempar jumrah.</li>
+                    <li>Ini adalah kesempatan untuk berdoa dan merenung, memperdalam hubungan spiritual dengan Allah SWT.</li>
+                    <li>Mabit di Muzdalifah adalah bagian integral dari prosesi ibadah haji yang tak boleh dilewatkan.</li>
+                </ul>
             </div>
         </main>
 
@@ -124,15 +210,7 @@
 
     <!-- Footer -->
     <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto flex justify-between items-center">
-        <!-- Centered Haji & Umrah text with smaller font size -->
         <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <!-- Back link with arrow on the right side of the footer -->
-        <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
-            <span>Back</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-            </svg>
-        </button>
     </footer>
 
     <!-- Mobile Menu (hidden by default) -->

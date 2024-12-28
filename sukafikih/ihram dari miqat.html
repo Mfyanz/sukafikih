@@ -77,6 +77,69 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Card Styling */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            background-color: #ffffff;
+            padding: 24px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background-color: #f0f8ff; /* Light blue background on hover */
+        }
+
+        .card h1, .card h2 {
+            font-size: 2rem;
+            color: #1E3A8A; /* Deep blue for headers */
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .card p {
+            font-size: 1.25rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            text-align: justify;
+            text-indent: 20px; /* Indent first line of paragraphs */
+        }
+
+        .card h1:hover, .card h2:hover {
+            color: #2563eb; /* Lighter blue on hover */
+        }
+
+        /* Button Style */
+        .fade-in-button {
+            animation: fadeIn 1s ease-in-out;
+            background-color: #1E3A8A;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.25rem;
+            transition: background-color 0.3s ease;
+            border: none;
+        }
+
+        .fade-in-button:hover {
+            background-color: #2563eb;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -112,10 +175,21 @@
         <!-- Main Section -->
         <main class="flex-1 p-6">
             <h1 class="text-3xl font-bold mb-8 text-center text-dark">IHRAM DARI MIQAT</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
+
+            <!-- Interactive Question Before Content -->
+            <div class="mb-8 text-lg text-center text-gray-600">
+                <p class="text-xl font-semibold">Apakah Anda tahu apa itu <span class="text-blue-600 font-extrabold">Miqat</span> dan mengapa <span class="font-extrabold text-blue-700">penting</span> bagi ibadah haji dan umrah?</p>
+                <p class="mt-4 text-2xl font-semibold">Sebelum memulai ibadah, ada dua hal yang harus Anda ketahui: <span class="text-blue-600 font-bold">tempat</span> dan <span class="text-blue-600 font-bold">waktu</span>. Apakah Anda sudah siap untuk memahami lebih lanjut?</p>
+            </div>
+
+            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl card">
                 <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Calon haji harus memulai niatnya dan dari titik awal tempat itu yang berniat melaksanakan haji/umrah sudah harus memakai pakaian ihram. Yalamlam adalah tempat berihram calon jamaah haji yang datang dari arah Indonesia bila ia langsung akan menuju ke Makkah dan Bir Ali adalah tempat berihram calon jamaah haji yang datang dari arah Indonesia menuju ke Madinah terlebih dahulu. Miqat terbagi menjadi 2 antara lain:
+                    Sebelum melaksanakan haji atau umrah, ada satu hal penting yang perlu dilakukan oleh calon jamaah, yaitu memakai pakaian ihram. Ini merupakan tahap pertama yang harus dilakukan sebelum memasuki tanah suci. Bagi Anda yang datang dari Indonesia, ada dua tempat yang menjadi titik awal untuk memulai ihram, yakni Yalamlam dan Bir Ali.
                 </p>
+                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
+                    Yalamlam digunakan bagi jamaah yang langsung menuju Makkah, sementara Bir Ali digunakan bagi jamaah yang akan menuju Madinah terlebih dahulu. Sebelum memulai perjalanan, pastikan Anda sudah mengetahui miqat yang sesuai, agar ibadah haji atau umrah berjalan lancar. Mari kita kenali lebih dalam tentang Miqat Zaman dan Miqat Makani!
+                </p>
+
                 <!-- Two buttons side by side with fade-in effect -->
                 <div class="flex justify-center gap-4">
                     <a href="./Miqat Zamani.html">

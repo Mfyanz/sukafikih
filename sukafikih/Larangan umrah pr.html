@@ -77,6 +77,42 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Smooth fade-in effect */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Style for the card */
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-content {
+            font-size: 1.25rem;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #e34d56; /* Highlight color for important text */
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -111,16 +147,19 @@
 
         <!-- Main Section -->
         <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Larangan Umrah Perempuan</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Larangan untuk jamaah umrah Perempuan antara lain:
+            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Larangan Umrah Perempuan 🚺</h1>
+            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl fade-in card">
+                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6 card-content">
+                    Hai Sobat Umrah! Untuk kamu para perempuan yang hendak menjalankan ibadah umrah, ada beberapa hal yang perlu kamu <span class="highlight">perhatikan</span> ya. Yuk, simak larangan-larangan berikut!
                 </p>
-                <ul class="list-disc pl-6 text-lg font-semibold text-gray-700">
-                    <li>Memakai penutup muka</li>
-                    <li>Memakai sarung tangan yang menutup kedua telapak tangan, apabila keadaan mendesak ia boleh menutupnya akan tetapi harus membayar fidyah</li>
+                <ul class="list-disc pl-6 text-lg font-semibold text-gray-700 mb-6 card-content">
+                    <li><span class="highlight">Penutup muka</span> sangat tidak diperbolehkan bagi perempuan saat umrah. Jadi, pastikan wajahmu tetap terbuka! 🧕</li>
+                    <li>Memakai <span class="highlight">sarung tangan</span> untuk menutupi telapak tangan <span class="text-red-600">dilarang</span> saat umrah. Namun, jika ada kebutuhan mendesak, kamu boleh memakainya, tapi harus membayar fidyah sebagai denda. Pastikan ini hanya digunakan dalam keadaan darurat ya! 💰</li>
                 </ul>
-                <!-- Two buttons side by side with fade-in effect -->
+                <p class="text-xl text-gray-800 card-content mb-6">
+                    Sebagai catatan, aturan ini penting untuk memastikan ibadah kita berjalan dengan baik dan sesuai syariat. Jangan lupa untuk selalu <span class="highlight">mematuhi</span> setiap aturan, agar ibadah umrah kita diterima oleh Allah! 🌙
+                </p>
+               
             </div>
         </main>
 

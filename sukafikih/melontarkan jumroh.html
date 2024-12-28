@@ -77,6 +77,19 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Card Style */
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -111,12 +124,18 @@
 
         <!-- Main Section -->
         <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Melontar Jumrah</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Melontar jumrah adalah melempar batu pada sebuah tempat yang diyakini untuk memperingati saat setan menggoda Nabi Ibrahim agar tidak melaksanakan perintah Allah SWT untuk menyembelih putranya, Nabi Ismail. Tanggal 10 Dzulhijjah melontar jumrah aqabah dengan tujuh butir kerikil. Dan pada hari-hari Tasyrik, yaitu 11, 12, dan 13 Dzulhijjah melontar ketiga jumrah.
+            <h1 class="text-5xl font-bold mb-8 text-center text-dark">Melontar Jumrah</h1>
+            <div class="w-full max-w-3xl mx-auto p-10 card">
+                <div class="mb-6">
+                    <p class="text-xl font-semibold text-blue-600">Pernahkah Kamu Bertanya? 🤔</p>
+                    <p class="text-xl text-red-500 font-semibold">Lempar Jumrah itu sebenarnya <span class="text-green-600 font-bold">lempar apa</span> dan <span class="text-orange-500 font-bold">untuk apa</span> ya? Yuk, kita pelajari bersama! 🎯</p>
+                </div>
+                <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
+                    <span class="text-blue-600 font-bold">Melontar Jumrah</span> adalah <span class="text-yellow-500 font-bold">aktivitas</span> yang dilakukan oleh jemaah haji dengan cara melemparkan batu kecil ke tiga tempat yang disebut <span class="text-purple-600 font-bold">jumrah</span>. Hal ini dilakukan sebagai <span class="text-teal-600 font-bold">simbol</span> perlawanan terhadap godaan setan yang mencoba menghalangi <span class="text-red-600 font-bold">Nabi Ibrahim</span> dalam melaksanakan perintah Allah untuk menyembelih anaknya, <span class="text-pink-600 font-bold">Nabi Ismail</span>. Jadi, tujuannya adalah untuk menunjukkan <span class="text-green-600 font-bold">keteguhan hati</span> dalam mengikuti perintah Allah, meskipun ada tantangan. 💪
                 </p>
-                <!-- Two buttons side by side with fade-in effect -->
+                <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
+                    Pada <span class="text-blue-600 font-bold">tanggal 10 Dzulhijjah</span>, jemaah melempar tujuh batu ke <span class="text-yellow-500 font-bold">jumrah aqabah</span>, sedangkan pada hari-hari <span class="text-purple-600 font-bold">Tasyrik</span> (11, 12, dan 13 Dzulhijjah), jemaah akan melempar batu ke tiga <span class="text-orange-600 font-bold">jumrah</span> yang berbeda. Ini adalah bagian dari <span class="text-teal-600 font-bold">ritual haji</span> yang penuh makna. 🕋
+                </p>
             </div>
         </main>
 

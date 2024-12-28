@@ -77,6 +77,32 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Custom font for the question */
+        .question {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2rem; /* Increased font size */
+            font-weight: 700;
+            color: #4A4A4A;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Highlight specific words */
+        .highlight-blue {
+            color: #007BFF; /* Blue color for emphasis */
+            font-weight: 700;
+        }
+
+        .highlight-green {
+            color: #28A745; /* Green color for emphasis */
+            font-weight: 700;
+        }
+
+        .highlight-red {
+            color: #DC3545; /* Red color for emphasis */
+            font-weight: 700;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -111,14 +137,21 @@
 
         <!-- Main Section -->
         <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Larangan Haji Laki-Laki</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
+            <!-- Question outside the card with custom font -->
+            <p class="question">
+                🤔 <span class="highlight-blue">Pernahkah kamu tahu</span> larangan yang harus diperhatikan oleh laki-laki saat berhaji? 
+                <span class="highlight-red">Apa saja yang boleh dan tidak boleh dilakukan?</span>
+            </p>
+
+            <!-- Card with content -->
+            <div class="w-full max-w-5xl mx-auto p-10 bg-white rounded-lg shadow-xl">
+
                 <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Larangan untuk jamaah haji laki-laki antara lain:
+                    Berikut adalah beberapa larangan untuk jamaah haji laki-laki:
                 </p>
-                <ul class="list-disc pl-6 text-lg font-semibold text-gray-700">
-                    <li>Memakai pakaian yang berjahit baik jahitan biasa, sulaman, maupun diikatkan kedua ujungnya</li>
-                    <li>Menutup kepala, kecuali sesuatu hal dibolehkan. Akan tetapi harus membayar dam.</li>
+                <ul class="list-disc pl-6 text-xl lg:text-2xl xl:text-3xl font-semibold text-gray-700 space-y-2">
+                    <li class="transition transform hover:scale-105 duration-300">🚫 Memakai pakaian yang berjahit, baik jahitan biasa, sulaman, maupun diikatkan kedua ujungnya.</li>
+                    <li class="transition transform hover:scale-105 duration-300">🧢 Menutup kepala, kecuali jika ada alasan tertentu, dan harus membayar dam.</li>
                 </ul>
                 <!-- Two buttons side by side with fade-in effect -->
             </div>

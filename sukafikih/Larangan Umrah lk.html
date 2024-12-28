@@ -77,6 +77,20 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Animated fade-in effect for the card */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -111,16 +125,18 @@
 
         <!-- Main Section -->
         <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Larangan Umrah Laki-Laki</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
+            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Larangan Umrah Laki-Laki 🚫</h1>
+            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-xl fade-in">
                 <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Larangan untuk jamaah umrah laki-laki antara lain:
+                    <span class="font-bold">Sobat Umrah,</span> berikut adalah beberapa larangan yang perlu kamu <span class="font-bold text-red-600">perhatikan</span> saat melaksanakan umrah sebagai laki-laki. <span class="font-bold text-blue-600">Yuk,</span> simak dengan seksama! 👇
                 </p>
-                <ul class="list-disc pl-6 text-lg font-semibold text-gray-700">
-                    <li>Memakai pakaian yang berjahit baik jahitan biasa, sulaman, maupun diikatkan kedua ujungnya</li>
-                    <li>Menutup kepala, kecuali sesuatu hal dibolehkan. Akan tetapi harus membayar dam.</li>
+                <ul class="list-disc pl-6 text-lg font-semibold text-gray-700 space-y-4">
+                    <li>❌ <span class="font-bold text-xl">Memakai pakaian yang berjahit</span>, seperti pakaian yang dijahit biasa, sulaman, atau bahkan yang diikatkan kedua ujungnya. Kalau ini dilakukan, bisa terkena denda loh! 💸</li>
+                    <li>❌ <span class="font-bold text-xl">Menutup kepala</span>, kecuali dalam kondisi tertentu yang memang dibolehkan. Tapi tetap ingat, ini juga bisa dikenakan dam (denda) jika dilakukan. ⛔</li>
                 </ul>
-                <!-- Two buttons side by side with fade-in effect -->
+                <p class="mt-6 text-xl text-gray-800">
+                    <span class="font-bold">Ingat</span>, setiap tindakan yang bertentangan dengan ketentuan selama umrah bisa membuat perjalanan ibadah kita tidak sempurna. <span class="font-bold text-green-600">Jadi,</span> pastikan untuk mengikuti aturan-aturan yang ada dengan penuh kesadaran! 🌟
+                </p>
             </div>
         </main>
 

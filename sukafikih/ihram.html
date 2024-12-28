@@ -77,6 +77,53 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Card Styles */
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Interactive Question Styles */
+        .interactive-question {
+            background-color: #f0f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .interactive-question p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .interactive-question .button {
+            background-color: #1E40AF;
+            color: white;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            border-radius: 25px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .interactive-question .button:hover {
+            background-color: #1E3A8A;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -112,11 +159,29 @@
         <!-- Main Section -->
         <main class="flex-1 p-6">
             <h1 class="text-3xl font-bold mb-8 text-center text-dark">IHRAM DARI MIQAT</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Ihram adalah berniat untuk memulai mengerjakan haji dengan memakai pakaian putih dan tidak berjahit. Kain tersebut diletakkan di bawah ketiak kanan dan dua ujungnya di pundak sebelah kiri. Makna yang terkandung dari pemakaian pakaian putih ini adalah kesetaraan dan kesederhanaan. Semua umat di hadapan Allah Swt. itu sama, yang membedakannya hanyalah ketakwaannya. Dengan pakaian putih juga merupakan simbol latihan meninggal dunia sehingga manusia lebih siap menghadapi kematian.
+
+            <!-- Interactive Question Before Content -->
+            <div class="interactive-question">
+                <p>Apakah Anda tahu makna sebenarnya dari Ihram?</p>
+                Pelajari Lebih Lanjut
+            </div>
+
+            <!-- Content Cards -->
+            <div class="card">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600">Pengertian Ihram</h2>
+                <p class="text-lg text-justify mb-4">
+                    Ihram adalah berniat untuk memulai mengerjakan haji dengan memakai pakaian putih dan tidak berjahit. Kain tersebut diletakkan di bawah ketiak kanan dan dua ujungnya di pundak sebelah kiri.
                 </p>
-                <!-- Two buttons side by side with fade-in effect -->
+                <p class="text-lg text-justify">
+                    Makna yang terkandung dari pemakaian pakaian putih ini adalah kesetaraan dan kesederhanaan. Semua umat di hadapan Allah Swt. itu sama, yang membedakannya hanyalah ketakwaannya.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600">Simbol Latihan Kematian</h2>
+                <p class="text-lg text-justify">
+                    Dengan pakaian putih juga merupakan simbol latihan meninggal dunia sehingga manusia lebih siap menghadapi kematian. Sebelum memasuki Tanah Suci, pakaian ihram menjadi penanda bahwa kita sudah memasuki tahap ibadah yang sangat sakral.
+                </p>
             </div>
         </main>
 
@@ -124,9 +189,7 @@
 
     <!-- Footer -->
     <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto flex justify-between items-center">
-        <!-- Centered Haji & Umrah text with smaller font size -->
         <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <!-- Back link with arrow on the right side of the footer -->
         <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
             <span>Back</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
