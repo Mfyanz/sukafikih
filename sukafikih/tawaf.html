@@ -5,177 +5,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tawaf</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <script>
+        // Toggle the visibility of the navbar on mobile
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Close the mobile menu if clicked outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobile-menu');
+            const button = document.querySelector('button[onclick="toggleMenu()"]');
+            if (!menu.contains(event.target) && !button.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
     <style>
-        /* Floating Box Animation */
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
+        /* Custom text shadow for the title */
+        .text-shadow {
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
         }
 
-        /* Fixed Header and Footer with reduced padding */
-        header, footer {
-            background-color: #f1f1f1; /* Bone white background */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            left: 0;
-            z-index: 10;
-            padding: 10px 20px; /* Reduced padding */
-        }
-
+        /* Fixed Header */
         header {
-            top: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        footer {
-            background-color: #f1f1f1; /* Matching footer with navbar */
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
+            width: 100%;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #000;
+            padding: 16px;
             z-index: 10;
-            padding: 10px 20px; /* Reduced padding */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
         }
 
-        /* Main Content Padding to avoid overlap with fixed header and footer */
-        main {
-            padding-top: 120px; /* Adjust according to header height */
-            padding-bottom: 120px; /* Adjust according to footer height */
-        }
-
-        /* Background and Main Layout */
+        /* Adjust body to prevent content overlap with the fixed header */
         body {
-            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Kaaba_Masjid_Haram_Mecca.jpg/1920px-Kaaba_Masjid_Haram_Mecca.jpg') no-repeat center center fixed;
-            background-size: cover;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            padding-top: 90px; /* Adjust based on header height */
         }
 
-        /* Main Content */
-        .main-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            overflow-y: auto;
+        /* Mobile Menu (fixed position at the top) */
+        #mobile-menu {
+            position: fixed;
+            top: 60px; /* Space below the header */
+            right: 0;
+            width: 50%; /* Adjust width as needed */
+            background-color: #f5f5f5;
+            border: 1px solid #000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 20; /* Ensure it appears above other content */
+            display: none;
         }
 
-        .floating-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            animation: float 3s ease-in-out infinite;
-            font-size: 1.5rem; /* Larger font size */
+        #mobile-menu button {
+            padding: 12px;
+            font-size: 16px;
+            text-align: left;
         }
 
-        .floating-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
+        /* Show menu when toggled */
+        #mobile-menu.hidden {
+            display: none;
         }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.2rem;
-            color: #333;
+        #mobile-menu:not(.hidden) {
+            display: block;
         }
 
-        .navbar .title {
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-
-        .navbar .menu {
-            display: flex;
-            gap: 20px;
-        }
-
-        .navbar .menu a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .navbar .menu a:hover {
-            color: #ffcc00; /* Change color on hover */
-        }
-
-        .footer-text {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        /* Larger card and text for laptop and larger screens */
-        @media (min-width: 1024px) {
-            .floating-card {
-                padding: 60px; /* Increased padding */
-                font-size: 2rem; /* Larger text */
-                width: 70%; /* Increased width of card */
-            }
-        }
-
-        /* Smaller Button for Smartphones */
-        @media (max-width: 600px) {
-            .fade-in-button {
-                padding: 8px 16px; /* Reduced padding */
-                font-size: 1rem; /* Smaller font size */
-            }
+        /* Prevent body from scrolling when mobile menu is open */
+        body.menu-open {
+            overflow: hidden;
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen bg-gray-50">
 
-    <!-- Fixed Header with updated navigation -->
-    <header class="navbar">
-        <div class="title">sukafikih</div>
-        <div class="menu">
-            <a href="./menu2.html">Menu</a>
-            <a href="./rukun haji.html">Back</a>
+    <!-- Header -->
+    <header class="bg-[#f5f5f5] border-b border-black p-6 shadow-md rounded-b-lg">
+        <div class="flex items-center justify-between">
+            <h1 class="text-3xl font-bold text-shadow">
+                <span class="text-blue-600">suka</span><span class="text-white">fikih</span>
+            </h1>
+            <!-- Hamburger Icon (only visible on small screens) -->
+            <button class="lg:hidden" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="main-content">
-        <h1 class="text-3xl font-bold mb-8 text-center text-dark">Tawaf</h1>
-        <div class="floating-card w-full max-w-3xl mx-auto">
-            <p class="text-lg">
-                Tawaf adalah kegiatan mengelilingi Ka'bah sebanyak tujuh kali dengan posisi Ka'bah di sebelah kiri. Tawaf dimulai dan diakhiri di tempat yang sejajar dengan hajar aswad. Tawaf yang termasuk ke dalam rukun haji ini adalah tawaf ifadah (tawaf wajib).
-            </p>
-            <p class="text-lg">
-                Tawaf ada beberapa macam, yaitu:
-            </p>
-            <ul class="list-disc pl-6 text-lg">
-                <li>Tawaf qudum, dilakukan ketika sampai Makkah.</li>
-                <li>Tawaf ifadah, sebagai rukun haji, dilaksanakan pada tanggal 10 Zulhijah.</li>
-                <li>Tawaf sunah, dilakukan kapan saja.</li>
-                <li>Tawaf wada’, dilakukan ketika jemaah akan meninggalkan kota Makkah.</li>
-            </ul>
-        </div>
-    </main>
+    <div class="flex flex-1 flex-col lg:flex-row">
 
-    <!-- Fixed Footer with updated navigation -->
-    <footer>
-        <div class="footer-text">Haji & Umrah</div>
+        <!-- Sidebar (Desktop) -->
+        <aside class="lg:w-1/6 w-full border-r border-black p-6 bg-[#f5f5f5] lg:block hidden">
+            <nav class="space-y-4">
+                <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">MENU</div>
+                <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">Materi Haji</div>
+                <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">Materi Umrah</div>
+                <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">Ayo Latihan</div>
+            </nav>
+        </aside>
+
+        <!-- Main Section -->
+        <main class="flex-1 p-6">
+            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Tawaf</h1>
+            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
+                <p class="text-xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
+                    Tawaf ada beberapa macam, yaitu:
+                </p>
+                <ul class="list-disc pl-6 text-lg">
+                    <li>Tawaf qudum, dilakukan ketika sampai Makkah.</li>
+                    <li>Tawaf ifadah, sebagai rukun haji, dilaksanakan pada tanggal 10 Zulhijah.</li>
+                    <li>Tawaf sunah, dilakukan kapan saja.</li>
+                    <li>Tawaf wada’, dilakukan ketika jemaah akan meninggalkan kota Makkah.</li>
+                </ul>
+    
+    
+                <!-- Two buttons side by side with fade-in effect -->
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto flex justify-between items-center">
+        <!-- Centered Haji & Umrah text with smaller font size -->
+        <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
+        <!-- Back link with arrow on the right side of the footer -->
+        <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
+            <span>Back</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
     </footer>
+
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="lg:hidden hidden">
+        <nav class="space-y-2 p-2">
+            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">MENU</button>
+            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Materi Haji</button>
+            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Materi Umrah</button>
+            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Ayo Latihan</button>
+        </nav>
+    </div>
 
 </body>
 </html>
