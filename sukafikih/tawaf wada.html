@@ -99,6 +99,13 @@
             color: #1D4ED8;
             text-decoration: underline;
         }
+
+        /* Gradient border for the card */
+        .gradient-border {
+            border: 6px solid transparent;
+            border-image: linear-gradient(to right, #1E40AF, #10B981); /* Blue to Green gradient */
+            border-image-slice: 1;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -134,19 +141,19 @@
         <!-- Main Section -->
         <main class="flex-1 p-6">
             <h1 class="text-3xl font-bold mb-8 text-center text-dark">Tawaf Wada'</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
+            <div class="w-full max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-2xl gradient-border">
+                <p class="text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
                     <span class="highlight">Apakah kamu tahu</span> bahwa setelah menyelesaikan ibadah haji atau umrah, ada satu ibadah terakhir yang penuh makna? Ini adalah Tawaf Wada'. 
                     Tawaf Wada’ adalah proses mengelilingi Ka'bah sebagai tanda perpisahan terakhir dengan Baitullah. Tawaf ini dilakukan oleh para jemaah haji atau umrah sebelum mereka meninggalkan Tanah Suci.
                 </p>
-                <p class="text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
+                <p class="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
                     Sebagai penutup perjalanan spiritual yang luar biasa, <span class="highlight">Tawaf Wada’</span> memiliki makna yang dalam. Mengapa begitu penting untuk dilakukan? 
                     Karena, ini adalah cara kita menunjukkan rasa cinta dan penghormatan terakhir kepada tempat suci yang telah menyaksikan ibadah kita.
                 </p>
-                <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
+                <p class="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
                     Setiap langkah tawaf membawa kita lebih dekat dengan Allah, mencerminkan ketulusan hati, dan menunjukkan rasa syukur kita atas segala rahmat-Nya. Tawaf Wada’ bukan hanya sekadar ritual, melainkan simbol perpisahan yang penuh kesan dan harapan akan kembali lagi suatu saat nanti.
                 </p>
-                <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
+                <p class="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
                     Setelah selesai tawaf, seorang jemaah haji akan merasakan kedamaian dan ketenangan batin, karena tawaf ini merupakan ibadah terakhir yang akan menutup perjalanan mereka di Tanah Suci. Sebelum meninggalkan Masjidil Haram, mereka melakukan salat dan berdoa, memohon agar mereka bisa kembali ke tempat yang penuh berkah ini.
                 </p>
             </div>
