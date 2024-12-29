@@ -1,81 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <style>
-    /* Keyframes for changing background images */
-    @keyframes backgroundCycle {
-      0% {
-        background-image: url('https://storage.googleapis.com/a1aa/image/L0RQVRrUbrqEA1fMObDUViufSFXJuKukddFveOGSuiLM8fpPB.jpg');
-      }
-      33% {
-        background-image: url('../image/mekkah.jpg');
-      }
-      66% {
-        background-image: url('https://storage.googleapis.com/a1aa/image/iCsrH7h6KJp0HNHxgIbirIHlNQW01Ga6SdXloqfNJp4Dff0nA.jpg');
-      }
-      100% {
-        background-image: url('https://storage.googleapis.com/a1aa/image/L0RQVRrUbrqEA1fMObDUViufSFXJuKukddFveOGSuiLM8fpPB.jpg');
-      }
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        /* Importing Google Fonts for better typography */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap');
 
-    /* Applying the animation to the background */
-    .hajj-bg {
-      background-size: cover;
-      background-position: center;
-      animation: backgroundCycle 15s infinite ease-in-out; /* 15 seconds cycle */
-    }
+        /* Keyframes for changing background images */
+        @keyframes backgroundCycle {
+            0% {
+                background-image: url('https://storage.googleapis.com/a1aa/image/L0RQVRrUbrqEA1fMObDUViufSFXJuKukddFveOGSuiLM8fpPB.jpg');
+            }
+            33% {
+                background-image: url('../image/mekkah.jpg');
+            }
+            66% {
+                background-image: url('https://storage.googleapis.com/a1aa/image/iCsrH7h6KJp0HNHxgIbirIHlNQW01Ga6SdXloqfNJp4Dff0nA.jpg');
+            }
+            100% {
+                background-image: url('https://storage.googleapis.com/a1aa/image/L0RQVRrUbrqEA1fMObDUViufSFXJuKukddFveOGSuiLM8fpPB.jpg');
+            }
+        }
 
-    /* Adjust main container width for smaller screens */
-    @media (max-width: 640px) {
-      body {
-        background-size: contain;
-        background-position: top;
-      }
-    }
-  </style>
+        /* Applying the animation to the background */
+        .hajj-bg {
+            background-size: cover;
+            background-position: center;
+            animation: backgroundCycle 15s infinite ease-in-out; /* 15 seconds cycle */
+        }
+
+        /* Adjust main container width for smaller screens */
+        @media (max-width: 640px) {
+            body {
+                background-size: contain;
+                background-position: top;
+                padding-bottom: 70px; /* Adjust for mobile to ensure footer is not hidden */
+            }
+        }
+
+        /* Text shadow effect */
+        .text-shadow {
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Fixed header styling */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: #f7f7f7;
+            border-bottom: 1px solid black;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Add top padding to the body to avoid header overlap */
+        body {
+            padding-top: 80px; /* Adjust this value based on the header height */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .menu-container {
+            margin-top: 50px;
+        }
+
+        /* Footer styling */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f5f5f5;
+            border-top: 1px solid black;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            font-family: 'Playfair Display', serif;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Styling for main menu items */
+        .menu-item {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Hover effect for menu items */
+        .menu-item:hover {
+            transition: all 0.3s ease;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
 <body class="hajj-bg min-h-screen flex flex-col items-center">
-  <!-- Fixed Header (sukafikih and Back) -->
-  <header class="fixed top-0 w-full bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 shadow-md flex justify-between items-center p-3 z-50 mx-auto max-w-screen-lg rounded-b-xl">
-    <div class="flex items-center">
-      <img alt="logo.png" class="mr-2" height="40" src="../image/logo.png" width="40"/>
-      <span class="text-lg font-extrabold text-white">sukafikih</span>
-    </div>
-    <div>
-      <a href="../index.html" class="text-lg font-bold text-white hover:text-gray-300 transition">BACK</a>
-    </div>
-  </header>
-  
-  <div class="mt-20 text-center">
-    <h1 class="text-3xl font-bold text-black">MENU</h1>
-  </div>
-  
-  <div class="mt-8 w-11/12 md:w-3/4 lg:w-2/3 flex flex-col gap-8 group">
-    <a href="./haji.html" class="group-hover:blur-sm hover:!blur-none">
-      <div class="bg-gradient-to-r from-green-400 to-blue-400 text-black p-6 rounded-lg border-4 border-black flex items-center justify-between transform transition duration-400 hover:scale-110 shadow-lg hover:shadow-xl hover:translate-y-1 opacity-90 hover:opacity-100">
-        <img alt="Mountain with people icon" class="mr-4" height="70" src="../image/logo menu haji.png" width="70"/>
-        <span class="text-center text-2xl font-bold flex-1">MATERI HAJI</span>
-      </div>
-    </a>
 
-    <a href="./umrah.html" class="group-hover:blur-sm hover:!blur-none">
-      <div class="bg-gradient-to-r from-green-400 to-blue-400 text-black p-6 rounded-lg border-4 border-black flex items-center justify-between transform transition duration-400 hover:scale-110 shadow-lg hover:shadow-xl hover:translate-y-1 opacity-90 hover:opacity-100">
-        <img alt="Kaaba with people icon" class="mr-4" height="70" src="../image/logo menu umrah.png" width="70"/>
-        <span class="text-center text-2xl font-bold flex-1">MATERI UMROH</span>
-      </div>
-    </a>
+    <!-- Header -->
+    <header class="bg-[#f7f7f7] border-b border-black p-6 shadow-md w-full">
+        <div class="flex items-center justify-between container mx-auto">
+            <h1 class="text-4xl font-extrabold text-shadow text-blue-600">
+                <span class="font-playfair">suka</span><span class="text-white">fikih</span>
+            </h1>
+        </div>
+    </header>
 
-    <a href="./ayo latihan.html" class="group-hover:blur-sm hover:!blur-none">
-      <div class="bg-gradient-to-r from-green-400 to-blue-400 text-black p-6 rounded-lg border-4 border-black flex items-center justify-between transform transition duration-400 hover:scale-110 shadow-lg hover:shadow-xl hover:translate-y-1 opacity-90 hover:opacity-100">
-        <img alt="Graduation cap icon" class="mr-4" height="70" src="../image/logo menu latihan.png" width="70"/>
-        <span class="text-2xl text-center font-bold flex-1">AYO LATIHAN!</span>
-      </div>
-    </a>
-  </div>
+    <!-- Main Content -->
+    <div class="mt-10 text-center">
+        <h1 class="text-3xl font-bold text-black font-playfair">MENU</h1>
+    </div>
+
+    <div class="mt-4 w-11/12 md:w-3/4 lg:w-2/3 flex flex-col gap-8 group menu-container">
+        <a href="./haji.html" class="group-hover:blur-sm hover:!blur-none menu-item">
+            <div class="bg-[#e0e0e0] text-black p-6 rounded-lg border-4 border-black flex items-center justify-between transform transition duration-400 hover:scale-110 shadow-lg hover:shadow-xl hover:translate-y-1">
+                <img alt="Mountain with people icon" class="mr-4" height="70" src="../image/logo menu haji.png" width="70"/>
+                <span class="text-center text-2xl font-bold flex-1">MATERI HAJI</span>
+            </div>
+        </a>
+
+        <a href="./umrah.html" class="group-hover:blur-sm hover:!blur-none menu-item">
+            <div class="bg-[#e0e0e0] text-black p-6 rounded-lg border-4 border-black flex items-center justify-between transform transition duration-400 hover:scale-110 shadow-lg hover:shadow-xl hover:translate-y-1">
+                <img alt="Kaaba with people icon" class="mr-4" height="70" src="../image/logo menu umrah.png" width="70"/>
+                <span class="text-center text-2xl font-bold flex-1">MATERI UMROH</span>
+            </div>
+        </a>
+
+        <a href="./ayo latihan.html" class="group-hover:blur-sm hover:!blur-none menu-item">
+            <div class="bg-[#e0e0e0] text-black p-6 rounded-lg border-4 border-black flex items-center justify-between transform transition duration-400 hover:scale-110 shadow-lg hover:shadow-xl hover:translate-y-1">
+                <img alt="Graduation cap icon" class="mr-4" height="70" src="../image/logo menu latihan.png" width="70"/>
+                <span class="text-2xl text-center font-bold flex-1">AYO LATIHAN!</span>
+            </div>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="text-lg font-semibold text-black-600">Haji & Umrah</p>
+    </footer>
+
 </body>
 </html>
