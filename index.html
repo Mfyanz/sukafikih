@@ -60,6 +60,7 @@
             left: 0;
             right: 0;
             z-index: 1000;
+            width: 100%;
         }
 
         header {
@@ -98,8 +99,8 @@
 
         /* Styling for the button group */
         .button-group {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 24px;
             margin-bottom: 24px;
             width: 100%;
@@ -109,7 +110,7 @@
         .button-group .btn-square {
             background-color: #1E3A8A;
             color: white;
-            width: 200px;
+            width: 100%;
             height: 200px;
             display: flex;
             align-items: center;
@@ -129,8 +130,11 @@
         /* Responsive design adjustments */
         @media (max-width: 768px) {
             .button-group .btn-square {
-                width: 150px;
-                height: 120px;
+                height: 150px;
+            }
+
+            .welcome-text {
+                font-size: 2rem;
             }
         }
 
@@ -216,9 +220,8 @@
 
         <!-- Start Learning Button -->
         <div class="text-center w-full max-w-4xl mx-auto mb-12">
-          <a href="./sukafikih/menu2.html"  <button class="btn-primary bg-blue-700 text-black">Mulai Belajar !</button>
+            <a href="./sukafikih/menu2.html"><button class="btn-primary bg-blue-700 text-black">Mulai Belajar !</button></a>
         </div>
-      </a>
 
     </main>
 
