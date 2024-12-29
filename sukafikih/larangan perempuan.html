@@ -21,141 +21,6 @@
             }
         });
     </script>
-    <style>
-        /* Custom text shadow for the title */
-        .text-shadow {
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
-        }
-
-        /* Header Customization */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #f5f5f5;
-            border-bottom: 1px solid #000;
-            padding: 16px;
-            z-index: 10;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
-        }
-
-        /* Adjust body to prevent content overlap with the fixed header */
-        body {
-            padding-top: 90px; /* Adjust based on header height */
-        }
-
-        /* Mobile Menu (fixed position at the top) */
-        #mobile-menu {
-            position: fixed;
-            top: 60px; /* Space below the header */
-            right: 0;
-            width: 50%; /* Adjust width as needed */
-            background-color: #f5f5f5;
-            border: 1px solid #000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            z-index: 20; /* Ensure it appears above other content */
-            display: none;
-        }
-
-        #mobile-menu button {
-            padding: 12px;
-            font-size: 16px;
-            text-align: left;
-        }
-
-        /* Show menu when toggled */
-        #mobile-menu.hidden {
-            display: none;
-        }
-
-        #mobile-menu:not(.hidden) {
-            display: block;
-        }
-
-        /* Prevent body from scrolling when mobile menu is open */
-        body.menu-open {
-            overflow: hidden;
-        }
-
-        /* Card Styling */
-        .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Paragraph Styling */
-        .paragraph {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: #333;
-            line-height: 1.75;
-            margin-bottom: 1.5rem;
-            text-align: justify;
-            transition: all 0.3s ease;
-        }
-
-        .paragraph:hover {
-            color: #007BFF;
-            transform: translateX(5px);
-        }
-
-        /* List Item Styling */
-        .list-item {
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.25rem;
-            line-height: 1.8;
-            color: #444;
-            padding: 0.5rem 0;
-            transition: all 0.3s ease;
-        }
-
-        .list-item:hover {
-            color: #28A745;
-            transform: translateX(5px);
-        }
-
-        /* Title Card Styling */
-        .title-card {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 2rem;
-        }
-
-        /* Responsive Styling for Larger Screens */
-        @media (min-width: 1024px) {
-            .card {
-                padding: 3rem;
-                height: auto;  /* Make the card taller on larger screens */
-            }
-
-            .paragraph {
-                font-size: 2rem;
-            }
-
-            .list-item {
-                font-size: 1.5rem;
-            }
-
-            .title-card {
-                font-size: 3rem;
-            }
-
-            .text-shadow {
-                font-size: 4rem;
-            }
-        }
-    </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
 
@@ -189,17 +54,19 @@
 
         <!-- Main Section -->
         <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Larangan Haji Perempuan</h1>
-            <div class="w-full max-w-4xl mx-auto p-10 card">
-                <p class="paragraph">
-                    Ada beberapa larangan yang perlu diperhatikan oleh perempuan yang hendak menjalankan ibadah haji. Yuk, simak beberapa larangan berikut yang wajib diketahui!
+            <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
+                <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
+                    ❓ <span class="font-bold text-blue-600">Perhatian!</span> Larangan bagi perempuan saat berhaji. 
                 </p>
-                <ul class="list-disc pl-6">
-                    <li class="list-item"><strong>🚫 Jangan pakai penutup muka!</strong> Hati-hati ya, karena ini salah satu hal yang dilarang saat beribadah haji.</li>
-                    <li class="list-item"><strong>🧤 Sarung tangan juga harus diperhatikan.</strong> Jika darurat, baru boleh menutup tangan, tapi jangan lupa bayar fidyah ya!</li>
+                <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
+                    🚫 Jangan pakai penutup muka! Hati-hati ya, karena ini salah satu hal yang dilarang saat beribadah haji.
+                </p>
+                <ul class="list-disc pl-6 text-lg lg:text-xl xl:text-2xl text-gray-700 mb-6">
+                    <li>✅ Tidak diperbolehkan menggunakan sarung tangan kecuali dalam kondisi darurat.</li>
+                    <li>✅ Tetap menjaga adab dan batasan syar’i selama pelaksanaan ibadah.</li>
                 </ul>
-                <p class="paragraph">
-                    Jangan lupa, selalu ikuti aturan yang berlaku agar ibadah haji kita menjadi sah dan penuh berkah. <strong class="text-blue-600">Ayo, persiapkan ibadahmu dengan baik!</strong>
+                <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800">
+                    😊 Dengan memahami aturan, ibadah haji Anda akan lebih bermakna dan berkah. 🙏
                 </p>
             </div>
         </main>

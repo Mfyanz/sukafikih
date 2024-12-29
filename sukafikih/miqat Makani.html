@@ -78,9 +78,67 @@
             overflow: hidden;
         }
 
-        /* Font styling */
-        body {
-            font-family: 'Inter', sans-serif;
+        /* Card Styling */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            background-color: #ffffff;
+            padding: 24px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background-color: #f0f8ff; /* Light blue background on hover */
+        }
+
+        .card h1, .card h2 {
+            font-size: 2rem;
+            color: #1E3A8A; /* Deep blue for headers */
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .card p {
+            font-size: 1.25rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            text-align: justify;
+            text-indent: 20px; /* Indent first line of paragraphs */
+        }
+
+        .card h1:hover, .card h2:hover {
+            color: #2563eb; /* Lighter blue on hover */
+        }
+
+        /* Button Style */
+        .fade-in-button {
+            animation: fadeIn 1s ease-in-out;
+            background-color: #1E3A8A;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.25rem;
+            transition: background-color 0.3s ease;
+            border: none;
+        }
+
+        .fade-in-button:hover {
+            background-color: #2563eb;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -115,11 +173,14 @@
         </aside>
 
         <!-- Main Section -->
-        <main class="flex-1 p-6">
-            <h1 class="text-3xl font-extrabold mb-8 text-center text-blue-600">Miqat Makani</h1>
-            <div class="w-full max-w-[95%] mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Apa itu <span class="text-blue-600 font-bold">Miqat Makani</span>? Miqat makani adalah batas tempat yang telah ditentukan untuk memulai melaksanakan ibadah haji. Tahukah kamu bahwa miqat makani berbeda untuk setiap lokasi asal jamaah haji? Yuk, kita pelajari lebih dalam!
+
+            <!-- Interactive Question Before Content -->
+            <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
+                <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
+                </span> Apa itu <span class="font-bold text-green-600">Miqat Makani</span>?
+                </p>
+                <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
+                    Miqat makani adalah batas tempat yang telah ditentukan untuk memulai melaksanakan ibadah haji. Tahukah kamu bahwa miqat makani berbeda untuk setiap lokasi asal jamaah haji? Yuk, kita pelajari lebih dalam!
                 </p>
                 <ul class="list-disc pl-6 text-lg font-semibold text-gray-700">
                     <li>Orang Makkah dan sekitarnya, miqat dari rumahnya masing-masing.</li>
@@ -129,8 +190,12 @@
                     <li>Orang Irak dan sekitarnya, miqat dari Dzatu ‘Irqin.</li>
                     <li>Orang-orang yang datang dari Nejed dan negara-negara yang searah, miqat dari Qarnul Manazil.</li>
                 </ul>
-        
+                
+                <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800 mt-6">
+                    😊 Memahami Miqat membantu memastikan ibadah haji dan umrah Anda sah dan diterima. 🌟
+                </p>
             </div>
+            
         </main>
 
     </div>

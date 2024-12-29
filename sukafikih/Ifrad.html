@@ -5,77 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IHRAM DARI MIQAT</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Toggle the visibility of the navbar on mobile
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        // Close the mobile menu if clicked outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('mobile-menu');
-            const button = document.querySelector('button[onclick="toggleMenu()"]');
-            if (!menu.contains(event.target) && !button.contains(event.target)) {
-                menu.classList.add('hidden');
-            }
-        });
-    </script>
     <style>
-        /* Custom text shadow for the title */
-        .text-shadow {
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+        /* Card Styling */
+        .card {
+            background: linear-gradient(to bottom right, #ffefd5, #fff);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            margin: 16px auto;
+            max-width: 600px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Fixed Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #f5f5f5;
-            border-bottom: 1px solid #000;
-            padding: 16px;
-            z-index: 10;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
-        /* Adjust body to prevent content overlap with the fixed header */
-        body {
-            padding-top: 90px; /* Adjust based on header height */
+        .highlight {
+            color: #e53e3e;
+            font-weight: bold;
         }
 
-        /* Mobile Menu (fixed position at the top) */
-        #mobile-menu {
-            position: fixed;
-            top: 60px; /* Space below the header */
-            right: 0;
-            width: 50%; /* Adjust width as needed */
-            background-color: #f5f5f5;
-            border: 1px solid #000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            z-index: 20; /* Ensure it appears above other content */
-            display: none;
-        }
-
-        #mobile-menu button {
-            padding: 12px;
-            font-size: 16px;
-            text-align: left;
-        }
-
-        /* Show menu when toggled */
-        #mobile-menu.hidden {
-            display: none;
-        }
-
-        #mobile-menu:not(.hidden) {
-            display: block;
-        }
-
-        /* Prevent body from scrolling when mobile menu is open */
-        body.menu-open {
-            overflow: hidden;
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: #3182ce;
         }
     </style>
 </head>
@@ -85,7 +40,7 @@
     <header class="bg-[#f5f5f5] border-b border-black p-6 shadow-md rounded-b-lg">
         <div class="flex items-center justify-between">
             <h1 class="text-3xl font-bold text-shadow">
-                <span class="text-blue-600">suka</span><span class="text-white">fikih</span>
+                <span class="text-blue-600">suka</span><span class="text-gray-800">fikih</span>
             </h1>
             <!-- Hamburger Icon (only visible on small screens) -->
             <button class="lg:hidden" onclick="toggleMenu()">
@@ -97,53 +52,27 @@
     </header>
 
     <!-- Main Content -->
-    <div class="flex flex-1 flex-col lg:flex-row">
-
-        <!-- Sidebar (Desktop) -->
-        <aside class="lg:w-1/6 w-full border-r border-black p-6 bg-[#f5f5f5] lg:block hidden">
-            <nav class="space-y-4">
-                <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">MENU</div>
-                <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">Materi Haji</div>
-                <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">Materi Umrah</div>
-                <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">Ayo Latihan</div>
-            </nav>
-        </aside>
-
-        <!-- Main Section -->
-        <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Haji Ifrad</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Haji ifrad adalah mengerjakan haji saja atau mendahulukan haji daripada umrah. Cara haji ini tidak dikenakan kewajiban membayar dam. Pelaksanaan haji dengan cara ifrad dapat dipilih oleh jamaah haji yang masa wukufnya sudah dekat (kurang lebih lima hari). Kata ifrad artinya menyendirikan atau memisahkan.
-                </p>
-                <!-- Two buttons side by side with fade-in effect -->
-            </div>
-        </main>
-
-    </div>
+    <main class="flex-1 p-6 flex justify-center items-center">
+        <!-- Card -->
+        <div class="card text-center">
+            <div class="icon">🕋</div>
+            <h1 class="text-2xl font-bold mb-4">Haji Ifrad</h1>
+            <p class="text-justify leading-relaxed text-lg">
+                Haji <span class="highlight">ifrad</span> adalah melaksanakan <strong>haji saja</strong>, tanpa digabung dengan umrah. 
+                Pelaksanaan ini <span class="highlight">tidak dikenakan kewajiban membayar dam</span>, sehingga cocok bagi jamaah 
+                dengan waktu wukuf yang <span class="highlight">sangat dekat</span> (sekitar <strong>5 hari</strong> sebelum wukuf). 
+                Kata <span class="highlight">ifrad</span> sendiri berasal dari bahasa Arab yang berarti <strong>menyendirikan</strong>.
+            </p>
+            <p class="mt-4 text-center text-blue-500 font-semibold">
+                Pilihan yang tepat untuk kondisi waktu yang terbatas!
+            </p>
+        </div>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto flex justify-between items-center">
-        <!-- Centered Haji & Umrah text with smaller font size -->
-        <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <!-- Back link with arrow on the right side of the footer -->
-        <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
-            <span>Back</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-            </svg>
-        </button>
+    <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto">
+        <p class="text-sm font-semibold">Haji & Umrah</p>
     </footer>
-
-    <!-- Mobile Menu (hidden by default) -->
-    <div id="mobile-menu" class="lg:hidden hidden">
-        <nav class="space-y-2 p-2">
-            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">MENU</button>
-            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Materi Haji</button>
-            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Materi Umrah</button>
-            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Ayo Latihan</button>
-        </nav>
-    </div>
 
 </body>
 </html>
