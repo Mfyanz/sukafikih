@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunnah Haji</title>
+    <title>Sunnah Haji - Interaktif dan Menarik</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -20,14 +20,17 @@
                 menu.classList.add('hidden');
             }
         });
+
+        // Start quiz prompt
+        function startQuiz() {
+            alert('Quiz mulai! Ayo uji pengetahuanmu!');
+        }
     </script>
     <style>
-        /* Custom text shadow for the title */
         .text-shadow {
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
         }
 
-        /* Fixed Header */
         header {
             position: fixed;
             top: 0;
@@ -37,45 +40,31 @@
             border-bottom: 1px solid #000;
             padding: 16px;
             z-index: 10;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Adjust body to prevent content overlap with the fixed header */
         body {
-            padding-top: 90px; /* Adjust based on header height */
+            padding-top: 90px;
         }
 
-        /* Mobile Menu (fixed position at the top) */
         #mobile-menu {
             position: fixed;
-            top: 60px; /* Space below the header */
+            top: 60px;
             right: 0;
-            width: 50%; /* Adjust width as needed */
+            width: 50%;
             background-color: #f5f5f5;
             border: 1px solid #000;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            z-index: 20; /* Ensure it appears above other content */
+            z-index: 20;
             display: none;
         }
 
-        #mobile-menu button {
-            padding: 12px;
-            font-size: 16px;
-            text-align: left;
-        }
-
-        /* Show menu when toggled */
         #mobile-menu.hidden {
             display: none;
         }
 
         #mobile-menu:not(.hidden) {
             display: block;
-        }
-
-        /* Prevent body from scrolling when mobile menu is open */
-        body.menu-open {
-            overflow: hidden;
         }
     </style>
 </head>
@@ -87,7 +76,6 @@
             <h1 class="text-3xl font-bold text-shadow">
                 <span class="text-blue-600">suka</span><span class="text-white">fikih</span>
             </h1>
-            <!-- Hamburger Icon (only visible on small screens) -->
             <button class="lg:hidden" onclick="toggleMenu()">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -111,22 +99,27 @@
 
         <!-- Main Section -->
         <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Wukuf</h1>
+            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Wukuf di Arafah</h1>
             <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
                 <p class="text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
-                    Wukuf di Arafah adalah berhenti di Padang Arafah dari tergelincirnya matahari (waktu duhur) tanggal 9 Zulhijah sampai dengan terbenam matahari, baik dalam keadaan suci maupun tidak suci. Sunah yang dikerjakan selama wukuf antara lain:
+                    Wukuf di Arafah adalah berhenti di Padang Arafah pada tanggal 9 Zulhijah, dari tergelincirnya matahari (waktu Duhur) hingga terbenam matahari. Selama wukuf, ada beberapa amalan sunnah yang dapat dilakukan untuk memperoleh keberkahan.
+                    <br><br>
+                    <strong>Bagaimana menurut kamu, apa manfaat utama dari Wukuf ini?</strong> Coba renungkan sejenak sebelum melanjutkan penjelasan!
                 </p>
+
+                <!-- List of Sunnah during Wukuf -->
+                <p class="font-semibold text-xl mb-4">Beberapa sunnah yang dapat dikerjakan selama Wukuf antara lain:</p>
                 <ul class="list-disc pl-6 text-lg mb-6">
-                    <li>Melakukan salat duhur dan Asar dengan dijama qasar takdim.</li>
+                    <li>Melakukan salat Duhur dan Asar dengan dijama' qasar takdim.</li>
                     <li>Mendengarkan khotbah Arafah.</li>
-                    <li>Memperbanyak zikir, doa atau membaca al-Qur'an.</li>
-                    <li>Masuk area Arafah sebelum waktu duhur.</li>
-    
+                    <li>Memperbanyak zikir, doa, atau membaca al-Qur'an.</li>
+                    <li>Masuk ke area Arafah sebelum waktu Duhur.</li>
                 </ul>
-    
-    
-                
-                <!-- Two buttons side by side with fade-in effect -->
+
+                <div class="mt-8 text-center">
+                    <h3 class="text-2xl font-semibold text-blue-600">Apa yang kamu rasakan jika berada di Arafah?</h3>
+                    <p class="text-lg text-gray-700">Cobalah untuk membayangkan suasana sakral dan penuh doa di Padang Arafah. Semoga ini membantu memperdalam pemahamanmu tentang ibadah haji.</p>
+                </div>
             </div>
         </main>
 
@@ -134,9 +127,7 @@
 
     <!-- Footer -->
     <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto flex justify-between items-center">
-        <!-- Centered Haji & Umrah text with smaller font size -->
         <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <!-- Back link with arrow on the right side of the footer -->
         <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
             <span>Back</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">

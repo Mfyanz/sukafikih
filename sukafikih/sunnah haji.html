@@ -77,6 +77,16 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Card Hover Effect */
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-content {
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -112,21 +122,22 @@
         <!-- Main Section -->
         <main class="flex-1 p-6">
             <h1 class="text-3xl font-bold mb-8 text-center text-dark">Sunnah Haji</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <p class="text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
-                    Sunnah haji antara lain:
-                </p>
-                <ul class="list-disc pl-6 text-lg mb-6">
-                    <li>Melaksanakan haji ifrad</li>
-                    <li>Membaca talbiyah selama ihram sampai melontar jumrah 'aqabah pada Hari Raya Idul Adha</li>
-                    <li>Berdoa setelah membaca talbiyah</li>
-                    <li>Membaca zikir pada waktu tawaf</li>
-                    <li>Memasuki Ka'bah</li>
-                </ul>
-    
-    
-                
-                <!-- Two buttons side by side with fade-in effect -->
+            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-xl transform transition-all duration-300 hover:scale-105 card">
+                <div class="card-content">
+                    <p class="text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
+                        Saat melaksanakan ibadah haji, ada beberapa sunnah yang dapat kamu lakukan untuk mendapatkan pahala lebih. Yuk, kita bahas lebih dalam!
+                    </p>
+                    <ul class="list-disc pl-6 text-lg mb-6 space-y-4">
+                        <li class="flex items-center"><span class="text-blue-600 mr-3">👉</span>Melaksanakan haji ifrad, yaitu haji yang dilakukan tanpa umrah.</li>
+                        <li class="flex items-center"><span class="text-blue-600 mr-3">👉</span>Membaca talbiyah dengan penuh khusyuk selama ihram hingga melempar jumrah 'aqabah.</li>
+                        <li class="flex items-center"><span class="text-blue-600 mr-3">👉</span>Berdoa setelah membaca talbiyah, agar doa-doa kita diijabah.</li>
+                        <li class="flex items-center"><span class="text-blue-600 mr-3">👉</span>Membaca zikir saat tawaf, momen yang sangat indah dan penuh berkah.</li>
+                        <li class="flex items-center"><span class="text-blue-600 mr-3">👉</span>Memasuki Ka'bah, jika memungkinkan, adalah sunnah yang sangat dianjurkan.</li>
+                    </ul>
+                    <p class="text-lg text-gray-800 mb-6">
+                        Coba bayangkan betapa luar biasanya perjalanan haji kamu jika diiringi dengan melakukan sunnah-sunnah ini. Setiap langkah yang kamu ambil akan semakin mendekatkan dirimu pada keberkahan dan pahala dari Allah.
+                    </p>
+                </div>
             </div>
         </main>
 

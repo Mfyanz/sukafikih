@@ -77,6 +77,72 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Card Styling */
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card p {
+            font-size: 1.5rem; /* Increased font size */
+            line-height: 2rem; /* Increased line height for readability */
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .card button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .card button:hover {
+            background-color: #45a049;
+        }
+
+        /* Animation for fade-in effect */
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Larger card and text for laptops */
+        @media (min-width: 1024px) {
+            .card {
+                padding: 40px; /* Increase padding on larger screens */
+                margin-bottom: 50px; /* More margin for larger screens */
+            }
+
+            .card p {
+                font-size: 1.75rem; /* Larger text size for readability on laptops */
+                line-height: 2.25rem;
+            }
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -111,12 +177,14 @@
 
         <!-- Main Section -->
         <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Haji Tamattu'</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Haji tamattu', yaitu mengerjakan umrah terlebih dahulu, baru mengerjakan haji. Haji dengan cara ini dikenakan kewajiban membayar dam nusuk (sesuai ketentuan). Pelaksanaan haji dengan cara famatu paling banyak dilakukan jamaah haji dari Indonesia.
-                </ul>
-                <!-- Two buttons side by side with fade-in effect -->
+            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Haji Tamattu' ✨</h1>
+            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl fade-in">
+                <div class="card">
+                    <p class="text-xl text-justify leading-relaxed mb-6">
+                        Haji Tamattu' adalah cara haji di mana seseorang melakukan <strong>umrah terlebih dahulu</strong>, kemudian melaksanakan <strong>haji</strong> setelahnya. Cara ini wajib dilakukan dengan membayar dam nusuk (sesuai ketentuan). 
+                        🕋 Haji tamattu' ini menjadi pilihan banyak jamaah haji, terutama dari Indonesia. Kenapa? Karena prosesnya lebih mudah dan praktis! 🌍
+                    </p>
+                </div>
             </div>
         </main>
 
@@ -124,11 +192,9 @@
 
     <!-- Footer -->
     <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto flex justify-between items-center">
-        <!-- Centered Haji & Umrah text with smaller font size -->
-        <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <!-- Back link with arrow on the right side of the footer -->
+        <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah 💫</p>
         <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
-            <span>Back</span>
+            <span>Kembali</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>

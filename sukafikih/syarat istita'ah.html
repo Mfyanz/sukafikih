@@ -77,6 +77,57 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Enhanced Card Design */
+        .card {
+            background: linear-gradient(145deg, #f1f1f1, #e0e0e0);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .list-item {
+            margin-bottom: 12px;
+            padding-left: 25px; /* Added padding to the left */
+            position: relative;
+        }
+
+        .list-item::before {
+            content: '✔';
+            color: #4CAF50;
+            position: absolute;
+            left: 0; /* Align the checkmark to the left */
+            top: 0;
+            font-size: 20px; /* Adjust size of checkmark */
+        }
+
+        .highlight {
+            color: #0275d8;
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: #0275d8;
+            color: white;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #025aa5;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -112,20 +163,15 @@
         <!-- Main Section -->
         <main class="flex-1 p-6">
             <h1 class="text-3xl font-bold mb-8 text-center text-dark">Syarat-Syarat Istita'ah</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <ul class="list-disc pl-6 text-lg mb-6">
-                    <li>Memiliki biaya untuk pergi ke Makkah dan kembali atau disebut biaya penyelenggaraan ibadah haji (BPIH). Istilah ini dahulu dinamakan ongkos naik haji (ONH).</li>
-                    <li>Sehat jasmani maupun rohani.</li>
-                    <li>Memiliki pengetahuan tentang tata cara melaksanakan haji.</li>
-                    <li>Aman selama perjalanan dari pergi hingga pulang.</li>
-                    <li>Ada kendaraan, baik milik pribadi, pemerintah, atau swasta.</li>
-                    <li>Wanita harus disertai mahram.</li>
+            <div class="w-full max-w-3xl mx-auto card">
+                <ul class="list-none text-lg mb-6">
+                    <li class="list-item">Memiliki biaya untuk pergi ke Makkah dan kembali atau disebut biaya penyelenggaraan ibadah haji (<span class="highlight">BPIH</span>). Istilah ini dahulu dinamakan ongkos naik haji (<span class="highlight">ONH</span>).</li>
+                    <li class="list-item">Sehat jasmani maupun rohani.</li>
+                    <li class="list-item">Memiliki pengetahuan tentang tata cara melaksanakan haji.</li>
+                    <li class="list-item">Aman selama perjalanan dari pergi hingga pulang.</li>
+                    <li class="list-item">Ada kendaraan, baik milik pribadi, pemerintah, atau swasta.</li>
+                    <li class="list-item">Wanita harus disertai mahram.</li>
                 </ul>
-    
-    
-    
-                
-                <!-- Two buttons side by side with fade-in effect -->
             </div>
         </main>
 

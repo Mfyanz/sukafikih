@@ -77,6 +77,29 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Card Shadow and Border Enhancement */
+        .card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(200, 255, 200, 0.6));
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animated text */
+        .animate-text {
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -111,22 +134,21 @@
 
         <!-- Main Section -->
         <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Sa'i</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
+            <h1 class="text-3xl font-bold mb-8 text-center text-dark animate-text">Sa'i: Apa Itu dan Mengapa Penting?</h1>
+            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl card animate-text">
                 <p class="text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
-                    Sa’i adalah kegiatan berjalan antara bukit Safa dan Marwah sebanyak 7 kali dengan ketentuan:
+                    Sa’i adalah perjalanan yang penuh makna! 🌍 Bayangkan Anda berjalan bolak-balik antara bukit <span class="font-bold text-blue-600">Safa</span> dan <span class="font-bold text-blue-600">Marwah</span> sebanyak 7 kali. Ini adalah bagian dari ibadah yang mengingatkan kita pada perjuangan Hajar yang luar biasa dalam mencari air di padang pasir. 🌴
                 </p>
-                <ul class="list-disc pl-6 text-lg mb-6">
-                    <li>Dilakukan setelah tawaf.</li>
-                    <li>Dilakukan dalam keadaan suci dan menutup aurat.</li>
-                    <li>Seluruh rangkaian dilakukan lengkap sebanyak 7 kali, tidak ada yang tersisa.</li>
-                    <li>Dimulai dari bukit Safa dan diakhiri di bukit Marwah. Perjalanan dari Safa ke Marwah dianggap satu kali.</li>
-                    <li>Berdoa di bukit Safa dan Marwah.</li>
-                    <li>Bagi laki-laki, disunahkan berlari-lari kecil di antara dua lampu hijau.</li>
+                <ul class="list-disc pl-6 text-lg mb-6 space-y-2">
+                    <li>✅ Dilakukan setelah <span class="font-bold text-green-600">tawaf</span>, yang menandakan kesucian niat.</li>
+                    <li>✅ Dikerjakan dalam keadaan <span class="font-bold text-red-600">suci</span> dan menutup aurat dengan penuh khusyuk.</li>
+                    <li>✅ Harus selesai sebanyak 7 kali, dimulai dari <span class="font-bold text-blue-600">Safa</span> dan diakhiri di <span class="font-bold text-blue-600">Marwah</span>. Setiap perjalanan dari Safa ke Marwah dihitung sebagai satu kali.</li>
+                    <li>✅ Jangan lupa berdoa dengan penuh harapan di kedua bukit tersebut, karena di situlah banyak doa diterima. 🙏</li>
+                    <li>✅ Bagi laki-laki, disunahkan berlari-lari kecil 🏃‍♂️ di antara dua lampu hijau sebagai simbol kecepatan dan perjuangan.</li>
                 </ul>
-    
-                
-                <!-- Two buttons side by side with fade-in effect -->
+                <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800">
+                    🌟 Dengan melakukan Sa’i, kita meneladani perjuangan Hajar yang tidak kenal lelah dalam mencari kehidupan bagi anaknya, Ismail. Ini adalah simbol pengorbanan dan ketekunan yang luar biasa! 💪
+                </p>
             </div>
         </main>
 

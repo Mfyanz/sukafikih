@@ -77,6 +77,30 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Enhanced Text Styling */
+        .text-animate {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .text-animate:hover {
+            transform: scale(1.1);
+        }
+
+        /* Card styling */
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -113,18 +137,24 @@
         <main class="flex-1 p-6">
             <h1 class="text-3xl font-bold mb-8 text-center text-dark">Tawaf</h1>
             <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <p class="text-xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Tawaf ada beberapa macam, yaitu:
-                </p>
-                <ul class="list-disc pl-6 text-lg">
-                    <li>Tawaf qudum, dilakukan ketika sampai Makkah.</li>
-                    <li>Tawaf ifadah, sebagai rukun haji, dilaksanakan pada tanggal 10 Zulhijah.</li>
-                    <li>Tawaf sunah, dilakukan kapan saja.</li>
-                    <li>Tawaf wada’, dilakukan ketika jemaah akan meninggalkan kota Makkah.</li>
-                </ul>
-    
-    
-                <!-- Two buttons side by side with fade-in effect -->
+                
+                <!-- Interactive Question -->
+                <div class="card">
+                    <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6 text-animate">
+                        Pernahkah kamu membayangkan mengelilingi Ka'bah? Ya, itulah yang disebut dengan Tawaf. 
+                        👉 Apakah kamu tahu apa yang perlu kamu lakukan saat Tawaf? Simak penjelasannya berikut!
+                    </p>
+                    <p class="text-xl text-justify leading-relaxed mb-6">
+                        Tawaf adalah kegiatan mengelilingi Ka'bah sebanyak tujuh kali dengan posisi Ka'bah di sebelah kiri. Tawaf dimulai dan diakhiri di tempat yang sejajar dengan hajar aswad. Setiap putaran, jamaah akan berdoa dan memohon kepada Allah.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <p class="text-2xl text-justify leading-relaxed mb-6 text-animate">
+                        Jadi, mengapa Tawaf begitu penting dalam ibadah Haji? 🤔 Tawaf menjadi simbol ketundukan dan penghambaan kepada Allah. Ini adalah momen spiritual yang sangat berarti.
+                    </p>
+                </div>
+                
             </div>
         </main>
 

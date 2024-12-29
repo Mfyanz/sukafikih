@@ -133,6 +133,34 @@
         .btn-primary:hover {
             background-color: #1E3A8A;
         }
+
+        /* Responsive Styles for Mobile */
+        @media (max-width: 768px) {
+            .heading {
+                font-size: 2rem; /* Smaller font size for headings on mobile */
+            }
+
+            .content-text {
+                font-size: 1.1rem; /* Smaller content text size on mobile */
+            }
+
+            .section-title {
+                font-size: 1.5rem; /* Smaller section title size on mobile */
+            }
+
+            aside {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                box-shadow: none;
+                padding: 16px;
+            }
+
+            #mobile-menu {
+                width: 80%; /* Wider menu for better usability */
+            }
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -168,20 +196,23 @@
         <!-- Main Section -->
         <main class="flex-1 p-8">
             <h1 class="heading text-center text-blue-600">Pengertian Haji</h1>
-            <div class="w-full max-w-4xl mx-auto p-12 bg-white rounded-lg shadow-2xl card">
-                <!-- Pengertian Haji Secara Bahasa -->
-                <section class="mb-8">
+
+            <!-- Pengertian Haji Secara Bahasa -->
+            <div class="w-full max-w-4xl mx-auto p-12 mb-6 bg-white rounded-lg shadow-2xl card">
+                <section>
                     <h2 class="section-title">Pengertian Haji Secara Bahasa</h2>
                     <p class="content-text">
-                        Secara bahasa, haji berasal dari kata <strong>al-Hajj</strong> yang artinya “menyengaja sesuatu”.
+                        Haji secara bahasa berasal dari kata <strong>al-Hajj</strong>, yang berarti "menyengaja sesuatu." Dengan kata lain, ibadah ini memiliki tujuan khusus yang mulia.
                     </p>
                 </section>
+            </div>
 
-                <!-- Pengertian Haji Secara Istilah -->
+            <!-- Pengertian Haji Secara Istilah -->
+            <div class="w-full max-w-4xl mx-auto p-12 bg-white rounded-lg shadow-2xl card">
                 <section>
                     <h2 class="section-title">Pengertian Haji Secara Istilah</h2>
                     <p class="content-text">
-                        Sedangkan menurut syara', haji berarti menyengaja mengunjungi Baitullah di Makkah untuk melaksanakan rangkaian ibadah yang telah diatur ketentuan dan tata caranya dalam syariat Islam. Adapun hukum melaksanakan ibadah haji adalah wajib bagi orang Islam yang mampu. Kewajiban ini hanya sekali dalam seumur hidupnya.
+                        Dalam istilah syariat, haji berarti menyengaja untuk mengunjungi Baitullah di Makkah. Tujuannya adalah melaksanakan serangkaian ibadah yang telah diatur dalam syariat Islam. Menariknya, ibadah haji hanya diwajibkan sekali seumur hidup bagi umat Islam yang mampu. Nah, apakah Anda sudah mempersiapkan diri untuk memenuhi panggilan ini?
                     </p>
                 </section>
             </div>
@@ -210,6 +241,3 @@
             <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Ayo Latihan</button>
         </nav>
     </div>
-
-</body>
-</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengertian Haji</title>
+    <title>Pengertian Umrah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -22,60 +22,19 @@
         });
     </script>
     <style>
-        /* Custom text shadow for the title */
         .text-shadow {
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
         }
 
-        /* Fixed Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #f5f5f5;
-            border-bottom: 1px solid #000;
-            padding: 16px;
-            z-index: 10;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #1E40AF;
+            background: linear-gradient(to bottom, #ffffff, #f3f4f6);
         }
 
-        /* Adjust body to prevent content overlap with the fixed header */
-        body {
-            padding-top: 90px; /* Adjust based on header height */
-        }
-
-        /* Mobile Menu (fixed position at the top) */
-        #mobile-menu {
-            position: fixed;
-            top: 60px; /* Space below the header */
-            right: 0;
-            width: 50%; /* Adjust width as needed */
-            background-color: #f5f5f5;
-            border: 1px solid #000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            z-index: 20; /* Ensure it appears above other content */
-            display: none;
-        }
-
-        #mobile-menu button {
-            padding: 12px;
-            font-size: 16px;
-            text-align: left;
-        }
-
-        /* Show menu when toggled */
-        #mobile-menu.hidden {
-            display: none;
-        }
-
-        #mobile-menu:not(.hidden) {
-            display: block;
-        }
-
-        /* Prevent body from scrolling when mobile menu is open */
-        body.menu-open {
-            overflow: hidden;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
     </style>
 </head>
@@ -87,7 +46,6 @@
             <h1 class="text-3xl font-bold text-shadow">
                 <span class="text-blue-600">suka</span><span class="text-white">fikih</span>
             </h1>
-            <!-- Hamburger Icon (only visible on small screens) -->
             <button class="lg:hidden" onclick="toggleMenu()">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -111,13 +69,21 @@
 
         <!-- Main Section -->
         <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Pengertian Haji</h1>
-            <div class="w-full max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-2xl">
-                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Umrah dari segi bahasa artinya ziarah atau mengunjungi. Menurut istilah umrah adalah menziarahi Ka'bah dengan niat untuk beribadah kepada Allah Swt. Semua ketentuan umrah hampir sama dengan haji, tetapi pelaksanaan umrah lebih sederhana dibandingkan dengan haji.
+            <h1 class="text-3xl font-bold mb-8 text-center text-blue-600">Pengertian Umrah</h1>
+            <div class="w-full max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-2xl card">
+                <p class="text-xl lg:text-2xl text-justify leading-relaxed mb-6">
+                    <strong>🤔 Pernahkah Anda bertanya?</strong> Apa itu umrah? Apa perbedaannya dengan haji? Yuk, kita bahas!
                 </p>
-                </ul>
-                <!-- Two buttons side by side with fade-in effect -->
+                <p class="text-lg lg:text-xl text-justify leading-relaxed mb-6">
+                    <strong>Secara bahasa</strong>, umrah berarti "ziarah" atau "mengunjungi". 
+                    Dalam istilah syariat, umrah adalah menziarahi Ka'bah dengan niat beribadah kepada Allah Swt. 💕
+                </p>
+                <p class="text-lg lg:text-xl text-justify leading-relaxed mb-6">
+                    Ibadah ini melibatkan beberapa rukun, seperti ihram, thawaf, sa'i, dan tahallul. Meski mirip dengan haji, umrah lebih sederhana karena tidak memiliki wukuf di Arafah. 🙌
+                </p>
+                <p class="text-lg lg:text-xl text-justify leading-relaxed">
+                    Tertarik untuk mengetahui lebih banyak? Jangan lupa eksplorasi lebih dalam, karena umrah adalah salah satu cara kita mendekatkan diri kepada Allah Swt. 😊
+                </p>
             </div>
         </main>
 
@@ -125,9 +91,7 @@
 
     <!-- Footer -->
     <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto flex justify-between items-center">
-        <!-- Centered Haji & Umrah text with smaller font size -->
         <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <!-- Back link with arrow on the right side of the footer -->
         <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
             <span>Back</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
