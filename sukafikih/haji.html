@@ -57,7 +57,7 @@
 
         /* Fixed Footer */
         footer {
-            position: fixed;
+            position: sticky;
             bottom: 0;
             left: 0;
             width: 100%;
@@ -71,7 +71,9 @@
         /* For mobile view, make sure content is scrollable */
         body, html {
             height: 100%;
-            overflow-y: auto;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .scrollable-content {
@@ -79,13 +81,9 @@
             flex: 1;
         }
 
-        /* Reduced padding for header and content to reduce the gap */
-        header {
-            padding-bottom: 16px; 
-        }
-
         .content {
             margin-top: 16px; 
+            padding-bottom: 60px; /* Space for footer */
         }
 
         /* Animation for the cards (fade-in and slide-up) */
@@ -179,10 +177,10 @@
         </aside>
 
         <!-- Main Section -->
-        <main class="flex-1 p-6 content scrollable-content">
+        <main class="flex-1 py-2 content scrollable-content">
             <!-- Materi Haji Content -->
             <div class="container mx-auto p-4">
-                <div class="header bg-[#b3d9ff] p-6 rounded-lg text-center text-2xl font-bold mb-6">
+                <div class="header bg-[#b3d9ff] p-2 rounded-lg text-center text-2xl font-bold mb-2">
                     Materi Haji
                 </div>
                 <!-- Responsively adjusting the grid layout -->
@@ -224,11 +222,18 @@
         </main>
 
     </div>
+                </div>
+            </div>
+        </main>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto flex justify-between items-center">
+        <!-- Centered Haji & Umrah text with smaller font size -->
         <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <a href="./menu2.html"<button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
+        <!-- Back link with arrow on the right side of the footer -->
+       <a href="./haji.html"
+        <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
             <span>Back</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -236,5 +241,6 @@
         </button>
     </a>
     </footer>
+
 </body>
 </html>
