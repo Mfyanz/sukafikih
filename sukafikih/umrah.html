@@ -87,6 +87,55 @@
         .content {
             margin-top: 16px;
         }
+
+        /* Add keyframes for the floating up effect */
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Apply the float-up animation to each card with a slight delay */
+        .card {
+            animation: floatUp 0.5s ease-out forwards;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .card:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .card:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+
+        .card:nth-child(7) {
+            animation-delay: 0.6s;
+        }
+
+        .card:nth-child(8) {
+            animation-delay: 0.7s;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">

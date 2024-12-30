@@ -29,10 +29,10 @@
 
         /* Make the mobile menu visible above the cards */
         #mobile-menu {
-            position: fixed;  /* Fix the position of the menu */
-            top: 80px; /* Position the menu below the header */
+            position: fixed;  
+            top: 80px; 
             right: 10px;
-            z-index: 1000; /* Ensure the menu appears above other content */
+            z-index: 1000; 
             width: 200px;
             background-color: #f5f5f5;
             border: 1px solid #ccc;
@@ -50,9 +50,9 @@
         /* Sticky Sidebar for Desktop */
         aside {
             position: sticky;
-            top: 80px; /* Distance from the top of the viewport */
-            height: calc(100vh - 80px); /* Make it take up the rest of the screen height */
-            overflow-y: auto; /* Enable scrolling for the sidebar if the content is too long */
+            top: 80px; 
+            height: calc(100vh - 80px); 
+            overflow-y: auto;
         }
 
         /* Fixed Footer */
@@ -63,7 +63,7 @@
             width: 100%;
             background-color: #f5f5f5;
             border-top: 1px solid #000;
-            padding: 2px; /* Reduced padding */
+            padding: 2px;
             text-align: center;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
@@ -81,11 +81,60 @@
 
         /* Reduced padding for header and content to reduce the gap */
         header {
-            padding-bottom: 16px; /* Reduced padding below the header */
+            padding-bottom: 16px; 
         }
 
         .content {
-            margin-top: 16px; /* Reduced margin-top to bring the content closer */
+            margin-top: 16px; 
+        }
+
+        /* Animation for the cards (fade-in and slide-up) */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Apply animation to the cards with a delay */
+        .card {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .card:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .card:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+
+        .card:nth-child(7) {
+            animation-delay: 0.6s;
+        }
+
+        .card:nth-child(8) {
+            animation-delay: 0.7s;
         }
     </style>
 </head>
@@ -143,7 +192,7 @@
                         <p class="font-semibold">Pengertian Haji</p>
                     </a>
                     <a href="./Hukum haji.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-4 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
-                        <img src="../image/logo menu haji.png" alt="Pengertian Haji" class="mx-auto mb-4 max-w-[80px]">
+                        <img src="../image/logo menu haji.png" alt="Hukum Haji" class="mx-auto mb-4 max-w-[80px]">
                         <p class="font-semibold">Hukum Haji</p>
                     </a>
                     <a href="./rukun haji.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-4 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
@@ -178,7 +227,7 @@
 
     <!-- Footer -->
     <footer>
-        <p class="text-lg font-semibold text-black-600">Haji & Umrah</p
+        <p class="text-lg font-semibold text-black-600">Haji & Umrah</p>
     </footer>
 
 </body>
