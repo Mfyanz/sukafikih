@@ -126,38 +126,46 @@
             background-color: #e1e1c3; /* Slightly darker bone white for hover */
         }
 
-        /* Responsive design adjustments for mobile screens */
-        @media (max-width: 768px) {
-            .button-group {
-                grid-template-columns: 1fr 1fr; /* Two buttons per row on mobile */
-            }
-
-            .button-group .btn-square {
-                height: 50px; /* Reduced button height */
-                font-size: 1rem; /* Smaller font size for mobile */
-            }
-
-            .welcome-text {
-                font-size: 1.75rem; /* Smaller text for mobile */
-            }
-
-            header h1 {
-                font-size: 2.25rem; /* Smaller header text for mobile */
-            }
+        /* Modal overlay styles */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10;
         }
 
-        /* Adjust button size on larger screens (e.g., tablets and desktops) */
-        @media (min-width: 1024px) {
-            .button-group .btn-square {
-                height: 80px; /* Slightly larger button height on bigger screens */
-                font-size: 1.5rem;
-            }
+        .modal-card {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 20;
+            max-width: 400px;
+            text-align: center;
         }
 
-        /* Adjust the main content padding to prevent overlap with header/footer */
-        main {
-            padding-top: 5rem; /* Space for fixed header */
-            padding-bottom: 8rem; /* Extra space for footer */
+        .hidden {
+            display: none;
+        }
+
+        .btn-close {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #dc2626;
+            color: #fff;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .btn-close:hover {
+            background-color: #b91c1c;
         }
     </style>
 </head>
@@ -188,8 +196,27 @@
 
         <!-- Two Buttons -->
         <div class="button-group">
-            <button class="btn-square">Tujuan Pembelajaran</button>
-            <button class="btn-square">Indikator</button>
+            <button id="btn-tujuan" class="btn-square">Tujuan Pembelajaran</button>
+            <button id="btn-indikator" class="btn-square">Indikator</button>
+        </div>
+
+        <!-- Modal Cards -->
+        <div id="overlay" class="overlay hidden" onclick="closeModal()"></div>
+
+        <div id="modal-tujuan" class="modal-card hidden">
+            <h2 class="text-xl font-bold">Tujuan Pembelajaran</h2>
+            <p class="mt-4">Peserta didik mampu memahami konsep wajib haji dan tata cara pelaksanaannya.</p>
+            <button class="btn-close" onclick="closeModal()">Tutup</button>
+        </div>
+
+        <div id="modal-indikator" class="modal-card hidden">
+            <h2 class="text-xl font-bold">Indikator</h2>
+            <ul class="list-disc text-left pl-6 mt-4">
+                <li>Mengenal wajib-wajib dalam ibadah haji.</li>
+                <li>Memahami rukun dan syarat sah haji.</li>
+                <li>Menerapkan tata cara ibadah haji yang benar.</li>
+            </ul>
+            <button class="btn-close" onclick="closeModal()">Tutup</button>
         </div>
 
         <!-- Jadwal Sholat Section -->
@@ -238,6 +265,32 @@
     <footer>
         <p class="text-sm">&copy; 2024 Sukafikih</p>
     </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const overlay = document.getElementById('overlay');
+        const modalTujuan = document.getElementById('modal-tujuan');
+        const modalIndikator = document.getElementById('modal-indikator');
+
+        document.getElementById('btn-tujuan').addEventListener('click', () => {
+            openModal(modalTujuan);
+        });
+
+        document.getElementById('btn-indikator').addEventListener('click', () => {
+            openModal(modalIndikator);
+        });
+
+        function openModal(modal) {
+            overlay.classList.remove('hidden');
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            overlay.classList.add('hidden');
+            modalTujuan.classList.add('hidden');
+            modalIndikator.classList.add('hidden');
+        }
+    </script>
 
 </body>
 </html>
