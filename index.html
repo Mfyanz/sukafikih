@@ -42,7 +42,7 @@
             font-weight: bold;
             font-size: 1.25rem;
             transition: background-color 0.3s ease;
-            border: none;
+            border: 2px solid #1E3A8A; /* Black border */
         }
 
         .btn-primary:hover {
@@ -100,47 +100,58 @@
         /* Styling for the button group */
         .button-group {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(3, 1fr); /* Three buttons per row */
+            gap: 16px; /* Reduced gap for better spacing */
             margin-bottom: 24px;
             width: 100%;
             max-width: 900px;
         }
 
         .button-group .btn-square {
-            background-color: #1E3A8A;
-            color: white;
+            background-color: #f5f5dc; /* Bone white color */
+            color: #000000; /* Deep blue text color */
             width: 100%;
-            height: 200px;
+            height: 120px; /* Adjust height */
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 12px;
             text-align: center;
-            font-weight: bold;
-            font-size: 1.25rem;
+            font-weight:bold;
+            font-size: 1rem; /* Adjusted font size */
+            border: 2px solid #000000; /* Black border */
             transition: background-color 0.3s ease;
-            border: none;
         }
 
         .button-group .btn-square:hover {
-            background-color: #2563eb;
+            background-color: #e1e1c3; /* Slightly darker bone white for hover */
         }
 
-        /* Responsive design adjustments */
+        /* Responsive design adjustments for mobile screens */
         @media (max-width: 768px) {
+            .button-group {
+                grid-template-columns: 1fr 1fr 1fr; /* Three buttons in a row on mobile */
+            }
+
             .button-group .btn-square {
-                height: 150px;
+                height: 100px; /* Reduced button height */
+                font-size: 1rem; /* Smaller font size for mobile */
             }
 
             .welcome-text {
-                font-size: 2rem;
+                font-size: 1.75rem; /* Smaller text for mobile */
+            }
+
+            header h1 {
+                font-size: 2.25rem; /* Smaller header text for mobile */
             }
         }
 
+        /* Adjust button size on larger screens (e.g., tablets and desktops) */
         @media (min-width: 1024px) {
             .button-group .btn-square {
-                width: 250px;
+                height: 150px; /* Slightly larger button height on bigger screens */
+                font-size: 1.25rem;
             }
         }
 
