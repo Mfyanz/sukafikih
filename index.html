@@ -100,7 +100,7 @@
         /* Styling for the button group */
         .button-group {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Three buttons per row */
+            grid-template-columns: repeat(2, 1fr); /* Two buttons per row */
             gap: 16px; /* Reduced gap for better spacing */
             margin-bottom: 24px;
             width: 100%;
@@ -109,16 +109,15 @@
 
         .button-group .btn-square {
             background-color: #f5f5dc; /* Bone white color */
-            color: #000000; /* Deep blue text color */
-            width: 100%;
-            height: 120px; /* Adjust height */
+            color: #000000; /* Black text color */
+            height: 60px; /* Adjust height to make it rectangular */
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 12px;
+            border-radius: 8px;
             text-align: center;
-            font-weight:bold;
-            font-size: 1rem; /* Adjusted font size */
+            font-weight: bold;
+            font-size: 1.25rem; /* Larger font size */
             border: 2px solid #000000; /* Black border */
             transition: background-color 0.3s ease;
         }
@@ -130,11 +129,11 @@
         /* Responsive design adjustments for mobile screens */
         @media (max-width: 768px) {
             .button-group {
-                grid-template-columns: 1fr 1fr 1fr; /* Three buttons in a row on mobile */
+                grid-template-columns: 1fr 1fr; /* Two buttons per row on mobile */
             }
 
             .button-group .btn-square {
-                height: 100px; /* Reduced button height */
+                height: 50px; /* Reduced button height */
                 font-size: 1rem; /* Smaller font size for mobile */
             }
 
@@ -150,8 +149,8 @@
         /* Adjust button size on larger screens (e.g., tablets and desktops) */
         @media (min-width: 1024px) {
             .button-group .btn-square {
-                height: 150px; /* Slightly larger button height on bigger screens */
-                font-size: 1.25rem;
+                height: 80px; /* Slightly larger button height on bigger screens */
+                font-size: 1.5rem;
             }
         }
 
@@ -187,9 +186,8 @@
             </div>
         </div>
 
-        <!-- Three Buttons -->
+        <!-- Two Buttons -->
         <div class="button-group">
-            <button class="btn-square">Capaian Pembelajaran</button>
             <button class="btn-square">Tujuan Pembelajaran</button>
             <button class="btn-square">Indikator</button>
         </div>
