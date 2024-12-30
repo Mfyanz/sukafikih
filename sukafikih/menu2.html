@@ -56,8 +56,13 @@
             z-index: 1000;
             background-color: #f7f7f7;
             border-bottom: 1px solid black;
-            padding: 20px 0;
+            padding: 15px 0; /* Reduced padding for smaller text */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         /* Add top padding to the body to avoid header overlap */
@@ -105,10 +110,17 @@
 
     <!-- Header -->
     <header class="bg-[#f7f7f7] border-b border-black p-6 shadow-md w-full">
-        <div class="flex items-center justify-between container mx-auto">
-            <h1 class="text-4xl font-extrabold text-shadow text-blue-600">
+        <div class="flex items-center justify-between container mx-auto w-full">
+            <h1 class="text-3xl font-extrabold text-shadow text-blue-600">
                 <span class="font-playfair">suka</span><span class="text-white">fikih</span>
             </h1>
+            <!-- Exit button with icon on the right side -->
+             <a href="../index.html"
+            <button class="text-xl text-black flex items-center space-x-2 hover:text-red-600">
+                <span>Exit</span>
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </a>
         </div>
     </header>
 
