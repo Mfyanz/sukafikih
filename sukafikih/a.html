@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar Navigation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Sticky Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        /* Sticky Sidebar for Desktop */
+        aside {
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+
+        /* Custom text shadow for the title */
+        .text-shadow {
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Animation for the cards (fade-in and slide-up) */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Apply animation to the cards with a delay */
+        .card {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .card:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .card:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+
+        .card:nth-child(7) {
+            animation-delay: 0.6s;
+        }
+
+        .card:nth-child(8) {
+            animation-delay: 0.7s;
+        }
+
+        /* Improved layout for larger screens (laptop view) */
+        @media (min-width: 768px) {
+            main {
+                max-width: 1200px; /* Prevent content from stretching too much on wide screens */
+                margin-left: auto;
+                margin-right: auto;
+                padding-top: 2rem;
+            }
+            aside {
+                top: 0;
+                height: auto;
+                position: relative;
+            }
+            .container {
+                padding: 2rem;
+            }
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Ensure grid items look more balanced */
+                gap: 2rem;
+            }
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-gray-800 text-gray-200 p-4 fixed top-0 left-0 w-full z-10 md:hidden flex justify-between items-center">
+        <h1 class="text-xl font-bold">Sukafikih</h1>
+        <button id="nav-toggle" class="text-gray-200 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+    </header>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed top-0 left-0 h-screen w-64 bg-gray-800 text-gray-200 shadow-lg hidden md:block">
+        <div class="p-6 text-center border-b border-gray-700">
+            <h1 class="text-2xl font-bold">Sukafikih</h1>
+        </div>
+        <nav class="mt-6">
+            <a href="#section1" class="flex items-center p-4 hover:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+                Menu
+            </a>
+            <a href="#section2" class="flex items-center p-4 hover:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4m0 0l4-4m-4 4h16" />
+                </svg>
+                Materi Haji
+            </a>
+            <a href="#section2" class="flex items-center p-4 hover:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4m0 0l4-4m-4 4h16" />
+                </svg>
+                Materi Umrah
+            </a>
+            <a href="#section2" class="flex items-center p-4 hover:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4m0 0l4-4m-4 4h16" />
+                </svg>
+                Ayo Latihan!
+            </a>
+            <!-- Add a 'Back' link at the bottom of the sidebar -->
+            <a href="javascript:history.back()" class="flex items-center p-4 mt-auto hover:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l-7-7 7-7" />
+                </svg>
+                Back
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="pt-16 ml-0 md:ml-64 p-8">
+        <section id="section1" class="mb-12">
+            <div class="container mx-auto p-4">
+                <div class="header bg-[#b3d9ff] p-6 rounded-lg text-center text-2xl font-bold mb-6 shadow-lg">
+                    Materi Haji
+                </div>
+                <!-- Responsively adjusting the grid layout -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                    <a href="./pengertian haji.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-6 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
+                        <img src="../image/materi haji.png" alt="Pengertian Haji" class="mx-auto mb-4 max-w-[80px]">
+                        <p class="font-semibold">Pengertian Haji</p>
+                    </a>
+                    <a href="./Hukum haji.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-6 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
+                        <img src="../image/logo menu haji.png" alt="Hukum Haji" class="mx-auto mb-4 max-w-[80px]">
+                        <p class="font-semibold">Hukum Haji</p>
+                    </a>
+                    <a href="./rukun haji.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-6 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
+                        <img src="../image/larangan pr dan lk.png" alt="Rukun Haji" class="mx-auto mb-4 max-w-[80px]">
+                        <p class="font-semibold">Rukun Haji</p>
+                    </a>
+                    <a href="./syarat wajib dan sah haji.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-6 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
+                        <img src="../image/logo menu umrah.png" alt="Syarat Sah & Wajib Haji" class="mx-auto mb-4 max-w-[80px]">
+                        <p class="font-semibold">Syarat Sah & Wajib Haji</p>
+                    </a>
+                    <a href="./wajib haji.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-6 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
+                        <img src="../image/pengertian haji.png" alt="Wajib Haji" class="mx-auto mb-4 max-w-[80px]">
+                        <p class="font-semibold">Wajib Haji</p>
+                    </a>
+                    <a href="./sunnah haji.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-6 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
+                        <img src="../image/rukun haji.png" alt="Sunnah Haji" class="mx-auto mb-4 max-w-[80px]">
+                        <p class="font-semibold">Sunnah Haji</p>
+                    </a>
+                    <a href="./larangan haji.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-6 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
+                        <img src="../image/sah dan wajib.png" alt="Larangan Haji" class="mx-auto mb-4 max-w-[80px]">
+                        <p class="font-semibold">Larangan Haji</p>
+                    </a>
+                    <a href="./jenis haji.html" class="card bg-[#f7f7f7] border-2 border-[#e0e0e0] rounded-lg p-6 text-center shadow-md hover:shadow-lg transition transform hover:scale-105">
+                        <img src="../image/pengertian umrah.png" alt="Jenis-Jenis Haji" class="mx-auto mb-4 max-w-[80px]">
+                        <p class="font-semibold">Jenis-Jenis Haji</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Script -->
+    <script>
+        const toggleButton = document.getElementById('nav-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>
