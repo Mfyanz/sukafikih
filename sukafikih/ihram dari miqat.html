@@ -32,8 +32,8 @@
         body {
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
+            height: 100%;
+            overflow-x: hidden;
         }
 
         /* Sidebar */
@@ -73,8 +73,6 @@
             overflow-y: auto;
             margin-left: 250px;
             transition: margin-left 0.3s ease-in-out;
-            position: relative;
-            margin-bottom: 50px; /* Reduced space between cards and footer */
         }
 
         .header {
@@ -86,8 +84,8 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            border-bottom-left-radius: 20px; /* Rounded bottom-left corner */
-            border-bottom-right-radius: 20px; /* Rounded bottom-right corner */
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
         }
 
         .header span.sukafikih {
@@ -106,7 +104,6 @@
 
         .container {
             margin-top: 20px;
-            margin-bottom: 50px; /* Reduced space between cards and footer */
         }
 
         .courses {
@@ -130,23 +127,6 @@
             transform: scale(1.05);
         }
 
-        .course img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 15px;
-        }
-
-        .course h3 {
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
-
-        .course p {
-            font-size: 14px;
-            color: #555;
-        }
-
         .materi-header {
             background-color: #b3d9ff;
             padding: 10px;
@@ -160,9 +140,6 @@
         /* Mobile Menu */
         @media (max-width: 768px) {
             .header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
                 padding: 10px 15px;
             }
 
@@ -201,27 +178,6 @@
 
             .main-content {
                 margin-left: 0;
-                margin-bottom: 50px; /* Reduced space between cards and footer */
-            }
-
-            .sidebar a {
-                padding: 15px;
-                font-size: 20px;
-            }
-
-            .sidebar input[type="search"] {
-                padding: 15px;
-                font-size: 18px;
-                width: 100%;
-            }
-        }
-
-        /* Desktop Search Input */
-        @media (min-width: 769px) {
-            .sidebar input[type="search"] {
-                padding: 15px;
-                font-size: 18px;
-                width: 100%;
             }
         }
 
@@ -232,21 +188,12 @@
             padding: 20px;
             text-align: center;
             width: 100%;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         footer p {
-            text-align: left;
             font-size: 1rem;
             font-weight: 600;
             color: #4B5563;
-            margin-left: 20px;
         }
 
         footer button {
@@ -256,37 +203,12 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            margin-right: 20px;
         }
 
         footer button svg {
             margin-left: 8px;
         }
 
-        /* Mobile Card Adjustment */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 0 10px;
-                margin-bottom: 50px; /* Reduced space between cards and footer */
-            }
-
-            .materi-header {
-                margin-top: 20px;
-                font-size: 18px;
-            }
-
-            .container {
-                margin-top: 20px;
-            }
-
-            .w-full.max-w-4xl {
-                padding: 15px;
-                margin-bottom: 30px; /* Reduced space between card and footer */
-                border-radius: 15px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                margin-top: 20px;
-            }
-        }
         .card {
             background-color: #ffffff;
             padding: 20px;
@@ -299,14 +221,6 @@
         .card:hover {
             transform: translateY(-10px);
             box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        .interactive-question {
-            background-color: #f0f4f8;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -335,51 +249,42 @@
         </div>
 
         <!-- Materi Haji Content -->
-       
-        <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
-            <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
-                ❓ <span class="font-bold text-blue-600">Tahukah Anda?</span> Apa itu <span class="font-bold text-green-600">Miqat</span>?
-            </p>
-            <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
-                🕌 Miqat adalah batas tempat atau waktu tertentu yang telah ditentukan oleh syariat Islam sebagai tempat memulai niat ihram. Berikut adalah beberapa ketentuan penting yang harus Anda perhatikan:
-            </p>
-            <ul class="list-disc pl-6 text-lg lg:text-xl xl:text-2xl text-gray-700 mb-6">
-                <li>✅ Miqat <span class="font-bold text-green-600">Makani</span>: Titik geografis untuk memulai ihram.</li>
-                <li>✅ Miqat <span class="font-bold text-blue-600">Zamani</span>: Waktu yang telah ditentukan untuk ibadah haji.</li>
-                <li>✅ Jamaah wajib memulai ihram sebelum melewati miqat yang sesuai.</li>
-                <li>✅ Pastikan mengenakan pakaian ihram dengan benar sebelum memulai perjalanan.</li>
-            </ul>
-            <div class="text-center lg:text-left flex flex-col lg:flex-row justify-between">
-                <a href="./Miqat Zamani.html" class="w-full lg:w-auto mb-4 lg:mb-0 lg:mr-4">
-                    <button class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 w-full">
-                        Miqat Zamani
-                    </button>
-                </a>
-                <a href="./miqat Makani.html" class="w-full lg:w-auto mb-4 lg:mb-0 lg:ml-4">
-                    <button class="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 w-full">
-                        Miqat Makani
-                    </button>
-                </a>
-            </div>
-            
+        <div class="container">
+            <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
+                <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
+                    ❓ <span class="font-bold text-blue-600">Tahukah Anda?</span> Apa itu <span class="font-bold text-green-600">Miqat</span>?
+                </p>
+                <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
+                    🕌 Miqat adalah batas tempat atau waktu tertentu yang telah ditentukan oleh syariat Islam sebagai tempat memulai niat ihram. Berikut adalah beberapa ketentuan penting yang harus Anda perhatikan:
+                </p>
+                <ul class="list-disc pl-6 text-lg lg:text-xl xl:text-2xl text-gray-700 mb-6">
+                    <li>✅ Miqat <span class="font-bold text-green-600">Makani</span>: Titik geografis untuk memulai ihram.</li>
+                    <li>✅ Miqat <span class="font-bold text-blue-600">Zamani</span>: Waktu yang telah ditentukan untuk ibadah haji.</li>
+                    <li>✅ Jamaah wajib memulai ihram sebelum melewati miqat yang sesuai.</li>
+                    <li>✅ Pastikan mengenakan pakaian ihram dengan benar sebelum memulai perjalanan.</li>
+                </ul>
+                <div class="text-center lg:text-left flex flex-col lg:flex-row justify-between">
+                    <a href="./Miqat Zamani.html" class="w-full lg:w-auto mb-4 lg:mb-0 lg:mr-4">
+                        <button class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 w-full">
+                            Miqat Zamani
+                        </button>
+                    </a>
+                    <a href="./miqat Makani.html" class="w-full lg:w-auto mb-4 lg:mb-0 lg:ml-4">
+                        <button class="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 w-full">
+                            Miqat Makani
+                        </button>
+                    </a>
+                </div>
             </div>
             <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800 mt-10 mb-6">
                 😊 Memahami Miqat membantu memastikan ibadah haji dan umrah Anda sah dan diterima. 🌟
             </p>
         </div>
-              
-            </div>
-        </main>
-                
-            </div>
-        </main>
-
-        </div>
     </div>
 
-    <footer>
+    <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto flex justify-between items-center">
         <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <a href="./menu2.html">
+        <a href="./haji.html">
             <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
                 <span>Back</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
@@ -389,4 +294,4 @@
         </a>
     </footer>
 </body>
-</html>
+</html> 
