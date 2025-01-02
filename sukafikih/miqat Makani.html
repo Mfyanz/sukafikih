@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miqat Makani</title>
+    <title>Tertib</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            menu.classList.toggle('active');
         }
 
         // Close the mobile menu if clicked outside
@@ -17,210 +17,361 @@
             const menu = document.getElementById('mobile-menu');
             const button = document.querySelector('button[onclick="toggleMenu()"]');
             if (!menu.contains(event.target) && !button.contains(event.target)) {
-                menu.classList.add('hidden');
+                menu.classList.remove('active');
             }
         });
     </script>
     <style>
-        /* Custom text shadow for the title */
-        .text-shadow {
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
-        /* Fixed Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #f5f5f5;
-            border-bottom: 1px solid #000;
-            padding: 16px;
-            z-index: 10;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
-        }
-
-        /* Adjust body to prevent content overlap with the fixed header */
         body {
-            padding-top: 90px; /* Adjust based on header height */
-        }
-
-        /* Mobile Menu (fixed position at the top) */
-        #mobile-menu {
-            position: fixed;
-            top: 60px; /* Space below the header */
-            right: 0;
-            width: 50%; /* Adjust width as needed */
-            background-color: #f5f5f5;
-            border: 1px solid #000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            z-index: 20; /* Ensure it appears above other content */
-            display: none;
-        }
-
-        #mobile-menu button {
-            padding: 12px;
-            font-size: 16px;
-            text-align: left;
-        }
-
-        /* Show menu when toggled */
-        #mobile-menu.hidden {
-            display: none;
-        }
-
-        #mobile-menu:not(.hidden) {
-            display: block;
-        }
-
-        /* Prevent body from scrolling when mobile menu is open */
-        body.menu-open {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
             overflow: hidden;
         }
 
-        /* Card Styling */
-        .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #d1d5db; /* Light gray background */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #4B5563; /* Dark gray text color */
+            font-size: 18px;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar a.active {
+            color: #1F2937; /* Darker gray for active link */
+            font-weight: bold;
+        }
+
+        /* Main content */
+        .main-content {
+            flex-grow: 1;
             background-color: #ffffff;
-            padding: 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+            transition: margin-left 0.3s ease-in-out;
+            position: relative;
+            margin-bottom: 50px; /* Reduced space between cards and footer */
+        }
+
+        .header {
+            background-color: #f5f5f5;
+            color: white;
+            padding: 5px 15px;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border-bottom-left-radius: 20px; /* Rounded bottom-left corner */
+            border-bottom-right-radius: 20px; /* Rounded bottom-right corner */
+        }
+
+        .header span.sukafikih {
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .header .suka {
+            color: #0d72d8; /* Blue for "suka" */
+        }
+
+        .header .fikih {
+            color: #ffffff; /* White for "fikih" */
+        }
+
+        .container {
+            margin-top: 20px;
+            margin-bottom: 50px; /* Reduced space between cards and footer */
+        }
+
+        .courses {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .course {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .course:hover {
+            transform: scale(1.05);
+        }
+
+        .course img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        .course h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .course p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .materi-header {
+            background-color: #b3d9ff;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 15px;
+            }
+
+            .header span.sukafikih {
+                font-size: 28px;
+            }
+
+            .sidebar {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 250px;
+                background-color: #d1d5db;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .sidebar.active {
+                display: block;
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                margin-left: auto;
+            }
+
+            .hamburger div {
+                width: 30px;
+                height: 5px;
+                background-color: #333;
+                margin: 5px 0;
+                transition: all 0.3s;
+            }
+
+            .main-content {
+                margin-left: 0;
+                margin-bottom: 50px; /* Reduced space between cards and footer */
+            }
+
+            .sidebar a {
+                padding: 15px;
+                font-size: 20px;
+            }
+
+            .sidebar input[type="search"] {
+                padding: 15px;
+                font-size: 18px;
+                width: 100%;
+            }
+        }
+
+        /* Desktop Search Input */
+        @media (min-width: 769px) {
+            .sidebar input[type="search"] {
+                padding: 15px;
+                font-size: 18px;
+                width: 100%;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f5f5f5;
+            border-top: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #4B5563;
+            margin-left: 20px;
+        }
+
+        footer button {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1D4ED8;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        footer button svg {
+            margin-left: 8px;
+        }
+
+        /* Mobile Card Adjustment */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 10px;
+                margin-bottom: 50px; /* Reduced space between cards and footer */
+            }
+
+            .materi-header {
+                margin-top: 20px;
+                font-size: 18px;
+            }
+
+            .container {
+                margin-top: 20px;
+            }
+
+            .w-full.max-w-4xl {
+                padding: 15px;
+                margin-bottom: 30px; /* Reduced space between card and footer */
+                border-radius: 15px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                margin-top: 20px;
+            }
+        }
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 20px;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            background-color: #f0f8ff; /* Light blue background on hover */
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
         }
-
-        .card h1, .card h2 {
-            font-size: 2rem;
-            color: #1E3A8A; /* Deep blue for headers */
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .card p {
-            font-size: 1.25rem;
-            color: #333;
-            line-height: 1.8;
-            margin-bottom: 16px;
-            text-align: justify;
-            text-indent: 20px; /* Indent first line of paragraphs */
-        }
-
-        .card h1:hover, .card h2:hover {
-            color: #2563eb; /* Lighter blue on hover */
-        }
-
-        /* Button Style */
-        .fade-in-button {
-            animation: fadeIn 1s ease-in-out;
-            background-color: #1E3A8A;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.25rem;
-            transition: background-color 0.3s ease;
-            border: none;
-        }
-
-        .fade-in-button:hover {
-            background-color: #2563eb;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .interactive-question {
+            background-color: #f0f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen bg-gray-50">
-
-    <!-- Header -->
-    <header class="bg-[#f5f5f5] border-b border-black p-6 shadow-md rounded-b-lg">
-        <div class="flex items-center justify-between">
-            <h1 class="text-3xl font-bold text-shadow">
-                <span class="text-blue-600">suka</span><span class="text-white">fikih</span>
-            </h1>
-            <!-- Hamburger Icon (only visible on small screens) -->
-            <button class="lg:hidden" onclick="toggleMenu()">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </div>
-    </header>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="mobile-menu">
+        <input type="search" placeholder="Search">
+        <a href="#" class="active">Menu</a>
+        <a href="#">Materi Haji</a>
+        <a href="#">Materi Umrah</a>
+        <a href="#">Ayo Latihan</a>
+    </div>
 
     <!-- Main Content -->
-    <div class="flex flex-1 flex-col lg:flex-row">
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <span class="sukafikih">
+                <span class="suka">suka</span><span class="fikih">fikih</span>
+            </span>
+            <button class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </button>
+        </div>
 
-        <!-- Sidebar (Desktop) -->
-        <aside class="lg:w-1/6 w-full border-r border-black p-6 bg-[#f5f5f5] lg:block hidden">
-            <nav class="space-y-4">
-                <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">MENU</div>
-                <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">Materi Haji</div>
-                <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">Materi Umrah</div>
-                <div class="text-left text-black font-bold text-lg hover:text-gray-600 cursor-pointer">Ayo Latihan</div>
-            </nav>
-        </aside>
-
-        <!-- Main Section -->
-
-            <!-- Interactive Question Before Content -->
-            <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
-                <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
-                </span> Apa itu <span class="font-bold text-green-600">Miqat Makani</span>?
-                </p>
-                <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
-                    Miqat makani adalah batas tempat yang telah ditentukan untuk memulai melaksanakan ibadah haji. Tahukah kamu bahwa miqat makani berbeda untuk setiap lokasi asal jamaah haji? Yuk, kita pelajari lebih dalam!
-                </p>
-                <ul class="list-disc pl-6 text-lg font-semibold text-gray-700">
-                    <li>Orang Makkah dan sekitarnya, miqat dari rumahnya masing-masing.</li>
-                    <li>Orang Madinah dan sekitarnya, miqat dari Dzulhulaifah (Bir Ali).</li>
-                    <li>Orang Mesir, Syam, Maghribi, dan yang sejajar, miqat dari Juhfah.</li>
-                    <li>Orang Indonesia, India, dan Yaman yang naik kapal laut, miqat dari Yalamlam. Adapun jamaah yang naik pesawat dan turun di Bandara King Abdul Aziz, Jeddah, maka miqat dari Jeddah.</li>
-                    <li>Orang Irak dan sekitarnya, miqat dari Dzatu ‘Irqin.</li>
-                    <li>Orang-orang yang datang dari Nejed dan negara-negara yang searah, miqat dari Qarnul Manazil.</li>
-                </ul>
-                
-                <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800 mt-6">
-                    😊 Memahami Miqat membantu memastikan ibadah haji dan umrah Anda sah dan diterima. 🌟
-                </p>
-            </div>
+        <!-- Materi Haji Content -->
+        <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
+            <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
+            </span> Apa itu <span class="font-bold text-green-600">Miqat Makani</span>?
+            </p>
+            <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
+                Miqat makani adalah batas tempat yang telah ditentukan untuk memulai melaksanakan ibadah haji. Tahukah kamu bahwa miqat makani berbeda untuk setiap lokasi asal jamaah haji? Yuk, kita pelajari lebih dalam!
+            </p>
+            <ul class="list-disc pl-6 text-lg font-semibold text-gray-700">
+                <li>Orang Makkah dan sekitarnya, miqat dari rumahnya masing-masing.</li>
+                <li>Orang Madinah dan sekitarnya, miqat dari Dzulhulaifah (Bir Ali).</li>
+                <li>Orang Mesir, Syam, Maghribi, dan yang sejajar, miqat dari Juhfah.</li>
+                <li>Orang Indonesia, India, dan Yaman yang naik kapal laut, miqat dari Yalamlam. Adapun jamaah yang naik pesawat dan turun di Bandara King Abdul Aziz, Jeddah, maka miqat dari Jeddah.</li>
+                <li>Orang Irak dan sekitarnya, miqat dari Dzatu ‘Irqin.</li>
+                <li>Orang-orang yang datang dari Nejed dan negara-negara yang searah, miqat dari Qarnul Manazil.</li>
+            </ul>
             
+            <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800 mt-6">
+                😊 Memahami Miqat membantu memastikan ibadah haji dan umrah Anda sah dan diterima. 🌟
+            </p>
+        </div>
+      
+            </div>
         </main>
 
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto flex justify-between items-center">
+    <footer>
         <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <a href="./ihram dari miqat.html"<button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
-            <span>Back</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-            </svg>
-        </button>
-    </a>
+        <a href="./menu2.html">
+            <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
+                <span>Back</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+        </a>
     </footer>
-
-    <!-- Mobile Menu (hidden by default) -->
-    <div id="mobile-menu" class="lg:hidden hidden">
-        <nav class="space-y-2 p-2">
-            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">MENU</button>
-            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Materi Haji</button>
-            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Materi Umrah</button>
-            <button class="w-full py-2 px-4 text-left bg-white text-black font-bold rounded-lg hover:bg-gray-100 focus:outline-none">Ayo Latihan</button>
-        </nav>
-    </div>
-
 </body>
 </html>
