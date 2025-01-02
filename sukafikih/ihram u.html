@@ -34,6 +34,7 @@
             flex-direction: column;
             height: 100vh;
             overflow: hidden;
+            min-height: 100vh; /* Ensure body takes full height of the screen */
         }
 
         /* Sidebar */
@@ -310,7 +311,7 @@
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen">
     <!-- Sidebar -->
     <div class="sidebar" id="mobile-menu">
         <input type="search" placeholder="Search">
@@ -362,8 +363,6 @@
                 </p>
             </div>
         </main>
-
-        </div>
     </div>
 
     <footer>
