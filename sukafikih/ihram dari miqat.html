@@ -104,37 +104,37 @@
 
         .container {
             margin-top: 20px;
+            padding-bottom: 80px;
         }
 
-        .courses {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 10px;
+            box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .course {
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            text-align: center;
-            padding: 20px;
-            transition: all 0.3s;
+        .footer .back-btn {
+            background-color: #edf4fc;
+            color: rgb(19, 5, 5);
+            padding: 5px 10px;
+            border-radius: 2px;
+            font-size: 30px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.3s ease;
         }
 
-        .course:hover {
-            transform: scale(1.05);
-        }
-
-        .materi-header {
-            background-color: #b3d9ff;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
+        .footer .back-btn:hover {
+            background-color: #bfc9d4;
         }
 
         /* Mobile Menu */
@@ -180,6 +180,7 @@
                 margin-left: 0;
             }
         }
+
         .card {
             background-color: #ffffff;
             padding: 20px;
@@ -247,10 +248,18 @@
                     </a>
                 </div>
             </div>
-            <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800 mt-10 mb-6">
+            <p class="text-lg lg:text-4xl xl:text-4xl font-medium text-center text-gray-800 mt-10 mb-6">
                 😊 Memahami Miqat membantu memastikan ibadah haji dan umrah Anda sah dan diterima. 🌟
             </p>
         </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <span class="text-gray-700 font-semibold">Haji & Umrah</span>
+        <a href="javascript:history.back()" class="back-btn">
+            <span>🔙</span>
+        </a>
     </div>
 </body>
 </html> 
