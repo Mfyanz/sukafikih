@@ -49,6 +49,7 @@
             left: 0;
             height: 100vh;
             z-index: 1000;
+            transition: transform 0.3s ease-in-out;
         }
 
         .sidebar a {
@@ -181,6 +182,7 @@
 
             .sidebar.active {
                 display: block;
+                transform: translateX(0);
             }
 
             .hamburger {
@@ -199,6 +201,7 @@
 
             .main-content {
                 margin-left: 0;
+                padding: 0 10px;
             }
 
             .sidebar a {
@@ -206,15 +209,6 @@
                 font-size: 20px;
             }
 
-            .sidebar input[type="search"] {
-                padding: 15px;
-                font-size: 18px;
-                width: 100%;
-            }
-        }
-
-        /* Desktop Search Input */
-        @media (min-width: 769px) {
             .sidebar input[type="search"] {
                 padding: 15px;
                 font-size: 18px;
