@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tertib</title>
+    <title>Hukum Haji</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -14,7 +13,7 @@
         }
 
         // Close the mobile menu if clicked outside
-        document.addEventListener('click', function (event) {
+        document.addEventListener('click', function(event) {
             const menu = document.getElementById('mobile-menu');
             const button = document.querySelector('button[onclick="toggleMenu()"]');
             if (!menu.contains(event.target) && !button.contains(event.target)) {
@@ -30,11 +29,14 @@
             font-family: Arial, sans-serif;
         }
 
+        body, html {
+            height: 100%;
+            overflow-y: auto;
+        }
+
         body {
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
         }
 
         /* Sidebar */
@@ -48,7 +50,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            height: 100vh;
+            height: 100%;
             z-index: 1000;
         }
 
@@ -73,9 +75,7 @@
             background-color: #ffffff;
             overflow-y: auto;
             margin-left: 250px;
-            transition: margin-left 0.3s ease-in-out;
             position: relative;
-            margin-bottom: 50px; /* Reduced space between cards and footer */
         }
 
         .header {
@@ -107,7 +107,6 @@
 
         .container {
             margin-top: 20px;
-            margin-bottom: 50px; /* Reduced space between cards and footer */
         }
 
         .courses {
@@ -202,7 +201,6 @@
 
             .main-content {
                 margin-left: 0;
-                margin-bottom: 50px; /* Reduced space between cards and footer */
             }
 
             .sidebar a {
@@ -233,21 +231,13 @@
             padding: 20px;
             text-align: center;
             width: 100%;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         footer p {
-            text-align: left;
+            text-align: center;
             font-size: 1rem;
             font-weight: 600;
             color: #4B5563;
-            margin-left: 20px;
         }
 
         footer button {
@@ -257,11 +247,34 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            margin-right: 20px;
         }
 
         footer button svg {
             margin-left: 8px;
+        }
+
+        /* Mobile Card Adjustment */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 10px;
+            }
+
+            .materi-header {
+                margin-top: 20px;
+                font-size: 18px;
+            }
+
+            .container {
+                margin-top: 20px;
+            }
+
+            .w-full.max-w-4xl {
+                padding: 15px;
+                margin-bottom: 20px;
+                border-radius: 15px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                margin-top: 20px;
+            }
         }
         .card {
             background: linear-gradient(to bottom right, #ffefd5, #fff);
@@ -291,7 +304,6 @@
 
     </style>
 </head>
-
 <body>
     <!-- Sidebar -->
     <div class="sidebar" id="mobile-menu">
@@ -333,23 +345,19 @@
                 </p>
             </div>
         </main>
-
-
+    </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
+    <footer class="bg-[#f5f5f5] border-t border-black p-4 text-center shadow-lg mt-auto flex justify-between items-center">
         <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <a href="./jenis haji.html">
+        <a href="./haji.html">
             <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
                 <span>Back</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    class="w-5 h-5">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
             </button>
         </a>
     </footer>
 </body>
-
 </html>
