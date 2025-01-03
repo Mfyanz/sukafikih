@@ -251,23 +251,27 @@
         padding: 15px;
         text-align: center;
         display: flex;
-        justify-content: flex-end; /* Align the button to the right */
+        justify-content: flex-end; /* Align the text to the right */
     }
 
-    footer button {
-        background-color: #0d72d8;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-size: 16px;
+    footer a {
+        color: #0d72d8;
+        font-size: 18px;
         font-weight: bold;
-        cursor: pointer;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
         transition: all 0.3s;
     }
 
-    footer button:hover {
-        background-color: #0b5fb2;
+    footer a:hover {
+        color: #0b5fb2;
         transform: scale(1.05);
+    }
+
+    footer a span {
+        font-size: 24px; /* Larger arrow */
     }
 
     @media (max-width: 768px) {
@@ -275,11 +279,15 @@
             padding: 10px;
         }
 
-        footer button {
-            font-size: 14px;
-            padding: 8px 20px;
+        footer a {
+            font-size: 16px;
+        }
+
+        footer a span {
+            font-size: 20px; /* Adjust arrow size for mobile */
         }
     }
+ 
     </style>
 </head>
 <body>
@@ -326,7 +334,10 @@
 </main>
     </div>
     <footer>
-        <button onclick="goBack()">Back</button>
+        <a href="javascript:history.back()">
+            <span>&larr;</span> Back
+        </a>
     </footer>
+    
 </body>
 </html>
