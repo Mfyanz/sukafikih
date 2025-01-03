@@ -74,6 +74,7 @@
             margin-left: 250px;
             transition: margin-left 0.3s ease-in-out;
             position: relative;
+            padding-bottom: 100px; /* Increased space at the bottom */
         }
 
         .header {
@@ -221,6 +222,7 @@
                 width: 100%;
             }
         }
+
         /* Mobile Card Adjustment */
         @media (max-width: 768px) {
             .main-content {
@@ -253,6 +255,7 @@
             padding: 20px;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
+            margin-bottom: 40px; /* Increased margin-bottom */
         }
 
         .card:hover {
@@ -278,6 +281,56 @@
             top: 0;
             font-size: 20px; /* Adjust size of checkmark */
         }
+
+        /* Footer */
+        footer {
+            background-color: #f5f5f5;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: flex-end; /* Align the text to the right */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            margin-top: 40px; /* Increased space between footer and content */
+        }
+
+        footer a {
+            color: #0d72d8;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        footer a:hover {
+            color: #0b5fb2;
+            transform: scale(1.05);
+        }
+
+        footer a span {
+            font-size: 24px; /* Larger arrow */
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 10px;
+            }
+
+            footer a {
+                font-size: 16px;
+            }
+
+            footer a span {
+                font-size: 20px; /* Adjust arrow size for mobile */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -319,5 +372,16 @@
             </div>
         </main>
     </div>
+    <footer>
+        <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
+        <a href="./menu2.html">
+            <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
+                <span>Back</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+        </a>
+    </footer>
 </body>
 </html>
