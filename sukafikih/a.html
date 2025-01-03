@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tertib</title>
+    <title>Hukum Haji</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -12,187 +12,44 @@
             menu.classList.toggle('active');
         }
 
-        // Close the mobile menu if clicked outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('mobile-menu');
-            const button = document.querySelector('button[onclick="toggleMenu()"]');
-            if (!menu.contains(event.target) && !button.contains(event.target)) {
-                menu.classList.remove('active');
-            }
-        });
+        // Back button functionality
+        function goBack() {
+            window.history.back();
+        }
     </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            overflow-x: auto;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background-color: #d1d5db; /* Light gray background */
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            z-index: 1000;
-        }
-
-        .sidebar a {
-            text-decoration: none;
-            color: #4B5563; /* Dark gray text color */
-            font-size: 18px;
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .sidebar a.active {
-            color: #1F2937; /* Darker gray for active link */
-            font-weight: bold;
-        }
-
-        /* Main content */
-        .main-content {
-            flex-grow: 1;
-            background-color: #ffffff;
-            overflow-y: auto;
-            margin-left: 250px;
-            transition: margin-left 0.3s ease-in-out;
-        }
-
-        .header {
+        /* Footer Styling */
+        footer {
             background-color: #f5f5f5;
+            padding: 15px;
+            text-align: center;
+        }
+
+        footer button {
+            background-color: #0d72d8;
             color: white;
-            padding: 5px 15px;
-            height: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-        }
-
-        .header span.sukafikih {
-            font-size: 32px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
             font-weight: bold;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .header .suka {
-            color: #0d72d8; /* Blue for "suka" */
+        footer button:hover {
+            background-color: #0b5fb2;
+            transform: scale(1.05);
         }
 
-        .header .fikih {
-            color: #ffffff; /* White for "fikih" */
-        }
-
-        .container {
-            margin-top: 20px;
-            padding-bottom: 80px;
-        }
-
-        .footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #f5f5f5;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 10px;
-            box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .footer .back-btn {
-            background-color: #edf4fc;
-            color: rgb(19, 5, 5);
-            padding: 5px 10px;
-            border-radius: 2px;
-            font-size: 30px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .footer .back-btn:hover {
-            background-color: #bfc9d4;
-        }
-
-        /* Mobile Menu */
         @media (max-width: 768px) {
-            .header {
-                padding: 10px 15px;
+            footer {
+                padding: 10px;
             }
 
-            .header span.sukafikih {
-                font-size: 28px;
+            footer button {
+                font-size: 14px;
+                padding: 8px 16px;
             }
-
-            .sidebar {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 100vh;
-                width: 250px;
-                background-color: #d1d5db;
-                transition: transform 0.3s ease-in-out;
-            }
-
-            .sidebar.active {
-                display: block;
-            }
-
-            .hamburger {
-                display: block;
-                cursor: pointer;
-                margin-left: auto;
-            }
-
-            .hamburger div {
-                width: 30px;
-                height: 5px;
-                background-color: #333;
-                margin: 5px 0;
-                transition: all 0.3s;
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-        }
-
-        .card {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease-in-out;
-            margin-bottom: 20px;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
         }
     </style>
 </head>
@@ -221,45 +78,26 @@
         </div>
 
         <!-- Materi Haji Content -->
-        <div class="container">
-            <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
-                <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
-                    ❓ <span class="font-bold text-blue-600">Tahukah Anda?</span> Apa itu <span class="font-bold text-green-600">Miqat</span>?
+        <main class="flex-1 p-6">
+            <h1 class="text-4xl font-extrabold mb-8 text-center text-gray-800">HUKUM HAJI</h1>
+            <div class="w-full max-w-5xl mx-auto p-8 bg-gradient-to-br from-white to-gray-100 rounded-2xl shadow-lg">
+                <p class="text-lg lg:text-xl xl:text-2xl text-justify card-content leading-relaxed mb-8">
+                    Hukum ibadah haji adalah fardu 'ain. Dalam pelaksanaannya, hukum haji adalah fardu 'ain, sekali dalam seumur hidup bagi seorang mukalaf yang telah mampu menunaikannya. Adapun hukum ibadah haji kedua dan seterusnya adalah sunah. Kewajiban melaksanakan ibadah haji ditujukan kepada umat Islam yang memiliki kemampuan (istita'ah) untuk melakukan ibadah haji.
                 </p>
-                <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
-                    🕌 Miqat adalah batas tempat atau waktu tertentu yang telah ditentukan oleh syariat Islam sebagai tempat memulai niat ihram. Berikut adalah beberapa ketentuan penting yang harus Anda perhatikan:
-                </p>
-                <ul class="list-disc pl-6 text-lg lg:text-xl xl:text-2xl text-gray-700 mb-6">
-                    <li>✅ Miqat <span class="font-bold text-green-600">Makani</span>: Titik geografis untuk memulai ihram.</li>
-                    <li>✅ Miqat <span class="font-bold text-blue-600">Zamani</span>: Waktu yang telah ditentukan untuk ibadah haji.</li>
-                    <li>✅ Jamaah wajib memulai ihram sebelum melewati miqat yang sesuai.</li>
-                    <li>✅ Pastikan mengenakan pakaian ihram dengan benar sebelum memulai perjalanan.</li>
-                </ul>
-                <div class="text-center lg:text-left flex flex-col lg:flex-row justify-between">
-                    <a href="./Miqat Zamani.html" class="w-full lg:w-auto mb-4 lg:mb-0 lg:mr-4">
-                        <button class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 w-full">
-                            Miqat Zamani
-                        </button>
-                    </a>
-                    <a href="./miqat Makani.html" class="w-full lg:w-auto mb-4 lg:mb-0 lg:ml-4">
-                        <button class="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 w-full">
-                            Miqat Makani
+                <div class="flex justify-center mt-6">
+                    <a href="./syarat istita'ah.html">
+                        <button class="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold transition duration-300 transform hover:bg-blue-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                            SYARAT-SYARAT ISTITA’AH
                         </button>
                     </a>
                 </div>
             </div>
-            <p class="text-lg lg:text-4xl xl:text-4xl font-medium text-center text-gray-800 mt-10 mb-6">
-                😊 Memahami Miqat membantu memastikan ibadah haji dan umrah Anda sah dan diterima. 🌟
-            </p>
-        </div>
+        </main>
     </div>
 
     <!-- Footer -->
-    <div class="footer">
-        <span class="text-gray-700 font-semibold">Haji & Umrah</span>
-        <a href="javascript:history.back()" class="back-btn">
-            <span>🔙</span>
-        </a>
-    </div>
+    <footer>
+        <button onclick="goBack()">Back</button>
+    </footer>
 </body>
-</html> 
+</html>
