@@ -32,8 +32,8 @@
         body {
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow: auto; /* Allow scrolling */
         }
 
         /* Sidebar */
@@ -76,7 +76,7 @@
         .main-content {
             flex-grow: 1;
             background-color: #ffffff;
-            overflow-y: auto;
+            overflow-y: auto; /* Allow scrolling if the content is too long */
             margin-left: 0;
             padding: 20px;
             transition: margin-left 0.3s ease-in-out;
