@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ihram</title>
+    <title>ihram</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -32,8 +32,8 @@
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            overflow: auto; /* Allow scrolling */
+            height: 100vh;
+            overflow-y: auto; /* Enable body scrolling */
         }
 
         /* Sidebar */
@@ -49,12 +49,6 @@
             left: 0;
             height: 100vh;
             z-index: 1000;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .sidebar.active {
-            transform: translateX(0);
         }
 
         .sidebar a {
@@ -76,11 +70,10 @@
         .main-content {
             flex-grow: 1;
             background-color: #ffffff;
-            overflow-y: auto; /* Allow scrolling if the content is too long */
-            margin-left: 0;
-            padding: 20px;
+            overflow-y: auto; /* Enable scroll */
+            margin-left: 250px; /* Sidebar offset */
             transition: margin-left 0.3s ease-in-out;
-            margin-bottom: 100px; /* Reduced space between cards and footer */
+            padding-bottom: 50px; /* Space for footer */
         }
 
         .header {
@@ -189,7 +182,6 @@
 
             .sidebar.active {
                 display: block;
-                transform: translateX(0);
             }
 
             .hamburger {
@@ -208,7 +200,7 @@
 
             .main-content {
                 margin-left: 0;
-                padding: 20px;
+                margin-bottom: 50px; /* Reduced space between cards and footer */
             }
 
             .sidebar a {
@@ -223,46 +215,7 @@
             }
         }
 
-        /* Mobile Card Adjustment */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 0 10px;
-                margin-bottom: 50px; /* Reduced space between cards and footer */
-            }
-
-            .materi-header {
-                margin-top: 20px;
-                font-size: 18px;
-            }
-
-            .container {
-                margin-top: 20px;
-            }
-        }
-
-        .card {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease-in-out;
-            margin-bottom: 20px;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .interactive-question {
-            background-color: #f0f4f8;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
+        /* Footer */
         footer {
             background-color: #f5f5f5;
             padding: 15px;
@@ -308,6 +261,34 @@
             footer a span {
                 font-size: 20px; /* Adjust arrow size for mobile */
             }
+
+            .main-content {
+                margin-left: 0; /* No margin for mobile */
+                padding: 0 10px; /* Add padding on mobile */
+            }
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .interactive-question {
+            background-color: #f0f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -320,7 +301,6 @@
         <a href="./umrah.html">Materi Umrah</a>
         <a href="./ayo latihan.html">Ayo Latihan</a>
     </div>
-
     <!-- Main Content -->
     <div class="main-content">
         <!-- Header -->
@@ -362,12 +342,11 @@
                     Memakai Ihram dan melakukan ritual haji adalah simbol bahwa kita siap menghadapi kematian dan siap kembali kepada Allah.
                 </p>
             </div>
-
-            <!-- Footer -->
-            <footer>
-                <a href="./rukun haji.html"><span>&larr;</span>Back </a>
-            </footer>
-        </main>
+            </main>
     </div>
+
+    <footer>
+        <a href="./rukun haji.html"><span>&larr;</span>Back </a>
+    </footer>
 </body>
 </html>
