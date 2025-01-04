@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tertib</title>
+    <title>Wukuf</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -14,7 +13,7 @@
         }
 
         // Close the mobile menu if clicked outside
-        document.addEventListener('click', function (event) {
+        document.addEventListener('click', function(event) {
             const menu = document.getElementById('mobile-menu');
             const button = document.querySelector('button[onclick="toggleMenu()"]');
             if (!menu.contains(event.target) && !button.contains(event.target)) {
@@ -34,7 +33,7 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-            overflow: hidden;
+            overflow-y: auto; /* Enable body scrolling */
         }
 
         /* Sidebar */
@@ -71,11 +70,10 @@
         .main-content {
             flex-grow: 1;
             background-color: #ffffff;
-            overflow-y: auto;
-            margin-left: 250px;
+            overflow-y: auto; /* Enable scroll */
+            margin-left: 250px; /* Sidebar offset */
             transition: margin-left 0.3s ease-in-out;
-            position: relative;
-            margin-bottom: 50px; /* Reduced space between cards and footer */
+            padding-bottom: 50px; /* Space for footer */
         }
 
         .header {
@@ -217,39 +215,59 @@
             }
         }
 
-        /* Desktop Search Input */
-        @media (min-width: 769px) {
-            .sidebar input[type="search"] {
-                padding: 15px;
-                font-size: 18px;
-                width: 100%;
+        /* Footer */
+        footer {
+            background-color: #f5f5f5;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: flex-end; /* Align the text to the right */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        footer a {
+            color: #0d72d8;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        footer a:hover {
+            color: #0b5fb2;
+            transform: scale(1.05);
+        }
+
+        footer a span {
+            font-size: 24px; /* Larger arrow */
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 10px;
+            }
+
+            footer a {
+                font-size: 16px;
+            }
+
+            footer a span {
+                font-size: 20px; /* Adjust arrow size for mobile */
+            }
+
+            .main-content {
+                margin-left: 0; /* No margin for mobile */
+                padding: 0 10px; /* Add padding on mobile */
             }
         }
-        .question-card {
-            background-color: #f5f5f5;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-        }
 
-        .question-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .question-card h3 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .question-card p {
-            font-size: 1.2rem;
-            color: #555;
-        }
-
-        /* Styling the main card */
         .main-card {
             background-color: white;
             padding: 30px;
@@ -286,57 +304,17 @@
             border-image: linear-gradient(to right, #1E40AF, #10B981); /* Blue to Green gradient */
             border-image-slice: 1;
         }
-        footer {
-    background-color: #f5f5f5;
-    padding: 15px;
-    text-align: center;
-    display: flex;
-    justify-content: flex-end; /* Align the text to the right */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-}
 
-footer a {
-    color: #0d72d8;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s;
-}
-
-footer a:hover {
-    color: #0b5fb2;
-    transform: scale(1.05);
-}
-
-footer a span {
-    font-size: 24px; /* Larger arrow */
-}
-
-@media (max-width: 768px) {
-    footer {
-        padding: 10px;
-    }
-
-    footer a {
-        font-size: 16px;
-    }
-
-    footer a span {
-        font-size: 20px; /* Adjust arrow size for mobile */
-    }
-}
-
-
+        .interactive-question {
+            background-color: #f0f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
-
 <body>
     <!-- Sidebar -->
     <div class="sidebar" id="mobile-menu">
@@ -362,45 +340,40 @@ footer a span {
         </div>
 
         <!-- Materi Haji Content -->
-        <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Mematuhi Larangan Ihram</h1>
-            <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
-                <!-- Attention-grabbing statement before the explanation -->
-                <div class="mb-4 text-center font-semibold text-green-600">
-                    <p>Sudahkah kamu tahu mengapa ada larangan saat berihram? 🤔</p>
-                    <p><span class="text-black font-bold">Pahami apa yang membuat larangan Ihram begitu penting!</span> 🚫</p>
-                </div>
-
-                <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
-                    Dalam ibadah haji, ada <span class="font-bold text-black">larangan-larangan tertentu</span> yang harus dihindari oleh setiap jamaah yang sedang berihram. Larangan ini bukan tanpa alasan, tetapi untuk menjaga <span class="font-bold text-black">kesucian</span> dan fokus dalam beribadah. Oleh karena itu, <span class="font-bold text-black">penting</span> bagi kita untuk memahami apa saja yang termasuk dalam larangan Ihram dan mengapa kita harus <span class="font-bold text-black">mematuhinya</span>.
-                </p>
-
-                <div class="mb-6 text-lg text-justify leading-relaxed">
-                    <p class="font-semibold text-black">Apa saja yang dilarang saat berihram?</p>
-                    <ul class="list-disc pl-6 text-black-700 text-3xl">
-                        <li class="text-xl">Menikah atau melamar seseorang</li>
-                        <li class="text-xl">Menggunakan parfum atau minyak wangi</li>
-                        <li class="text-xl">Memotong rambut atau kuku</li>
-                        <li class="text-xl">Bertindak atau berbicara dengan cara yang tidak pantas</li>
-                    </ul>
-                </div>
-
-                <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
-                    Semua larangan ini bertujuan agar <span class="font-bold text-black">jiwa</span> dan <span class="font-bold text-black">raga</span> kita tetap fokus kepada <span class="font-bold text-black">ibadah</span> dan tidak terganggu oleh hal-hal duniawi. Dengan mematuhi larangan-larangan ini, kita menunjukkan <span class="font-bold text-black">ketulusan</span> dalam mengikuti perintah Allah, dan menjaga <span class="font-bold text-black">kemurnian</span> ibadah kita. 🌟
-                </p>
+            <main class="flex-1 p-6">
+                <h1 class="text-3xl font-bold mb-8 text-center text-dark">Mematuhi Larangan Ihram</h1>
+                <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
+                    <!-- Attention-grabbing statement before the explanation -->
+                    <div class="mb-4 text-center font-semibold text-green-600">
+                        <p>Sudahkah kamu tahu mengapa ada larangan saat berihram? 🤔</p>
+                        <p><span class="text-black font-bold">Pahami apa yang membuat larangan Ihram begitu penting!</span> 🚫</p>
+                    </div>
+    
+                    <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
+                        Dalam ibadah haji, ada <span class="font-bold text-black">larangan-larangan tertentu</span> yang harus dihindari oleh setiap jamaah yang sedang berihram. Larangan ini bukan tanpa alasan, tetapi untuk menjaga <span class="font-bold text-black">kesucian</span> dan fokus dalam beribadah. Oleh karena itu, <span class="font-bold text-black">penting</span> bagi kita untuk memahami apa saja yang termasuk dalam larangan Ihram dan mengapa kita harus <span class="font-bold text-black">mematuhinya</span>.
+                    </p>
+    
+                    <div class="mb-6 text-lg text-justify leading-relaxed">
+                        <p class="font-semibold text-black">Apa saja yang dilarang saat berihram?</p>
+                        <ul class="list-disc pl-6 text-black-700 text-3xl">
+                            <li class="text-xl">Menikah atau melamar seseorang</li>
+                            <li class="text-xl">Menggunakan parfum atau minyak wangi</li>
+                            <li class="text-xl">Memotong rambut atau kuku</li>
+                            <li class="text-xl">Bertindak atau berbicara dengan cara yang tidak pantas</li>
+                        </ul>
+                    </div>
+    
+                    <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
+                        Semua larangan ini bertujuan agar <span class="font-bold text-black">jiwa</span> dan <span class="font-bold text-black">raga</span> kita tetap fokus kepada <span class="font-bold text-black">ibadah</span> dan tidak terganggu oleh hal-hal duniawi. Dengan mematuhi larangan-larangan ini, kita menunjukkan <span class="font-bold text-black">ketulusan</span> dalam mengikuti perintah Allah, dan menjaga <span class="font-bold text-black">kemurnian</span> ibadah kita. 🌟
+                    </p>
+            </main>
+            </div>
         </main>
 
     </div>
+
     <footer>
-        <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <a href="./menu2.html">
-            <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
-                <span>Back</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </button>
-        </a>
+        <a href="#"><span>&larr;</span>Back </a>
     </footer>
 </body>
 </html>

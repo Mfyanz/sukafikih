@@ -267,31 +267,7 @@
                 padding: 0 10px; /* Add padding on mobile */
             }
         }
-        .question-card {
-            background-color: #f5f5f5;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-        }
 
-        .question-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .question-card h3 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .question-card p {
-            font-size: 1.2rem;
-            color: #555;
-        }
-
-        /* Styling the main card */
         .main-card {
             background-color: white;
             padding: 30px;
@@ -317,8 +293,26 @@
             margin-left: 20px;
             font-size: 1.1rem;
         }
+        .text-hover:hover {
+            color: #1D4ED8;
+            text-decoration: underline;
+        }
 
-        
+        /* Gradient border for the card */
+        .gradient-border {
+            border: 6px solid transparent;
+            border-image: linear-gradient(to right, #1E40AF, #10B981); /* Blue to Green gradient */
+            border-image-slice: 1;
+        }
+
+        .interactive-question {
+            background-color: #f0f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -346,23 +340,33 @@
         </div>
 
         <!-- Materi Haji Content -->
-        <main class="flex-1 p-6">
-            <!-- Interactive question card -->
-            <div class="question-card">
-                <h3>Apa yang kamu ketahui tentang Mabit di Mina?</h3>
-                <p>Mabit di Mina adalah salah satu bagian dari ibadah haji yang sangat penting. Ayo, temukan lebih banyak informasi tentang ini dan kenali kenapa hal ini menjadi momen yang sangat berarti dalam perjalanan ibadah haji!</p>
-                <span class="arrow-button" onclick="document.getElementById('main-content').scrollIntoView({behavior: 'smooth'})">👇</span>
-            </div>
-
-            <!-- Main content card -->
-            <div id="main-content" class="main-card">
-                <h2>Mabit di Mina</h2>
-                <p>Mabit di Mina adalah bermalam selama 3-4 hari di suatu hamparan padang pasir yang panjangnya sekitar 3,5 km. Waktunya adalah malam tanggal 11, 12, dan 13 Dzulhijjah. Bermalam di Mina dilakukan semalam penuh, yang boleh dilakukan mulai sore hari sampai terbitnya fajar, dan juga boleh bermalam paling sedikit 2/3 malam.</p>
-                <ul>
-                    <li>Mabit di Mina dilakukan pada tanggal 11, 12, dan 13 Dzulhijjah.</li>
-                    <li>Waktu yang diperbolehkan untuk bermalam adalah antara sore hingga terbit fajar.</li>
-                    <li>Minimal tinggal di Mina adalah dua malam, namun idealnya adalah tiga malam.</li>
-                </ul>
+            <main class="flex-1 p-6">
+                <h1 class="text-3xl font-bold mb-8 text-center text-dark">Mematuhi Larangan Ihram</h1>
+                <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
+                    <!-- Attention-grabbing statement before the explanation -->
+                    <div class="mb-4 text-center font-semibold text-green-600">
+                        <p>Sudahkah kamu tahu mengapa ada larangan saat berihram? 🤔</p>
+                        <p><span class="text-black font-bold">Pahami apa yang membuat larangan Ihram begitu penting!</span> 🚫</p>
+                    </div>
+    
+                    <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
+                        Dalam ibadah haji, ada <span class="font-bold text-black">larangan-larangan tertentu</span> yang harus dihindari oleh setiap jamaah yang sedang berihram. Larangan ini bukan tanpa alasan, tetapi untuk menjaga <span class="font-bold text-black">kesucian</span> dan fokus dalam beribadah. Oleh karena itu, <span class="font-bold text-black">penting</span> bagi kita untuk memahami apa saja yang termasuk dalam larangan Ihram dan mengapa kita harus <span class="font-bold text-black">mematuhinya</span>.
+                    </p>
+    
+                    <div class="mb-6 text-lg text-justify leading-relaxed">
+                        <p class="font-semibold text-black">Apa saja yang dilarang saat berihram?</p>
+                        <ul class="list-disc pl-6 text-black-700 text-3xl">
+                            <li class="text-xl">Menikah atau melamar seseorang</li>
+                            <li class="text-xl">Menggunakan parfum atau minyak wangi</li>
+                            <li class="text-xl">Memotong rambut atau kuku</li>
+                            <li class="text-xl">Bertindak atau berbicara dengan cara yang tidak pantas</li>
+                        </ul>
+                    </div>
+    
+                    <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
+                        Semua larangan ini bertujuan agar <span class="font-bold text-black">jiwa</span> dan <span class="font-bold text-black">raga</span> kita tetap fokus kepada <span class="font-bold text-black">ibadah</span> dan tidak terganggu oleh hal-hal duniawi. Dengan mematuhi larangan-larangan ini, kita menunjukkan <span class="font-bold text-black">ketulusan</span> dalam mengikuti perintah Allah, dan menjaga <span class="font-bold text-black">kemurnian</span> ibadah kita. 🌟
+                    </p>
+            </main>
             </div>
         </main>
 
