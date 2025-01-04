@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tahallul</title>
+    <title>Wukuf</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -32,8 +32,8 @@
         body {
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh; /* Make sure body can grow beyond the viewport */
+            overflow-y: auto; /* Allow vertical scrolling */
         }
 
         /* Sidebar */
@@ -70,7 +70,7 @@
         .main-content {
             flex-grow: 1;
             background-color: #ffffff;
-            overflow-y: auto;
+            overflow-y: auto; /* Allow vertical scroll in main content */
             margin-left: 250px;
             transition: margin-left 0.3s ease-in-out;
             position: relative;
@@ -224,7 +224,7 @@
                 width: 100%;
             }
         }
-
+        
         /* Mobile Card Adjustment */
         @media (max-width: 768px) {
             .main-content {
@@ -249,6 +249,7 @@
                 margin-top: 20px;
             }
         }
+
         .card {
             background-color: #ffffff;
             padding: 20px;
@@ -262,6 +263,7 @@
             transform: translateY(-10px);
             box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
         }
+        
         .interactive-question {
             background-color: #f0f4f8;
             padding: 30px;
@@ -270,53 +272,54 @@
             text-align: center;
             box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         }
+
         footer {
     background-color: #f5f5f5;
     padding: 15px;
     text-align: center;
     display: flex;
     justify-content: flex-end; /* Align the text to the right */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: fixed; /* Make footer fixed at the bottom */
+    bottom: 0; /* Ensure it stays at the bottom */
+    left: 0; /* Align it to the left */
+    width: 100%; /* Full width */
     z-index: 1000;
 }
 
-footer a {
-    color: #0d72d8;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s;
-}
 
-footer a:hover {
-    color: #0b5fb2;
-    transform: scale(1.05);
-}
+        footer a {
+            color: #0d72d8;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
 
-footer a span {
-    font-size: 24px; /* Larger arrow */
-}
+        footer a:hover {
+            color: #0b5fb2;
+            transform: scale(1.05);
+        }
 
-@media (max-width: 768px) {
-    footer {
-        padding: 10px;
-    }
+        footer a span {
+            font-size: 24px; /* Larger arrow */
+        }
 
-    footer a {
-        font-size: 16px;
-    }
+        @media (max-width: 768px) {
+            footer {
+                padding: 10px;
+            }
 
-    footer a span {
-        font-size: 20px; /* Adjust arrow size for mobile */
-    }
-}
+            footer a {
+                font-size: 16px;
+            }
 
+            footer a span {
+                font-size: 20px; /* Adjust arrow size for mobile */
+            }
+        }
     </style>
 </head>
 <body>
@@ -366,19 +369,10 @@ footer a span {
                 </div>
             </div>
         </main>
-
-        </div>
     </div>
+    
     <footer>
-        <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <a href="./menu2.html">
-            <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
-                <span>Back</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </button>
-        </a>
+        <a href="#"><span>&larr;</span>Back </a>
     </footer>
 </body>
 </html>
