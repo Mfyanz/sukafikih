@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sa'i</title>
+    <title>Wukuf</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -32,8 +32,8 @@
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            overflow: auto; /* Enable scrolling */
+            height: 100vh;
+            overflow-y: auto; /* Enable body scrolling */
         }
 
         /* Sidebar */
@@ -70,11 +70,10 @@
         .main-content {
             flex-grow: 1;
             background-color: #ffffff;
-            overflow-y: auto; /* Allow scroll inside main content */
-            margin-left: 250px;
+            overflow-y: auto; /* Enable scroll */
+            margin-left: 250px; /* Sidebar offset */
             transition: margin-left 0.3s ease-in-out;
-            position: relative;
-            margin-bottom: 50px; /* Reduced space between cards and footer */
+            padding-bottom: 50px; /* Space for footer */
         }
 
         .header {
@@ -216,72 +215,19 @@
             }
         }
 
-        /* Desktop Search Input */
-        @media (min-width: 769px) {
-            .sidebar input[type="search"] {
-                padding: 15px;
-                font-size: 18px;
-                width: 100%;
-            }
-        }
-        /* Mobile Card Adjustment */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 0 10px;
-                margin-bottom: 50px; /* Reduced space between cards and footer */
-            }
-
-            .materi-header {
-                margin-top: 20px;
-                font-size: 18px;
-            }
-
-            .container {
-                margin-top: 20px;
-            }
-
-            .w-full.max-w-4xl {
-                padding: 15px;
-                margin-bottom: 30px; /* Reduced space between card and footer */
-                border-radius: 15px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                margin-top: 20px;
-            }
-        }
-        .card {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease-in-out;
-            margin-bottom: 20px;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        .interactive-question {
-            background-color: #f0f4f8;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
+        /* Footer */
         footer {
-    background-color: #f5f5f5;
-    padding: 15px;
-    text-align: center;
-    display: flex;
-    justify-content: flex-end; /* Align the text to the right */
-    position: fixed; /* Make footer fixed at the bottom */
-    bottom: 0; /* Ensure it stays at the bottom */
-    left: 0; /* Align it to the left */
-    width: 100%; /* Full width */
-    z-index: 1000;
-}
+            background-color: #f5f5f5;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: flex-end; /* Align the text to the right */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
 
         footer a {
             color: #0d72d8;
@@ -315,8 +261,35 @@
             footer a span {
                 font-size: 20px; /* Adjust arrow size for mobile */
             }
+
+            .main-content {
+                margin-left: 0; /* No margin for mobile */
+                padding: 0 10px; /* Add padding on mobile */
+            }
         }
 
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .interactive-question {
+            background-color: #f0f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -344,27 +317,24 @@
         </div>
 
         <!-- Materi Haji Content -->
-        <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
-            <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
-            </span> Apa itu <span class="font-bold text-green-600">Miqat Makani</span>?
-            </p>
-            <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
-                Miqat makani adalah batas tempat yang telah ditentukan untuk memulai melaksanakan ibadah haji. Tahukah kamu bahwa miqat makani berbeda untuk setiap lokasi asal jamaah haji? Yuk, kita pelajari lebih dalam!
-            </p>
-            <ul class="list-disc pl-6 text-lg font-semibold text-gray-700">
-                <li>Orang Makkah dan sekitarnya, miqat dari rumahnya masing-masing.</li>
-                <li>Orang Madinah dan sekitarnya, miqat dari Dzulhulaifah (Bir Ali).</li>
-                <li>Orang Mesir, Syam, Maghribi, dan yang sejajar, miqat dari Juhfah.</li>
-                <li>Orang Indonesia, India, dan Yaman yang naik kapal laut, miqat dari Yalamlam. Adapun jamaah yang naik pesawat dan turun di Bandara King Abdul Aziz, Jeddah, maka miqat dari Jeddah.</li>
-                <li>Orang Irak dan sekitarnya, miqat dari Dzatu ‘Irqin.</li>
-                <li>Orang-orang yang datang dari Nejed dan negara-negara yang searah, miqat dari Qarnul Manazil.</li>
-            </ul>
-            
-            <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800 mt-6">
-                😊 Memahami Miqat membantu memastikan ibadah haji dan umrah Anda sah dan diterima. 🌟
-            </p>
-        </div>
-      
+        <main class="flex-1 p-6">
+            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Melontar Jumrah</h1>
+            <div class="w-full max-w-3xl mx-auto p-10 card">
+                <div class="mb-6">
+                    <p class="text-xl font-semibold text-blue-600">Pernahkah Kamu Bertanya? 🤔</p>
+                    <p class="text-xl text-red-500 font-semibold">Lempar Jumrah itu sebenarnya <span class="text-green-600 font-bold">lempar apa</span> dan <span class="text-orange-500 font-bold">untuk apa</span> ya? Yuk, kita pelajari bersama! 🎯</p>
+                </div>
+                <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
+                    <span class="text-blue-600 font-bold">Melontar Jumrah</span> adalah <span class="text-yellow-500 font-bold">aktivitas</span> yang dilakukan oleh jemaah haji dengan cara melemparkan batu kecil ke tiga tempat yang disebut <span class="text-purple-600 font-bold">jumrah</span>. Hal ini dilakukan sebagai <span class="text-teal-600 font-bold">simbol</span> perlawanan terhadap godaan setan yang mencoba menghalangi <span class="text-red-600 font-bold">Nabi Ibrahim</span> dalam melaksanakan perintah Allah untuk menyembelih anaknya, <span class="text-pink-600 font-bold">Nabi Ismail</span>. Jadi, tujuannya adalah untuk menunjukkan <span class="text-green-600 font-bold">keteguhan hati</span> dalam mengikuti perintah Allah, meskipun ada tantangan. 💪
+                </p>
+                <p class="text-lg lg:text-xl xl:text-2xl text-justify leading-relaxed mb-6">
+                    Pada <span class="text-blue-600 font-bold">tanggal 10 Dzulhijjah</span>, jemaah melempar tujuh batu ke <span class="text-yellow-500 font-bold">jumrah aqabah</span>, sedangkan pada hari-hari <span class="text-purple-600 font-bold">Tasyrik</span> (11, 12, dan 13 Dzulhijjah), jemaah akan melempar batu ke tiga <span class="text-orange-600 font-bold">jumrah</span> yang berbeda. Ini adalah bagian dari <span class="text-teal-600 font-bold">ritual haji</span> yang penuh makna. 🕋
+                </p>
+            </div>
+                
+            </div>
+        </main>
+
     </div>
 
     <footer>
