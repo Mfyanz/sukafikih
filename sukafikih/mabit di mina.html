@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tertib</title>
+    <title>Wukuf</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -14,7 +13,7 @@
         }
 
         // Close the mobile menu if clicked outside
-        document.addEventListener('click', function (event) {
+        document.addEventListener('click', function(event) {
             const menu = document.getElementById('mobile-menu');
             const button = document.querySelector('button[onclick="toggleMenu()"]');
             if (!menu.contains(event.target) && !button.contains(event.target)) {
@@ -34,7 +33,7 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-            overflow: hidden;
+            overflow-y: auto; /* Enable body scrolling */
         }
 
         /* Sidebar */
@@ -71,11 +70,10 @@
         .main-content {
             flex-grow: 1;
             background-color: #ffffff;
-            overflow-y: auto;
-            margin-left: 250px;
+            overflow-y: auto; /* Enable scroll */
+            margin-left: 250px; /* Sidebar offset */
             transition: margin-left 0.3s ease-in-out;
-            position: relative;
-            margin-bottom: 50px; /* Reduced space between cards and footer */
+            padding-bottom: 50px; /* Space for footer */
         }
 
         .header {
@@ -217,12 +215,56 @@
             }
         }
 
-        /* Desktop Search Input */
-        @media (min-width: 769px) {
-            .sidebar input[type="search"] {
-                padding: 15px;
-                font-size: 18px;
-                width: 100%;
+        /* Footer */
+        footer {
+            background-color: #f5f5f5;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: flex-end; /* Align the text to the right */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        footer a {
+            color: #0d72d8;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        footer a:hover {
+            color: #0b5fb2;
+            transform: scale(1.05);
+        }
+
+        footer a span {
+            font-size: 24px; /* Larger arrow */
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 10px;
+            }
+
+            footer a {
+                font-size: 16px;
+            }
+
+            footer a span {
+                font-size: 20px; /* Adjust arrow size for mobile */
+            }
+
+            .main-content {
+                margin-left: 0; /* No margin for mobile */
+                padding: 0 10px; /* Add padding on mobile */
             }
         }
         .question-card {
@@ -275,57 +317,10 @@
             margin-left: 20px;
             font-size: 1.1rem;
         }
-        footer {
-    background-color: #f5f5f5;
-    padding: 15px;
-    text-align: center;
-    display: flex;
-    justify-content: flex-end; /* Align the text to the right */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-}
 
-footer a {
-    color: #0d72d8;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s;
-}
-
-footer a:hover {
-    color: #0b5fb2;
-    transform: scale(1.05);
-}
-
-footer a span {
-    font-size: 24px; /* Larger arrow */
-}
-
-@media (max-width: 768px) {
-    footer {
-        padding: 10px;
-    }
-
-    footer a {
-        font-size: 16px;
-    }
-
-    footer a span {
-        font-size: 20px; /* Adjust arrow size for mobile */
-    }
-}
-
-
+        
     </style>
 </head>
-
 <body>
     <!-- Sidebar -->
     <div class="sidebar" id="mobile-menu">
@@ -372,16 +367,9 @@ footer a span {
         </main>
 
     </div>
+
     <footer>
-        <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
-        <a href="./menu2.html">
-            <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
-                <span>Back</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </button>
-        </a>
+        <a href="#"><span>&larr;</span>Back </a>
     </footer>
 </body>
 </html>
