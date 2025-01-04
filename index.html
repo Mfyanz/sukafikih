@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,12 +19,12 @@
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            background-color: #f0f8ff; /* Light blue background on hover */
+            background-color: #f0f8ff;
         }
 
         .card h2 {
             font-size: 1.5rem;
-            color: #1E3A8A; /* Deep blue */
+            color: #1E3A8A;
             font-weight: bold;
         }
 
@@ -35,23 +36,24 @@
 
         /* Custom button styling */
         .btn-primary {
-            background-color: #f5f5dc; /* Bone white color */
-            color: #1E3A8A; /* Deep blue text color */
+            background-color: #f5f5dc;
+            color: #1E3A8A;
             padding: 12px 30px;
             border-radius: 25px;
             font-weight: bold;
             font-size: 1.25rem;
             transition: background-color 0.3s ease;
-            border: 2px solid #1E3A8A; /* Black border */
+            border: 2px solid #1E3A8A;
         }
 
         .btn-primary:hover {
-            background-color: #e1e1c3; /* Slightly darker bone white for hover */
-            color: #1E3A8A; /* Keep the text color as deep blue on hover */
+            background-color: #e1e1c3;
+            color: #1E3A8A;
         }
 
         /* Header and footer styles */
-        header, footer {
+        header,
+        footer {
             background-color: #000000;
             color: white;
             padding: 1rem;
@@ -100,30 +102,30 @@
         /* Styling for the button group */
         .button-group {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two buttons per row */
-            gap: 16px; /* Reduced gap for better spacing */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
             margin-bottom: 24px;
             width: 100%;
             max-width: 900px;
         }
 
         .button-group .btn-square {
-            background-color: #f5f5dc; /* Bone white color */
-            color: #000000; /* Black text color */
-            height: 60px; /* Adjust height to make it rectangular */
+            background-color: #f5f5dc;
+            color: #000000;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 8px;
             text-align: center;
             font-weight: bold;
-            font-size: 1.25rem; /* Larger font size */
-            border: 2px solid #000000; /* Black border */
+            font-size: 1.25rem;
+            border: 2px solid #000000;
             transition: background-color 0.3s ease;
         }
 
         .button-group .btn-square:hover {
-            background-color: #e1e1c3; /* Slightly darker bone white for hover */
+            background-color: #e1e1c3;
         }
 
         /* Modal overlay styles */
@@ -182,6 +184,7 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
     <!-- Header -->
@@ -240,28 +243,34 @@
                     <tr class="bg-blue-600 text-white">
                         <th class="py-3 px-4 text-left">Waktu</th>
                         <th class="py-3 px-4 text-left">Sholat</th>
+                        <th class="py-3 px-4 text-left"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="border-t">
                         <td class="py-3 px-4">Subuh</td>
-                        <td class="py-3 px-4">05:00</td>
+                        <td class="py-3 px-4" id="subuh-time">Loading...</td>
+                        <td class="py-3 px-4" id="subuh-countdown">Loading...</td>
                     </tr>
                     <tr class="border-t">
                         <td class="py-3 px-4">Dzuhur</td>
-                        <td class="py-3 px-4">12:00</td>
+                        <td class="py-3 px-4" id="dzuhur-time">Loading...</td>
+                        <td class="py-3 px-4" id="dzuhur-countdown">Loading...</td>
                     </tr>
                     <tr class="border-t">
                         <td class="py-3 px-4">Ashar</td>
-                        <td class="py-3 px-4">15:30</td>
+                        <td class="py-3 px-4" id="ashar-time">Loading...</td>
+                        <td class="py-3 px-4" id="ashar-countdown">Loading...</td>
                     </tr>
                     <tr class="border-t">
                         <td class="py-3 px-4">Maghrib</td>
-                        <td class="py-3 px-4">18:00</td>
+                        <td class="py-3 px-4" id="maghrib-time">Loading...</td>
+                        <td class="py-3 px-4" id="maghrib-countdown">Loading...</td>
                     </tr>
                     <tr class="border-t">
                         <td class="py-3 px-4">Isya</td>
-                        <td class="py-3 px-4">19:30</td>
+                        <td class="py-3 px-4" id="isya-time">Loading...</td>
+                        <td class="py-3 px-4" id="isya-countdown">Loading...</td>
                     </tr>
                 </tbody>
             </table>
@@ -285,6 +294,9 @@
         const modalTujuan = document.getElementById('modal-tujuan');
         const modalIndikator = document.getElementById('modal-indikator');
 
+        // API URL for fetching prayer times
+        const apiUrl = 'http://api.aladhan.com/v1/timingsByCity?city=Yogyakarta&country=Indonesia&method=2';
+
         document.getElementById('btn-tujuan').addEventListener('click', () => {
             openModal(modalTujuan);
         });
@@ -293,17 +305,69 @@
             openModal(modalIndikator);
         });
 
+        // Open modal function
         function openModal(modal) {
             overlay.classList.remove('hidden');
             modal.classList.remove('hidden');
         }
 
+        // Close modal function
         function closeModal() {
             overlay.classList.add('hidden');
             modalTujuan.classList.add('hidden');
             modalIndikator.classList.add('hidden');
         }
+
+        // Countdown Timer
+        function updateCountdown(prayerTime, elementId) {
+            const now = new Date();
+            const prayerDate = new Date(`${new Date().toDateString()} ${prayerTime}`);
+            let countdown = prayerDate - now;
+
+            if (countdown < 0) {
+                // If the prayer time already passed today, calculate for tomorrow
+                prayerDate.setDate(prayerDate.getDate() + 1);
+                countdown = prayerDate - now;
+            }
+
+            const hours = Math.floor(countdown / (1000 * 60 * 60));
+            const minutes = Math.floor((countdown % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((countdown % (1000 * 60)) / 1000);
+
+            document.getElementById(elementId).textContent = `${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        // Fetch prayer times from the API
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code === 200) {
+                        const timings = data.data.timings;
+
+                        // Update the table with fetched prayer times
+                        document.getElementById('subuh-time').textContent = timings.Fajr;
+                        document.getElementById('dzuhur-time').textContent = timings.Dhuhr;
+                        document.getElementById('ashar-time').textContent = timings.Asr;
+                        document.getElementById('maghrib-time').textContent = timings.Maghrib;
+                        document.getElementById('isya-time').textContent = timings.Isha;
+
+                        // Set up countdown for each prayer time
+                        setInterval(() => updateCountdown(timings.Fajr, 'subuh-countdown'), 1000);
+                        setInterval(() => updateCountdown(timings.Dhuhr, 'dzuhur-countdown'), 1000);
+                        setInterval(() => updateCountdown(timings.Asr, 'ashar-countdown'), 1000);
+                        setInterval(() => updateCountdown(timings.Maghrib, 'maghrib-countdown'), 1000);
+                        setInterval(() => updateCountdown(timings.Isha, 'isya-countdown'), 1000);
+                    } else {
+                        console.error('Error fetching prayer times');
+                    }
+                })
+                .catch(error => {
+                    console.error('There was an error fetching the prayer times:', error);
+                });
+        });
     </script>
 
 </body>
+
 </html>
