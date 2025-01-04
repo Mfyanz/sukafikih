@@ -236,137 +236,92 @@
         </div>
 
         <!-- Jadwal Sholat Section -->
-        <div class="w-full max-w-4xl mx-auto mb-12 bg-white rounded-lg shadow-lg p-6">
-            <h2 class="text-2xl font-semibold text-center text-blue-600 mb-6">Jadwal Sholat Hari Ini</h2>
-            <table class="min-w-full border-collapse">
-                <thead>
-                    <tr class="bg-blue-600 text-white">
-                        <th class="py-3 px-4 text-left">Waktu</th>
-                        <th class="py-3 px-4 text-left">Sholat</th>
-                        <th class="py-3 px-4 text-left"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="border-t">
-                        <td class="py-3 px-4">Subuh</td>
-                        <td class="py-3 px-4" id="subuh-time">Loading...</td>
-                        <td class="py-3 px-4" id="subuh-countdown">Loading...</td>
-                    </tr>
-                    <tr class="border-t">
-                        <td class="py-3 px-4">Dzuhur</td>
-                        <td class="py-3 px-4" id="dzuhur-time">Loading...</td>
-                        <td class="py-3 px-4" id="dzuhur-countdown">Loading...</td>
-                    </tr>
-                    <tr class="border-t">
-                        <td class="py-3 px-4">Ashar</td>
-                        <td class="py-3 px-4" id="ashar-time">Loading...</td>
-                        <td class="py-3 px-4" id="ashar-countdown">Loading...</td>
-                    </tr>
-                    <tr class="border-t">
-                        <td class="py-3 px-4">Maghrib</td>
-                        <td class="py-3 px-4" id="maghrib-time">Loading...</td>
-                        <td class="py-3 px-4" id="maghrib-countdown">Loading...</td>
-                    </tr>
-                    <tr class="border-t">
-                        <td class="py-3 px-4">Isya</td>
-                        <td class="py-3 px-4" id="isya-time">Loading...</td>
-                        <td class="py-3 px-4" id="isya-countdown">Loading...</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+      <!-- Bagian jadwal sholat -->
+<div class="w-full max-w-4xl mx-auto mb-12 bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-2xl font-semibold text-center text-blue-600 mb-6">Jadwal Sholat Hari Ini</h2>
+    <table class="min-w-full border-collapse">
+        <thead>
+            <tr class="bg-blue-600 text-white">
+                <th class="py-3 px-4 text-left">Waktu</th>
+                <th class="py-3 px-4 text-left">Sholat</th>
+                <th class="py-3 px-4 text-left"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-t">
+                <td class="py-3 px-4">Subuh</td>
+                <td class="py-3 px-4" id="subuh-time">Loading...</td>
+                <td class="py-3 px-4" id="subuh-countdown">Loading...</td>
+            </tr>
+            <tr class="border-t">
+                <td class="py-3 px-4">Dzuhur</td>
+                <td class="py-3 px-4" id="dzuhur-time">Loading...</td>
+                <td class="py-3 px-4" id="dzuhur-countdown">Loading...</td>
+            </tr>
+            <tr class="border-t">
+                <td class="py-3 px-4">Ashar</td>
+                <td class="py-3 px-4" id="ashar-time">Loading...</td>
+                <td class="py-3 px-4" id="ashar-countdown">Loading...</td>
+            </tr>
+            <tr class="border-t">
+                <td class="py-3 px-4">Maghrib</td>
+                <td class="py-3 px-4" id="maghrib-time">Loading...</td>
+                <td class="py-3 px-4" id="maghrib-countdown">Loading...</td>
+            </tr>
+            <tr class="border-t">
+                <td class="py-3 px-4">Isya</td>
+                <td class="py-3 px-4" id="isya-time">Loading...</td>
+                <td class="py-3 px-4" id="isya-countdown">Loading...</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-        <!-- Start Learning Button -->
-        <div class="text-center w-full max-w-4xl mx-auto mb-12">
-            <a href="./sukafikih/menu2.html"><button class="btn-primary bg-blue-700 text-black">Mulai Belajar !</button></a>
-        </div>
+<script>
+    const apiUrl = 'https://api.aladhan.com/v1/timingsByCity?city=Yogyakarta&country=Indonesia&method=2';
 
-    </main>
+    function updateCountdown(prayerTime, elementId) {
+        const now = new Date();
+        const prayerDate = new Date(`${new Date().toDateString()} ${prayerTime}`);
+        let countdown = prayerDate - now;
 
-    <!-- Footer -->
-    <footer>
-        <p class="text-sm">&copy; 2024 Sukafikih</p>
-    </footer>
-
-    <!-- JavaScript -->
-    <script>
-        const overlay = document.getElementById('overlay');
-        const modalTujuan = document.getElementById('modal-tujuan');
-        const modalIndikator = document.getElementById('modal-indikator');
-
-        // API URL for fetching prayer times
-        const apiUrl = 'http://api.aladhan.com/v1/timingsByCity?city=Yogyakarta&country=Indonesia&method=2';
-
-        document.getElementById('btn-tujuan').addEventListener('click', () => {
-            openModal(modalTujuan);
-        });
-
-        document.getElementById('btn-indikator').addEventListener('click', () => {
-            openModal(modalIndikator);
-        });
-
-        // Open modal function
-        function openModal(modal) {
-            overlay.classList.remove('hidden');
-            modal.classList.remove('hidden');
+        if (countdown < 0) {
+            prayerDate.setDate(prayerDate.getDate() + 1);
+            countdown = prayerDate - now;
         }
 
-        // Close modal function
-        function closeModal() {
-            overlay.classList.add('hidden');
-            modalTujuan.classList.add('hidden');
-            modalIndikator.classList.add('hidden');
-        }
+        const hours = Math.floor(countdown / (1000 * 60 * 60));
+        const minutes = Math.floor((countdown % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((countdown % (1000 * 60)) / 1000);
 
-        // Countdown Timer
-        function updateCountdown(prayerTime, elementId) {
-            const now = new Date();
-            const prayerDate = new Date(`${new Date().toDateString()} ${prayerTime}`);
-            let countdown = prayerDate - now;
+        document.getElementById(elementId).textContent = `${hours}h ${minutes}m ${seconds}s`;
+    }
 
-            if (countdown < 0) {
-                // If the prayer time already passed today, calculate for tomorrow
-                prayerDate.setDate(prayerDate.getDate() + 1);
-                countdown = prayerDate - now;
-            }
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.code === 200) {
+                    const timings = data.data.timings;
+                    document.getElementById('subuh-time').textContent = timings.Fajr;
+                    document.getElementById('dzuhur-time').textContent = timings.Dhuhr;
+                    document.getElementById('ashar-time').textContent = timings.Asr;
+                    document.getElementById('maghrib-time').textContent = timings.Maghrib;
+                    document.getElementById('isya-time').textContent = timings.Isha;
 
-            const hours = Math.floor(countdown / (1000 * 60 * 60));
-            const minutes = Math.floor((countdown % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((countdown % (1000 * 60)) / 1000);
+                    setInterval(() => updateCountdown(timings.Fajr, 'subuh-countdown'), 1000);
+                    setInterval(() => updateCountdown(timings.Dhuhr, 'dzuhur-countdown'), 1000);
+                    setInterval(() => updateCountdown(timings.Asr, 'ashar-countdown'), 1000);
+                    setInterval(() => updateCountdown(timings.Maghrib, 'maghrib-countdown'), 1000);
+                    setInterval(() => updateCountdown(timings.Isha, 'isya-countdown'), 1000);
+                } else {
+                    console.error('Error fetching prayer times');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
+</script>
 
-            document.getElementById(elementId).textContent = `${hours}h ${minutes}m ${seconds}s`;
-        }
-
-        // Fetch prayer times from the API
-        document.addEventListener('DOMContentLoaded', function () {
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.code === 200) {
-                        const timings = data.data.timings;
-
-                        // Update the table with fetched prayer times
-                        document.getElementById('subuh-time').textContent = timings.Fajr;
-                        document.getElementById('dzuhur-time').textContent = timings.Dhuhr;
-                        document.getElementById('ashar-time').textContent = timings.Asr;
-                        document.getElementById('maghrib-time').textContent = timings.Maghrib;
-                        document.getElementById('isya-time').textContent = timings.Isha;
-
-                        // Set up countdown for each prayer time
-                        setInterval(() => updateCountdown(timings.Fajr, 'subuh-countdown'), 1000);
-                        setInterval(() => updateCountdown(timings.Dhuhr, 'dzuhur-countdown'), 1000);
-                        setInterval(() => updateCountdown(timings.Asr, 'ashar-countdown'), 1000);
-                        setInterval(() => updateCountdown(timings.Maghrib, 'maghrib-countdown'), 1000);
-                        setInterval(() => updateCountdown(timings.Isha, 'isya-countdown'), 1000);
-                    } else {
-                        console.error('Error fetching prayer times');
-                    }
-                })
-                .catch(error => {
-                    console.error('There was an error fetching the prayer times:', error);
-                });
-        });
-    </script>
 
 </body>
 
