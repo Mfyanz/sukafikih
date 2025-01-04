@@ -283,6 +283,28 @@
 </div>
 
 <script>
+     const overlay = document.getElementById('overlay');
+        const modalTujuan = document.getElementById('modal-tujuan');
+        const modalIndikator = document.getElementById('modal-indikator');
+
+        document.getElementById('btn-tujuan').addEventListener('click', () => {
+            openModal(modalTujuan);
+        });
+
+        document.getElementById('btn-indikator').addEventListener('click', () => {
+            openModal(modalIndikator);
+        });
+
+        function openModal(modal) {
+            overlay.classList.remove('hidden');
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            overlay.classList.add('hidden');
+            modalTujuan.classList.add('hidden');
+            modalIndikator.classList.add('hidden');
+        }
     const apiUrl = 'https://api.aladhan.com/v1/timingsByCity?city=Yogyakarta&country=Indonesia&method=2';
 
     function updateCountdown(prayerTime, elementId) {
