@@ -32,8 +32,8 @@
         body {
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            overflow-y: auto; /* Enable body scrolling */
+            min-height: 100vh; /* Make sure body can grow beyond the viewport */
+            overflow-y: auto; /* Allow vertical scrolling */
         }
 
         /* Sidebar */
@@ -70,10 +70,11 @@
         .main-content {
             flex-grow: 1;
             background-color: #ffffff;
-            overflow-y: auto; /* Enable scroll */
-            margin-left: 250px; /* Sidebar offset */
+            overflow-y: auto; /* Allow vertical scroll in main content */
+            margin-left: 250px;
             transition: margin-left 0.3s ease-in-out;
-            padding-bottom: 50px; /* Space for footer */
+            position: relative;
+            margin-bottom: 50px; /* Reduced space between cards and footer */
         }
 
         .header {
@@ -215,19 +216,76 @@
             }
         }
 
-        /* Footer */
-        footer {
-            background-color: #f5f5f5;
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            justify-content: flex-end; /* Align the text to the right */
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+        /* Desktop Search Input */
+        @media (min-width: 769px) {
+            .sidebar input[type="search"] {
+                padding: 15px;
+                font-size: 18px;
+                width: 100%;
+            }
         }
+        
+        /* Mobile Card Adjustment */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 10px;
+                margin-bottom: 50px; /* Reduced space between cards and footer */
+            }
+
+            .materi-header {
+                margin-top: 20px;
+                font-size: 18px;
+            }
+
+            .container {
+                margin-top: 20px;
+            }
+
+            .w-full.max-w-4xl {
+                padding: 15px;
+                margin-bottom: 30px; /* Reduced space between card and footer */
+                border-radius: 15px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                margin-top: 20px;
+            }
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .interactive-question {
+            background-color: #f0f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+    background-color: #f5f5f5;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end; /* Align the text to the right */
+    position: fixed; /* Make footer fixed at the bottom */
+    bottom: 0; /* Ensure it stays at the bottom */
+    left: 0; /* Align it to the left */
+    width: 100%; /* Full width */
+    z-index: 1000;
+}
+
 
         footer a {
             color: #0d72d8;
@@ -261,34 +319,6 @@
             footer a span {
                 font-size: 20px; /* Adjust arrow size for mobile */
             }
-
-            .main-content {
-                margin-left: 0; /* No margin for mobile */
-                padding: 0 10px; /* Add padding on mobile */
-            }
-        }
-
-        .card {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease-in-out;
-            margin-bottom: 20px;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .interactive-question {
-            background-color: #f0f4f8;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -317,23 +347,24 @@
         </div>
 
         <!-- Materi Haji Content -->
-        <main class="flex-1 p-5">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Haji Qiran</h1>
-            <div class="w-full p- md:p-10 bg-gradient-to-r from-blue-50 to-white rounded-lg shadow-lg">
-                <!-- Interactive Question -->
-                <p class="text-xl lg:text-2xl text-center font-semibold text-blue-600 mb-4">
-                    Tahukah kamu apa itu <span class="text-red-500">Haji Qiran</span>? 🤔
-                </p>
-                <!-- Explanation Card (widened) -->
-                <div class="bg-white p-5 rounded-lg shadow-md border-l-8 border-blue-500">
-                    <p class="text-lg lg:text-2xl text-justify leading-relaxed">
-                        Haji <span class="text-red-500 font-bold">Qiran</span> adalah <span class="font-semibold">menggabungkan ibadah haji dan umrah</span> dalam satu niat dan rangkaian pekerjaan sekaligus. Pelaksanaan ini diwajibkan untuk membayar <span class="text-blue-600 font-semibold">dam nusuk</span>. Biasanya, jenis haji ini dipilih oleh jamaah yang <span class="font-semibold text-green-600">waktu tinggalnya di Makkah sangat terbatas</span> atau tidak memungkinkan melaksanakan umrah sebelum atau sesudah haji.
-                    </p>
-                </div>
-            </div>
-        </main>
+        <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200 mb-6">
+            <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
+                ❓ <span class="font-bold text-blue-600">Tahukah Anda?</span> Apa itu <span class="font-bold text-green-600">Haji</span>? 
+            </p>
+            <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
+                🕋 Haji adalah ibadah yang dilakukan di Tanah Suci Mekkah dengan serangkaian tata cara yang telah ditentukan oleh syariat Islam, dan dilaksanakan pada bulan Zulhijjah. Ibadah ini adalah salah satu rukun Islam yang wajib dilaksanakan oleh setiap Muslim yang mampu secara fisik, finansial, dan memiliki kesempatan.
+            </p>
+            <ul class="list-disc pl-6 text-lg lg:text-xl xl:text-2xl text-gray-700 mb-6">
+                <li>✅ Haji dilaksanakan di <span class="font-bold text-blue-600">Mekkah</span>, Saudi Arabia.</li>
+                <li>✅ Dilakukan pada bulan <span class="font-bold text-blue-600">Zulhijjah</span>.</li>
+                <li>✅ Merupakan rukun Islam kelima yang wajib bagi yang mampu.</li>
+            </ul>
+            <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800">
+                🌍 Haji adalah perjalanan spiritual terbesar bagi umat Islam yang membawa makna mendalam dan pengorbanan.
+            </p>
+        </div>
     </div>
-
+    
     <footer>
         <a href="#"><span>&larr;</span>Back </a>
     </footer>

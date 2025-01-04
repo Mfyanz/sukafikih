@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materi Haji</title>
+    <title>Wukuf</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -32,9 +32,8 @@
         body {
             display: flex;
             flex-direction: column;
-            height: auto;
-            min-height: 100%;
-            overflow-y: auto; /* Allow scrolling */
+            min-height: 100vh; /* Make sure body can grow beyond the viewport */
+            overflow-y: auto; /* Allow vertical scrolling */
         }
 
         /* Sidebar */
@@ -71,10 +70,11 @@
         .main-content {
             flex-grow: 1;
             background-color: #ffffff;
-            overflow-y: auto;
+            overflow-y: auto; /* Allow vertical scroll in main content */
             margin-left: 250px;
             transition: margin-left 0.3s ease-in-out;
             position: relative;
+            margin-bottom: 50px; /* Reduced space between cards and footer */
         }
 
         .header {
@@ -86,8 +86,8 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px; /* Rounded bottom-left corner */
+            border-bottom-right-radius: 20px; /* Rounded bottom-right corner */
         }
 
         .header span.sukafikih {
@@ -105,8 +105,8 @@
         }
 
         .container {
-            margin-top: 5rem;
-            margin-bottom: 3rem;
+            margin-top: 20px;
+            margin-bottom: 50px; /* Reduced space between cards and footer */
         }
 
         .courses {
@@ -158,11 +158,7 @@
         }
 
         /* Mobile Menu */
-        @media (max-width: 768px) 
-        {
-            .main-content {
-            margin-bottom: 50px; /* Jarak untuk menghindari overlap dengan footer */
-        }
+        @media (max-width: 768px) {
             .header {
                 display: flex;
                 justify-content: space-between;
@@ -205,12 +201,7 @@
 
             .main-content {
                 margin-left: 0;
-                margin-bottom: 90px;
-            }
-
-            .container {
-                margin-top: 2rem;
-                margin-bottom: 4rem;
+                margin-bottom: 50px; /* Reduced space between cards and footer */
             }
 
             .sidebar a {
@@ -223,63 +214,78 @@
                 font-size: 18px;
                 width: 100%;
             }
+        }
 
-            .course {
-                padding: 10px;
-                margin-bottom: 15px;
-                border-radius: 8px;
-            }
-
-            .course h3 {
+        /* Desktop Search Input */
+        @media (min-width: 769px) {
+            .sidebar input[type="search"] {
+                padding: 15px;
                 font-size: 18px;
+                width: 100%;
             }
-
-            .course p {
-                font-size: 14px;
-            }
-
-            .courses {
-                grid-template-columns: 1fr;
-                gap: 15px;
+        }
+        
+        /* Mobile Card Adjustment */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 10px;
+                margin-bottom: 50px; /* Reduced space between cards and footer */
             }
 
             .materi-header {
+                margin-top: 20px;
                 font-size: 18px;
+            }
+
+            .container {
                 margin-top: 20px;
             }
 
             .w-full.max-w-4xl {
                 padding: 15px;
-                margin-bottom: 30px;
+                margin-bottom: 30px; /* Reduced space between card and footer */
                 border-radius: 15px;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                 margin-top: 20px;
             }
-            footer {
-            position: relative; /* Tetap di bawah konten */
         }
 
-            footer a {
-                font-size: 16px;
-            }
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 20px;
+        }
 
-            footer a span {
-                font-size: 20px;
-            }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .interactive-question {
+            background-color: #f0f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         }
 
         footer {
-            background-color: #f5f5f5;
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            justify-content: flex-end;
-            position: static;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
+    background-color: #f5f5f5;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end; /* Align the text to the right */
+    position: fixed; /* Make footer fixed at the bottom */
+    bottom: 0; /* Ensure it stays at the bottom */
+    left: 0; /* Align it to the left */
+    width: 100%; /* Full width */
+    z-index: 1000;
+}
+
 
         footer a {
             color: #0d72d8;
@@ -298,7 +304,21 @@
         }
 
         footer a span {
-            font-size: 24px;
+            font-size: 24px; /* Larger arrow */
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 10px;
+            }
+
+            footer a {
+                font-size: 16px;
+            }
+
+            footer a span {
+                font-size: 20px; /* Adjust arrow size for mobile */
+            }
         }
     </style>
 </head>
@@ -344,10 +364,9 @@
             </p>
         </div>
     </div>
+    
     <footer>
-        <a href="javascript:history.back()">
-            <span>&larr;</span> Back
-        </a>
+        <a href="#"><span>&larr;</span>Back </a>
     </footer>
 </body>
 </html>
