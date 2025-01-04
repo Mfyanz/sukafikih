@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materi Haji</title>
+    <title>Sa'i</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -32,8 +32,8 @@
         body {
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow: auto; /* Enable scrolling */
         }
 
         /* Sidebar */
@@ -70,11 +70,11 @@
         .main-content {
             flex-grow: 1;
             background-color: #ffffff;
-            overflow-y: auto;
+            overflow-y: auto; /* Allow scroll inside main content */
             margin-left: 250px;
             transition: margin-left 0.3s ease-in-out;
             position: relative;
-            margin-bottom: 80px;
+            margin-bottom: 50px; /* Reduced space between cards and footer */
         }
 
         .header {
@@ -86,8 +86,8 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px; /* Rounded bottom-left corner */
+            border-bottom-right-radius: 20px; /* Rounded bottom-right corner */
         }
 
         .header span.sukafikih {
@@ -105,8 +105,8 @@
         }
 
         .container {
-            margin-top: 5rem;
-            margin-bottom: 3rem;
+            margin-top: 20px;
+            margin-bottom: 50px; /* Reduced space between cards and footer */
         }
 
         .courses {
@@ -201,12 +201,7 @@
 
             .main-content {
                 margin-left: 0;
-                margin-bottom: 90px;
-            }
-
-            .container {
-                margin-top: 2rem;
-                margin-bottom: 4rem;
+                margin-bottom: 50px; /* Reduced space between cards and footer */
             }
 
             .sidebar a {
@@ -219,60 +214,74 @@
                 font-size: 18px;
                 width: 100%;
             }
+        }
 
-            .course {
-                padding: 10px;
-                margin-bottom: 15px;
-                border-radius: 8px;
-            }
-
-            .course h3 {
+        /* Desktop Search Input */
+        @media (min-width: 769px) {
+            .sidebar input[type="search"] {
+                padding: 15px;
                 font-size: 18px;
+                width: 100%;
             }
-
-            .course p {
-                font-size: 14px;
-            }
-
-            .courses {
-                grid-template-columns: 1fr;
-                gap: 15px;
+        }
+        /* Mobile Card Adjustment */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 10px;
+                margin-bottom: 50px; /* Reduced space between cards and footer */
             }
 
             .materi-header {
+                margin-top: 20px;
                 font-size: 18px;
+            }
+
+            .container {
                 margin-top: 20px;
             }
 
             .w-full.max-w-4xl {
                 padding: 15px;
-                margin-bottom: 30px;
+                margin-bottom: 30px; /* Reduced space between card and footer */
                 border-radius: 15px;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                 margin-top: 20px;
             }
+        }
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 20px;
+        }
 
-            footer a {
-                font-size: 16px;
-            }
-
-            footer a span {
-                font-size: 20px;
-            }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        .interactive-question {
+            background-color: #f0f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         }
 
         footer {
-            background-color: #f5f5f5;
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            justify-content: flex-end;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
+    background-color: #f5f5f5;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end; /* Align the text to the right */
+    position: fixed; /* Make footer fixed at the bottom */
+    bottom: 0; /* Ensure it stays at the bottom */
+    left: 0; /* Align it to the left */
+    width: 100%; /* Full width */
+    z-index: 1000;
+}
 
         footer a {
             color: #0d72d8;
@@ -291,8 +300,23 @@
         }
 
         footer a span {
-            font-size: 24px;
+            font-size: 24px; /* Larger arrow */
         }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 10px;
+            }
+
+            footer a {
+                font-size: 16px;
+            }
+
+            footer a span {
+                font-size: 20px; /* Adjust arrow size for mobile */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -320,26 +344,72 @@
         </div>
 
         <!-- Materi Haji Content -->
-        <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200 mb-6">
-            <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
-                ❓ <span class="font-bold text-blue-600">Tahukah Anda?</span> Apa itu <span class="font-bold text-green-600">Haji</span>? 
-            </p>
-            <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
-                🕋 Haji adalah ibadah yang dilakukan di Tanah Suci Mekkah dengan serangkaian tata cara yang telah ditentukan oleh syariat Islam, dan dilaksanakan pada bulan Zulhijjah. Ibadah ini adalah salah satu rukun Islam yang wajib dilaksanakan oleh setiap Muslim yang mampu secara fisik, finansial, dan memiliki kesempatan.
-            </p>
-            <ul class="list-disc pl-6 text-lg lg:text-xl xl:text-2xl text-gray-700 mb-6">
-                <li>✅ Haji dilaksanakan di <span class="font-bold text-blue-600">Mekkah</span>, Saudi Arabia.</li>
-                <li>✅ Dilakukan pada bulan <span class="font-bold text-blue-600">Zulhijjah</span>.</li>
-                <li>✅ Merupakan rukun Islam kelima yang wajib bagi yang mampu.</li>
-            </ul>
-            <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800">
-                🌍 Haji adalah perjalanan spiritual terbesar bagi umat Islam yang membawa makna mendalam dan pengorbanan.
-            </p>
-        </div>
+        <main class="flex-1 p-6">
+            <h1 class="text-2xl font-bold mb-8 text-center text-dark">Tertib dalam Ibadah Haji & Umrah</h1>
+            
+            <div class="w-full max-w-3xl mx-auto p-5 bg-white rounded-lg shadow-2xl">
+                <!-- Introduction -->
+                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
+                    Tertib adalah konsep yang sangat penting dalam ibadah Haji dan Umrah. Dalam konteks ini, "tertib" berarti urutan yang benar dalam pelaksanaan berbagai rukun ibadah, dimulai dari niat hingga tahalul. Mari kita pelajari lebih lanjut tentang setiap langkah yang harus dilakukan dengan tertib. Setiap langkah membawa kita lebih dekat dengan Allah, jadi penting untuk memahami makna dan tujuannya.
+                </p>
+
+                <!-- Interactive Step 1: Niat (Ihram) -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-blue-600">Langkah 1: Niat (Ihram)</h2>
+                    <p class="text-xl text-justify leading-relaxed">
+                        Tahap pertama dalam ibadah Haji dan Umrah adalah niat, atau dikenal dengan Ihram. Ini adalah niat untuk memulai ibadah. Tanpa niat yang benar, ibadah kita tidak sah. <strong>Apakah kamu tahu kapan kita harus mengenakan pakaian ihram?</strong> Biasanya, ini dilakukan sebelum memasuki Mekkah, di tempat yang disebut Miqat. Mengapa menurutmu pakaian ihram itu penting?
+                    </p>
+                </div>
+               
+                <!-- Step 2: Tawaf -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-blue-600">Langkah 2: Tawaf</h2>
+                    <p class="text-xl text-justify leading-relaxed">
+                        Tawaf adalah proses mengelilingi Ka'bah sebanyak tujuh kali, dimulai dari Hajar Aswad. Setiap kali kita melangkah, kita semakin mendekatkan diri kepada Allah. <strong>Pernahkah kamu merasakan kesakralan saat melakukan Tawaf?</strong> Tawaf adalah momen penuh doa dan harapan. Saat kita berjalan mengelilingi Ka'bah, kita juga mengingat perjalanan Nabi Ibrahim dan keluarganya.
+                    </p>
+                </div>
+  
+                <!-- Step 3: Wukuf -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-blue-600">Langkah 3: Wukuf</h2>
+                    <p class="text-xl text-justify leading-relaxed">
+                        Wukuf adalah titik puncak ibadah Haji yang dilakukan di Padang Arafah pada tanggal 9 Zulhijah. Di sinilah jamaah berkumpul untuk berdoa dan memohon ampunan kepada Allah. Wukuf merupakan waktu yang sangat penting, di mana doa-doa kita akan diterima dengan sepenuh hati oleh Allah. <strong>Bayangkan saat kamu berdiri di Padang Arafah, berdoa dengan sepenuh hati. Apa yang kamu rasakan?</strong>
+                    </p>
+                </div>
+
+                <!-- Step 4: Sa'i -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-blue-600">Langkah 4: Sa'i</h2>
+                    <p class="text-xl text-justify leading-relaxed">
+                        Sa'i adalah langkah antara Safa dan Marwah yang dilakukan tujuh kali. Ini adalah simbol perjuangan Hajar mencari air untuk anaknya, Ismail. Setiap langkah dalam Sa'i memiliki nilai tersendiri, membawa kita untuk lebih dekat dengan kisah yang penuh makna. <strong>Bayangkan kamu menjadi Hajar, apa yang kamu rasakan saat berlari antara Safa dan Marwah?</strong>
+                    </p>
+                </div>
+
+                <!-- Step 5: Tahalul -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-blue-600">Langkah 5: Tahalul</h2>
+                    <p class="text-xl text-justify leading-relaxed">
+                        Tahalul adalah tahapan mencukur atau memotong rambut sebagai tanda selesai melaksanakan ibadah Haji. Tahalul menunjukkan kesungguhan dan kesucian hati setelah menjalani proses ibadah yang panjang dan penuh pengorbanan. <strong>Bagaimana perasaanmu setelah menyelesaikan semua rukun ibadah Haji?</strong>
+                    </p>
+                </div>
+
+                <!-- Conclusion with a call to action -->
+                <div class="text-center mt-8">
+                    <h2 class="text-xl font-semibold text-blue-600 mb-4">Selamat! Kamu telah mempelajari urutan tertib ibadah Haji.</h2>
+                </div>
+            </div>
+        </main>
     </div>
+
     <footer>
-        <a href="javascript:history.back()">
-            <span>&larr;</span> Back
+        <p class="text-sm font-semibold text-black-600 mx-auto">Haji & Umrah</p>
+        <a href="./menu2.html">
+            <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
+                <span>Back</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
         </a>
     </footer>
 </body>
