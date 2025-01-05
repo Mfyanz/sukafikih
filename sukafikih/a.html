@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tawaf</title>
+    <title>tawaf</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -22,21 +22,251 @@
         });
     </script>
     <style>
-        /* Custom styles */
-        body {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
 
-        footer {
-            background-color: #f5f5f5;
-            padding: 15px;
-            text-align: center;
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Make sure body can grow beyond the viewport */
+            overflow-y: auto; /* Allow vertical scrolling */
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #d1d5db; /* Light gray background */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
-            width: 100%;
+            height: 100vh;
             z-index: 1000;
         }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #4B5563; /* Dark gray text color */
+            font-size: 18px;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar a.active {
+            color: #1F2937; /* Darker gray for active link */
+            font-weight: bold;
+        }
+
+        /* Main content */
+        .main-content {
+            flex-grow: 1;
+            background-color: #ffffff;
+            overflow-y: auto; /* Allow vertical scroll in main content */
+            margin-left: 250px;
+            transition: margin-left 0.3s ease-in-out;
+            position: relative;
+            margin-bottom: 50px; /* Reduced space between cards and footer */
+        }
+
+        .header {
+            background-color: #f5f5f5;
+            color: white;
+            padding: 5px 15px;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border-bottom-left-radius: 20px; /* Rounded bottom-left corner */
+            border-bottom-right-radius: 20px; /* Rounded bottom-right corner */
+        }
+
+        .header span.sukafikih {
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .header .suka {
+            color: #0d72d8; /* Blue for "suka" */
+        }
+
+        .header .fikih {
+            color: #ffffff; /* White for "fikih" */
+        }
+
+        .container {
+            margin-top: 20px;
+            margin-bottom: 50px; /* Reduced space between cards and footer */
+        }
+
+        .courses {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .course {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .course:hover {
+            transform: scale(1.05);
+        }
+
+        .course img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        .course h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .course p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .materi-header {
+            background-color: #b3d9ff;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 15px;
+            }
+
+            .header span.sukafikih {
+                font-size: 28px;
+            }
+
+            .sidebar {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 250px;
+                background-color: #d1d5db;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .sidebar.active {
+                display: block;
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                margin-left: auto;
+            }
+
+            .hamburger div {
+                width: 30px;
+                height: 5px;
+                background-color: #333;
+                margin: 5px 0;
+                transition: all 0.3s;
+            }
+
+            .main-content {
+                margin-left: 0;
+                margin-bottom: 50px; /* Reduced space between cards and footer */
+            }
+
+            .sidebar a {
+                padding: 15px;
+                font-size: 20px;
+            }
+
+            .sidebar input[type="search"] {
+                padding: 15px;
+                font-size: 18px;
+                width: 100%;
+            }
+
+            /* Full width for cards in mobile */
+            .card {
+                width: 100%; /* Ensure the card takes full width */
+                padding: 15px; /* Adjust padding for mobile */
+            }
+        }
+
+        /* Desktop Search Input */
+        @media (min-width: 769px) {
+            .sidebar input[type="search"] {
+                padding: 15px;
+                font-size: 18px;
+                width: 100%;
+            }
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .interactive-question {
+            background-color: #f0f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+    background-color: #f5f5f5;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end; /* Align the text to the right */
+    position: fixed; /* Make footer fixed at the bottom */
+    bottom: 0; /* Ensure it stays at the bottom */
+    left: 0; /* Align it to the left */
+    width: 100%; /* Full width */
+    z-index: 1000;
+}
+
 
         footer a {
             color: #0d72d8;
@@ -55,7 +285,21 @@
         }
 
         footer a span {
-            font-size: 24px;
+            font-size: 24px; /* Larger arrow */
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 10px;
+            }
+
+            footer a {
+                font-size: 16px;
+            }
+
+            footer a span {
+                font-size: 20px; /* Adjust arrow size for mobile */
+            }
         }
     </style>
 </head>
@@ -68,22 +312,23 @@
         <a href="./umrah.html">Materi Umrah</a>
         <a href="./ayo latihan.html">Ayo Latihan</a>
     </div>
-
     <!-- Main Content -->
     <div class="main-content">
         <!-- Header -->
-        <div class="header bg-gradient-to-r from-blue-600 to-green-500 text-white py-4 px-6 flex justify-between items-center">
-            <span class="text-2xl font-bold">
-                <span class="text-blue-200">suka</span>fikih
+        <div class="header">
+            <span class="sukafikih">
+                <span class="suka">suka</span><span class="fikih">fikih</span>
             </span>
             <button class="hamburger" onclick="toggleMenu()">
-                <div class="w-6 h-1 bg-white mb-1"></div>
-                <div class="w-6 h-1 bg-white mb-1"></div>
-                <div class="w-6 h-1 bg-white"></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </button>
         </div>
 
-        <!-- Tawaf Content -->
+        <!-- Materi Haji Content -->
+        <main class="flex-1 p-">
+            <h1 class="text-4xl font-bold mb-1 text-center text-dark mt-8">Tawaf</h1>
         <div class="container mx-auto mt-8 p-4">
             <!-- Card 1: Question -->
             <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
@@ -96,7 +341,7 @@
 
             <!-- Card 2: Explanation -->
             <div class="card bg-gradient-to-r from-green-50 to-blue-50 shadow-lg border border-green-200 rounded-lg p-6">
-                <h3 class="text-2xl font-bold text-green-600 mb-2">Penjelasan Tentang Tawaf</h3>
+                <h3 class="text-2xl font-bold text-green-600 mb-2"></h3>
                 <p class="text-lg text-gray-700">
                     Tawaf adalah kegiatan mengelilingi Ka'bah sebanyak tujuh kali dengan posisi Ka'bah di sebelah kiri. 
                     <span class="font-bold text-blue-600">Tawaf dimulai dan diakhiri di tempat yang sejajar dengan Hajar Aswad.</span>
@@ -105,11 +350,10 @@
                     Ini adalah momen spiritual yang sangat berarti.
                 </p>
             </div>
-        </div>
     </div>
-
+        </main>
     <footer>
-        <a href="./rukun haji.html"><span>&larr;</span> Back</a>
+        <a href="./rukun haji.html"><span>&larr;</span>Back </a>
     </footer>
 </body>
 </html>
