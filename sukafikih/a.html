@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunnah Haji</title>
+    <title>Sa'i</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -32,8 +32,8 @@
         body {
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            overflow-y: auto; /* Enable body scrolling */
+            min-height: 100vh; /* Make sure body can grow beyond the viewport */
+            overflow-y: auto; /* Allow vertical scrolling */
         }
 
         /* Sidebar */
@@ -70,10 +70,11 @@
         .main-content {
             flex-grow: 1;
             background-color: #ffffff;
-            overflow-y: auto; /* Enable scroll */
-            margin-left: 250px; /* Sidebar offset */
+            overflow-y: auto; /* Allow vertical scroll in main content */
+            margin-left: 250px;
             transition: margin-left 0.3s ease-in-out;
-            padding-bottom: 50px; /* Space for footer */
+            position: relative;
+            margin-bottom: 50px; /* Reduced space between cards and footer */
         }
 
         .header {
@@ -213,21 +214,59 @@
                 font-size: 18px;
                 width: 100%;
             }
+
+            /* Full width for cards in mobile */
+            .card {
+                width: 100%; /* Ensure the card takes full width */
+                padding: 15px; /* Adjust padding for mobile */
+            }
         }
 
-        /* Footer */
-        footer {
-            background-color: #f5f5f5;
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            justify-content: flex-end; /* Align the text to the right */
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+        /* Desktop Search Input */
+        @media (min-width: 769px) {
+            .sidebar input[type="search"] {
+                padding: 15px;
+                font-size: 18px;
+                width: 100%;
+            }
         }
+
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .interactive-question {
+            background-color: #f0f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+    background-color: #f5f5f5;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end; /* Align the text to the right */
+    position: fixed; /* Make footer fixed at the bottom */
+    bottom: 0; /* Ensure it stays at the bottom */
+    left: 0; /* Align it to the left */
+    width: 100%; /* Full width */
+    z-index: 1000;
+}
+
 
         footer a {
             color: #0d72d8;
@@ -261,34 +300,6 @@
             footer a span {
                 font-size: 20px; /* Adjust arrow size for mobile */
             }
-
-            .main-content {
-                margin-left: 0; /* No margin for mobile */
-                padding: 0 10px; /* Add padding on mobile */
-            }
-        }
-
-        .card {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease-in-out;
-            margin-bottom: 20px;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .interactive-question {
-            background-color: #f0f4f8;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -316,37 +327,40 @@
         </div>
 
         <!-- Materi Haji Content -->
-        <main class="flex-1 p-2">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark mt-4">Sunnah Haji</h1>
-            <div class="card">
-                <p class="text-xl mb-6">
-                    Saat melaksanakan ibadah haji, ada beberapa sunnah yang dapat kamu lakukan untuk mendapatkan pahala lebih. Yuk, kita bahas lebih dalam!
-                </p>
-               
-            </div>
-            <div class="card">
-                <h2 class="text-2xl font-bold mb-2 text-blue-600"></h2>
-                <ul class="list-disc pl-6 text-xl mb-6">
-                    <li class="flex items-center"><span class="text-blue-600 mr-3">👉</span>Melaksanakan haji ifrad, yaitu haji yang dilakukan tanpa umrah.</li>
-                    <li class="flex items-center"><span class="text-blue-600 mr-3">👉</span>Membaca talbiyah dengan penuh khusyuk selama ihram hingga melempar jumrah 'aqabah.</li>
-                    <li class="flex items-center"><span class="text-blue-600 mr-3">👉</span>Berdoa setelah membaca talbiyah, agar doa-doa kita diijabah.</li>
-                    <li class="flex items-center"><span class="text-blue-600 mr-3">👉</span>Membaca zikir saat tawaf, momen yang sangat indah dan penuh berkah.</li>
-                    <li class="flex items-center"><span class="text-blue-600 mr-3">👉</span>Memasuki Ka'bah, jika memungkinkan, adalah sunnah yang sangat dianjurkan.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h2 class="text-2xl font-bold mb-4 text-blue-600"></h2>
-                <p class="text-xl mb-6">
-                    Coba bayangkan betapa luar biasanya perjalanan haji kamu jika diiringi dengan melakukan sunnah-sunnah ini. Setiap langkah yang kamu ambil akan semakin mendekatkan dirimu pada keberkahan dan pahala dari Allah.
+        <main class="flex-1 p-">
+            <h1 <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6 mt-6">
+                ❓ <span class="font-bold text-blue-600">Tahukah Anda?</span> Apa itu <span class="font-bold text-green-600">Sa'i</span>? 
+            </p></h1>
+        <div class="container mx-auto mt-8 p-4 mb-2">
+            <!-- Card 1: Question -->
+            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
+                <p class="text-xl">
+                    🕌 Sa’i adalah perjalanan bolak-balik sebanyak 7 kali antara <span class="font-bold text-blue-600">bukit Safa</span> dan <span class="font-bold text-blue-600">bukit Marwah</span>. Berikut ketentuannya:
                 </p>
             </div>
-            </div>
-        </main>
 
+            <!-- Card 2: Explanation -->
+            <div class="card bg-gradient-to-r from-green-50 to-blue-50 shadow-lg border border-green-200 rounded-lg p-6 mt-4">
+                <h3 class="text-2xl font-bold text-green-600 mb-2"></h3>
+                <h3 class="text-3xl font-semibold mb-4 text-center">Pelaksanaan sa'i</h3>
+        <ul class="list-disc pl-6 text-xl text-gray-700">
+                <li>✅ Dilakukan setelah <span class="font-bold text-green-600">tawaf</span>.</li>
+                <li>✅ Dalam keadaan <span class="font-bold text-red-600">suci</span> dan menutup aurat.</li>
+                <li>✅ Harus lengkap sebanyak <span class="font-bold text-blue-600">7 kali</span>, dari <span class="font-bold text-blue-600">Safa</span> ke <span class="font-bold text-blue-600">Marwah</span> dihitung 1 kali.</li>
+                <li>✅ Dimulai di bukit <span class="font-bold text-blue-600">Safa</span> dan diakhiri di <span class="font-bold text-blue-600">Marwah</span>.</li>
+                <li>✅ Berdoa di kedua bukit dengan khusyuk. 🙏</li>
+                <li>✅ Bagi laki-laki, disunahkan <span class="font-bold text-green-600">berlari-lari kecil 🏃</span> di antara dua lampu hijau.</li>
+            </ul>
+            </div>
+            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
+                <p class="text-xl text-gray-700">
+                    🌟 Dengan melakukan Sa’i, kita meneladani perjuangan Hajar yang tidak kenal lelah dalam mencari kehidupan bagi anaknya, Ismail. Ini adalah simbol pengorbanan dan ketekunan yang luar biasa! 💪
+                </p>
+            </div>
     </div>
-
+        </main>
     <footer>
-        <a href="./haji.html"><span>&larr;</span>Back </a>
+        <a href="./rukun haji.html"><span>&larr;</span>Back </a>
     </footer>
 </body>
 </html>

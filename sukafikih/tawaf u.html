@@ -214,6 +214,12 @@
                 font-size: 18px;
                 width: 100%;
             }
+
+            /* Full width for cards in mobile */
+            .card {
+                width: 100%; /* Ensure the card takes full width */
+                padding: 15px; /* Adjust padding for mobile */
+            }
         }
 
         /* Desktop Search Input */
@@ -222,31 +228,6 @@
                 padding: 15px;
                 font-size: 18px;
                 width: 100%;
-            }
-        }
-        
-        /* Mobile Card Adjustment */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 0 10px;
-                margin-bottom: 50px; /* Reduced space between cards and footer */
-            }
-
-            .materi-header {
-                margin-top: 20px;
-                font-size: 18px;
-            }
-
-            .container {
-                margin-top: 20px;
-            }
-
-            .w-full.max-w-4xl {
-                padding: 15px;
-                margin-bottom: 30px; /* Reduced space between card and footer */
-                border-radius: 15px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                margin-top: 20px;
             }
         }
 
@@ -346,25 +327,34 @@
         </div>
 
         <!-- Materi Haji Content -->
-        <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
-            <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
-                ❓ <span class="font-bold text-blue-600">Tahukah Anda?</span> Apa itu <span class="font-bold text-green-600">Tawaf</span>? 
-            </p>
-            <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
-                🕌 Tawaf adalah kegiatan mengelilingi Ka'bah sebanyak 7 kali dengan posisi Ka'bah di sebelah kiri. Tawaf dimulai dan diakhiri di tempat yang sejajar dengan hajar aswad. Setiap putaran, jamaah akan berdoa dan memohon kepada Allah.
-            </p>
-            <ul class="list-disc pl-6 text-lg lg:text-xl xl:text-2xl text-gray-700 mb-6">
-                <li>✅ Tawaf dilakukan sebanyak <span class="font-bold text-blue-600">7 kali</span> dengan Ka'bah di sebelah kiri.</li>
-                <li>✅ Dimulai dan diakhiri di tempat sejajar dengan <span class="font-bold text-blue-600">Hajar Aswad</span>.</li>
-                <li>✅ Setiap putaran, jamaah berdoa dan memohon kepada Allah. 🙏</li>
-                <li>✅ Tawaf adalah simbol ketundukan dan penghambaan kepada Allah. 🤲</li>
-            </ul>
-            <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800">
-                🌍 Tawaf merupakan bagian integral dari ibadah Haji yang penuh makna spiritual.
-            </p>
-        </div>
+        <main class="flex-1 p-">
+            <h1 class="text-4xl font-bold mb-1 text-center text-dark mt-8">Tawaf</h1>
+        <div class="container mx-auto mt-8 p-4 mb-2">
+            <!-- Card 1: Question -->
+            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
+                <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
+                    ❓ <span class="font-bold text-blue-600">Tahukah Anda?</span> Apa itu <span class="font-bold text-green-600">Tawaf</span>? 
+                </p>
+                <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
+                    🕌 Tawaf adalah kegiatan mengelilingi Ka'bah sebanyak 7 kali dengan posisi Ka'bah di sebelah kiri. Tawaf dimulai dan diakhiri di tempat yang sejajar dengan hajar aswad. Setiap putaran, jamaah akan berdoa dan memohon kepada Allah.
+                </p>
+            </div>
+
+            <!-- Card 2: Explanation -->
+            <div class="card bg-gradient-to-r from-green-50 to-blue-50 shadow-lg border border-green-200 rounded-lg p-6">
+                <h3 class="text-2xl font-bold text-green-600 mb-2"></h3>
+                <ul class="list-disc pl-6 text-lg lg:text-xl xl:text-2xl text-gray-700 mb-6">
+                    <li>✅ Tawaf dilakukan sebanyak <span class="font-bold text-blue-600">7 kali</span> dengan Ka'bah di sebelah kiri.</li>
+                    <li>✅ Dimulai dan diakhiri di tempat sejajar dengan <span class="font-bold text-blue-600">Hajar Aswad</span>.</li>
+                    <li>✅ Setiap putaran, jamaah berdoa dan memohon kepada Allah. 🙏</li>
+                    <li>✅ Tawaf adalah simbol ketundukan dan penghambaan kepada Allah. 🤲</li>
+                </ul>
+                <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800">
+                    🌍 Tawaf merupakan bagian integral dari ibadah Haji yang penuh makna spiritual.
+                </p>
+            </div>
     </div>
-    
+        </main>
     <footer>
         <a href="./rukun umroh.html"><span>&larr;</span>Back </a>
     </footer>

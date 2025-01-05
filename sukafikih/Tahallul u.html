@@ -214,6 +214,12 @@
                 font-size: 18px;
                 width: 100%;
             }
+
+            /* Full width for cards in mobile */
+            .card {
+                width: 100%; /* Ensure the card takes full width */
+                padding: 15px; /* Adjust padding for mobile */
+            }
         }
 
         /* Desktop Search Input */
@@ -222,31 +228,6 @@
                 padding: 15px;
                 font-size: 18px;
                 width: 100%;
-            }
-        }
-        
-        /* Mobile Card Adjustment */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 0 10px;
-                margin-bottom: 50px; /* Reduced space between cards and footer */
-            }
-
-            .materi-header {
-                margin-top: 20px;
-                font-size: 18px;
-            }
-
-            .container {
-                margin-top: 20px;
-            }
-
-            .w-full.max-w-4xl {
-                padding: 15px;
-                margin-bottom: 30px; /* Reduced space between card and footer */
-                border-radius: 15px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                margin-top: 20px;
             }
         }
 
@@ -346,30 +327,39 @@
         </div>
 
         <!-- Materi Haji Content -->
-        <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-8 text-center text-dark">Tahallul</h1>
-            <div class="w-full max-w-3xl mx-auto card fade-in">
+        <main class="flex-1 p-">
+            <h1 class="text-3xl font-bold mb-8 mt-4 text-center text-dark animate-text">Tahallul</h1>
+        <div class="container mx-auto mt-8 p-4 mb-2">
+            <!-- Card 1: Question -->
+            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-6">
                 <p class="text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
-                    Apa itu tahallul? Tahallul adalah kegiatan mencukur rambut kepala, yang merupakan bagian dari ibadah haji.
+                    Apa itu Tahallul? 🤔
+                    <br><br>
+                    Tahallul adalah kegiatan mencukur rambut kepala, sekurang-kurangnya 3 helai, dan bagi laki-laki lebih utama apabila mencukur seluruh rambut di kepala. 🌟
                 </p>
-                <p class="mb-4">
-                    Tahalul dilakukan pada hari-hari tertentu setelah melaksanakan ibadah haji, sebagai bentuk pembersihan diri setelah melakukan amalan-amalan ibadah haji.
-                </p>
-                <p class="mb-4">
-                    Bagi laki-laki, mencukur seluruh rambut kepala adalah yang paling utama, sedangkan bagi perempuan cukup memotong sedikit rambut.
-                </p>
-               
-                    <p>
-                        Terkadang, beberapa jamaah lebih memilih untuk menggunakan jasa tukang cukur yang ahli dalam mencukur rambut untuk mendapatkan hasil yang lebih rapi dan memuaskan.
-                    </p>
-                    <p>
-                        Proses tahallul memberikan rasa segar dan merupakan tanda dari selesainya sebagian besar ritual haji.
-                    </p>
-                </div>
             </div>
-        </main>
+
+            <!-- Card 2: Explanation -->
+            <div class="card bg-gradient-to-r from-green-50 to-blue-50 shadow-lg border border-green-200 rounded-lg p-6 mt-4 mb-6">
+                <h3 class="text-2xl font-bold text-green-600 mb-2"></h3>
+                <p class="text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
+                    Kenapa Tahallul Penting? 🙌
+                    <br><br>
+                    Tahallul dilakukan setelah melaksanakan ibadah haji sebagai bentuk pembersihan diri dari segala hal yang kurang baik, serta sebagai simbol kebersihan dan kesucian setelah menjalankan ibadah yang berat. 💖
+                </p>
+            </div>
+            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
+                <p class="text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
+                    Yuk, Lakukan dengan Tepat! 💇‍♂️
+                    <br><br>
+                    Beberapa jamaah lebih memilih menggunakan jasa tukang cukur yang ahli agar hasilnya lebih rapi dan sempurna. Sebagian lainnya, memilih untuk mencukur rambut sendiri, yang juga tidak kalah pentingnya dalam ibadah ini. 💪✨
+                </p>
+                <p class="text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
+                    Jangan lupa, setelah tahallul, kamu sudah siap untuk kembali melanjutkan perjalananmu dengan hati yang lebih bersih dan jiwa yang lebih kuat! 💖💫
+                </p>
+            </div>
     </div>
-    
+        </main>
     <footer>
         <a href="./rukun umroh.html"><span>&larr;</span>Back </a>
     </footer>
