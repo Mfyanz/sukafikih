@@ -215,23 +215,19 @@
         }
 
         /* Desktop Search Input */
+        @media (min-width: 769px) {
+            .sidebar input[type="search"] {
+                padding: 15px;
+                font-size: 18px;
+                width: 100%;
+            }
+        }
+
+        /* Mobile Card Adjustment */
         @media (max-width: 768px) {
-    .card {
-        padding: 20px;
-        max-width: 90%; /* Reduced max-width for mobile devices */
-    }
-}
-
-/* Main Content adjustment */
-.main-content {
-    padding: 20px; /* Increased padding for desktop */
-}
-
-@media (max-width: 768px) {
-    .main-content {
-        padding: 10px;
-    }
-}
+            .main-content {
+                padding: 0 10px;
+            }
 
             .materi-header {
                 margin-top: 20px;
@@ -249,18 +245,19 @@
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                 margin-top: 20px;
             }
+        }
         
         /* Card Style */
         .card {
-    background-color: #f9fafb;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 30px; /* Increased padding for desktop */
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-    margin-bottom: 40px; /* Increased margin-bottom */
-    max-width: 800px; /* Adjusted maximum width for larger screens */
-}
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            margin-bottom: 40px; /* Increased margin-bottom */
+        }
+
         .card:hover {
             transform: translateY(-5px);
         }
