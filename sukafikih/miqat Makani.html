@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>miqat makani</title>
+    <title>Miqat Zamani</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -32,8 +32,8 @@
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            overflow: auto; /* Enable scrolling */
+            min-height: 100vh; /* Make sure body can grow beyond the viewport */
+            overflow-y: auto; /* Allow vertical scrolling */
         }
 
         /* Sidebar */
@@ -70,7 +70,7 @@
         .main-content {
             flex-grow: 1;
             background-color: #ffffff;
-            overflow-y: auto; /* Allow scroll inside main content */
+            overflow-y: auto; /* Allow vertical scroll in main content */
             margin-left: 250px;
             transition: margin-left 0.3s ease-in-out;
             position: relative;
@@ -214,6 +214,12 @@
                 font-size: 18px;
                 width: 100%;
             }
+
+            /* Full width for cards in mobile */
+            .card {
+                width: 100%; /* Ensure the card takes full width */
+                padding: 15px; /* Adjust padding for mobile */
+            }
         }
 
         /* Desktop Search Input */
@@ -224,30 +230,7 @@
                 width: 100%;
             }
         }
-        /* Mobile Card Adjustment */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 0 10px;
-                margin-bottom: 50px; /* Reduced space between cards and footer */
-            }
 
-            .materi-header {
-                margin-top: 20px;
-                font-size: 18px;
-            }
-
-            .container {
-                margin-top: 20px;
-            }
-
-            .w-full.max-w-4xl {
-                padding: 15px;
-                margin-bottom: 30px; /* Reduced space between card and footer */
-                border-radius: 15px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                margin-top: 20px;
-            }
-        }
         .card {
             background-color: #ffffff;
             padding: 20px;
@@ -261,6 +244,7 @@
             transform: translateY(-10px);
             box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
         }
+        
         .interactive-question {
             background-color: #f0f4f8;
             padding: 30px;
@@ -282,6 +266,7 @@
     width: 100%; /* Full width */
     z-index: 1000;
 }
+
 
         footer a {
             color: #0d72d8;
@@ -316,7 +301,6 @@
                 font-size: 20px; /* Adjust arrow size for mobile */
             }
         }
-
     </style>
 </head>
 <body>
@@ -328,7 +312,6 @@
         <a href="./umrah.html">Materi Umrah</a>
         <a href="./ayo latihan.html">Ayo Latihan</a>
     </div>
-
     <!-- Main Content -->
     <div class="main-content">
         <!-- Header -->
@@ -344,29 +327,36 @@
         </div>
 
         <!-- Materi Haji Content -->
-        <div class="w-full max-w-4xl mx-auto p-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg shadow-2xl border border-blue-200">
-            <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6">
+        <main class="flex-1 p-">
+            <h1 <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6 mt-6">
             </span> Apa itu <span class="font-bold text-green-600">Miqat Makani</span>?
-            </p>
-            <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
-                Miqat makani adalah batas tempat yang telah ditentukan untuk memulai melaksanakan ibadah haji. Tahukah kamu bahwa miqat makani berbeda untuk setiap lokasi asal jamaah haji? Yuk, kita pelajari lebih dalam!
-            </p>
-            <ul class="list-disc pl-6 text-lg font-semibold text-gray-700">
-                <li>Orang Makkah dan sekitarnya, miqat dari rumahnya masing-masing.</li>
-                <li>Orang Madinah dan sekitarnya, miqat dari Dzulhulaifah (Bir Ali).</li>
-                <li>Orang Mesir, Syam, Maghribi, dan yang sejajar, miqat dari Juhfah.</li>
-                <li>Orang Indonesia, India, dan Yaman yang naik kapal laut, miqat dari Yalamlam. Adapun jamaah yang naik pesawat dan turun di Bandara King Abdul Aziz, Jeddah, maka miqat dari Jeddah.</li>
-                <li>Orang Irak dan sekitarnya, miqat dari Dzatu ‘Irqin.</li>
-                <li>Orang-orang yang datang dari Nejed dan negara-negara yang searah, miqat dari Qarnul Manazil.</li>
-            </ul>
-            
-            <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-center text-gray-800 mt-6">
-                😊 Memahami Miqat membantu memastikan ibadah haji dan umrah Anda sah dan diterima. 🌟
-            </p>
-        </div>
-      
-    </div>
+            </p> </h1>
+        <div class="container mx-auto mt-8 p-4 mb-2">
+            <!-- Card 1: Question -->
+            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-6">
+                <p class="text-xl text-gray-700">
+                    Miqat makani adalah batas tempat yang telah ditentukan untuk memulai melaksanakan ibadah haji. Tahukah kamu bahwa miqat makani berbeda untuk setiap lokasi asal jamaah haji? Yuk, kita pelajari lebih dalam!
+                </p>
+            </div>
 
+            <!-- Card 2: Explanation -->
+            
+            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
+                <ul class="list-disc pl-6 text-xl text-gray-700">
+                    <li>Orang Makkah dan sekitarnya, miqat dari rumahnya masing-masing.</li>
+                    <li>Orang Madinah dan sekitarnya, miqat dari Dzulhulaifah (Bir Ali).</li>
+                    <li>Orang Mesir, Syam, Maghribi, dan yang sejajar, miqat dari Juhfah.</li>
+                    <li>Orang Indonesia, India, dan Yaman yang naik kapal laut, miqat dari Yalamlam. Adapun jamaah yang naik pesawat dan turun di Bandara King Abdul Aziz, Jeddah, maka miqat dari Jeddah.</li>
+                    <li>Orang Irak dan sekitarnya, miqat dari Dzatu ‘Irqin.</li>
+                    <li>Orang-orang yang datang dari Nejed dan negara-negara yang searah, miqat dari Qarnul Manazil.</li>
+                </ul>
+                
+                <p class="text-xl text-gray-700">
+                    😊 Memahami Miqat membantu memastikan ibadah haji dan umrah Anda sah dan diterima. 🌟
+                </p>
+            </div>
+    </div>
+        </main>
     <footer>
         <a href="./ihram dari miqat.html"><span>&larr;</span>Back </a>
     </footer>
