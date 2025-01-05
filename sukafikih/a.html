@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tertib</title>
+    <title>tawaf</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Toggle the visibility of the navbar on mobile
@@ -32,8 +32,8 @@
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            overflow: auto; /* Enable scrolling */
+            min-height: 100vh; /* Make sure body can grow beyond the viewport */
+            overflow-y: auto; /* Allow vertical scrolling */
         }
 
         /* Sidebar */
@@ -70,7 +70,7 @@
         .main-content {
             flex-grow: 1;
             background-color: #ffffff;
-            overflow-y: auto; /* Allow scroll inside main content */
+            overflow-y: auto; /* Allow vertical scroll in main content */
             margin-left: 250px;
             transition: margin-left 0.3s ease-in-out;
             position: relative;
@@ -214,6 +214,12 @@
                 font-size: 18px;
                 width: 100%;
             }
+
+            /* Full width for cards in mobile */
+            .card {
+                width: 100%; /* Ensure the card takes full width */
+                padding: 15px; /* Adjust padding for mobile */
+            }
         }
 
         /* Desktop Search Input */
@@ -224,30 +230,7 @@
                 width: 100%;
             }
         }
-        /* Mobile Card Adjustment */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 0 10px;
-                margin-bottom: 50px; /* Reduced space between cards and footer */
-            }
 
-            .materi-header {
-                margin-top: 20px;
-                font-size: 18px;
-            }
-
-            .container {
-                margin-top: 20px;
-            }
-
-            .w-full.max-w-4xl {
-                padding: 15px;
-                margin-bottom: 30px; /* Reduced space between card and footer */
-                border-radius: 15px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                margin-top: 20px;
-            }
-        }
         .card {
             background-color: #ffffff;
             padding: 20px;
@@ -261,6 +244,7 @@
             transform: translateY(-10px);
             box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
         }
+        
         .interactive-question {
             background-color: #f0f4f8;
             padding: 30px;
@@ -282,6 +266,7 @@
     width: 100%; /* Full width */
     z-index: 1000;
 }
+
 
         footer a {
             color: #0d72d8;
@@ -316,7 +301,6 @@
                 font-size: 20px; /* Adjust arrow size for mobile */
             }
         }
-
     </style>
 </head>
 <body>
@@ -328,7 +312,6 @@
         <a href="./umrah.html">Materi Umrah</a>
         <a href="./ayo latihan.html">Ayo Latihan</a>
     </div>
-
     <!-- Main Content -->
     <div class="main-content">
         <!-- Header -->
@@ -344,36 +327,35 @@
         </div>
 
         <!-- Materi Haji Content -->
-        <main class="flex-1 p-2">
-            <h1 class="text-2xl font-bold mb-2 text-center text-dark mt-6">Sa'i</h1>
-            <div class="w-full max-w-3xl mx-auto p-5 bg-white rounded-lg shadow-2xl card animate-text mb-6">
+        <main class="flex-1 p-">
+            <h1 class="text-3xl font-bold mb-8 mt-4 text-center text-dark animate-text">Sa'i: Apa Itu dan Mengapa Penting?</h1>
+        <div class="container mx-auto mt-8 p-4 mb-2">
+            <!-- Card 1: Question -->
+            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
                 <p class="text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
                     Sa’i adalah perjalanan yang penuh makna! 🌍 Bayangkan Anda berjalan bolak-balik antara bukit <span class="font-bold text-blue-600">Safa</span> dan <span class="font-bold text-blue-600">Marwah</span> sebanyak 7 kali. Ini adalah bagian dari ibadah yang mengingatkan kita pada perjuangan Hajar yang luar biasa dalam mencari air di padang pasir. 🌴
                 </p>
             </div>
-        
-            <!-- Key Points Section -->
-            <div class="w-full max-w-3xl mx-auto p-5 bg-white rounded-lg shadow-2xl card animate-text mb-6">
+
+            <!-- Card 2: Explanation -->
+            <div class="card bg-gradient-to-r from-green-50 to-blue-50 shadow-lg border border-green-200 rounded-lg p-6 mt-4">
+                <h3 class="text-2xl font-bold text-green-600 mb-2"></h3>
                 <h3 class="text-3xl font-semibold mb-4 text-center">Pelaksanaan sa'i</h3>
-                <ul class="list-disc pl-6 text-lg mb-6 space-y-2 text-2xl">
-                    <li>✅ Dilakukan setelah <span class="font-bold text-green-600">tawaf</span>, yang menandakan kesucian niat.</li>
-                    <li>✅ Dikerjakan dalam keadaan <span class="font-bold text-red-600">suci</span> dan menutup aurat dengan penuh khusyuk.</li>
-                    <li>✅ Harus selesai sebanyak 7 kali, dimulai dari <span class="font-bold text-blue-600">Safa</span> dan diakhiri di <span class="font-bold text-blue-600">Marwah</span>. Setiap perjalanan dari Safa ke Marwah dihitung sebagai satu kali.</li>
-                    <li>✅ Jangan lupa berdoa dengan penuh harapan di kedua bukit tersebut, karena di situlah banyak doa diterima. 🙏</li>
-                    <li>✅ Bagi laki-laki, disunahkan berlari-lari kecil 🏃‍♂️ di antara dua lampu hijau sebagai simbol kecepatan dan perjuangan.</li>
-                </ul>
+        <ul class="list-disc pl-6 text-xl lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
+            <li>✅ Dilakukan setelah <span class="font-bold text-green-600">tawaf</span>, yang menandakan kesucian niat.</li>
+            <li>✅ Dikerjakan dalam keadaan <span class="font-bold text-red-600">suci</span> dan menutup aurat dengan penuh khusyuk.</li>
+            <li>✅ Harus selesai sebanyak 7 kali, dimulai dari <span class="font-bold text-blue-600">Safa</span> dan diakhiri di <span class="font-bold text-blue-600">Marwah</span>. Setiap perjalanan dari Safa ke Marwah dihitung sebagai satu kali.</li>
+            <li>✅ Jangan lupa berdoa dengan penuh harapan di kedua bukit tersebut, karena di situlah banyak doa diterima. 🙏</li>
+            <li>✅ Bagi laki-laki, disunahkan berlari-lari kecil 🏃‍♂️ di antara dua lampu hijau sebagai simbol kecepatan dan perjuangan.</li>
+        </ul>
             </div>
-        
-            <!-- Final Reflection Section -->
-            <div class="w-full max-w-3xl mx-auto p-5 bg-white rounded-lg shadow-2xl card animate-text mb-6">
+            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
                 <p class="text-2xl lg:text-2xl xl:text-3xl font-medium text-center text-gray-800">
                     🌟 Dengan melakukan Sa’i, kita meneladani perjuangan Hajar yang tidak kenal lelah dalam mencari kehidupan bagi anaknya, Ismail. Ini adalah simbol pengorbanan dan ketekunan yang luar biasa! 💪
                 </p>
             </div>
-           
-        </main>
     </div>
-
+        </main>
     <footer>
         <a href="./rukun haji.html"><span>&larr;</span>Back </a>
     </footer>
