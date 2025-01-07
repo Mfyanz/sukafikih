@@ -69,6 +69,22 @@
             background-color: #2563eb;
         }
 
+        .exit-button {
+            padding: 12px 20px;
+            background-color: #e11d48;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .exit-button:hover {
+            background-color: #be123c;
+        }
+
         .quiz-container {
             padding: 30px;
             display: none;
@@ -219,23 +235,6 @@
             width: 20px;
             height: 20px;
         }
-
-        .exit-button {
-            padding: 12px 20px;
-            background-color: #e11d48;
-            color: white;
-            font-size: 1.2rem;
-            border-radius: 10px;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.3s;
-            margin-top: 20px;
-        }
-
-        .exit-button:hover {
-            background-color: #be123c;
-        }
-
     </style>
 </head>
 <body>
@@ -250,6 +249,7 @@
             <h2>Masukkan Nama Anda</h2>
             <input type="text" id="user-name" placeholder="Nama Anda" />
             <button class="start-button" onclick="startQuiz()">Mulai Kuis</button>
+            <a href="./menu2.html"<button class="exit-button" onclick="exitGame()">Keluar</button></a>
         </div>
 
         <!-- Quiz Container -->
