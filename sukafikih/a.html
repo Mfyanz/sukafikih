@@ -2,365 +2,429 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sa'i</title>
+    <meta name="viewport" content="width=device-width, initial-scale: 1.0">
+    <title>Evaluasi Haji dan Umrah</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Toggle the visibility of the navbar on mobile
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('active');
-        }
-
-        // Close the mobile menu if clicked outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('mobile-menu');
-            const button = document.querySelector('button[onclick="toggleMenu()"]');
-            if (!menu.contains(event.target) && !button.contains(event.target)) {
-                menu.classList.remove('active');
-            }
-        });
-    </script>
     <style>
-        * {
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #1e3a8a, #ffffff, #1e3a8a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Make sure body can grow beyond the viewport */
-            overflow-y: auto; /* Allow vertical scrolling */
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background-color: #d1d5db; /* Light gray background */
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            z-index: 1000;
-        }
-
-        .sidebar a {
-            text-decoration: none;
-            color: #4B5563; /* Dark gray text color */
-            font-size: 18px;
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .sidebar a.active {
-            color: #1F2937; /* Darker gray for active link */
-            font-weight: bold;
-        }
-
-        /* Main content */
-        .main-content {
-            flex-grow: 1;
-            background-color: #ffffff;
-            overflow-y: auto; /* Allow vertical scroll in main content */
-            margin-left: 250px;
-            transition: margin-left 0.3s ease-in-out;
-            position: relative;
-            margin-bottom: 50px; /* Reduced space between cards and footer */
-        }
-
-        .header {
-            background-color: #f5f5f5;
-            color: white;
-            padding: 5px 15px;
-            height: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            border-bottom-left-radius: 20px; /* Rounded bottom-left corner */
-            border-bottom-right-radius: 20px; /* Rounded bottom-right corner */
-        }
-
-        .header span.sukafikih {
-            font-size: 32px;
-            font-weight: bold;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-        }
-
-        .header .suka {
-            color: #0d72d8; /* Blue for "suka" */
-        }
-
-        .header .fikih {
-            color: #ffffff; /* White for "fikih" */
+            color: #333;
         }
 
         .container {
-            margin-top: 20px;
-            margin-bottom: 50px; /* Reduced space between cards and footer */
-        }
-
-        .courses {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .course {
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-            border-radius: 10px;
+            background: #fff;
+            border-radius: 20px;
             overflow: hidden;
-            text-align: center;
-            padding: 20px;
-            transition: all 0.3s;
-        }
-
-        .course:hover {
-            transform: scale(1.05);
-        }
-
-        .course img {
             width: 100%;
-            height: auto;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 15px;
+            max-width: 1000px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .course h3 {
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
-
-        .course p {
-            font-size: 14px;
-            color: #555;
-        }
-
-        .materi-header {
-            background-color: #b3d9ff;
-            padding: 10px;
-            border-radius: 10px;
+        .header {
+            background-color: #1e3a8a;
             text-align: center;
-            font-size: 20px;
+            padding: 30px 0;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .name-input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
+
+        .name-input-container input {
+            padding: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 2px solid #1e3a8a;
+            width: 60%;
+        }
+
+        .start-button {
+            padding: 12px 20px;
+            background-color: #1e3a8a;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .start-button:hover {
+            background-color: #2563eb;
+        }
+
+        .quiz-container {
+            padding: 30px;
+            display: none;
+        }
+
+        .question {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-button {
+            padding: 15px 20px;
+            background-color: #1e3a8a;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .option-button:hover {
+            background-color: #2563eb;
+            transform: translateY(-3px);
+        }
+
+        .option-button:active {
+            background-color: #1d4ed8;
+            transform: translateY(2px);
+        }
+
+        .timer {
+            font-size: 1.2rem;
             font-weight: bold;
-            margin-bottom: 15px;
+            color: #333;
         }
 
-        /* Mobile Menu */
-        @media (max-width: 768px) {
-            .header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px 15px;
-            }
-
-            .header span.sukafikih {
-                font-size: 28px;
-            }
-
-            .sidebar {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 100vh;
-                width: 250px;
-                background-color: #d1d5db;
-                transition: transform 0.3s ease-in-out;
-            }
-
-            .sidebar.active {
-                display: block;
-            }
-
-            .hamburger {
-                display: block;
-                cursor: pointer;
-                margin-left: auto;
-            }
-
-            .hamburger div {
-                width: 30px;
-                height: 5px;
-                background-color: #333;
-                margin: 5px 0;
-                transition: all 0.3s;
-            }
-
-            .main-content {
-                margin-left: 0;
-                margin-bottom: 50px; /* Reduced space between cards and footer */
-            }
-
-            .sidebar a {
-                padding: 15px;
-                font-size: 20px;
-            }
-
-            .sidebar input[type="search"] {
-                padding: 15px;
-                font-size: 18px;
-                width: 100%;
-            }
-
-            /* Full width for cards in mobile */
-            .card {
-                width: 100%; /* Ensure the card takes full width */
-                padding: 15px; /* Adjust padding for mobile */
-            }
+        .progress-map {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 40px;
         }
 
-        /* Desktop Search Input */
-        @media (min-width: 769px) {
-            .sidebar input[type="search"] {
-                padding: 15px;
-                font-size: 18px;
-                width: 100%;
-            }
+        .progress-circle {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
+            border: 2px solid #1e3a8a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #1e3a8a;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
 
-        .card {
-            background-color: #ffffff;
-            padding: 20px;
+        .progress-circle.completed {
+            background-color: #1e3a8a;
+            color: #fff;
+        }
+
+        .result-card {
+            background: #fff;
             border-radius: 15px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease-in-out;
+            padding: 30px;
+            display: none;
+            text-align: center;
+        }
+
+        .result-card h3 {
+            font-size: 2rem;
+            color: #1e3a8a;
+        }
+
+        .result-card p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .restart-button {
+            padding: 12px 20px;
+            background-color: #1e3a8a;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .restart-button:hover {
+            background-color: #2563eb;
+        }
+
+        .leaderboard {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .leaderboard h2 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
             margin-bottom: 20px;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .interactive-question {
-            background-color: #f0f4f8;
-            padding: 30px;
+        .leaderboard .table {
+            width: 100%;
             border-radius: 10px;
-            margin-bottom: 30px;
+            border-collapse: collapse;
+        }
+
+        .leaderboard .table th, .leaderboard .table td {
+            padding: 10px;
             text-align: center;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
         }
 
-        footer {
-    background-color: #f5f5f5;
-    padding: 15px;
-    text-align: center;
-    display: flex;
-    justify-content: flex-end; /* Align the text to the right */
-    position: fixed; /* Make footer fixed at the bottom */
-    bottom: 0; /* Ensure it stays at the bottom */
-    left: 0; /* Align it to the left */
-    width: 100%; /* Full width */
-    z-index: 1000;
-}
+        .leaderboard .table th {
+            background-color: #1e3a8a;
+            color: #fff;
+        }
 
-
-        footer a {
-            color: #0d72d8;
-            font-size: 18px;
+        .leaderboard .table .rank {
+            font-size: 1.2rem;
             font-weight: bold;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
         }
 
-        footer a:hover {
-            color: #0b5fb2;
-            transform: scale(1.05);
+        .leaderboard .table .name, .leaderboard .table .score {
+            font-size: 1rem;
         }
 
-        footer a span {
-            font-size: 24px; /* Larger arrow */
+        .leaderboard .table .empty {
+            font-style: italic;
+            color: #ccc;
         }
 
-        @media (max-width: 768px) {
-            footer {
-                padding: 10px;
-            }
-
-            footer a {
-                font-size: 16px;
-            }
-
-            footer a span {
-                font-size: 20px; /* Adjust arrow size for mobile */
-            }
+        .leaderboard .table img {
+            width: 20px;
+            height: 20px;
         }
+
+        .exit-button {
+            padding: 12px 20px;
+            background-color: #e11d48;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .exit-button:hover {
+            background-color: #be123c;
+        }
+
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar" id="mobile-menu">
-        <input type="search" placeholder="Search">
-        <a href="./menu2.html">Menu</a>
-        <a href="./haji.html">Materi Haji</a>
-        <a href="./umrah.html">Materi Umrah</a>
-        <a href="./ayo latihan.html">Ayo Latihan</a>
-    </div>
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Header -->
+
+    <div class="container">
         <div class="header">
-            <span class="sukafikih">
-                <span class="suka">suka</span><span class="fikih">fikih</span>
-            </span>
-            <button class="hamburger" onclick="toggleMenu()">
-                <div></div>
-                <div></div>
-                <div></div>
-            </button>
+            <h1>Evaluasi Haji dan Umrah</h1>
         </div>
 
-        <!-- Materi Haji Content -->
-        <main class="flex-1 p-">
-            <h1 <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6 mt-6">
-                ❓ <span class="font-bold text-blue-600">Tahukah Anda?</span> Apa itu <span class="font-bold text-green-600">Sa'i</span>? 
-            </p></h1>
-        <div class="container mx-auto mt-8 p-4 mb-2">
-            <!-- Card 1: Question -->
-            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
-                <p class="text-xl">
-                    🕌 Sa’i adalah perjalanan bolak-balik sebanyak 7 kali antara <span class="font-bold text-blue-600">bukit Safa</span> dan <span class="font-bold text-blue-600">bukit Marwah</span>. Berikut ketentuannya:
-                </p>
-            </div>
+        <!-- Name Input Section -->
+        <div id="name-input-container" class="name-input-container">
+            <h2>Masukkan Nama Anda</h2>
+            <input type="text" id="user-name" placeholder="Nama Anda" />
+            <button class="start-button" onclick="startQuiz()">Mulai Kuis</button>
+        </div>
 
-            <!-- Card 2: Explanation -->
-            <div class="card bg-gradient-to-r from-green-50 to-blue-50 shadow-lg border border-green-200 rounded-lg p-6 mt-4">
-                <h3 class="text-2xl font-bold text-green-600 mb-2"></h3>
-                <h3 class="text-3xl font-semibold mb-4 text-center">Pelaksanaan sa'i</h3>
-        <ul class="list-disc pl-6 text-xl text-gray-700">
-                <li>✅ Dilakukan setelah <span class="font-bold text-green-600">tawaf</span>.</li>
-                <li>✅ Dalam keadaan <span class="font-bold text-red-600">suci</span> dan menutup aurat.</li>
-                <li>✅ Harus lengkap sebanyak <span class="font-bold text-blue-600">7 kali</span>, dari <span class="font-bold text-blue-600">Safa</span> ke <span class="font-bold text-blue-600">Marwah</span> dihitung 1 kali.</li>
-                <li>✅ Dimulai di bukit <span class="font-bold text-blue-600">Safa</span> dan diakhiri di <span class="font-bold text-blue-600">Marwah</span>.</li>
-                <li>✅ Berdoa di kedua bukit dengan khusyuk. 🙏</li>
-                <li>✅ Bagi laki-laki, disunahkan <span class="font-bold text-green-600">berlari-lari kecil 🏃</span> di antara dua lampu hijau.</li>
-            </ul>
-            </div>
-            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
-                <p class="text-xl text-gray-700">
-                    🌟 Dengan melakukan Sa’i, kita meneladani perjuangan Hajar yang tidak kenal lelah dalam mencari kehidupan bagi anaknya, Ismail. Ini adalah simbol pengorbanan dan ketekunan yang luar biasa! 💪
-                </p>
-            </div>
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="quiz-container">
+            <div id="timer" class="timer"></div>
+            <div id="progress-map" class="progress-map"></div>
+            <div id="question-container"></div>
+        </div>
+
+        <!-- Result Card -->
+        <div id="result-container" class="result-card">
+            <h3>Evaluasi Selesai!</h3>
+            <p id="score-message"></p>
+            <button class="restart-button" onclick="restartQuiz()">Mulai Lagi</button>
+            <button class="restart-button" onclick="viewLeaderboard()">Lihat Peringkat</button>
+        </div>
+
+        <!-- Leaderboard -->
+        <div id="leaderboard" class="leaderboard">
+            <h2>Peringkat Global</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Peringkat</th>
+                        <th>Nama</th>
+                        <th>Skor</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-list">
+                    <!-- Peringkat user akan ditampilkan di sini -->
+                </tbody>
+            </table>
+            <button class="exit-button" onclick="exitGame()">Keluar dari Game</button>
+        </div>
     </div>
-        </main>
-    <footer>
-        <a href="./rukun haji.html"><span>&larr;</span>Back </a>
-    </footer>
+
+    <script>
+        const questions = [
+            { question: "Apa saja rukun haji?", options: ["Ihram, wukuf di Arafah, thawaf ifadah, sai, tahallul, tertib", "Ihram, mabit di Muzdalifah, melontar jumrah", "Shalat, zakat, puasa, haji", "Thawaf qudum, mabit di Mina, dam"], correct: 0 },
+            { question: "Apa perbedaan haji dan umrah?", options: ["Haji wajib, umrah sunnah", "Haji dilakukan pada waktu tertentu, umrah kapan saja", "Haji hanya thawaf, umrah hanya sai", "Haji tanpa dam, umrah dengan dam"], correct: 1 },
+            { question: "Apa yang dimaksud dengan ihram dalam ibadah haji?", options: ["Pakaian khusus yang dikenakan saat haji", "Mandi besar sebelum berangkat ke Mekah", "Menahan diri dari hal-hal tertentu saat haji", "Perjalanan menuju tanah suci"], correct: 2 },
+            { question: "Apa itu wukuf di Arafah?", options: ["Shalat di masjid Arafah", "Menginap di tenda di Arafah", "Berdoa dan memohon ampunan di Arafah", "Melempar jumrah"], correct: 2 },
+            { question: "Apa yang dimaksud dengan thawaf ifadah?", options: ["Thawaf pertama kali setelah tiba di Makkah", "Thawaf yang dilakukan setelah wukuf di Arafah", "Thawaf untuk melambangkan ketaatan kepada Allah", "Thawaf saat tiba di Madinah"], correct: 1 },
+            { question: "Berapa kali jumlah sai dalam ibadah haji?", options: ["5 kali", "7 kali", "3 kali", "9 kali"], correct: 1 },
+            { question: "Apa itu tahallul?", options: ["Memotong rambut setelah selesai haji", "Membuang batu jumrah", "Bersujud di tempat tertentu", "Membaca talbiyah"], correct: 0 },
+            { question: "Kapan haji diwajibkan bagi seorang Muslim?", options: ["Setelah menikah", "Setelah mampu secara finansial dan fisik", "Saat berusia 50 tahun", "Saat memiliki anak"], correct: 1 },
+            { question: "Apa yang dimaksud dengan dam dalam ibadah haji?", options: ["Denda yang harus dibayar jika melakukan pelanggaran", "Sewa hewan kurban", "Zakat harta haji", "Proses mencuci pakaian haji"], correct: 0 },
+            { question: "Apa itu umrah?", options: ["Ibadah haji di luar musim haji", "Ibadah yang lebih singkat dibandingkan haji", "Menjalankan seluruh rukun haji", "Perjalanan spiritual ke Madinah"], correct: 1 },
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timer = 60; // Time limit in seconds
+        let timerInterval;
+        const leaderboard = [];
+
+        let userName = "";
+
+        // Start Quiz after Name input
+        function startQuiz() {
+            userName = document.getElementById("user-name").value.trim();
+            if (userName === "") {
+                alert("Silakan masukkan nama Anda");
+                return;
+            }
+
+            document.getElementById("name-input-container").style.display = "none";
+            document.getElementById("quiz-container").style.display = "block";
+            startTimer();
+            displayQuestion();
+        }
+
+        // Display Question and Options
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            const questionContainer = document.getElementById("question-container");
+            questionContainer.innerHTML = `
+                <div class="question">${question.question}</div>
+                <div class="options-container">
+                    ${question.options.map((option, index) => {
+                        return `
+                            <button class="option-button" onclick="checkAnswer(${index}, ${question.correct})">${option}</button>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+            updateProgressMap();
+        }
+
+        // Check Answer
+        function checkAnswer(selectedIndex, correctIndex) {
+            const buttons = document.querySelectorAll(".option-button");
+            if (selectedIndex === correctIndex) {
+                score += 5;
+                buttons[selectedIndex].style.backgroundColor = "#22c55e"; // Green for correct
+            } else {
+                buttons[selectedIndex].style.backgroundColor = "#ef4444"; // Red for incorrect
+                buttons[correctIndex].style.backgroundColor = "#22c55e"; // Green for correct
+            }
+
+            setTimeout(nextQuestion, 1000);
+        }
+
+        // Next Question
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                endQuiz();
+            }
+        }
+
+        // Start Timer
+        function startTimer() {
+            timerInterval = setInterval(function () {
+                document.getElementById("timer").textContent = `Waktu: ${timer} detik`;
+                if (timer <= 0) {
+                    clearInterval(timerInterval);
+                    endQuiz();
+                } else {
+                    timer--;
+                }
+            }, 1000);
+        }
+
+        // End Quiz and Show Result
+        function endQuiz() {
+            clearInterval(timerInterval);
+            document.getElementById("quiz-container").style.display = "none";
+            document.getElementById("result-container").style.display = "block";
+            document.getElementById("score-message").textContent = `Skor Anda: ${score}`;
+            addLeaderboardEntry();
+        }
+
+        // Add to leaderboard
+        function addLeaderboardEntry() {
+            leaderboard.push({ name: userName, score });
+            leaderboard.sort((a, b) => b.score - a.score);
+            updateLeaderboard();
+        }
+
+        // Update leaderboard
+        function updateLeaderboard() {
+            const leaderboardList = document.getElementById("leaderboard-list");
+            leaderboardList.innerHTML = leaderboard.map((entry, index) => {
+                return `
+                    <tr>
+                        <td class="rank">${index + 1}</td>
+                        <td class="name">${entry.name}</td>
+                        <td class="score">${entry.score}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // View Leaderboard
+        function viewLeaderboard() {
+            document.getElementById("leaderboard").style.display = "block";
+        }
+
+        // Restart Quiz
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            timer = 60;
+            document.getElementById("result-container").style.display = "none";
+            document.getElementById("name-input-container").style.display = "block";
+            document.getElementById("user-name").value = "";
+        }
+
+        // Exit Game
+        function exitGame() {
+            window.location.reload();
+        }
+    </script>
 </body>
 </html>
