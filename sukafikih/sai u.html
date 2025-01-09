@@ -5,105 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sa'i</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Toggle the visibility of the navbar on mobile
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('active');
-        }
-
-        // Close the mobile menu if clicked outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('mobile-menu');
-            const button = document.querySelector('button[onclick="toggleMenu()"]');
-            if (!menu.contains(event.target) && !button.contains(event.target)) {
-                menu.classList.remove('active');
-            }
-        });
-    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Make sure body can grow beyond the viewport */
-            overflow-y: auto; /* Allow vertical scrolling */
+            min-height: 100vh;
+            background-color: #f8fafc;
+            
         }
 
-        /* Sidebar */
         .sidebar {
-            width: 250px;
-            background-color: #d1d5db; /* Light gray background */
-            padding: 20px;
+            width: 280px;
+            background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 1rem;
             position: fixed;
             top: 0;
             left: 0;
             height: 100vh;
-            z-index: 1000;
+            z-index: 50;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar .search-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            width: 100%;
+            outline: none;
+        }
+
+        .sidebar .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .sidebar a {
+            color: white;
             text-decoration: none;
-            color: #4B5563; /* Dark gray text color */
-            font-size: 18px;
-            padding: 10px 0;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.75rem;
         }
 
-        .sidebar a.active {
-            color: #1F2937; /* Darker gray for active link */
-            font-weight: bold;
-        }
-
-        /* Main content */
-        .main-content {
-            flex-grow: 1;
-            background-color: #ffffff;
-            overflow-y: auto; /* Allow vertical scroll in main content */
-            margin-left: 250px;
-            transition: margin-left 0.3s ease-in-out;
-            position: relative;
-            margin-bottom: 50px; /* Reduced space between cards and footer */
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
         }
 
         .header {
-            background-color: #f5f5f5;
-            color: white;
-            padding: 5px 15px;
-            height: 80px;
+            background: white;
+            padding: 1rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            border-bottom-left-radius: 20px; /* Rounded bottom-left corner */
-            border-bottom-right-radius: 20px; /* Rounded bottom-right corner */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 40;
         }
 
-        .header span.sukafikih {
-            font-size: 32px;
-            font-weight: bold;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
         }
 
-        .header .suka {
-            color: #0d72d8; /* Blue for "suka" */
+        .logo .suka {
+            color: #2563eb;
         }
 
-        .header .fikih {
-            color: #ffffff; /* White for "fikih" */
+        .logo .fikih {
+            color: #495683;
         }
 
+        .menu-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background: #f3f4f6;
+        }
         .container {
             margin-top: 20px;
             margin-bottom: 50px; /* Reduced space between cards and footer */
@@ -146,91 +161,61 @@
             font-size: 14px;
             color: #555;
         }
-
-        .materi-header {
-            background-color: #b3d9ff;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
+        footer {
+            background: white;
+            padding: 1rem;
+            margin-top: auto;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Mobile Menu */
-        @media (max-width: 768px) {
-            .header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px 15px;
-            }
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2563eb;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
 
-            .header span.sukafikih {
-                font-size: 28px;
-            }
+        .back-button:hover {
+            transform: translateX(-5px);
+        }
 
+        @media (min-width: 1024px) {
             .sidebar {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 100vh;
-                width: 250px;
-                background-color: #d1d5db;
-                transition: transform 0.3s ease-in-out;
-            }
-
-            .sidebar.active {
-                display: block;
-            }
-
-            .hamburger {
-                display: block;
-                cursor: pointer;
-                margin-left: auto;
-            }
-
-            .hamburger div {
-                width: 30px;
-                height: 5px;
-                background-color: #333;
-                margin: 5px 0;
-                transition: all 0.3s;
+                transform: translateX(0);
             }
 
             .main-content {
+                margin-left: 280px;
+            }
+
+            .menu-button {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .main-content {
                 margin-left: 0;
-                margin-bottom: 50px; /* Reduced space between cards and footer */
-            }
-
-            .sidebar a {
-                padding: 15px;
-                font-size: 20px;
-            }
-
-            .sidebar input[type="search"] {
-                padding: 15px;
-                font-size: 18px;
-                width: 100%;
-            }
-
-            /* Full width for cards in mobile */
-            .card {
-                width: 100%; /* Ensure the card takes full width */
-                padding: 15px; /* Adjust padding for mobile */
             }
         }
 
-        /* Desktop Search Input */
-        @media (min-width: 769px) {
-            .sidebar input[type="search"] {
-                padding: 15px;
-                font-size: 18px;
-                width: 100%;
-            }
+        .section-title {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            margin: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
         }
-
         .card {
             background-color: #ffffff;
             padding: 20px;
@@ -253,80 +238,57 @@
             text-align: center;
             box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         }
-
-        footer {
-    background-color: #f5f5f5;
-    padding: 15px;
-    text-align: center;
-    display: flex;
-    justify-content: flex-end; /* Align the text to the right */
-    position: fixed; /* Make footer fixed at the bottom */
-    bottom: 0; /* Ensure it stays at the bottom */
-    left: 0; /* Align it to the left */
-    width: 100%; /* Full width */
-    z-index: 1000;
-}
-
-
-        footer a {
-            color: #0d72d8;
-            font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-
-        footer a:hover {
-            color: #0b5fb2;
-            transform: scale(1.05);
-        }
-
-        footer a span {
-            font-size: 24px; /* Larger arrow */
-        }
-
-        @media (max-width: 768px) {
-            footer {
-                padding: 10px;
-            }
-
-            footer a {
-                font-size: 16px;
-            }
-
-            footer a span {
-                font-size: 20px; /* Adjust arrow size for mobile */
-            }
-        }
     </style>
 </head>
 <body>
     <!-- Sidebar -->
-    <div class="sidebar" id="mobile-menu">
-        <input type="search" placeholder="Search">
-        <a href="./menu2.html">Menu</a>
-        <a href="./haji.html">Materi Haji</a>
-        <a href="./umrah.html">Materi Umrah</a>
-        <a href="./ayo latihan.html">Ayo Latihan</a>
+    <div class="sidebar" id="sidebar">
+        <div class="search-box">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 text-white">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="search" placeholder="Cari materi...">
+        </div>
+        <a href="./menu2.html" class="animate__animated animate__fadeInLeft">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            Menu
+        </a>
+        <a href="./haji.html" class="animate__animated animate__fadeInLeft" style="animation-delay: 0.1s;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            Materi Haji
+        </a>
+        <a href="./haji.html" class="animate__animated animate__fadeInLeft" style="animation-delay: 0.1s;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            Materi umrah
+        </a>
+        <a href="./haji.html" class="animate__animated animate__fadeInLeft" style="animation-delay: 0.1s;">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            📚 Ayo Latihan
+        </a>
+        <!-- Add other menu items similarly -->
     </div>
-    <!-- Main Content -->
+
     <div class="main-content">
         <!-- Header -->
-        <div class="header">
-            <span class="sukafikih">
+        <header class="header">
+            <div class="logo">
                 <span class="suka">suka</span><span class="fikih">fikih</span>
-            </span>
-            <button class="hamburger" onclick="toggleMenu()">
-                <div></div>
-                <div></div>
-                <div></div>
+            </div>
+            <button class="menu-button" onclick="toggleSidebar()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
             </button>
-        </div>
+        </header>
 
-        <!-- Materi Haji Content -->
+        <!-- Section Title -->
         <main class="flex-1 p-">
             <h1 <p class="text-xl lg:text-3xl xl:text-4xl font-medium text-gray-800 text-center leading-relaxed mb-6 mt-6">
                 ❓ <span class="font-bold text-blue-600">Tahukah Anda?</span> Apa itu <span class="font-bold text-green-600">Sa'i</span>? 
@@ -359,8 +321,46 @@
             </div>
     </div>
         </main>
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <a href="./rukun umroh.html"><span>&larr;</span>Back </a>
+        <p class="font-semibold text-gray-800">Haji & Umrah</p>
+        <a href="./rukun umroh.html" class="back-button">
+            <span>Kembali</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </a>
     </footer>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuButton = document.querySelector('.menu-button');
+            if (!sidebar.contains(event.target) && !menuButton.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Add animation classes to cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__fadeIn');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.material-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
