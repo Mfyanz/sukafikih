@@ -122,15 +122,27 @@
         .animate-fade-in {
             animation: fadeIn 0.6s ease-out forwards;
         }
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .logo .suka {
+            color: #2563eb;
+        }
+
+        .logo .fikih {
+            color: #495683;
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="fixed top-0 left-0 right-0 glass-effect z-50">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-            <h1 class="text-3xl font-bold logo-text">
-                suka<span>fikih</span>
-            </h1>
+            <div class="logo">
+                <span class="suka">suka</span><span class="fikih">fikih</span>
+            </div>
             <a href="../index.html" class="exit-button flex items-center space-x-2">
                 <span class="font-medium">Exit</span>
                 <i class="fas fa-sign-out-alt text-xl"></i>
