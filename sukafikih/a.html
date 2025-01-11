@@ -2,275 +2,315 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale: 1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evaluasi Haji dan Umrah</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #1e3a8a, #ffffff, #1e3a8a);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-            color: #333;
         }
 
         .container {
-            background: #fff;
-            border-radius: 20px;
-            overflow: hidden;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
             width: 100%;
             max-width: 1000px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
         .header {
-            background-color: #1e3a8a;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            padding: 2.5rem 2rem;
             text-align: center;
-            padding: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/api/placeholder/1000/300') center/cover;
+            opacity: 0.1;
         }
 
         .header h1 {
             font-size: 2.5rem;
             color: white;
+            font-weight: 700;
+            position: relative;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .name-input-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 50px;
+            padding: 3rem 2rem;
+            text-align: center;
         }
 
         .name-input-container input {
-            padding: 10px;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            border: 2px solid #1e3a8a;
-            width: 60%;
+            width: 100%;
+            max-width: 400px;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
         }
 
-        .start-button {
-            padding: 12px 20px;
-            background-color: #1e3a8a;
-            color: white;
-            font-size: 1.2rem;
-            border-radius: 10px;
+        .name-input-container input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn {
+            padding: 0.875rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.3s ease;
             cursor: pointer;
-            border: none;
-            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            min-width: 160px;
         }
 
-        .start-button:hover {
-            background-color: #2563eb;
-        }
-
-        .exit-button {
-            padding: 12px 20px;
-            background-color: #e11d48;
+        .btn-primary {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
             color: white;
-            font-size: 1.2rem;
-            border-radius: 10px;
-            cursor: pointer;
             border: none;
-            transition: background-color 0.3s;
-            margin-top: 20px;
         }
 
-        .exit-button:hover {
-            background-color: #be123c;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            color: white;
+            border: none;
+            margin-top: 1rem;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
         }
 
         .quiz-container {
-            padding: 30px;
-            display: none;
-        }
-
-        .question {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-        }
-
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .option-button {
-            padding: 15px 20px;
-            background-color: #1e3a8a;
-            color: white;
-            font-size: 1.1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .option-button:hover {
-            background-color: #2563eb;
-            transform: translateY(-3px);
-        }
-
-        .option-button:active {
-            background-color: #1d4ed8;
-            transform: translateY(2px);
+            padding: 2rem;
         }
 
         .timer {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #333;
+            background: #f8fafc;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #1e40af;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .progress-map {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-            margin-bottom: 40px;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
         .progress-circle {
-            width: 40px;
-            height: 40px;
-            background-color: #fff;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            border: 2px solid #1e3a8a;
+            border: 2px solid #3b82f6;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #1e3a8a;
-            font-weight: bold;
-            transition: background-color 0.3s;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
 
         .progress-circle.completed {
-            background-color: #1e3a8a;
-            color: #fff;
+            background: #3b82f6;
+            color: white;
+        }
+
+        .question {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .options-container {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option-button {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            color: #1e293b;
+            transition: all 0.3s ease;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .option-button:hover {
+            border-color: #3b82f6;
+            background: #f8fafc;
         }
 
         .result-card {
-            background: #fff;
-            border-radius: 15px;
-            padding: 30px;
-            display: none;
+            padding: 3rem 2rem;
             text-align: center;
         }
 
         .result-card h3 {
             font-size: 2rem;
-            color: #1e3a8a;
-        }
-
-        .result-card p {
-            font-size: 1.2rem;
-            color: #333;
-        }
-
-        .restart-button {
-            padding: 12px 20px;
-            background-color: #1e3a8a;
-            color: white;
-            font-size: 1.2rem;
-            border-radius: 10px;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.3s;
-        }
-
-        .restart-button:hover {
-            background-color: #2563eb;
+            color: #1e40af;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .leaderboard {
-            display: none;
-            padding: 20px;
-            text-align: center;
+            padding: 2rem;
         }
 
-        .leaderboard h2 {
-            font-size: 1.5rem;
-            color: #1e3a8a;
-            margin-bottom: 20px;
-        }
-
-        .leaderboard .table {
+        .leaderboard table {
             width: 100%;
-            border-radius: 10px;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 1.5rem;
         }
 
-        .leaderboard .table th, .leaderboard .table td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ddd;
+        .leaderboard th {
+            background: #f8fafc;
+            padding: 1rem;
+            font-weight: 600;
+            color: #1e293b;
+            text-align: left;
         }
 
-        .leaderboard .table th {
-            background-color: #1e3a8a;
-            color: #fff;
+        .leaderboard td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .leaderboard .table .rank {
-            font-size: 1.2rem;
-            font-weight: bold;
+        .leaderboard tr:last-child td {
+            border-bottom: none;
         }
 
-        .leaderboard .table .name, .leaderboard .table .score {
-            font-size: 1rem;
-        }
+        @media (max-width: 640px) {
+            .container {
+                margin: 1rem;
+                border-radius: 16px;
+            }
 
-        .leaderboard .table .empty {
-            font-style: italic;
-            color: #ccc;
-        }
+            .header {
+                padding: 1.5rem 1rem;
+            }
 
-        .leaderboard .table img {
-            width: 20px;
-            height: 20px;
+            .header h1 {
+                font-size: 1.75rem;
+            }
+
+            .name-input-container,
+            .quiz-container,
+            .result-card,
+            .leaderboard {
+                padding: 1.5rem 1rem;
+            }
+
+            .question {
+                font-size: 1.1rem;
+            }
+
+            .options-container {
+                gap: 0.75rem;
+            }
+
+            .option-button {
+                padding: 0.875rem 1.25rem;
+            }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
         <div class="header">
             <h1>Evaluasi Haji dan Umrah</h1>
         </div>
 
-        <!-- Name Input Section -->
         <div id="name-input-container" class="name-input-container">
-            <h2>Masukkan Nama Anda</h2>
-            <input type="text" id="user-name" placeholder="Nama Anda" />
-            <button class="start-button" onclick="startQuiz()">Mulai Kuis</button>
-            <a href="./menu2.html"<button class="exit-button" onclick="exitGame()">Keluar</button></a>
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Masukkan Nama Anda</h2>
+            <input type="text" id="user-name" placeholder="Nama Anda" class="focus:outline-none" />
+            <button class="btn btn-primary" onclick="startQuiz()">
+                <i class="fas fa-play"></i>
+                Mulai Kuis
+            </button>
+            <a href="./menu2.html">
+                <button class="btn btn-danger">
+                    <i class="fas fa-times"></i>
+                    Keluar
+                </button>
+            </a>
         </div>
 
-        <!-- Quiz Container -->
-        <div id="quiz-container" class="quiz-container">
-            <div id="timer" class="timer"></div>
+        <div id="quiz-container" class="quiz-container" style="display: none;">
+            <div id="timer" class="timer">
+                <i class="fas fa-clock"></i>
+                <span>60 detik</span>
+            </div>
             <div id="progress-map" class="progress-map"></div>
             <div id="question-container"></div>
         </div>
 
-        <!-- Result Card -->
-        <div id="result-container" class="result-card">
+        <div id="result-container" class="result-card" style="display: none;">
             <h3>Evaluasi Selesai!</h3>
-            <p id="score-message"></p>
-            <button class="restart-button" onclick="restartQuiz()">Mulai Lagi</button>
-            <button class="restart-button" onclick="viewLeaderboard()">Lihat Peringkat</button>
+            <p id="score-message" class="text-xl mb-6"></p>
+            <button class="btn btn-primary mb-3" onclick="restartQuiz()">
+                <i class="fas fa-redo"></i>
+                Mulai Lagi
+            </button>
+            <button class="btn btn-primary" onclick="viewLeaderboard()">
+                <i class="fas fa-trophy"></i>
+                Lihat Peringkat
+            </button>
         </div>
 
-        <!-- Leaderboard -->
-        <div id="leaderboard" class="leaderboard">
-            <h2>Peringkat Global</h2>
-            <table class="table">
+        <div id="leaderboard" class="leaderboard" style="display: none;">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Peringkat Global</h2>
+            <table>
                 <thead>
                     <tr>
                         <th>Peringkat</th>
@@ -278,15 +318,17 @@
                         <th>Skor</th>
                     </tr>
                 </thead>
-                <tbody id="leaderboard-list">
-                    <!-- Peringkat user akan ditampilkan di sini -->
-                </tbody>
+                <tbody id="leaderboard-list"></tbody>
             </table>
-            <button class="exit-button" onclick="exitGame()">Keluar dari Game</button>
+            <button class="btn btn-danger mt-6" onclick="exitGame()">
+                <i class="fas fa-sign-out-alt"></i>
+                Keluar dari Game
+            </button>
         </div>
     </div>
 
     <script>
+        // Your existing JavaScript code remains the same
         const questions = [
             { question: "Apa saja rukun haji?", options: ["Ihram, wukuf di Arafah, thawaf ifadah, sai, tahallul, tertib", "Ihram, mabit di Muzdalifah, melontar jumrah", "Shalat, zakat, puasa, haji", "Thawaf qudum, mabit di Mina, dam"], correct: 0 },
             { question: "Apa perbedaan haji dan umrah?", options: ["Haji wajib, umrah sunnah", "Haji dilakukan pada waktu tertentu, umrah kapan saja", "Haji hanya thawaf, umrah hanya sai", "Haji tanpa dam, umrah dengan dam"], correct: 1 },
@@ -302,13 +344,20 @@
 
         let currentQuestionIndex = 0;
         let score = 0;
-        let timer = 60; // Time limit in seconds
+        let timer = 60;
         let timerInterval;
         const leaderboard = [];
-
         let userName = "";
 
-        // Start Quiz after Name input
+        function updateProgressMap() {
+            const progressMap = document.getElementById("progress-map");
+            progressMap.innerHTML = questions.map((_, index) => `
+                <div class="progress-circle ${index < currentQuestionIndex ? 'completed' : ''}">
+                    ${index + 1}
+                </div>
+            `).join('');
+        }
+
         function startQuiz() {
             userName = document.getElementById("user-name").value.trim();
             if (userName === "") {
@@ -321,8 +370,6 @@
             startTimer();
             displayQuestion();
         }
-
-        // Display Question and Options
         function displayQuestion() {
             const question = questions[currentQuestionIndex];
             const questionContainer = document.getElementById("question-container");
