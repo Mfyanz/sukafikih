@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tawaf</title>
+    <title>Sa'i</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
@@ -119,48 +119,42 @@
         .menu-button:hover {
             background: #f3f4f6;
         }
-        .container {
-            margin-top: 20px;
-            margin-bottom: 50px; /* Reduced space between cards and footer */
-        }
 
-        .courses {
+        .card {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
             padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            margin-bottom: 40px; /* Increased margin-bottom */
         }
 
-        .course {
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            text-align: center;
-            padding: 20px;
-            transition: all 0.3s;
+        .card:hover {
+            transform: translateY(-5px);
         }
 
-        .course:hover {
-            transform: scale(1.05);
+        .highlight {
+            font-weight: bold;
+            color: #1D4ED8;
         }
 
-        .course img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 15px;
+        .list-item {
+            margin-bottom: 12px;
+            padding-left: 25px; /* Added padding to the left */
+            position: relative;
         }
 
-        .course h3 {
-            font-size: 20px;
-            margin-bottom: 5px;
+        .list-item::before {
+            content: '✔';
+            color: #4CAF50;
+            position: absolute;
+            left: 0; /* Align the checkmark to the left */
+            top: 0;
+            font-size: 20px; /* Adjust size of checkmark */
         }
 
-        .course p {
-            font-size: 14px;
-            color: #555;
-        }
+
         footer {
             background: white;
             padding: 1rem;
@@ -216,96 +210,131 @@
             font-weight: 600;
             box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
         }
-        .card {
-            background-color: #ffffff;
-            padding: 20px;
+        .animation-card {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .sai-container {
+            position: relative;
+            height: 300px;
+            background: linear-gradient(to right, #EFF6FF, #FFFFFF, #EFF6FF);
             border-radius: 15px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease-in-out;
-            margin-bottom: 20px;
+            margin: 2rem 0;
+            overflow: hidden;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        .hills {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
         }
-        
-        .interactive-question {
-            background-color: #f0f4f8;
-            padding: 30px;
+
+        .hill {
+            width: 150px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, #BFDBFE, transparent);
+            padding: 1rem;
             border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         }
-        .animation-container {
-    width: 100%;
-    max-width: 500px;
-    margin: 20px auto;
-    aspect-ratio: 1;
-    position: relative;
-    display: none;
-    background: #f8f9fa;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
 
-.animation-container.show {
-    display: block;
-}
+        .hill-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563EB;
+            margin-bottom: 0.5rem;
+        }
 
-.kaaba {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
-    border: 2px solid gold;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
+        .path {
+            position: absolute;
+            top: 50%;
+            left: 75px;
+            right: 75px;
+            height: 4px;
+            background: #93C5FD;
+            transform: translateY(-50%);
+        }
 
-.pilgrim {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: white;
-    border-radius: 50%;
-    transform-origin: center;
-}
+        .pilgrim {
+            position: absolute;
+            top: 50%;
+            left: 75px;
+            transform: translate(-50%, -50%);
+            transition: left 0.5s ease;
+        }
 
-.show-animation-btn {
-    display: block;
-    margin: 20px auto;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
-}
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
 
-.show-animation-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
-}
+        .stat-box {
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
 
-.pilgrim::after {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 10px;
-    background: #f4d03f;
-    border-radius: 50%;
-}
+        .show-animation-btn {
+            display: block;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+        }
+
+        .show-animation-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stat-box {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .sai-container {
+                height: 200px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -358,44 +387,93 @@
 
         <!-- Section Title -->
         <main class="flex-1 p-">
-            <h1 class="text-3xl font-bold mb-1 text-center text-dark mt-8">Tawaf</h1>
+            <h1 class="text-3xl font-bold mb-8 mt-4 text-center text-dark animate-text mt-6">Sa'i: Apa Itu dan Mengapa Penting?</h1>
         <div class="container mx-auto mt-8 p-4 mb-2">
             <!-- Card 1: Question -->
             <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
-                <h3 class="text-2xl font-bold text-blue-600 mb-2">❓ Pernahkah kamu membayangkan mengelilingi Ka'bah?</h3>
-                <p class="text-lg text-gray-700">
-                    Ya, itulah yang disebut dengan Tawaf. Apakah kamu tahu apa yang perlu kamu lakukan saat Tawaf? 
-                    Simak penjelasannya di bawah ini.
+                <p class="text-xl text-gray-700">
+                    Sa’i adalah perjalanan yang penuh makna! 🌍 Bayangkan Anda berjalan bolak-balik antara bukit <span class="font-bold text-blue-600">Safa</span> dan <span class="font-bold text-blue-600">Marwah</span> sebanyak 7 kali. Ini adalah bagian dari ibadah yang mengingatkan kita pada perjuangan Hajar yang luar biasa dalam mencari air di padang pasir. 🌴
                 </p>
             </div>
 
             <!-- Card 2: Explanation -->
-            <div class="card bg-gradient-to-r from-green-50 to-blue-50 shadow-lg border border-green-200 rounded-lg p-6">
+            <div class="card bg-gradient-to-r from-green-50 to-blue-50 shadow-lg border border-green-200 rounded-lg p-6 mt-4">
                 <h3 class="text-2xl font-bold text-green-600 mb-2"></h3>
-                <p class="text-lg text-gray-700">
-                    Tawaf adalah kegiatan mengelilingi Ka'bah sebanyak tujuh kali dengan posisi Ka'bah di sebelah kiri. 
-                    <span class="font-bold text-blue-600">Tawaf dimulai dan diakhiri di tempat yang sejajar dengan Hajar Aswad.</span>
-                    <span class="font-bold text-blue-600">Setiap putaran, jamaah akan berdoa dan memohon kepada Allah.</span>
-                    Jadi, mengapa Tawaf begitu penting dalam ibadah Haji? Tawaf menjadi simbol ketundukan dan penghambaan kepada Allah. 
-                    Ini adalah momen spiritual yang sangat berarti.
+                <h3 class="text-2xl font-semibold mb-4 text-center">Pelaksanaan sa'i</h3>
+        <ul class="list-disc pl-6 text-xl text-gray-700">
+            <li>✅ Dilakukan setelah <span class="font-bold text-green-600">tawaf</span>, yang menandakan kesucian niat.</li>
+            <li>✅ Dikerjakan dalam keadaan <span class="font-bold text-red-600">suci</span> dan menutup aurat dengan penuh khusyuk.</li>
+            <li>✅ Harus selesai sebanyak 7 kali, dimulai dari <span class="font-bold text-blue-600">Safa</span> dan diakhiri di <span class="font-bold text-blue-600">Marwah</span>. Setiap perjalanan dari Safa ke Marwah dihitung sebagai satu kali.</li>
+            <li>✅ Jangan lupa berdoa dengan penuh harapan di kedua bukit tersebut, karena di situlah banyak doa diterima. 🙏</li>
+            <li>✅ Bagi laki-laki, disunahkan berlari-lari kecil 🏃‍♂️ di antara dua lampu hijau sebagai simbol kecepatan dan perjuangan.</li>
+        </ul>
+            </div>
+            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
+                <p class="text-xl text-gray-700">
+                    🌟 Dengan melakukan Sa’i, kita meneladani perjuangan Hajar yang tidak kenal lelah dalam mencari kehidupan bagi anaknya, Ismail. Ini adalah simbol pengorbanan dan ketekunan yang luar biasa! 💪
                 </p>
             </div>
-            <div class="container mx-auto mt-2 p-4 mb-2">
-                <!-- Previous cards remain the same -->
+            <button class="show-animation-btn" onclick="toggleAnimation()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 inline-block mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Lihat Simulasi Sa'i
+            </button>
+            <div id="animationCard" class="animation-card p-4 ">
+                <h2 class="text-2xl font-bold text-center text-blue-600 mb-4">Simulasi Sa'i</h2>
                 
-                <!-- Add new button and animation container -->
-                <button class="show-animation-btn" onclick="toggleAnimation()">
-                    Lihat Animasi Tawaf
-                </button>
-            
-                <div class="animation-container" id="animationContainer">
-                    <div class="kaaba"></div>
+                <div class="sai-container">
+                    <div class="hills">
+                        <div class="hill">
+                            <div class="hill-name">Safa</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                        </div>
+                        <div class="hill">
+                            <div class="hill-name">Marwah</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="path"></div>
+                    <div class="pilgrim">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
                 </div>
+        
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-value" id="roundCount">0/7</div>
+                        <div class="stat-label">Putaran</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">450m</div>
+                        <div class="stat-label">Jarak per Putaran</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="status">Safa</div>
+                        <div class="stat-label">Posisi</div>
+                    </div>
+                </div>
+        
+                <button class="show-animation-btn" id="startBtn" onclick="startAnimation()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 inline-block mr-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    </svg>
+                    Mulai Simulasi
+                </button>
             </div>
+        
     </div>
         </main>
+            <!-- Add other cards similarly -->
+        </div>
     </div>
-   
 
     <!-- Footer -->
     <footer>
@@ -436,69 +514,87 @@
             observer.observe(card);
         });
         function toggleAnimation() {
-    const container = document.getElementById('animationContainer');
-    const isShowing = container.classList.toggle('show');
-    
-    if (isShowing) {
-        startAnimation();
-    } else {
-        // Clear existing pilgrims when hiding
-        const pilgrims = document.querySelectorAll('.pilgrim');
-        pilgrims.forEach(p => p.remove());
-    }
-}
-
-function startAnimation() {
-    const container = document.getElementById('animationContainer');
-    const centerX = container.offsetWidth / 2;
-    const centerY = container.offsetHeight / 2;
-    const radius = Math.min(centerX, centerY) * 0.6;
-    
-    // Create pilgrims
-    for (let i = 0; i < 12; i++) {
-        const pilgrim = document.createElement('div');
-        pilgrim.className = 'pilgrim';
-        container.appendChild(pilgrim);
-        
-        // Set initial position
-        const angle = (i / 12) * 2 * Math.PI;
-        const x = centerX + radius * Math.cos(angle);
-        const y = centerY + radius * Math.sin(angle);
-        
-        pilgrim.style.left = x + 'px';
-        pilgrim.style.top = y + 'px';
-        
-        // Animate
-        let currentAngle = angle;
-        const speed = 0.002 + Math.random() * 0.001;
-        
-        function animate() {
-            if (!container.classList.contains('show')) return;
-            
-            currentAngle -= speed;
-            const newX = centerX + radius * Math.cos(currentAngle);
-            const newY = centerY + radius * Math.sin(currentAngle);
-            
-            pilgrim.style.left = newX + 'px';
-            pilgrim.style.top = newY + 'px';
-            
-            requestAnimationFrame(animate);
+            const card = document.getElementById('animationCard');
+            if (card.style.display === 'none' || card.style.display === '') {
+                card.style.display = 'block';
+                card.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                card.style.display = 'none';
+            }
         }
-        
-        animate();
-    }
-}
 
-// Update animation on window resize
-window.addEventListener('resize', () => {
-    if (document.getElementById('animationContainer').classList.contains('show')) {
-        // Clear existing pilgrims
-        const pilgrims = document.querySelectorAll('.pilgrim');
-        pilgrims.forEach(p => p.remove());
-        // Restart animation
-        startAnimation();
-    }
-});
+        let isMoving = false;
+        let round = 0;
+        let direction = 'right';
+        let position = 75;
+        const pilgrim = document.querySelector('.pilgrim');
+        const roundCountElement = document.getElementById('roundCount');
+        const statusElement = document.getElementById('status');
+        const startBtn = document.getElementById('startBtn');
+
+        function startAnimation() {
+            if (!isMoving) {
+                round = 0;
+                position = 75;
+                direction = 'right';
+                isMoving = true;
+                startBtn.disabled = true;
+                startBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block animate-spin mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Sedang Berjalan...
+                `;
+                updatePilgrimPosition();
+                updateStats();
+                animate();
+            }
+        }
+
+        function updatePilgrimPosition() {
+            pilgrim.style.left = `${position}px`;
+        }
+
+        function updateStats() {
+            roundCountElement.textContent = `${Math.ceil(round)}/7`;
+            statusElement.textContent = position <= 75 ? 'Safa' : 'Marwah';
+        }
+
+        function animate() {
+            if (!isMoving) return;
+
+            const maxPosition = document.querySelector('.sai-container').clientWidth - 75;
+
+            if (direction === 'right') {
+                position += 2;
+                if (position >= maxPosition) {
+                    direction = 'left';
+                    round += 0.5;
+                }
+            } else {
+                position -= 2;
+                if (position <= 75) {
+                    direction = 'right';
+                    round += 0.5;
+                }
+            }
+
+            updatePilgrimPosition();
+            updateStats();
+
+            if (round < 7) {
+                requestAnimationFrame(animate);
+            } else {
+                isMoving = false;
+                startBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Mulai Ulang
+                `;
+                startBtn.disabled = false;
+            }
+        }
     </script>
 </body>
 </html>

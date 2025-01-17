@@ -191,6 +191,48 @@
         -1px 1px 0px rgba(255, 255, 255, 1); /* Bottom-left shadow */
        
 }
+.loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .loading-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3B82F6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    .loading-text {
+        position: absolute;
+        margin-top: 80px;
+        color: #3B82F6;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
     </style>
 </head>
 
@@ -291,9 +333,15 @@
                             </tbody>
                         </table>
                     </div>
+                    <div id="loadingOverlay" class="loading-overlay">
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Memuat...</div>
+                    </div>
                     <div class="text-center w-full max-w-4xl mx-auto mb-6">
-                        <a href="./sukafikih/menu2.html">
-                            <button class="btn-primary bg-blue-700 text-white">Mulai Belajar !</button>
+                        <a href="./sukafikih/menu2.html" id="nextPageLink" style="text-decoration: none;">
+                            <button onclick="handleStartLearning(event)" class="btn-primary bg-blue-700 text-white">
+                                Mulai Belajar !
+                            </button>
                         </a>
                     </div>
                     
@@ -362,6 +410,18 @@
                                 })
                                 .catch(error => console.error('Error:', error));
                         });
+                        function handleStartLearning(event) {
+            event.preventDefault(); // Prevent immediate navigation
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const nextPageLink = document.getElementById('nextPageLink').getAttribute('href');
+            
+            loadingOverlay.classList.add('active');
+
+            // Simulate loading time and then navigate
+            setTimeout(() => {
+                window.location.href = nextPageLink;
+            }, 1500); // 1.5 seconds delay
+        }
                     </script>
                     
                     
