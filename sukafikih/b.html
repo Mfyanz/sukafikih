@@ -3,596 +3,757 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sa'i</title>
+    <title>Evaluasi Haji dan Umrah</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Sign-In API -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- Firebase App -->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+    <!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
+        
         body {
-            display: flex;
-            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
             min-height: 100vh;
-            background-color: #f8fafc;
-            
-        }
-
-        .sidebar {
-            width: 280px;
-            background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
-            padding: 1.5rem;
+            margin: 0;
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            z-index: 50;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .sidebar.active {
-            transform: translateX(0);
-        }
-
-        .sidebar .search-box {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 0.75rem 1rem;
-            display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
         }
 
-        .sidebar .search-box input {
-            background: transparent;
-            border: none;
-            color: white;
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
             width: 100%;
-            outline: none;
-        }
-
-        .sidebar .search-box input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            padding: 0.75rem 1rem;
-            border-radius: 12px;
+            max-width: 1000px;
+            overflow: hidden;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .sidebar a:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
         }
 
         .header {
-            background: white;
-            padding: 1rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 40;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 700;
-        }
-
-        .logo .suka {
-            color: #2563eb;
-        }
-
-        .logo .fikih {
-            color: #495683;
-        }
-
-        .menu-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: background 0.3s ease;
-        }
-
-        .menu-button:hover {
-            background: #f3f4f6;
-        }
-
-        .card {
-            background-color: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-            margin-bottom: 40px; /* Increased margin-bottom */
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .highlight {
-            font-weight: bold;
-            color: #1D4ED8;
-        }
-
-        .list-item {
-            margin-bottom: 12px;
-            padding-left: 25px; /* Added padding to the left */
-            position: relative;
-        }
-
-        .list-item::before {
-            content: '✔';
-            color: #4CAF50;
-            position: absolute;
-            left: 0; /* Align the checkmark to the left */
-            top: 0;
-            font-size: 20px; /* Adjust size of checkmark */
-        }
-
-
-        footer {
-            background: white;
-            padding: 1rem;
-            margin-top: auto;
-            border-top: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .back-button {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #2563eb;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .back-button:hover {
-            transform: translateX(-5px);
-        }
-
-        @media (min-width: 1024px) {
-            .sidebar {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 280px;
-            }
-
-            .menu-button {
-                display: none;
-            }
-        }
-
-        @media (max-width: 1023px) {
-            .main-content {
-                margin-left: 0;
-            }
-        }
-
-        .section-title {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            margin: 1.5rem;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            padding: 2.5rem 2rem;
             text-align: center;
-            font-size: 1.5rem;
-            font-weight: 600;
-            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
-        }
-        .animation-card {
-            display: none;
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            animation: slideUp 0.5s ease-out;
-        }
-
-        .sai-container {
             position: relative;
-            height: 300px;
-            background: linear-gradient(to right, #EFF6FF, #FFFFFF, #EFF6FF);
-            border-radius: 15px;
-            margin: 2rem 0;
             overflow: hidden;
         }
 
-        .hills {
+        .header::before {
+            content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: space-between;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/api/placeholder/1000/300') center/cover;
+            opacity: 0.1;
         }
 
-        .hill {
-            width: 150px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(to bottom, #BFDBFE, transparent);
-            padding: 1rem;
-            border-radius: 10px;
+        .header h1 {
+            font-size: 2.5rem;
+            color: white;
+            font-weight: 700;
+            position: relative;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .hill-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2563EB;
-            margin-bottom: 0.5rem;
-        }
-
-        .path {
-            position: absolute;
-            top: 50%;
-            left: 75px;
-            right: 75px;
-            height: 4px;
-            background: #93C5FD;
-            transform: translateY(-50%);
-        }
-
-        .pilgrim {
-            position: absolute;
-            top: 50%;
-            left: 75px;
-            transform: translate(-50%, -50%);
-            transition: left 0.5s ease;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .stat-box {
-            background: white;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        .login-container {
+            padding: 3rem 2rem;
             text-align: center;
         }
 
-        .show-animation-btn {
-            display: block;
-            margin: 2rem auto;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        .name-input-container {
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .name-input-container input {
+            width: 100%;
+            max-width: 400px;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .name-input-container input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn {
+            padding: 0.875rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            min-width: 160px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
             color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
         }
 
-        .show-animation-btn:hover {
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .btn-danger {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            color: white;
+            border: none;
+            margin-top: 1rem;
         }
 
-        @media (max-width: 768px) {
-            .stats {
-                flex-direction: column;
-                align-items: center;
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        .quiz-container {
+            padding: 2rem;
+        }
+
+        .timer {
+            background: #f8fafc;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #1e40af;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-map {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .progress-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid #3b82f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .progress-circle.completed {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .question {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .options-container {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option-button {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            color: #1e293b;
+            transition: all 0.3s ease;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .option-button:hover {
+            border-color: #3b82f6;
+            background: #f8fafc;
+        }
+
+        .result-card {
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .result-card h3 {
+            font-size: 2rem;
+            color: #1e40af;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .leaderboard {
+            padding: 2rem;
+        }
+
+        .leaderboard table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 1.5rem;
+        }
+
+        .leaderboard th {
+            background: #f8fafc;
+            padding: 1rem;
+            font-weight: 600;
+            color: #1e293b;
+            text-align: left;
+        }
+
+        .leaderboard td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .leaderboard tr:last-child td {
+            border-bottom: none;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .tab-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tab {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .tab.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                margin: 1rem;
+                border-radius: 16px;
             }
 
-            .stat-box {
-                width: 100%;
-                max-width: 300px;
+            .header {
+                padding: 1.5rem 1rem;
             }
 
-            .sai-container {
-                height: 200px;
+            .header h1 {
+                font-size: 1.75rem;
+            }
+
+            .login-container,
+            .name-input-container,
+            .quiz-container,
+            .result-card,
+            .leaderboard {
+                padding: 1.5rem 1rem;
+            }
+
+            .question {
+                font-size: 1.1rem;
+            }
+
+            .options-container {
+                gap: 0.75rem;
+            }
+
+            .option-button {
+                padding: 0.875rem 1.25rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <div class="search-box">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 text-white">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <input type="search" placeholder="Cari materi...">
+    <div class="container">
+        <div class="header">
+            <h1>Evaluasi Haji dan Umrah</h1>
         </div>
-        <a href="./menu2.html" class="animate__animated animate__fadeInLeft">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            Menu
-        </a>
-        <a href="./haji.html" class="animate__animated animate__fadeInLeft" style="animation-delay: 0.1s;">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-            Materi Haji
-        </a>
-        <a href="./umrah.html" class="animate__animated animate__fadeInLeft" style="animation-delay: 0.1s;">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-            Materi umrah
-        </a>
-        <a href="./a.html" class="animate__animated animate__fadeInLeft" style="animation-delay: 0.1s;">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-            📚 Ayo Latihan
-        </a>
-        <!-- Add other menu items similarly -->
-    </div>
 
-    <div class="main-content">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo">
-                <span class="suka">suka</span><span class="fikih">fikih</span>
-            </div>
-            <button class="menu-button" onclick="toggleSidebar()">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+        <!-- Login Container -->
+        <div id="login-container" class="login-container">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Silakan Login untuk Melanjutkan</h2>
+            <p class="mb-8 text-gray-600">Login dengan akun Google Anda untuk mengikuti kuis dan melihat peringkat global</p>
+            
+            <div id="googleSignInDiv" class="flex justify-center mb-6"></div>
+            
+            <button id="googleSignInButton" class="btn btn-primary mb-4">
+                <i class="fab fa-google mr-2"></i>
+                Login dengan Google
             </button>
-        </header>
+            
+            <div class="mt-4 text-sm text-gray-500">
+                <p>Dengan login, Anda menyetujui persyaratan penggunaan aplikasi ini</p>
+            </div>
+        </div>
 
-        <!-- Section Title -->
-        <main class="flex-1 p-">
-            <h1 class="text-3xl font-bold mb-8 mt-4 text-center text-dark animate-text mt-6">Sa'i: Apa Itu dan Mengapa Penting?</h1>
-        <div class="container mx-auto mt-8 p-4 mb-2">
-            <!-- Card 1: Question -->
-            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
-                <p class="text-xl text-gray-700">
-                    Sa’i adalah perjalanan yang penuh makna! 🌍 Bayangkan Anda berjalan bolak-balik antara bukit <span class="font-bold text-blue-600">Safa</span> dan <span class="font-bold text-blue-600">Marwah</span> sebanyak 7 kali. Ini adalah bagian dari ibadah yang mengingatkan kita pada perjuangan Hajar yang luar biasa dalam mencari air di padang pasir. 🌴
-                </p>
+        <!-- Name Input Container (Will be shown after login) -->
+        <div id="name-input-container" class="name-input-container" style="display: none;">
+            <div class="user-profile">
+                <div class="avatar">
+                    <img id="user-avatar" src="/api/placeholder/48/48" alt="User Avatar" />
+                </div>
+                <div>
+                    <div id="user-display-name" class="user-name">Nama Pengguna</div>
+                    <div id="user-email" class="text-gray-500">email@example.com</div>
+                </div>
             </div>
-
-            <!-- Card 2: Explanation -->
-            <div class="card bg-gradient-to-r from-green-50 to-blue-50 shadow-lg border border-green-200 rounded-lg p-6 mt-4">
-                <h3 class="text-2xl font-bold text-green-600 mb-2"></h3>
-                <h3 class="text-2xl font-semibold mb-4 text-center">Pelaksanaan sa'i</h3>
-        <ul class="list-disc pl-6 text-xl text-gray-700">
-            <li>✅ Dilakukan setelah <span class="font-bold text-green-600">tawaf</span>, yang menandakan kesucian niat.</li>
-            <li>✅ Dikerjakan dalam keadaan <span class="font-bold text-red-600">suci</span> dan menutup aurat dengan penuh khusyuk.</li>
-            <li>✅ Harus selesai sebanyak 7 kali, dimulai dari <span class="font-bold text-blue-600">Safa</span> dan diakhiri di <span class="font-bold text-blue-600">Marwah</span>. Setiap perjalanan dari Safa ke Marwah dihitung sebagai satu kali.</li>
-            <li>✅ Jangan lupa berdoa dengan penuh harapan di kedua bukit tersebut, karena di situlah banyak doa diterima. 🙏</li>
-            <li>✅ Bagi laki-laki, disunahkan berlari-lari kecil 🏃‍♂️ di antara dua lampu hijau sebagai simbol kecepatan dan perjuangan.</li>
-        </ul>
-            </div>
-            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
-                <p class="text-xl text-gray-700">
-                    🌟 Dengan melakukan Sa’i, kita meneladani perjuangan Hajar yang tidak kenal lelah dalam mencari kehidupan bagi anaknya, Ismail. Ini adalah simbol pengorbanan dan ketekunan yang luar biasa! 💪
-                </p>
-            </div>
-            <button class="show-animation-btn" onclick="toggleAnimation()">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 inline-block mr-2">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Lihat Simulasi Sa'i
+            
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Anda Siap untuk Memulai Kuis?</h2>
+            <p class="mb-6 text-gray-600">Jawablah 10 pertanyaan tentang Haji dan Umrah dengan tepat</p>
+            
+            <button class="btn btn-primary" onclick="startQuiz()">
+                <i class="fas fa-play"></i>
+                Mulai Kuis
             </button>
-            <div id="animationCard" class="animation-card p-4 ">
-                <h2 class="text-2xl font-bold text-center text-blue-600 mb-4">Simulasi Sa'i</h2>
-                
-                <div class="sai-container">
-                    <div class="hills">
-                        <div class="hill">
-                            <div class="hill-name">Safa</div>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                            </svg>
-                        </div>
-                        <div class="hill">
-                            <div class="hill-name">Marwah</div>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="path"></div>
-                    <div class="pilgrim">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                    </div>
-                </div>
-        
-                <div class="stats">
-                    <div class="stat-box">
-                        <div class="stat-value" id="roundCount">0/7</div>
-                        <div class="stat-label">Putaran</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-value">450m</div>
-                        <div class="stat-label">Jarak per Putaran</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-value" id="status">Safa</div>
-                        <div class="stat-label">Posisi</div>
-                    </div>
-                </div>
-        
-                <button class="show-animation-btn" id="startBtn" onclick="startAnimation()">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 inline-block mr-2">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                    </svg>
-                    Mulai Simulasi
-                </button>
+            
+            <button class="btn btn-primary ml-3" onclick="viewLeaderboard()">
+                <i class="fas fa-trophy"></i>
+                Lihat Peringkat
+            </button>
+            
+            <button class="btn btn-danger" onclick="signOut()">
+                <i class="fas fa-sign-out-alt"></i>
+                Keluar
+            </button>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="quiz-container" style="display: none;">
+            <div id="timer" class="timer">
+                <i class="fas fa-clock"></i>
+                <span>60 detik</span>
             </div>
-        
-    </div>
-        </main>
-            <!-- Add other cards similarly -->
+            <div id="progress-map" class="progress-map"></div>
+            <div id="question-container"></div>
+        </div>
+
+        <!-- Result Container -->
+        <div id="result-container" class="result-card" style="display: none;">
+            <h3>Evaluasi Selesai!</h3>
+            <p id="score-message" class="text-xl mb-6"></p>
+            <button class="btn btn-primary mb-3" onclick="restartQuiz()">
+                <i class="fas fa-redo"></i>
+                Mulai Lagi
+            </button>
+            <button class="btn btn-primary" onclick="viewLeaderboard()">
+                <i class="fas fa-trophy"></i>
+                Lihat Peringkat
+            </button>
+        </div>
+
+        <!-- Leaderboard Container -->
+        <div id="leaderboard" class="leaderboard" style="display: none;">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Peringkat Global</h2>
+            
+            <div class="tab-container">
+                <div class="tab active" onclick="showTab('global')">Global</div>
+                <div class="tab" onclick="showTab('personal')">Riwayat Saya</div>
+            </div>
+            
+            <div id="global-leaderboard">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Peringkat</th>
+                            <th>Nama</th>
+                            <th>Skor</th>
+                            <th>Tanggal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="global-leaderboard-list"></tbody>
+                </table>
+            </div>
+            
+            <div id="personal-leaderboard" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Skor</th>
+                            <th>Peringkat</th>
+                        </tr>
+                    </thead>
+                    <tbody id="personal-leaderboard-list"></tbody>
+                </table>
+            </div>
+            
+            <button class="btn btn-primary mt-6" onclick="backToHome()">
+                <i class="fas fa-home"></i>
+                Kembali ke Menu
+            </button>
+            
+            <button class="btn btn-danger mt-3" onclick="signOut()">
+                <i class="fas fa-sign-out-alt"></i>
+                Keluar
+            </button>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <p class="font-semibold text-gray-800">Haji & Umrah</p>
-        <a href="./rukun haji.html" class="back-button">
-            <span>Kembali</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-        </a>
-    </footer>
 
     <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
+        // Firebase Configuration
+        const firebaseConfig = {
+            // You need to replace this with your actual Firebase configuration
+            apiKey: "YOUR_API_KEY",
+            authDomain: "your-project-id.firebaseapp.com",
+            projectId: "your-project-id",
+            storageBucket: "your-project-id.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        
+        // Google Sign-In Configuration
+        let googleUser = null;
+        
+        document.getElementById('googleSignInButton').addEventListener('click', signInWithGoogle);
+        
+        function signInWithGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    // User signed in
+                    googleUser = result.user;
+                    showUserProfile(googleUser);
+                })
+                .catch((error) => {
+                    console.error("Error during sign in:", error);
+                    alert("Gagal login. Silakan coba lagi.");
+                });
         }
-
-        // Close sidebar when clicking outside
-        document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('sidebar');
-            const menuButton = document.querySelector('.menu-button');
-            if (!sidebar.contains(event.target) && !menuButton.contains(event.target)) {
-                sidebar.classList.remove('active');
+        
+        function showUserProfile(user) {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('name-input-container').style.display = 'block';
+            
+            document.getElementById('user-display-name').textContent = user.displayName;
+            document.getElementById('user-email').textContent = user.email;
+            
+            if (user.photoURL) {
+                document.getElementById('user-avatar').src = user.photoURL;
             }
-        });
-
-        // Add animation classes to cards on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate__fadeIn');
-                }
+        }
+        
+        function signOut() {
+            auth.signOut().then(() => {
+                googleUser = null;
+                document.getElementById('login-container').style.display = 'block';
+                document.getElementById('name-input-container').style.display = 'none';
+                document.getElementById('quiz-container').style.display = 'none';
+                document.getElementById('result-container').style.display = 'none';
+                document.getElementById('leaderboard').style.display = 'none';
+            }).catch((error) => {
+                console.error("Sign out error:", error);
             });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.material-card').forEach(card => {
-            observer.observe(card);
+        }
+        
+        // Check auth state on page load
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                googleUser = user;
+                showUserProfile(user);
+            }
         });
-        function toggleAnimation() {
-            const card = document.getElementById('animationCard');
-            if (card.style.display === 'none' || card.style.display === '') {
-                card.style.display = 'block';
-                card.scrollIntoView({ behavior: 'smooth' });
+        
+        // Quiz Questions
+        const questions = [
+            { question: "Apa saja rukun haji?", options: ["Ihram, wukuf di Arafah, thawaf ifadah, sai, tahallul, tertib", "Ihram, mabit di Muzdalifah, melontar jumrah", "Shalat, zakat, puasa, haji", "Thawaf qudum, mabit di Mina, dam"], correct: 0 },
+            { question: "Apa perbedaan haji dan umrah?", options: ["Haji wajib, umrah sunnah", "Haji dilakukan pada waktu tertentu, umrah kapan saja", "Haji hanya thawaf, umrah hanya sai", "Haji tanpa dam, umrah dengan dam"], correct: 1 },
+            { question: "Apa yang dimaksud dengan ihram dalam ibadah haji?", options: ["Pakaian khusus yang dikenakan saat haji", "Mandi besar sebelum berangkat ke Mekah", "Menahan diri dari hal-hal tertentu saat haji", "Perjalanan menuju tanah suci"], correct: 2 },
+            { question: "Apa itu wukuf di Arafah?", options: ["Shalat di masjid Arafah", "Menginap di tenda di Arafah", "Berdoa dan memohon ampunan di Arafah", "Melempar jumrah"], correct: 2 },
+            { question: "Apa yang dimaksud dengan thawaf ifadah?", options: ["Thawaf pertama kali setelah tiba di Makkah", "Thawaf yang dilakukan setelah wukuf di Arafah", "Thawaf untuk melambangkan ketaatan kepada Allah", "Thawaf saat tiba di Madinah"], correct: 1 },
+            { question: "Berapa kali jumlah sai dalam ibadah haji?", options: ["5 kali", "7 kali", "3 kali", "9 kali"], correct: 1 },
+            { question: "Apa itu tahallul?", options: ["Memotong rambut setelah selesai haji", "Membuang batu jumrah", "Bersujud di tempat tertentu", "Membaca talbiyah"], correct: 0 },
+            { question: "Kapan haji diwajibkan bagi seorang Muslim?", options: ["Setelah menikah", "Setelah mampu secara finansial dan fisik", "Saat berusia 50 tahun", "Saat memiliki anak"], correct: 1 },
+            { question: "Apa yang dimaksud dengan dam dalam ibadah haji?", options: ["Denda yang harus dibayar jika melakukan pelanggaran", "Sewa hewan kurban", "Zakat harta haji", "Proses mencuci pakaian haji"], correct: 0 },
+            { question: "Apa itu umrah?", options: ["Ibadah haji di luar musim haji", "Ibadah yang lebih singkat dibandingkan haji", "Menjalankan seluruh rukun haji", "Perjalanan spiritual ke Madinah"], correct: 1 },
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timer = 60;
+        let timerInterval;
+        
+        function updateProgressMap() {
+            const progressMap = document.getElementById("progress-map");
+            progressMap.innerHTML = questions.map((_, index) => `
+                <div class="progress-circle ${index < currentQuestionIndex ? 'completed' : ''}">
+                    ${index + 1}
+                </div>
+            `).join('');
+        }
+
+        function startQuiz() {
+            if (!googleUser) {
+                alert("Anda harus login terlebih dahulu");
+                return;
+            }
+            
+            document.getElementById("name-input-container").style.display = "none";
+            document.getElementById("leaderboard").style.display = "none";
+            document.getElementById("quiz-container").style.display = "block";
+            
+            currentQuestionIndex = 0;
+            score = 0;
+            timer = 60;
+            
+            startTimer();
+            displayQuestion();
+        }
+        
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            const questionContainer = document.getElementById("question-container");
+            questionContainer.innerHTML = `
+                <div class="question">${question.question}</div>
+                <div class="options-container">
+                    ${question.options.map((option, index) => {
+                        return `
+                            <button class="option-button" onclick="checkAnswer(${index}, ${question.correct})">${option}</button>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+            updateProgressMap();
+        }
+
+        function checkAnswer(selectedIndex, correctIndex) {
+            const buttons = document.querySelectorAll(".option-button");
+            
+            buttons.forEach(button => {
+                button.disabled = true;
+            });
+            
+            if (selectedIndex === correctIndex) {
+                score += 10;
+                buttons[selectedIndex].style.backgroundColor = "#22c55e"; // Green for correct
+                buttons[selectedIndex].style.borderColor = "#16a34a";
             } else {
-                card.style.display = 'none';
+                buttons[selectedIndex].style.backgroundColor = "#ef4444"; // Red for incorrect
+                buttons[selectedIndex].style.borderColor = "#dc2626";
+                buttons[correctIndex].style.backgroundColor = "#22c55e"; // Green for correct
+                buttons[correctIndex].style.borderColor = "#16a34a";
+            }
+
+            setTimeout(nextQuestion, 1000);
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                endQuiz();
             }
         }
 
-        let isMoving = false;
-        let round = 0;
-        let direction = 'right';
-        let position = 75;
-        const pilgrim = document.querySelector('.pilgrim');
-        const roundCountElement = document.getElementById('roundCount');
-        const statusElement = document.getElementById('status');
-        const startBtn = document.getElementById('startBtn');
-
-        function startAnimation() {
-            if (!isMoving) {
-                round = 0;
-                position = 75;
-                direction = 'right';
-                isMoving = true;
-                startBtn.disabled = true;
-                startBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block animate-spin mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
-                    Sedang Berjalan...
+        function startTimer() {
+            timer = 60;
+            document.getElementById("timer").innerHTML = `
+                <i class="fas fa-clock"></i>
+                <span>${timer} detik</span>
+            `;
+            
+            timerInterval = setInterval(function () {
+                timer--;
+                document.getElementById("timer").innerHTML = `
+                    <i class="fas fa-clock"></i>
+                    <span>${timer} detik</span>
                 `;
-                updatePilgrimPosition();
-                updateStats();
-                animate();
+                
+                if (timer <= 0) {
+                    clearInterval(timerInterval);
+                    endQuiz();
+                }
+            }, 1000);
+        }
+
+        function endQuiz() {
+            clearInterval(timerInterval);
+            document.getElementById("quiz-container").style.display = "none";
+            document.getElementById("result-container").style.display = "block";
+            document.getElementById("score-message").textContent = `Skor Anda: ${score} dari 100`;
+            
+            // Save score to Firestore
+            saveScoreToFirestore();
+        }
+        
+        function saveScoreToFirestore() {
+            if (!googleUser) return;
+            
+            const scoreData = {
+                userId: googleUser.uid,
+                displayName: googleUser.displayName,
+                photoURL: googleUser.photoURL || '',
+                email: googleUser.email,
+                score: score,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            };
+            
+            db.collection('scores').add(scoreData)
+                .then(() => {
+                    console.log("Score saved successfully");
+                    // After saving, fetch the updated leaderboard
+                    fetchLeaderboard();
+                })
+                .catch(error => {
+                    console.error("Error saving score:", error);
+                });
+        }
+        
+        function fetchLeaderboard() {
+            // Fetch global leaderboard
+            db.collection('scores')
+                .orderBy('score', 'desc')
+                .limit(20)
+                .get()
+                .then((querySnapshot) => {
+                    const leaderboardList = document.getElementById("global-leaderboard-list");
+                    leaderboardList.innerHTML = '';
+                    
+                    let rank = 1;
+                    querySnapshot.forEach((doc) => {
+                        const data = doc.data();
+                        const date = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString() : 'N/A';
+                        
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td class="rank">${rank}</td>
+                            <td class="name">
+                                <div class="flex items-center gap-2">
+                                    <img src="${data.photoURL || '/api/placeholder/24/24'}" class="w-6 h-6 rounded-full" alt="User" />
+                                    ${data.displayName}
+                                </div>
+                            </td>
+                            <td class="score">${data.score}</td>
+                            <td class="date">${date}</td>
+                        `;
+                        
+                        leaderboardList.appendChild(row);
+                        rank++;
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error fetching leaderboard:", error);
+                });
+                
+            // Fetch personal history
+            if (googleUser) {
+                db.collection('scores')
+                    .where('userId', '==', googleUser.uid)
+                    .orderBy('timestamp', 'desc')
+                    .limit(10)
+                    .get()
+                    .then((querySnapshot) => {
+                        const personalList = document.getElementById("personal-leaderboard-list");
+                        personalList.innerHTML = '';
+                        
+                        querySnapshot.forEach((doc) => {
+                            const data = doc.data();
+                            const date = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString() : 'N/A';
+                            
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td class="date">${date}</td>
+                                <td class="score">${data.score}</td>
+                                <td class="rank">-</td>
+                            `;
+                            
+                            personalList.appendChild(row);
+                        });
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching personal history:", error);
+                    });
             }
         }
 
-        function updatePilgrimPosition() {
-            pilgrim.style.left = `${position}px`;
+        function viewLeaderboard() {
+            document.getElementById("name-input-container").style.display = "none";
+            document.getElementById("result-container").style.display = "none";
+            document.getElementById("leaderboard").style.display = "block";
+            
+            fetchLeaderboard();
         }
 
-        function updateStats() {
-            roundCountElement.textContent = `${Math.ceil(round)}/7`;
-            statusElement.textContent = position <= 75 ? 'Safa' : 'Marwah';
+        function restartQuiz() {
+            document.getElementById("result-container").style.display = "none";
+            document.getElementById("name-input-container").style.display = "block";
         }
 
-        function animate() {
-            if (!isMoving) return;
-
-            const maxPosition = document.querySelector('.sai-container').clientWidth - 75;
-
-            if (direction === 'right') {
-                position += 2;
-                if (position >= maxPosition) {
-                    direction = 'left';
-                    round += 0.5;
-                }
+        function backToHome() {
+            document.getElementById("leaderboard").style.display = "none";
+            document.getElementById("name-input-container").style.display = "block";
+        }
+        
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            const clickedTab = document.querySelector(`.tab:nth-child(${tabName === 'global' ? 1 : 2})`);
+            clickedTab.classList.add('active');
+            
+            if (tabName === 'global') {
+                document.getElementById('global-leaderboard').style.display = 'block';
+                document.getElementById('personal-leaderboard').style.display = 'none';
             } else {
-                position -= 2;
-                if (position <= 75) {
-                    direction = 'right';
-                    round += 0.5;
-                }
-            }
-
-            updatePilgrimPosition();
-            updateStats();
-
-            if (round < 7) {
-                requestAnimationFrame(animate);
-            } else {
-                isMoving = false;
-                startBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
-                    Mulai Ulang
-                `;
-                startBtn.disabled = false;
+                document.getElementById('global-leaderboard').style.display = 'none';
+                document.getElementById('personal-leaderboard').style.display = 'block';
             }
         }
     </script>

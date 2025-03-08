@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sa'i</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f8fafc;
+            
+        }
+
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 50;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar .search-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            width: 100%;
+            outline: none;
+        }
+
+        .sidebar .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .header {
+            background: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .logo .suka {
+            color: #2563eb;
+        }
+
+        .logo .fikih {
+            color: #495683;
+        }
+
+        .menu-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background: #f3f4f6;
+        }
+
+        .card {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            margin-bottom: 40px; /* Increased margin-bottom */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #1D4ED8;
+        }
+
+        .list-item {
+            margin-bottom: 12px;
+            padding-left: 25px; /* Added padding to the left */
+            position: relative;
+        }
+
+        .list-item::before {
+            content: '✔';
+            color: #4CAF50;
+            position: absolute;
+            left: 0; /* Align the checkmark to the left */
+            top: 0;
+            font-size: 20px; /* Adjust size of checkmark */
+        }
+
+
+        footer {
+            background: white;
+            padding: 1rem;
+            margin-top: auto;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2563eb;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 280px;
+            }
+
+            .menu-button {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            margin: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+        }
+        .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal.active {
+        display: flex;
+    }
+
+    .modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        width: 90%;
+        max-width: 800px;
+        position: relative;
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #4B5563;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: background-color 0.3s;
+    }
+
+    .close-modal:hover {
+        background-color: #F3F4F6;
+    }
+
+    /* Animation styles */
+    .animate-popup {
+        animation: popup 0.3s ease-out;
+    }
+
+    @keyframes popup {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="search-box">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 text-white">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="search" placeholder="Cari materi...">
+        </div>
+        <a href="./menu2.html" class="animate__animated animate__fadeInLeft">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            Menu
+        </a>
+        <a href="./haji.html" class="animate__animated animate__fadeInLeft" style="animation-delay: 0.1s;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            Materi Haji
+        </a>
+        <a href="./umrah.html" class="animate__animated animate__fadeInLeft" style="animation-delay: 0.1s;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            Materi umrah
+        </a>
+        <a href="./a.html" class="animate__animated animate__fadeInLeft" style="animation-delay: 0.1s;">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            📚 Ayo Latihan
+        </a>
+        <!-- Add other menu items similarly -->
+    </div>
+
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="suka">suka</span><span class="fikih">fikih</span>
+            </div>
+            <button class="menu-button" onclick="toggleSidebar()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </header>
+
+        <!-- Section Title -->
+        <main class="flex-1 p-">
+            <h1 class="text-3xl font-bold mb-8 mt-4 text-center text-dark animate-text mt-6">Sa'i: Apa Itu dan Mengapa Penting?</h1>
+        <div class="container mx-auto mt-8 p-4 mb-2">
+            <!-- Card 1: Question -->
+            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
+                <p class="text-xl text-gray-700">
+                    Sa’i adalah perjalanan yang penuh makna! 🌍 Bayangkan Anda berjalan bolak-balik antara bukit <span class="font-bold text-blue-600">Safa</span> dan <span class="font-bold text-blue-600">Marwah</span> sebanyak 7 kali. Ini adalah bagian dari ibadah yang mengingatkan kita pada perjuangan Hajar yang luar biasa dalam mencari air di padang pasir. 🌴
+                </p>
+            </div>
+
+            <!-- Card 2: Explanation -->
+            <div class="card bg-gradient-to-r from-green-50 to-blue-50 shadow-lg border border-green-200 rounded-lg p-6 mt-4">
+                <h3 class="text-2xl font-bold text-green-600 mb-2"></h3>
+                <h3 class="text-2xl font-semibold mb-4 text-center">Pelaksanaan sa'i</h3>
+        <ul class="list-disc pl-6 text-xl text-gray-700">
+            <li>✅ Dilakukan setelah <span class="font-bold text-green-600">tawaf</span>, yang menandakan kesucian niat.</li>
+            <li>✅ Dikerjakan dalam keadaan <span class="font-bold text-red-600">suci</span> dan menutup aurat dengan penuh khusyuk.</li>
+            <li>✅ Harus selesai sebanyak 7 kali, dimulai dari <span class="font-bold text-blue-600">Safa</span> dan diakhiri di <span class="font-bold text-blue-600">Marwah</span>. Setiap perjalanan dari Safa ke Marwah dihitung sebagai satu kali.</li>
+            <li>✅ Jangan lupa berdoa dengan penuh harapan di kedua bukit tersebut, karena di situlah banyak doa diterima. 🙏</li>
+            <li>✅ Bagi laki-laki, disunahkan berlari-lari kecil 🏃‍♂️ di antara dua lampu hijau sebagai simbol kecepatan dan perjuangan.</li>
+        </ul>
+            </div>
+            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
+                <p class="text-xl text-gray-700">
+                    🌟 Dengan melakukan Sa’i, kita meneladani perjuangan Hajar yang tidak kenal lelah dalam mencari kehidupan bagi anaknya, Ismail. Ini adalah simbol pengorbanan dan ketekunan yang luar biasa! 💪
+                </p>
+            </div>
+    </div>
+        </main>
+            <!-- Add other cards similarly -->
+        </div>
+    <div class="flex justify-center mt-6 mb-8">
+        <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-all transform hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Lihat Animasi Sa'i
+        </button>
+    </div>
+</div>
+
+<!-- Add modal -->
+<div id="animationModal" class="modal">
+    <div class="modal-content animate-popup">
+        <button onclick="closeModal()" class="close-modal">×</button>
+        <div class="w-full max-w-4xl mx-auto">
+            <div class="bg-white rounded-lg p-6">
+                <svg id="saiAnimation" viewBox="0 0 800 500" class="w-full">
+                    <!-- Background -->
+                    <rect width="800" height="500" fill="#f8f9fa"/>
+                    
+                    <!-- Safa dan Marwah -->
+                    <rect x="50" y="100" width="120" height="200" rx="10" fill="#e9ecef"/>
+                    <text x="110" y="215" text-anchor="middle" fill="#495057" font-size="20">Safa</text>
+                    
+                    <rect x="630" y="100" width="120" height="200" rx="10" fill="#e9ecef"/>
+                    <text x="690" y="215" text-anchor="middle" fill="#495057" font-size="20">Marwah</text>
+                    
+                    <!-- Jalur Sa'i -->
+                    <line x1="170" y1="200" x2="630" y2="200" stroke="#dee2e6" stroke-width="40" stroke-linecap="round"/>
+                    
+                    <!-- Penanda Jarak -->
+                    <line x1="300" y1="170" x2="300" y2="230" stroke="#adb5bd" stroke-width="4"/>
+                    <line x1="500" y1="170" x2="500" y2="230" stroke="#adb5bd" stroke-width="4"/>
+                    
+                    <!-- Counter boxes -->
+                    <rect x="200" y="350" width="400" height="100" fill="#e9ecef" rx="10"/>
+                    
+                    <!-- Counter text -->
+                    <text x="400" y="390" text-anchor="middle" fill="#495057" font-size="16">Hitungan Putaran:</text>
+                    
+                    <!-- Numbers -->
+                    <g id="numbers">
+                        <text x="250" y="425" text-anchor="middle">1</text>
+                        <text x="300" y="425" text-anchor="middle">2</text>
+                        <text x="350" y="425" text-anchor="middle">3</text>
+                        <text x="400" y="425" text-anchor="middle">4</text>
+                        <text x="450" y="425" text-anchor="middle">5</text>
+                        <text x="500" y="425" text-anchor="middle">6</text>
+                        <text x="550" y="425" text-anchor="middle">7</text>
+                    </g>
+                    
+                    <!-- Jamaah bergerak -->
+                    <circle id="jamaah" cx="110" cy="200" r="15" fill="#228be6">
+                        <animate
+                            id="jamaahAnimation"
+                            attributeName="cx"
+                            values="110;690;110;690;110;690;110;690;110;690;110;690;110;690;110"
+                            dur="14s"
+                            repeatCount="indefinite"
+                            begin="indefinite"
+                        />
+                    </circle>
+                    
+                    <!-- Highlight current number -->
+                    <circle id="counter-highlight" r="15" fill="#228be6" opacity="0.3">
+                        <animate
+                            id="counterAnimationX"
+                            attributeName="cx"
+                            values="250;250;300;300;350;350;400;400;450;450;500;500;550;550"
+                            dur="14s"
+                            repeatCount="indefinite"
+                            begin="indefinite"
+                        />
+                        <animate
+                            id="counterAnimationY"
+                            attributeName="cy"
+                            values="425;425;425;425;425;425;425"
+                            dur="14s"
+                            repeatCount="indefinite"
+                            begin="indefinite"
+                        />
+                    </circle>
+                    
+                    <!-- Keterangan -->
+                    <text x="400" y="300" text-anchor="middle" fill="#495057" font-size="16">← 7x Bolak-balik →</text>
+                    <text x="300" y="150" text-anchor="middle" fill="#495057" font-size="14">Mil Hijau</text>
+                    <text x="500" y="150" text-anchor="middle" fill="#495057" font-size="14">Mil Hijau</text>
+                </svg>
+
+                <!-- Control Buttons -->
+                <div class="flex justify-center gap-4 mt-6">
+                    <button
+                        id="startBtn"
+                        onclick="toggleAnimation()"
+                        class="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                        </svg>
+                        Mulai
+                    </button>
+                    <button
+                        onclick="resetAnimation()"
+                        class="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+                        </svg>
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="font-semibold text-gray-800">Haji & Umrah</p>
+        <a href="./rukun haji.html" class="back-button">
+            <span>Kembali</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </a>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuButton = document.querySelector('.menu-button');
+            if (!sidebar.contains(event.target) && !menuButton.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Add animation classes to cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__fadeIn');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.material-card').forEach(card => {
+            observer.observe(card);
+        });
+        let isPlaying = false;
+        const modal = document.getElementById('animationModal');
+        const startBtn = document.getElementById('startBtn');
+        const jamaahAnimation = document.getElementById('jamaahAnimation');
+        const counterAnimationX = document.getElementById('counterAnimationX');
+        const counterAnimationY = document.getElementById('counterAnimationY');
+
+        function openModal() {
+            modal.classList.add('active');
+            resetAnimation();
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            resetAnimation();
+        }
+
+        function toggleAnimation() {
+            if (!isPlaying) {
+                startAnimation();
+            } else {
+                pauseAnimation();
+            }
+        }
+
+        function startAnimation() {
+            isPlaying = true;
+            jamaahAnimation.beginElement();
+            counterAnimationX.beginElement();
+            counterAnimationY.beginElement();
+            startBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+                Jeda
+            `;
+            startBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
+            startBtn.classList.add('bg-yellow-500', 'hover:bg-yellow-600');
+        }
+
+        function pauseAnimation() {
+            isPlaying = false;
+            jamaahAnimation.endElement();
+            counterAnimationX.endElement();
+            counterAnimationY.endElement();
+            startBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                </svg>
+                Mulai
+            `;
+            startBtn.classList.remove('bg-yellow-500', 'hover:bg-yellow-600');
+            startBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+        }
+
+        function resetAnimation() {
+            isPlaying = false;
+            const jamaah = document.getElementById('jamaah');
+            const counterHighlight = document.getElementById('counter-highlight');
+            
+            // Reset positions
+            jamaah.setAttribute('cx', '110');
+            counterHighlight.setAttribute('cx', '250');
+            counterHighlight.setAttribute('cy', '425');
+            
+            // Reset button state
+            startBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                </svg>
+                Mulai
+            `;
+            startBtn.classList.remove('bg-yellow-500', 'hover:bg-yellow-600');
+            startBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+        }
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

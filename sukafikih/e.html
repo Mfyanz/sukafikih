@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tawaf</title>
+    <title>Wukuf</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
@@ -217,78 +217,71 @@
             box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
         }
         .card {
-            background-color: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
+            background-color: #ffffff;
             padding: 20px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-            margin-bottom: 40px; /* Increased margin-bottom */
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 20px;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .highlight {
-            font-weight: bold;
-            color: #1D4ED8;
+        .interactive-question {
+            background-color: #f0f4f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         }
-
-        .list-item {
-            margin-bottom: 12px;
-            padding-left: 25px; /* Added padding to the left */
-            position: relative;
-        }
-
-        .list-item::before {
-            content: '✔';
-            color: #4CAF50;
-            position: absolute;
-            left: 0; /* Align the checkmark to the left */
-            top: 0;
-            font-size: 20px; /* Adjust size of checkmark */
-        }
-        .hidden-card {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
+        .container {
             padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 100;
-            width: 90%;
-            max-width: 500px;
         }
 
-        .hidden-card button {
-            background: #2563eb;
+        .section-title {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            display: block;
-            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+        }
+
+        .prayer-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        .prayer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .prayer-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-align: center;
+            direction: rtl;
+            unicode-bidi: embed;
+        }
+
+        .translation {
+            font-size: 1rem;
+            color: #555;
+            text-align: center;
             margin-top: 10px;
         }
-        @media (min-width: 1024px) {
-    .card {
-        max-width: 800px; /* Memperbesar card pada layar besar */
-        padding: 30px; /* Menambah ruang dalam card */
-        font-size: 1.2rem; /* Memperbesar ukuran teks */
-    }
-
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
     </style>
 </head>
 <body>
@@ -340,51 +333,72 @@
         </header>
 
         <!-- Section Title -->
-        <main class="flex-1 p-">
-            <h1 class="text-4xl font-bold mb-1 text-center text-dark mt-8">Tawaf</h1>
-        <div class="container mx-auto mt-8 p-4 mb-2">
-            <!-- Card 1: Question -->
-            <div class="card bg-gradient-to-r from-blue-50 to-green-50 shadow-lg border border-blue-200 rounded-lg p-6 mb-4">
-                <p class="text-xl font-medium text-gray-800 text-center leading-relaxed mb-6">
-                    ❓ <span class="font-bold text-blue-600">Tahukah Anda?</span> Apa itu <span class="font-bold text-green-600">Tawaf</span>? 
-                </p>
-                <p class="text-lg lg:text-2xl xl:text-3xl text-justify leading-relaxed mb-6">
-                    🕌 Tawaf adalah kegiatan mengelilingi Ka'bah sebanyak 7 kali dengan posisi Ka'bah di sebelah kiri. Tawaf dimulai dan diakhiri di tempat yang sejajar dengan hajar aswad. Setiap putaran, jamaah akan berdoa dan memohon kepada Allah.
-                </p>
+        <div class="container">
+            <div class="section-title">Doa-Doa dalam Ibadah Haji</div>
+            
+            <div class="prayer-card">
+                <div class="prayer-text">
+                    لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ
+                </div>
+                <div class="translation">(Labbaikallahumma labbaik, labbaika laa syarika laka labbaik, innal hamda, wan ni’mata, laka wal mulk, laa syarika lak.)</div>
             </div>
-
-            <!-- Card 2: Explanation  -->
-            <div class="card bg-gradient-to-r from-green-50 to-blue-50 shadow-lg border border-green-200 rounded-lg p-6 text-center">
-                <h3 class="text-2xl font-bold text-green-600 mb-2"></h3>
-                <ul class="list-disc pl-6 text-lg lg:text-xl xl:text-2xl text-gray-700 mb-6 text-left">
-                    <li>✅ Tawaf dilakukan sebanyak <span class="font-bold text-blue-600">7 kali</span> dengan Ka'bah di sebelah kiri.</li>
-                    <li>✅ Dimulai dan diakhiri di tempat sejajar dengan <span class="font-bold text-blue-600">Hajar Aswad</span>.</li>
-                    <li>✅ Setiap putaran, jamaah berdoa dan memohon kepada Allah. 🙏</li>
-                    <li>✅ Tawaf adalah simbol ketundukan dan penghambaan kepada Allah. 🤲</li>
-                </ul>
-                <p class="text-lg lg:text-2xl xl:text-3xl font-medium text-gray-800">
-                    🌍 Tawaf merupakan bagian integral dari ibadah Haji yang penuh makna spiritual.
-                </p>
-                <div class="flex justify-center mt-6">
-                    <button id="showDuas" class="bg-blue-600 text-white px-6 py-3 rounded-lg">Bacaan Tawaf</button>
+    
+            <div class="prayer-card">
+                <div class="prayer-text">
+                    اللَّهُمَّ هَذَا حَرَمُكَ وَأَمْنُكَ فَحَرِّمْنِي عَلَى النَّارِ وَأَمِّنِّي مِنْ عَذَابِكَ يَوْمَ تَبْعَثُ عِبَادَكَ
+                </div>
+                <div class="translation">
+                    (Allahumma hadza haramuka wa amnuka faharrimni ‘ala an-naar wa amminni min ‘adzaabika yawma tab’atsu ‘ibaadaka.)
+                </div>
+            </div>
+            <div class="prayer-card">
+                <div class="prayer-text">
+                    اللَّهُمَّ زِدْ هَذَا الْبَيْتَ تَشْرِيفًا وَتَعْظِيمًا وَتَكْرِيمًا وَمَهَابَةً وَزِدْ مَنْ شَرَّفَهُ وَعَظَّمَهُ مِمَّنْ حَجَّهُ أَوِ اعْتَمَرَهُ تَشْرِيفًا وَتَعْظِيمًا وَتَكْرِيمًا وَبِرًّا
+                </div>
+                <div class="translation">
+                    (Allahumma zid hadzal baita tasyrifan wa ta’ziman wa takriman wa mahabah, wazid man syarrafahu wa ‘azzamahu mimman hajjahu awi’tamarahu tasyrifan wa ta’ziman wa takriman wa birra.)
+                </div>
+            </div>
+            <div class="prayer-card">
+                <div class="prayer-text">
+                    إِنَّ ٱلصَّفَا وَٱلْمَرْوَةَ مِن شَعَآئِرِ ٱللَّهِ فَمَنْ حَجَّ ٱلْبَيْتَ أَوِ ٱعْتَمَرَ فَلَا جُنَاحَ عَلَيْهِ أَن يَطَّوَّفَ بِهِمَا وَمَن تَطَوَّعَ خَيْرًۭا فَإِنَّ ٱللَّهَ شَاكِرٌ عَلِيمٌۭ
+                </div>
+                <div class="translation">
+                    (Sesungguhnya Safa dan Marwah adalah sebagian dari syiar Allah, maka barangsiapa berhaji ke Baitullah atau berumrah, tidak ada dosa baginya mengerjakan sa'i di antara keduanya. Dan barangsiapa mengerjakan suatu kebajikan dengan kerelaan hati, maka sesungguhnya Allah Maha Mensyukuri, Maha Mengetahui.) [QS. Al-Baqarah: 158]
+                </div>
+            </div>
+            <div class="prayer-card">
+                <div class="prayer-text">
+                    لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ
+                </div>
+                <div class="translation">
+                    (Laa ilaaha illallah wahdahu laa syarika lah, lahul mulku wa lahul hamdu wa huwa ‘ala kulli syai’in qadiir.)
+                </div>
+            </div>
+            <div class="prayer-card">
+                <div class="prayer-text">
+                    اللَّهُمَّ اغْفِرْ لِي ذُنُوبِي وَاذْهَبْ عَنِّي خُبْثَ قَلْبِي
+                </div>
+                <div class="translation">
+                    (Allahummaghfir lii dzunuubii wadz-hab ‘annii khubtsa qalbii.)
                 </div>
             </div>
             
-            <div id="duasCard" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-                    <h2 class="text-xl font-bold mb-4">Bacaan Tawaf</h2>
-                    <p class="text-lg text-gray-800 mb-4">سبحان الله والحمد لله ولا إله إلا الله والله أكبر</p>
-                    <button id="closeDuas" class="bg-red-500 text-white px-4 py-2 rounded-lg">Tutup</button>
+    
+            <div class="prayer-card">
+                <div class="prayer-text">
+                    اللَّهُمَّ اجْعَلْ هَذَا الْبَلَدَ آمِنًا وَارْزُقْ أَهْلَهُ مِنَ الثَّمَرَاتِ
                 </div>
+                <div class="translation">(Allahumma aj‘al haadhal balada aaminan warzuq ahlahu minats-tsamaraat.)</div>
             </div>
-    </div>
-        </main>
+        </div>
+      
     </div>
 
     <!-- Footer -->
     <footer>
         <p class="font-semibold text-gray-800">Haji & Umrah</p>
-        <a href="./rukun umroh.html" class="back-button">
+        <a href="./rukun haji.html" class="back-button">
             <span>Kembali</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -419,13 +433,6 @@
         document.querySelectorAll('.material-card').forEach(card => {
             observer.observe(card);
         });
-        document.getElementById("showDuas").addEventListener("click", function() {
-        document.getElementById("duasCard").classList.remove("hidden");
-    });
-
-    document.getElementById("closeDuas").addEventListener("click", function() {
-        document.getElementById("duasCard").classList.add("hidden");
-    });
     </script>
 </body>
 </html>
