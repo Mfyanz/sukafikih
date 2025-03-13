@@ -284,24 +284,46 @@
         </header>
 
         <!-- Section Title -->
-        <main class="flex-1 p-6">
-            <!-- Question outside the card with custom font -->
-            <p class="p-5">
-                🤔 <span class="text-2xl highlight-blue">Pernahkah kamu tahu</span> <span class="text-2xl">yang harus diperhatikan oleh laki-laki saat berhaji?</span>
-                <span class="highlight-red text-2xl">Apa saja yang boleh dan tidak boleh dilakukan?</span>
-            </p>
+        <main class="container mx-auto px-4 py-8">
+            <div class="max-w-3xl mx-auto space-y-8">
+                <!-- Question Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-soft animate-slide-in">
+                    <div class="space-y-4">
+                        <h2 class="text-xl md:text-2xl font-display font-semibold text-neutral-850">
+                            🤔 Pernahkah kamu tahu <span class="text-primary-600">yang harus diperhatikan oleh laki-laki saat berhaji?</span>
+                        </h2>
+                        <p class="text-lg font-medium text-red-500">
+                            Apa saja yang boleh dan tidak boleh dilakukan?
+                        </p>
+                    </div>
+                </div>
 
-            <!-- Card with content -->
-            <div class="w-full max-w-5xl mx-auto p-10 bg-white rounded-lg shadow-xl">
+                <!-- Prohibitions Card -->
+                <div class="bg-white rounded-2xl p-8 shadow-soft animate-slide-in" style="animation-delay: 0.2s">
+                    <h3 class="text-xl font-display font-semibold text-neutral-850 mb-6">
+                        Berikut adalah beberapa larangan untuk jamaah haji laki-laki:
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-red-50/50 border border-red-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
+                                ⛔
+                            </div>
+                            <p class="text-neutral-750 font-medium">
+                                Memakai pakaian yang berjahit, baik jahitan biasa, sulaman, maupun diikatkan kedua ujungnya.
+                            </p>
+                        </div>
 
-                <p class="text-2xl lg:text-3xl xl:text-4xl text-justify leading-relaxed mb-6">
-                    Berikut adalah beberapa larangan untuk jamaah haji laki-laki:
-                </p>
-                <ul class="list-disc pl-6 text-xl lg:text-2xl xl:text-3xl font-semibold text-gray-700 space-y-2">
-                    <li class="transition transform hover:scale-105 duration-300">🚫 Memakai pakaian yang berjahit, baik jahitan biasa, sulaman, maupun diikatkan kedua ujungnya.</li>
-                    <li class="transition transform hover:scale-105 duration-300">🧢 Menutup kepala, kecuali jika ada alasan tertentu, dan harus membayar dam.</li>
-                </ul>
-                <!-- Two buttons side by side with fade-in effect -->
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-blue-50/50 border border-blue-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                                🧢
+                            </div>
+                            <p class="text-neutral-750 font-medium">
+                                Menutup kepala, kecuali jika ada alasan tertentu, dan harus membayar dam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>

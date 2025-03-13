@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenis-jenis Haji - Sukafikih</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f7ff',
+                            100: '#e0eeff',
+                            200: '#c7d7fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        highlight: {
+                            green: '#10b981',
+                            blue: '#3b82f6',
+                            red: '#ef4444',
+                            purple: '#8b5cf6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        .content-card {
+            transition: all 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(-100%);
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .menu-overlay {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .bg-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex min-h-screen">
+        <!-- Sidebar - Desktop -->
+        <aside class="fixed inset-y-0 left-0 w-72 bg-white border-r shadow-sm hidden lg:block z-30">
+            <div class="flex flex-col h-full">
+                <div class="p-6">
+                    <a href="index.html" class="block">
+                        <h1 class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
+                            sukafikih
+                        </h1>
+                    </a>
+                </div>
+                
+                <div class="px-4 pb-4">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            placeholder="Cari materi..." 
+                            class="w-full pl-10 pr-4 py-2 text-sm border rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+                
+                <nav class="flex-1 px-4 space-y-2">
+                    <a href="materi-haji.html" class="flex items-center gap-3 w-full px-4 py-2 text-sm font-medium rounded-lg text-primary-700 bg-primary-50 hover:bg-primary-100 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        Materi Haji
+                    </a>
+                    
+                    <a href="materi-umrah.html" class="flex items-center gap-3 w-full px-4 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        Materi Umrah
+                    </a>
+                    
+                    <a href="latihan.html" class="flex items-center gap-3 w-full px-4 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        Ayo Latihan
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 menu-overlay lg:hidden"></div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed inset-y-0 left-0 w-72 bg-white shadow-lg z-50 mobile-menu lg:hidden">
+            <div class="flex flex-col h-full">
+                <div class="p-6 flex justify-between items-center border-b">
+                    <a href="index.html" class="block">
+                        <h1 class="text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
+                            sukafikih
+                        </h1>
+                    </a>
+                    <button id="close-menu" class="p-2 rounded-lg hover:bg-gray-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="px-4 py-4">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            placeholder="Cari materi..." 
+                            class="w-full pl-10 pr-4 py-2 text-sm border rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+                
+                <nav class="flex-1 px-4 space-y-2">
+                    <a href="materi-haji.html" class="flex items-center gap-3 w-full px-4 py-2 text-sm font-medium rounded-lg text-primary-700 bg-primary-50 hover:bg-primary-100 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        Materi Haji
+                    </a>
+                    
+                    <a href="materi-umrah.html" class="flex items-center gap-3 w-full px-4 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        Materi Umrah
+                    </a>
+                    
+                    <a href="latihan.html" class="flex items-center gap-3 w-full px-4 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        Ayo Latihan
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="flex-1 lg:ml-72">
+            <!-- Page Header -->
+            <div class="bg-gradient-to-r from-primary-600 to-primary-700 bg-pattern">
+                <div class="max-w-4xl mx-auto px-4 py-12 lg:px-8">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Jenis-jenis Haji</h1>
+                        <p class="text-primary-100 max-w-2xl">
+                            Pelajari perbedaan antara Haji Tamattu', Qiran, dan Ifrad untuk memahami cara pelaksanaan ibadah haji yang sesuai dengan kondisi Anda
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Breadcrumb -->
+            <div class="bg-white border-b">
+                <div class="max-w-4xl mx-auto px-4 py-3 lg:px-8">
+                    <nav class="flex items-center text-sm">
+                        <a href="index.html" class="text-gray-500 hover:text-primary-600">Beranda</a>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mx-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                        <a href="materi-haji.html" class="text-gray-500 hover:text-primary-600">Materi Haji</a>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mx-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                        <span class="text-gray-900 font-medium">Jenis-jenis Haji</span>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="max-w-4xl mx-auto px-4 py-8 lg:px-8">
+                <div class="space-y-8">
+                    <!-- Haji Tamattu Section -->
+                    <div class="content-card bg-white rounded-2xl shadow-sm border p-6 space-y-4">
+                        <h2 class="text-2xl font-bold flex items-center gap-2">
+                            Haji Tamattu' 
+                            <span class="text-yellow-400">✨</span>
+                        </h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            Haji Tamattu' adalah cara haji di mana seseorang melakukan 
+                            <span class="font-semibold text-highlight-green">umrah terlebih dahulu</span>, 
+                            kemudian melaksanakan 
+                            <span class="font-semibold text-highlight-blue">haji</span> 
+                            setelahnya. Cara ini wajib dilakukan dengan membayar 
+                            <span class="font-semibold text-highlight-red">dam nusuk</span> 
+                            (sesuai ketentuan). 
+                            <span class="inline-flex items-center bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-sm">
+                                <span class="mr-1">🕌</span> Haji tamattu' ini menjadi pilihan banyak jamaah haji, terutama dari Indonesia.
+                            </span>
+                            Kenapa? Karena prosesnya lebih mudah dan praktis! 
+                            <span class="inline-block">✅</span>
+                        </p>
+                    </div>
+
+                    <!-- Haji Qiran Section -->
+                    <div class="content-card bg-white rounded-2xl shadow-sm border p-6 space-y-4">
+                        <h2 class="text-2xl font-bold flex items-center gap-2">
+                            Haji Qiran? 
+                            <span>🤔</span>
+                        </h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            Haji 
+                            <span class="font-semibold text-highlight-purple">Qiran</span> 
+                            adalah 
+                            <span class="font-semibold text-highlight-blue">menggabungkan ibadah haji dan umrah</span> 
+                            dalam satu niat dan rangkaian pekerjaan sekaligus. Pelaksanaan ini diwajibkan untuk membayar 
+                            <span class="font-semibold text-highlight-red">dam nusuk</span>. 
+                            Biasanya, jenis haji ini dipilih oleh jamaah yang 
+                            <span class="font-semibold text-highlight-green">waktu tinggalnya di Makkah sangat terbatas</span> 
+                            atau tidak memungkinkan melaksanakan umrah sebelum atau sesudah haji.
+                        </p>
+                    </div>
+
+                    <!-- Haji Ifrad Section -->
+                    <div class="content-card bg-white rounded-2xl shadow-sm border p-6 space-y-4">
+                        <h2 class="text-2xl font-bold flex items-center gap-2">
+                            Haji Ifrad 
+                            <span>🍫</span>
+                        </h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            Haji 
+                            <span class="font-semibold text-highlight-purple">ifrad</span> 
+                            adalah melaksanakan 
+                            <span class="font-semibold text-highlight-blue">haji saja</span>, 
+                            tanpa digabung dengan umrah. Pelaksanaan ini 
+                            <span class="font-semibold text-highlight-green">tidak dikenakan kewajiban membayar dam</span>. 
+                            Namun, cara ini jarang dipilih karena prosesnya lebih panjang dan membutuhkan waktu yang lebih lama.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button id="open-menu" class="fixed bottom-6 right-6 lg:hidden bg-primary-600 text-white p-4 rounded-full shadow-lg hover:bg-primary-700 transition-colors z-30">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+    </button>
+
+    <script>
+        // Mobile menu functionality
+        const openMenuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+
+        // Open menu
+        openMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+
+        // Close menu function
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Re-enable scrolling
+        }
+
+        // Close menu events
+        closeMenuBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+
+        // Close menu when clicking a link (optional)
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    </script>
+</body>
+</html>

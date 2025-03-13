@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ihram - SukaFikih</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        blue: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        slate: {
+                            50: '#f8fafc',
+                            700: '#334155',
+                            800: '#1e293b',
+                        }
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    },
+                    animation: {
+                        fadeIn: 'fadeIn 0.5s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+        
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .sidebar.active {
+            transform: translateX(0);
+        }
+        
+        .backdrop {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        
+        .backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .header-scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 font-sans">
+    <!-- Header -->
+    <header id="header" class="sticky top-0 z-40 w-full bg-white transition-all duration-200">
+        <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+            <div class="flex items-center gap-2">
+                <button id="menuToggle" class="md:hidden p-2 rounded-lg hover:bg-slate-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    <span class="sr-only">Toggle menu</span>
+                </button>
+                <a href="#" class="flex items-center">
+                    <span class="text-2xl font-bold text-blue-600">suka</span>
+                    <span class="text-2xl font-bold text-slate-700">fikih</span>
+                </a>
+            </div>
+            
+            <div class="hidden md:flex">
+                <a href="./rukun-haji.html" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-slate-100 h-10 px-4 py-2">
+                    <span>Rukun Haji</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Sidebar Backdrop -->
+    <div id="backdrop" class="fixed inset-0 bg-black/50 z-40 backdrop md:hidden"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed z-50 w-[280px] bg-gradient-to-b from-blue-600 to-blue-700 h-screen top-0 left-0 sidebar md:transform-none md:z-30 md:top-16 md:h-[calc(100vh-4rem)]">
+        <div class="py-6 px-4 space-y-4">
+            <div class="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/70">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input 
+                    type="text"
+                    placeholder="Cari materi..." 
+                    class="flex h-10 w-full rounded-md border border-white/10 bg-white/10 px-3 py-2 pl-9 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-white focus:bg-white/20 focus:border-white/20"
+                />
+            </div>
+            
+            <nav class="space-y-1.5">
+                <a 
+                    href="./menu2.html" 
+                    class="flex items-center gap-3 rounded-lg px-3 py-2 text-white hover:bg-white/10 transition-all duration-200"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    <span>Menu</span>
+                </a>
+                
+                <a 
+                    href="./haji.html" 
+                    class="flex items-center gap-3 rounded-lg px-3 py-2 text-white hover:bg-white/10 transition-all duration-200"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                    <span>Materi Haji</span>
+                </a>
+                
+                <a 
+                    href="./umrah.html" 
+                    class="flex items-center gap-3 rounded-lg px-3 py-2 text-white hover:bg-white/10 transition-all duration-200"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <span>Materi Umrah</span>
+                </a>
+                
+                <a 
+                    href="./a.html" 
+                    class="flex items-center gap-3 rounded-lg px-3 py-2 text-white hover:bg-white/10 transition-all duration-200"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                    </svg>
+                    <span>Ayo Latihan</span>
+                </a>
+            </nav>
+        </div>
+    </aside>
+
+    <div class="flex flex-1">
+        <!-- Main content -->
+        <main class="flex-1 md:ml-[280px] p-4 md:p-8">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-3xl md:text-4xl font-bold mb-8 text-center text-slate-800">
+                    IHRAM
+                </h1>
+
+                <!-- Interactive Question -->
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 md:p-8 rounded-xl mb-8 text-center shadow-sm border border-blue-100 animate-fadeIn">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-2">Tahukah Anda?</h3>
+                    <p class="text-slate-700 mb-4">Apakah Anda tahu makna sebenarnya dari Ihram?</p>
+                    <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-white hover:bg-blue-50 h-10 px-4 py-2">
+                        Pelajari Lebih Lanjut
+                    </button>
+                </div>
+
+                <!-- Content Cards -->
+                <div class="space-y-6">
+                    <div class="rounded-lg border-none shadow-lg hover:shadow-xl transition-all duration-300 animate-fadeIn overflow-hidden">
+                        <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4">
+                            <h2 class="text-xl font-semibold">Pengertian Ihram</h2>
+                        </div>
+                        <div class="p-6 bg-white">
+                            <p class="text-slate-700 leading-relaxed mb-4">
+                                Ihram adalah berniat untuk memulai mengerjakan haji dengan memakai pakaian putih dan tidak berjahit. Kain tersebut diletakkan di bawah ketiak kanan dan dua ujungnya di pundak sebelah kiri.
+                            </p>
+                            <p class="text-slate-700 leading-relaxed">
+                                Makna yang terkandung dari pemakaian pakaian putih ini adalah kesetaraan dan kesederhanaan. Semua umat di hadapan Allah Swt. itu sama, yang membedakannya hanyalah ketakwaannya.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-lg border-none shadow-lg hover:shadow-xl transition-all duration-300 animate-fadeIn delay-100 overflow-hidden">
+                        <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4">
+                            <h2 class="text-xl font-semibold">Simbol Latihan Kematian</h2>
+                        </div>
+                        <div class="p-6 bg-white">
+                            <p class="text-slate-700 leading-relaxed">
+                                Memakai Ihram dan melakukan ritual haji adalah simbol bahwa kita siap menghadapi kematian dan siap kembali kepada Allah.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t bg-white py-4 mt-auto">
+        <div class="container mx-auto flex justify-between items-center px-4 md:px-6">
+            <p class="font-semibold text-slate-700">Haji & Umrah</p>
+            <a href="./rukun-haji.html" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-slate-100 h-10 px-4 py-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 mr-2">
+                    <path d="m15 18-6-6 6-6"></path>
+                </svg>
+                <span>Kembali</span>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle sidebar
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('backdrop');
+        const header = document.getElementById('header');
+        
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            backdrop.classList.toggle('active');
+        });
+        
+        backdrop.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            backdrop.classList.remove('active');
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 10) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.animate-fadeIn');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(10px)';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
