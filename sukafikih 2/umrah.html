@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sukafikih- belajar Umrah</title>
+  <meta name="description" content="Platform pembelajaran haji dan umrah yang lengkap dan mudah dipahami">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              DEFAULT: '#1e40af',
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              950: '#172554',
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-4px);
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div class="flex min-h-screen">
+    <!-- Sidebar - Desktop -->
+    <aside class="fixed inset-y-0 left-0 w-64 bg-white border-r shadow-sm hidden lg:block">
+      <div class="flex flex-col h-full">
+        <div class="p-4 border-b">
+          <h1 class="text-2xl font-bold text-primary-800">Sukafikih</h1>
+        </div>
+        
+        
+        <nav class="flex-1 p-4 space-y-1">
+          <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md text-primary-800 bg-primary-50 hover:bg-primary-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            Materi Haji
+          </a>
+          <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            Materi Umrah
+          </a>
+          <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+            </svg>
+            Ayo Latihan
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <div class="fixed top-0 left-0 right-0 h-16 bg-white border-b z-10 lg:hidden">
+      <div class="flex items-center h-full px-4">
+        <button id="mobile-menu-button" class="p-2 rounded-md hover:bg-gray-100 lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <h1 class="ml-3 text-xl font-bold text-primary-800">Sukafikih</h1>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden lg:hidden">
+      <div class="bg-white w-64 h-full overflow-y-auto">
+        <div class="p-4 border-b flex justify-between items-center">
+          <h1 class="text-xl font-bold text-primary-800">Sukafikih</h1>
+          <button id="close-menu-button" class="p-2 rounded-md hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        
+        
+        <nav class="p-4 space-y-1">
+          <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md text-primary-800 bg-primary-50 hover:bg-primary-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            Materi Haji
+          </a>
+          <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            Materi Umrah
+          </a>
+          <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+            </svg>
+            Ayo Latihan
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 lg:ml-64 pt-16 lg:pt-0">
+      <div class="max-w-7xl mx-auto p-6">
+        <div class="mb-8">
+          <div class="bg-primary-600 text-white rounded-lg p-8 mb-8">
+            <h2 class="text-3xl font-bold tracking-tight">Materi Umrah</h2>
+            <p class="mt-2 text-primary-100">
+              Pelajari materi seputar ibadah Umrah secara lengkap dan mudah dipahami
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Pengertian Haji -->
+          <a href="" class="block">
+            <div class="bg-white rounded-lg border shadow-sm overflow-hidden h-full card-hover">
+              <div class="p-6">
+                <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-primary-50">
+                  <img src="../image/logo umrah.png" alt="Kaaba" class="h-10 w-10">
+                </div>
+                <h3 class="font-semibold text-lg">Pengertian Umrah</h3>
+                <p class="mt-2 text-sm text-gray-500">
+                  Definisi dan penjelasan dasar tentang ibadah Umrah
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Hukum Haji -->
+          <a href="" class="block">
+            <div class="bg-white rounded-lg border shadow-sm overflow-hidden h-full card-hover">
+              <div class="p-6">
+                <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-primary-50">
+                  <img src="../image/materi haji.png" alt="Mosque" class="h-10 w-10">
+                </div>
+                <h3 class="font-semibold text-lg">Dalil dan Hukum Umrah</h3>
+                <p class="mt-2 text-sm text-gray-500">
+                  Dasar hukum dan ketentuan ibadah Umrah dalam Islam
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Rukun Haji -->
+          <a href="" class="block">
+            <div class="bg-white rounded-lg border shadow-sm overflow-hidden h-full card-hover">
+              <div class="p-6">
+                <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-primary-50">
+                  <img src="../image/rukun haji.png" alt="Pilgrims" class="h-10 w-10">
+                </div>
+                <h3 class="font-semibold text-lg">Rukun Umrah</h3>
+                <p class="mt-2 text-sm text-gray-500">
+                  Rukun-rukun yang wajib dilaksanakan dalam ibadah Umrah
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Syarat Sah & Wajib Haji -->
+          <a href="" class="block">
+            <div class="bg-white rounded-lg border shadow-sm overflow-hidden h-full card-hover">
+              <div class="p-6">
+                <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-primary-50">
+                  <img src="../image/sah dan wajib.png" alt="Kaaba Rules" class="h-10 w-10">
+                </div>
+                <h3 class="font-semibold text-lg">Syarat-Syarat Umrah</h3>
+                <p class="mt-2 text-sm text-gray-500">
+                  Persyaratan yang harus dipenuhi untuk ibadah Umrah
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Sunnah Haji -->
+          <a href="" class="block">
+            <div class="bg-white rounded-lg border shadow-sm overflow-hidden h-full card-hover">
+              <div class="p-6">
+                <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-primary-50">
+                  <img src="../image/ihram.png" alt="Pilgrim Kaaba" class="h-10 w-10">
+                </div>
+                <h3 class="font-semibold text-lg">Sunnah Umrah</h3>
+                <p class="mt-2 text-sm text-gray-500">
+                  Amalan-amalan sunnah dalam pelaksanaan ibadah Umrah
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="" class="block">
+            <div class="bg-white rounded-lg border shadow-sm overflow-hidden h-full card-hover">
+              <div class="p-6">
+                <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-primary-50">
+                  <img src="../image/larangan pr dan lk.png" alt="Pilgrim Kaaba" class="h-10 w-10">
+                </div>
+                <h3 class="font-semibold text-lg">Larangan saat Umrah</h3>
+                <p class="mt-2 text-sm text-gray-500">
+                  hal-hal yang tidak boleh dilakukan baik laki-laki maupun perempuan  dalam pelaksanaan ibadah Umrah
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+    });
+
+    closeMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+
+    // Close mobile menu when clicking outside
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

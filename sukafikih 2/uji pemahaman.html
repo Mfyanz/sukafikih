@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uji Pemahaman Materi Haji dan Umrah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-50 to-emerald-100 flex flex-col items-center justify-center p-4">
+    <div class="max-w-4xl w-full">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-emerald-800 mb-6">
+            Uji Pemahaman Materi Haji dan Umrah
+        </h1>
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="w-full shadow-lg bg-white rounded-lg overflow-hidden animate-fade-in">
+            <div class="p-6 border-b">
+                <h2 class="text-2xl text-center font-bold">Selamat Datang di Quiz Haji dan Umrah</h2>
+                <p class="text-center text-gray-600 mt-2">
+                    Uji pengetahuan Anda tentang ibadah Haji dan Umrah dan dapatkan peringkat tertinggi!
+                </p>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label for="username" class="block text-sm font-medium mb-1">
+                        Masukkan Nama Anda
+                    </label>
+                    <input
+                        id="username"
+                        type="text"
+                        placeholder="Nama Pengguna"
+                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    />
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button 
+                        id="start-button"
+                        class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-md transition-colors"
+                    >
+                        Mulai Quiz
+                    </button>
+                    <button 
+                        id="toggle-leaderboard-button"
+                        class="px-4 py-2 border border-emerald-600 text-emerald-600 font-medium rounded-md hover:bg-emerald-50 transition-colors"
+                    >
+                        Lihat Peringkat
+                    </button>
+                </div>
+            </div>
+            
+            <div id="start-leaderboard" class="hidden p-6 border-t"></div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden w-full shadow-lg bg-white rounded-lg overflow-hidden animate-fade-in">
+            <div class="p-6 border-b">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <i class="fas fa-trophy text-yellow-500 mr-1"></i>
+                        <span class="font-bold">Skor: <span id="score-display">0</span></span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-clock text-red-500 mr-1"></i>
+                        <span id="timer" class="font-bold">30 detik</span>
+                    </div>
+                </div>
+                <h2 class="text-xl font-bold">
+                    Pertanyaan <span id="question-number">1</span> dari <span id="total-questions">15</span>
+                </h2>
+                <p id="question-text" class="text-lg font-medium mt-2"></p>
+            </div>
+            <div id="answers-container" class="p-6 space-y-3"></div>
+            <div class="p-6 border-t flex justify-between items-center">
+                <div id="feedback-text" class="text-sm"></div>
+                <button 
+                    id="next-button" 
+                    class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-md transition-colors hidden"
+                >
+                    Pertanyaan Berikutnya
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="hidden w-full shadow-lg bg-white rounded-lg overflow-hidden animate-fade-in">
+            <div class="p-6 border-b">
+                <h2 class="text-2xl text-center font-bold">Quiz Selesai!</h2>
+                <p id="results-username" class="text-center text-lg">
+                    Terima kasih telah berpartisipasi!
+                </p>
+            </div>
+            <div class="p-6 space-y-6">
+                <div class="text-center">
+                    <p id="final-score" class="text-3xl font-bold text-emerald-600 mb-2">0 Poin</p>
+                    <p class="text-gray-600">Anda telah menyelesaikan quiz Haji dan Umrah</p>
+                </div>
+                
+                <div id="results-leaderboard"></div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button 
+                        id="play-again-button"
+                        class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-md transition-colors"
+                    >
+                        Main Lagi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions
+        const questions = [
+            {
+                question: "Apa arti kata 'Haji' secara bahasa?",
+                answers: [
+                    "Berkunjung",
+                    "Berdoa",
+                    "Menyembah",
+                    "Bersuci"
+                ],
+                correctAnswer: 0
+            },
+            {
+                question: "Kapan ibadah Haji dilaksanakan?",
+                answers: [
+                    "Bulan Ramadhan",
+                    "Bulan Dzulhijjah",
+                    "Bulan Syawal",
+                    "Bulan Rajab"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "Apa perbedaan utama antara Haji dan Umrah?",
+                answers: [
+                    "Haji wajib, Umrah sunnah",
+                    "Haji dilakukan kapan saja, Umrah hanya di bulan tertentu",
+                    "Haji memiliki waktu tertentu, Umrah dapat dilakukan kapan saja",
+                    "Tidak ada perbedaan"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "Rukun Haji yang pertama adalah...",
+                answers: [
+                    "Wukuf di Arafah",
+                    "Thawaf Ifadhah",
+                    "Sa'i",
+                    "Niat (Ihram)"
+                ],
+                correctAnswer: 3
+            },
+            {
+                question: "Wukuf di Arafah dilaksanakan pada tanggal berapa?",
+                answers: [
+                    "8 Dzulhijjah",
+                    "9 Dzulhijjah",
+                    "10 Dzulhijjah",
+                    "11 Dzulhijjah"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "Apa yang dimaksud dengan Thawaf?",
+                answers: [
+                    "Berlari-lari kecil antara Shafa dan Marwah",
+                    "Melempar jumrah",
+                    "Mengelilingi Ka'bah sebanyak 7 kali",
+                    "Berdiam diri di Arafah"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "Berapa jumlah putaran dalam Sa'i?",
+                answers: [
+                    "5 putaran",
+                    "6 putaran",
+                    "7 putaran",
+                    "8 putaran"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "Apa yang dimaksud dengan Ihram?",
+                answers: [
+                    "Pakaian khusus untuk ibadah Haji dan Umrah",
+                    "Niat memulai ibadah Haji atau Umrah",
+                    "Larangan-larangan selama ibadah Haji",
+                    "Semua jawaban benar"
+                ],
+                correctAnswer: 3
+            },
+            {
+                question: "Apa yang dimaksud dengan Tahallul?",
+                answers: [
+                    "Bersuci sebelum ibadah",
+                    "Mengelilingi Ka'bah",
+                    "Melempar jumrah",
+                    "Berakhirnya sebagian atau seluruh larangan ihram"
+                ],
+                correctAnswer: 3
+            },
+            {
+                question: "Apa hukum melaksanakan ibadah Umrah?",
+                answers: [
+                    "Wajib sekali seumur hidup",
+                    "Sunnah muakkad",
+                    "Mubah",
+                    "Makruh"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "Apa yang dimaksud dengan Miqat?",
+                answers: [
+                    "Tempat berdo'a",
+                    "Batas waktu ibadah",
+                    "Tempat atau batas untuk memulai ihram",
+                    "Tempat bermalam selama haji"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "Apa yang dimaksud dengan Tawaf Qudum?",
+                answers: [
+                    "Tawaf perpisahan",
+                    "Tawaf kedatangan",
+                    "Tawaf rukun haji",
+                    "Tawaf sunnah"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "Apa yang dimaksud dengan Tawaf Wada?",
+                answers: [
+                    "Tawaf perpisahan",
+                    "Tawaf kedatangan",
+                    "Tawaf rukun haji",
+                    "Tawaf sunnah"
+                ],
+                correctAnswer: 0
+            },
+            {
+                question: "Apa yang dimaksud dengan Jumrah?",
+                answers: [
+                    "Tempat bermalam di Mina",
+                    "Tempat melempar batu",
+                    "Batu yang dilemparkan",
+                    "Tempat berkumpul jamaah haji"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "Berapa jumlah Jumrah yang dilempar pada hari Tasyrik?",
+                answers: [
+                    "Satu jumrah",
+                    "Dua jumrah",
+                    "Tiga jumrah",
+                    "Empat jumrah"
+                ],
+                correctAnswer: 2
+            }
+        ];
+
+        // Game state
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let username = '';
+        let timeLeft = 30;
+        let timerInterval;
+        let selectedAnswer = null;
+
+        // DOM elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        const usernameInput = document.getElementById('username');
+        const startButton = document.getElementById('start-button');
+        const toggleLeaderboardButton = document.getElementById('toggle-leaderboard-button');
+        const startLeaderboard = document.getElementById('start-leaderboard');
+        const questionNumber = document.getElementById('question-number');
+        const totalQuestions = document.getElementById('total-questions');
+        const questionText = document.getElementById('question-text');
+        const answersContainer = document.getElementById('answers-container');
+        const scoreDisplay = document.getElementById('score-display');
+        const timer = document.getElementById('timer');
+        const feedbackText = document.getElementById('feedback-text');
+        const nextButton = document.getElementById('next-button');
+        const finalScore = document.getElementById('final-score');
+        const resultsUsername = document.getElementById('results-username');
+        const resultsLeaderboard = document.getElementById('results-leaderboard');
+        const playAgainButton = document.getElementById('play-again-button');
+
+        // Initialize
+        totalQuestions.textContent = questions.length;
+
+        // Leaderboard functions
+        function getLeaderboard() {
+            const leaderboard = JSON.parse(localStorage.getItem('hajj-umrah-quiz-leaderboard')) || [];
+            return leaderboard.sort((a, b) => b.score - a.score);
+        }
+
+        function saveScore(username, score) {
+            const leaderboard = getLeaderboard();
+            const userIndex = leaderboard.findIndex(entry => entry.username === username);
+            
+            if (userIndex !== -1) {
+                if (score > leaderboard[userIndex].score) {
+                    leaderboard[userIndex].score = score;
+                }
+            } else {
+                leaderboard.push({ username, score });
+            }
+            
+            localStorage.setItem('hajj-umrah-quiz-leaderboard', JSON.stringify(leaderboard));
+        }
+
+        function renderLeaderboard(container, highlightUser = null) {
+            const leaderboard = getLeaderboard();
+            
+            if (leaderboard.length === 0) {
+                container.innerHTML = `
+                    <div class="w-full text-center py-4">
+                        <p class="text-gray-500">Belum ada data peringkat</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let leaderboardHTML = `
+                <h3 class="text-xl font-bold mb-4 text-center">Peringkat Tertinggi</h3>
+                <div class="overflow-hidden rounded-lg border">
+                    <table class="w-full">
+                        <thead class="bg-emerald-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-emerald-800">Peringkat</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-emerald-800">Nama</th>
+                                <th class="px-4 py-3 text-right text-sm font-medium text-emerald-800">Skor</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y">
+            `;
+            
+            leaderboard.slice(0, 10).forEach((entry, index) => {
+                const isHighlighted = highlightUser && entry.username === highlightUser;
+                const rowClass = isHighlighted 
+                    ? 'bg-emerald-100' 
+                    : index % 2 === 0 ? 'bg-white' : 'bg-gray-50';
+                
+                let rankDisplay = '';
+                if (index < 3) {
+                    const trophyColor = index === 0 
+                        ? 'text-yellow-500' 
+                        : index === 1 ? 'text-gray-400' : 'text-amber-700';
+                    
+                    rankDisplay = `
+                        <div class="flex items-center">
+                            <i class="fas fa-trophy ${trophyColor} mr-1"></i>
+                            <span>${index + 1}</span>
+                        </div>
+                    `;
+                } else {
+                    rankDisplay = `<span class="pl-6">${index + 1}</span>`;
+                }
+                
+                leaderboardHTML += `
+                    <tr class="${rowClass}">
+                        <td class="px-4 py-3 text-sm">${rankDisplay}</td>
+                        <td class="px-4 py-3 text-sm font-medium">
+                            ${entry.username}
+                            ${isHighlighted ? '<span class="ml-2 text-xs text-emerald-600">(Anda)</span>' : ''}
+                        </td>
+                        <td class="px-4 py-3 text-sm text-right font-bold">${entry.score}</td>
+                    </tr>
+                `;
+            });
+            
+            leaderboardHTML += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            container.innerHTML = leaderboardHTML;
+        }
+
+        // Game functions
+        function startGame() {
+            username = usernameInput.value.trim();
+            if (!username) return;
+            
+            currentQuestionIndex = 0;
+            score = 0;
+            timeLeft = 30;
+            
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            resultsScreen.classList.add('hidden');
+            
+            scoreDisplay.textContent = score;
+            loadQuestion();
+            startTimer();
+        }
+
+        function loadQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            questionNumber.textContent = currentQuestionIndex + 1;
+            questionText.textContent = currentQuestion.question;
+            
+            // Clear previous answers
+            answersContainer.innerHTML = '';
+            selectedAnswer = null;
+            nextButton.classList.add('hidden');
+            feedbackText.textContent = '';
+            
+            // Add new answers
+            currentQuestion.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.className = 'w-full justify-start text-left p-4 h-auto border rounded-md hover:bg-gray-50 transition-colors mb-2';
+                button.innerHTML = `<span>${answer}</span>`;
+                
+                button.addEventListener('click', () => handleAnswerSelect(index));
+                answersContainer.appendChild(button);
+            });
+        }
+
+        function handleAnswerSelect(answerIndex) {
+            if (selectedAnswer !== null) return;
+            
+            selectedAnswer = answerIndex;
+            const currentQuestion = questions[currentQuestionIndex];
+            const isCorrect = answerIndex === currentQuestion.correctAnswer;
+            
+            // Update UI for selected answer
+            const answerButtons = answersContainer.querySelectorAll('button');
+            
+            answerButtons.forEach((button, index) => {
+                button.disabled = true;
+                
+                if (index === answerIndex) {
+                    if (isCorrect) {
+                        button.className = 'w-full justify-start text-left p-4 h-auto bg-green-100 border border-green-500 text-green-800 rounded-md mb-2';
+                        button.innerHTML = `<div class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i><span>${currentQuestion.answers[index]}</span></div>`;
+                    } else {
+                        button.className = 'w-full justify-start text-left p-4 h-auto bg-red-100 border border-red-500 text-red-800 rounded-md mb-2';
+                        button.innerHTML = `<div class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-2"></i><span>${currentQuestion.answers[index]}</span></div>`;
+                    }
+                }
+                
+                // Always highlight the correct answer
+                if (index === currentQuestion.correctAnswer && index !== answerIndex) {
+                    button.className = 'w-full justify-start text-left p-4 h-auto bg-green-100 border border-green-500 text-green-800 rounded-md mb-2';
+                    button.innerHTML = `<div class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i><span>${currentQuestion.answers[index]}</span></div>`;
+                }
+            });
+            
+            // Update score and feedback
+            if (isCorrect) {
+                const pointsToAdd = Math.max(10, 10 + timeLeft);
+                score += pointsToAdd;
+                scoreDisplay.textContent = score;
+                feedbackText.textContent = `Jawaban benar! +${pointsToAdd} poin`;
+                feedbackText.className = 'text-sm text-green-600';
+            } else {
+                feedbackText.textContent = 'Jawaban salah!';
+                feedbackText.className = 'text-sm text-red-600';
+            }
+            
+            // Show next button
+            nextButton.classList.remove('hidden');
+            
+            // Clear timer
+            clearInterval(timerInterval);
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 30;
+            timer.textContent = `${timeLeft} detik`;
+            timer.className = 'font-bold';
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timer.textContent = `${timeLeft} detik`;
+                
+                if (timeLeft < 10) {
+                    timer.className = 'font-bold text-red-500';
+                }
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    handleTimeUp();
+                }
+            }, 1000);
+        }
+
+        function handleTimeUp() {
+            if (selectedAnswer === null) {
+                feedbackText.textContent = 'Waktu habis!';
+                feedbackText.className = 'text-sm text-red-600';
+                
+                // Highlight the correct answer
+                const currentQuestion = questions[currentQuestionIndex];
+                const answerButtons = answersContainer.querySelectorAll('button');
+                
+                answerButtons.forEach((button, index) => {
+                    button.disabled = true;
+                    
+                    if (index === currentQuestion.correctAnswer) {
+                        button.className = 'w-full justify-start text-left p-4 h-auto bg-green-100 border border-green-500 text-green-800 rounded-md mb-2';
+                        button.innerHTML = `<div class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i><span>${currentQuestion.answers[index]}</span></div>`;
+                    }
+                });
+                
+                selectedAnswer = -1; // Mark as answered
+                nextButton.classList.remove('hidden');
+            }
+        }
+
+        function handleNextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+                startTimer();
+            } else {
+                finishGame();
+            }
+        }
+
+        function finishGame() {
+            clearInterval(timerInterval);
+            
+            // Save score
+            saveScore(username, score);
+            
+            // Update UI
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+            
+            resultsUsername.textContent = `Terima kasih telah berpartisipasi, ${username}!`;
+            finalScore.textContent = `${score} Poin`;
+            
+            // Render leaderboard
+            renderLeaderboard(resultsLeaderboard, username);
+        }
+
+        function resetGame() {
+            startScreen.classList.remove('hidden');
+            resultsScreen.classList.add('hidden');
+        }
+
+        // Event listeners
+        startButton.addEventListener('click', startGame);
+        
+        toggleLeaderboardButton.addEventListener('click', () => {
+            if (startLeaderboard.classList.contains('hidden')) {
+                startLeaderboard.classList.remove('hidden');
+                renderLeaderboard(startLeaderboard);
+                toggleLeaderboardButton.textContent = 'Sembunyikan Peringkat';
+            } else {
+                startLeaderboard.classList.add('hidden');
+                toggleLeaderboardButton.textContent = 'Lihat Peringkat';
+            }
+        });
+        
+        nextButton.addEventListener('click', handleNextQuestion);
+        playAgainButton.addEventListener('click', resetGame);
+
+        // Initialize leaderboard
+        if (!localStorage.getItem('hajj-umrah-quiz-leaderboard')) {
+            // Add some sample data for demonstration
+            const sampleData = [
+                { username: "Ahmad", score: 120 },
+                { username: "Fatimah", score: 105 },
+                { username: "Muhammad", score: 95 },
+                { username: "Aisyah", score: 85 },
+                { username: "Ibrahim", score: 75 }
+            ];
+            localStorage.setItem('hajj-umrah-quiz-leaderboard', JSON.stringify(sampleData));
+        }
+    </script>
+</body>
+</html>
