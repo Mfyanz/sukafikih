@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Larangan Haji - SukaFikih</title>
+    <title>Larangan haji</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
@@ -24,11 +24,6 @@
                         secondary: {
                             600: '#475569',
                             800: '#1e293b',
-                        },
-                        danger: {
-                            50: '#fef2f2',
-                            100: '#fee2e2',
-                            500: '#ef4444',
                         }
                     }
                 }
@@ -64,22 +59,14 @@
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
-        
-        .prohibition-card {
-            transition: all 0.3s ease;
-        }
-        
-        .prohibition-card:hover {
-            transform: translateY(-5px);
-        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
-    <!-- Same sidebar structure as other pages -->
+    <!-- Same sidebar as index.html -->
     <div id="backdrop" class="fixed inset-0 bg-black/50 z-40 backdrop lg:hidden"></div>
     
     <aside id="sidebar" class="fixed z-50 w-72 bg-white border-r border-gray-200 h-screen sidebar lg:transform-none lg:shadow-none">
-        <!-- Sidebar content same as other pages -->
+        <!-- Sidebar content same as index.html -->
         <div class="p-6 h-full flex flex-col">
             <!-- Logo -->
             <div class="flex items-center gap-3 mb-8">
@@ -128,7 +115,7 @@
                         </svg>
                     </button>
                     <div class="pl-12 mt-1 space-y-1">
-                        <a href="haji-pengertian.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Pengertian Haji</a>
+                        <a href="haji-pengertian.html" class="block px-4 py-2 text-sm text-primary-600 bg-primary-50 rounded-lg">Pengertian Haji</a>
                         <a href="haji-dalil.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Dalil Haji</a>
                         <a href="haji-hukum.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Hukum Haji</a>
                         <a href="haji-rukun.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Rukun Haji</a>
@@ -136,7 +123,7 @@
                         <a href="haji-sunnah.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Sunnah Haji</a>
                         <a href="haji-wajib.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Wajib Haji</a>
                         <a href="haji-macam.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Macam-macam Haji</a>
-                        <a href="haji-larangan.html" class="block px-4 py-2 text-sm text-primary-600 bg-primary-50 rounded-lg">Larangan Haji</a>
+                        <a href="haji-larangan.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Larangan Haji</a>
                     </div>
                 </div>
                 
@@ -220,186 +207,384 @@
         </header>
 
         <!-- Content -->
-        <main class="container mx-auto px-4 py-8">
-            <div class="max-w-4xl mx-auto">
-                <!-- Breadcrumb -->
-                <nav class="flex mb-6 text-sm text-gray-500" aria-label="Breadcrumb">
-                    <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                        <li class="inline-flex items-center">
-                            <a href="index.html" class="hover:text-primary-600 transition-colors">
-                                Beranda
-                            </a>
-                        </li>
-                        <li>
-                            <div class="flex items-center">
-                                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                <a href="#" class="ml-1 hover:text-primary-600 transition-colors">
-                                    Materi Haji
-                                </a>
-                            </div>
-                        </li>
-                        <li aria-current="page">
-                            <div class="flex items-center">
-                                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="ml-1 font-medium text-primary-600">
-                                    Larangan Haji
-                                </span>
-                            </div>
-                        </li>
-                    </ol>
-                </nav>
-                
-                <!-- Title -->
-                <div class="mb-10 animate-fade-in">
-                    <h1 class="text-3xl md:text-4xl font-display font-bold text-secondary-800 mb-4">Larangan Haji</h1>
-                    <p class="text-lg text-secondary-600">Hal-hal yang dilarang selama melaksanakan ibadah haji</p>
-                </div>
-                
-                <!-- Introduction -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-8 animate-fade-in">
-                    <div class="p-8">
-                        <h2 class="text-2xl font-display font-semibold text-secondary-800 mb-6">Apa Saja Larangan dalam Ibadah Haji?</h2>
-                        
-                        <p class="text-secondary-600 mb-6 leading-relaxed">
-                            Dalam melaksanakan ibadah haji, terdapat beberapa larangan yang harus dihindari oleh jamaah. Larangan-larangan ini berlaku selama jamaah berada dalam keadaan ihram. Jika larangan ini dilanggar, maka jamaah wajib membayar <span class="font-semibold">dam</span> (denda) sebagai tebusan.
-                        </p>
-                        
-                        <div class="bg-danger-50 rounded-xl p-6 mb-6 border border-danger-100">
-                            <h3 class="text-xl font-semibold text-danger-500 mb-3">Penting Diperhatikan</h3>
-                            <p class="text-secondary-600 leading-relaxed">
-                                Larangan-larangan dalam ibadah haji dibagi menjadi dua kategori: larangan umum yang berlaku bagi laki-laki dan perempuan, serta larangan khusus yang hanya berlaku bagi laki-laki atau perempuan saja.
-                            </p>
-                        </div>
+        <main class="flex-1 overflow-y-auto p-6">
+            <!-- Breadcrumb -->
+            <div class="flex items-center text-sm text-gray-500 mb-6">
+              <a href="#" class="hover:text-blue-500">Beranda</a>
+              <span class="mx-2">&gt;</span>
+              <a href="#" class="hover:text-blue-500">Materi Haji</a>
+              <span class="mx-2">&gt;</span>
+              <span class="text-blue-500">Larangan Haji</span>
+            </div>
+    
+            <!-- Title -->
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Larangan Haji</h1>
+            <p class="text-gray-600 mb-8">Memahami hal-hal yang dilarang selama ihram bagi laki-laki dan perempuan</p>
+    
+            <!-- Content -->
+            <div class="bg-white rounded-lg shadow-sm p-8 mb-6">
+              <h2 class="text-2xl font-bold text-gray-800 mb-4">Pengertian Larangan Haji</h2>
+              <p class="text-gray-700 mb-4">
+                <span class="font-bold text-red-600">Larangan Haji</span> adalah hal-hal yang dilarang dilakukan oleh jamaah haji selama dalam keadaan ihram. Larangan-larangan ini berlaku sejak seseorang berniat ihram hingga tahallul (keluar dari ihram). Melanggar larangan haji dapat mengakibatkan kewajiban membayar <span class="font-bold text-amber-600">dam (denda)</span> atau <span class="font-bold text-amber-600">fidyah</span>.
+              </p>
+              <p class="text-gray-700 mb-6">
+                Larangan haji terbagi menjadi dua kategori: larangan umum yang berlaku bagi semua jamaah haji (laki-laki dan perempuan), serta larangan khusus yang hanya berlaku bagi laki-laki atau perempuan saja.
+              </p>
+    
+              <div class="flex justify-center mb-8 animate-fadeIn">
+                <img src="https://placeholder.pics/svg/600x250/DEDEDE/555555/LARANGAN%20HAJI" alt="Ilustrasi Larangan Haji" class="rounded-lg shadow-md">
+              </div>
+    
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Larangan Umum (Bagi Laki-laki dan Perempuan)</h3>
+              <p class="text-gray-700 mb-4">
+                Berikut adalah larangan-larangan yang berlaku bagi semua jamaah haji, baik laki-laki maupun perempuan:
+              </p>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                <div class="bg-red-50 p-4 rounded-lg border border-red-100 icon-container">
+                  <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="bx bx-cut text-red-500 text-xl"></i>
                     </div>
+                    <h4 class="font-bold text-red-700">Memotong Rambut dan Kuku</h4>
+                  </div>
+                  <p class="text-gray-700 text-sm">Dilarang memotong rambut (di kepala atau bagian tubuh lainnya) dan kuku selama dalam keadaan ihram.</p>
                 </div>
                 
-                <!-- Larangan Umum -->
-                <div class="mb-8 animate-fade-in">
-                    <h2 class="text-2xl font-display font-semibold text-secondary-800 mb-6">Larangan Umum (Laki-laki & Perempuan)</h2>
-                    
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <!-- Larangan 1 -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 prohibition-card">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-danger-50 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-2xl">✂️</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-secondary-800 mb-2">Memotong Rambut dan Kuku</h3>
-                                    <p class="text-secondary-600">
-                                        Dilarang memotong rambut kepala, bulu badan, dan kuku selama dalam keadaan ihram.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Larangan 2 -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 prohibition-card">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-danger-50 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-2xl">🧴</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-secondary-800 mb-2">Memakai Wewangian</h3>
-                                    <p class="text-secondary-600">
-                                        Dilarang memakai wewangian pada badan, pakaian, atau rambut selama ihram.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Larangan 3 -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 prohibition-card">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-danger-50 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-2xl">🐘</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-secondary-800 mb-2">Berburu atau Membunuh Binatang</h3>
-                                    <p class="text-secondary-600">
-                                        Dilarang berburu atau membunuh binatang darat yang halal dimakan.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Larangan 4 -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 prohibition-card">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-danger-50 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-2xl">💍</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-secondary-800 mb-2">Akad Nikah</h3>
-                                    <p class="text-secondary-600">
-                                        Dilarang melakukan akad nikah, baik untuk diri sendiri maupun menikahkan orang lain.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Larangan 5 -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 prohibition-card">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-danger-50 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-2xl">❤️</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-secondary-800 mb-2">Berhubungan Suami Istri</h3>
-                                    <p class="text-secondary-600">
-                                        Dilarang melakukan hubungan suami istri atau pendahuluannya selama ihram.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Larangan 6 -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 prohibition-card">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-danger-50 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-2xl">🌳</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-secondary-800 mb-2">Memotong Pohon di Tanah Haram</h3>
-                                    <p class="text-secondary-600">
-                                        Dilarang memotong atau mencabut pohon dan tanaman yang tumbuh di tanah haram.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="bg-red-50 p-4 rounded-lg border border-red-100 icon-container">
+                  <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="bx bx-spray-can text-red-500 text-xl"></i>
                     </div>
+                    <h4 class="font-bold text-red-700">Memakai Wewangian</h4>
+                  </div>
+                  <p class="text-gray-700 text-sm">Dilarang memakai parfum, minyak wangi, atau produk yang mengandung wewangian pada tubuh atau pakaian.</p>
                 </div>
                 
-                <!-- Larangan Khusus Laki-laki -->
-                <div class="mb-8 animate-fade-in">
-                    <h2 class="text-2xl font-display font-semibold text-secondary-800 mb-6">Larangan Khusus untuk Laki-laki</h2>
-                    
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <!-- Larangan 1 -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 prohibition-card">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-danger-50 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-2xl">👕</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-secondary-800 mb-2">Memakai Pakaian Berjahit</h3>
-                                    <p class="text-secondary-600">
-                                        Laki-laki dilarang memakai pakaian yang berjahit atau yang dibuat khusus untuk anggota badan tertentu.
-                                    </p>
-                                </div>
-                            </div>
+                <div class="bg-red-50 p-4 rounded-lg border border-red-100 icon-container">
+                  <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="bx bx-target-lock text-red-500 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-red-700">Berburu atau Membunuh Binatang</h4>
+                  </div>
+                  <p class="text-gray-700 text-sm">Dilarang berburu atau membunuh binatang darat yang liar dan halal dimakan.</p>
+                </div>
+                
+                <div class="bg-red-50 p-4 rounded-lg border border-red-100 icon-container">
+                  <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="bx bx-heart text-red-500 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-red-700">Akad Nikah</h4>
+                  </div>
+                  <p class="text-gray-700 text-sm">Dilarang melakukan akad nikah, baik untuk diri sendiri maupun menikahkan orang lain.</p>
+                </div>
+                
+                <div class="bg-red-50 p-4 rounded-lg border border-red-100 icon-container">
+                  <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="bx bx-male-female text-red-500 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-red-700">Berhubungan Suami Istri</h4>
+                  </div>
+                  <p class="text-gray-700 text-sm">Dilarang melakukan hubungan suami istri atau pendahuluannya seperti mencium, memeluk dengan syahwat, dll.</p>
+                </div>
+                
+                <div class="bg-red-50 p-4 rounded-lg border border-red-100 icon-container">
+                  <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="bx bx-message-alt-x text-red-500 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-red-700">Berkata Kotor dan Bertengkar</h4>
+                  </div>
+                  <p class="text-gray-700 text-sm">Dilarang berkata kotor, mencaci maki, bertengkar, atau berdebat yang tidak bermanfaat.</p>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row gap-6 mb-8">
+                <div class="w-full md:w-1/2">
+                  <h3 class="text-xl font-bold text-gray-800 mb-3">Larangan Khusus bagi Laki-laki</h3>
+                  <p class="text-gray-700 mb-4">
+                    Selain larangan umum, ada beberapa larangan yang khusus berlaku bagi jamaah haji laki-laki:
+                  </p>
+                  
+                  <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm animate-slideIn">
+                    <div class="p-4 bg-blue-50 border-b border-gray-200">
+                      <h4 class="font-bold text-blue-700">Larangan Khusus Laki-laki</h4>
+                    </div>
+                    <ul class="divide-y divide-gray-200">
+                      <li class="p-4 flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-t-shirt text-blue-500"></i>
                         </div>
-                        
-                        <!-- Larangan 2 -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 prohibition-card">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-danger-50 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-2xl">🧢</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-secondary-800 mb-2">Menutup Kepala</h3>
-                                    <p class="
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Memakai Pakaian Berjahit</h5>
+                          <p class="text-gray-600 text-sm mt-1">Dilarang memakai pakaian yang dijahit mengikuti bentuk tubuh seperti baju, celana, sarung, dll. Laki-laki harus mengenakan dua helai kain ihram yang tidak dijahit.</p>
+                        </div>
+                      </li>
+                      <li class="p-4 flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-hat text-blue-500"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Menutup Kepala</h5>
+                          <p class="text-gray-600 text-sm mt-1">Dilarang menutup kepala dengan sesuatu yang menempel seperti kopiah, sorban, topi, atau helm. Namun boleh berteduh di bawah payung atau tenda.</p>
+                        </div>
+                      </li>
+                      <li class="p-4 flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-shoe text-blue-500"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Memakai Alas Kaki yang Menutupi Mata Kaki</h5>
+                          <p class="text-gray-600 text-sm mt-1">Dilarang memakai sepatu, kaos kaki, atau alas kaki lain yang menutupi mata kaki. Boleh memakai sandal yang tidak menutupi mata kaki.</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div class="mt-6 flex justify-center">
+                    <img src="https://placeholder.pics/svg/400x200/EBF5FF/3B82F6/LARANGAN%20HAJI%20LAKI-LAKI" alt="Ilustrasi Larangan Haji bagi Laki-laki" class="rounded-lg shadow-md">
+                  </div>
+                </div>
+                
+                <div class="w-full md:w-1/2">
+                  <h3 class="text-xl font-bold text-gray-800 mb-3">Larangan Khusus bagi Perempuan</h3>
+                  <p class="text-gray-700 mb-4">
+                    Selain larangan umum, ada beberapa larangan yang khusus berlaku bagi jamaah haji perempuan:
+                  </p>
+                  
+                  <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm animate-slideIn">
+                    <div class="p-4 bg-pink-50 border-b border-gray-200">
+                      <h4 class="font-bold text-pink-700">Larangan Khusus Perempuan</h4>
+                    </div>
+                    <ul class="divide-y divide-gray-200">
+                      <li class="p-4 flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-face-mask text-pink-500"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Menutup Wajah dengan Cadar</h5>
+                          <p class="text-gray-600 text-sm mt-1">Dilarang menutup wajah dengan cadar (niqab) atau burqa yang menempel pada wajah. Namun boleh menutup wajah dengan kerudung yang tidak menempel pada wajah jika ada laki-laki non-mahram.</p>
+                        </div>
+                      </li>
+                      <li class="p-4 flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-hand text-pink-500"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Memakai Sarung Tangan</h5>
+                          <p class="text-gray-600 text-sm mt-1">Dilarang memakai sarung tangan yang menutupi telapak tangan dan jari-jari. Namun boleh menutup tangan dengan ujung kerudung atau pakaian ihram.</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div class="mt-6 flex justify-center">
+                    <img src="https://placeholder.pics/svg/400x200/FDF2F8/DB2777/LARANGAN%20HAJI%20PEREMPUAN" alt="Ilustrasi Larangan Haji bagi Perempuan" class="rounded-lg shadow-md">
+                  </div>
+                </div>
+              </div>
+              
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Dam (Denda) Pelanggaran Larangan Haji</h3>
+              <p class="text-gray-700 mb-4">
+                Jika seseorang melanggar larangan haji, maka ia wajib membayar dam (denda) sesuai dengan jenis pelanggarannya:
+              </p>
+              
+              <div class="overflow-x-auto mb-6">
+                <table class="min-w-full bg-white border border-gray-200">
+                  <thead>
+                    <tr>
+                      <th class="py-3 px-4 bg-gray-100 text-left text-gray-700 font-semibold border-b border-gray-200">Jenis Pelanggaran</th>
+                      <th class="py-3 px-4 bg-gray-100 text-left text-gray-700 font-semibold border-b border-gray-200">Dam (Denda)</th>
+                      <th class="py-3 px-4 bg-gray-100 text-left text-gray-700 font-semibold border-b border-gray-200">Keterangan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Memotong rambut, memotong kuku, memakai wewangian, memakai pakaian berjahit (bagi laki-laki), menutup kepala (bagi laki-laki)</td>
+                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">
+                        <span class="font-semibold text-amber-600">Fidyah</span>: Memilih salah satu:
+                        <ul class="list-disc pl-5 mt-1 text-sm">
+                          <li>Berpuasa 3 hari</li>
+                          <li>Memberi makan 6 orang miskin</li>
+                          <li>Menyembelih seekor kambing</li>
+                        </ul>
+                      </td>
+                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700 text-sm">Berdasarkan QS. Al-Baqarah: 196</td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Berburu atau membunuh binatang darat</td>
+                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">
+                        <span class="font-semibold text-amber-600">Jaza'</span>: Memilih salah satu:
+                        <ul class="list-disc pl-5 mt-1 text-sm">
+                          <li>Menyembelih hewan ternak yang sebanding dengan binatang yang dibunuh</li>
+                          <li>Memberi makan orang miskin senilai hewan tersebut</li>
+                          <li>Berpuasa sejumlah hari sebanyak mud makanan</li>
+                        </ul>
+                      </td>
+                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700 text-sm">Berdasarkan QS. Al-Maidah: 95</td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Berhubungan suami istri sebelum wukuf di Arafah</td>
+                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">
+                        <span class="font-semibold text-red-600">Haji batal</span>, wajib:
+                        <ul class="list-disc pl-5 mt-1 text-sm">
+                          <li>Meneruskan ibadah haji hingga selesai</li>
+                          <li>Mengqadha haji pada tahun berikutnya</li>
+                          <li>Menyembelih seekor unta (jika tidak mampu, menyembelih seekor sapi, jika tidak mampu, menyembelih 7 ekor kambing)</li>
+                        </ul>
+                      </td>
+                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700 text-sm">Berdasarkan hadits dan ijma' ulama</td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Berhubungan suami istri setelah wukuf di Arafah</td>
+                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">
+                        <span class="font-semibold text-amber-600">Dam</span>: Menyembelih seekor kambing
+                      </td>
+                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700 text-sm">Haji tetap sah, tapi wajib membayar dam</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Pengecualian dalam Larangan Haji</h3>
+              <p class="text-gray-700 mb-4">
+                Dalam kondisi tertentu, beberapa larangan haji dapat dikecualikan dengan syarat membayar fidyah:
+              </p>
+              
+              <div class="bg-green-50 p-6 rounded-lg border border-green-100 mb-6">
+                <h4 class="font-bold text-green-700 mb-3">Kondisi yang Diperbolehkan</h4>
+                <ul class="space-y-3 text-gray-700">
+                  <li class="flex items-start">
+                    <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                      <i class="bx bx-check text-green-500"></i>
+                    </div>
+                    <div>
+                      <span class="font-semibold">Sakit atau Terluka</span>: Jika seseorang sakit atau terluka dan perlu memotong rambut, memakai pakaian berjahit (bagi laki-laki), atau menutup kepala (bagi laki-laki), maka diperbolehkan dengan syarat membayar fidyah.
+                    </div>
+                  </li>
+                  <li class="flex items-start">
+                    <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                      <i class="bx bx-check text-green-500"></i>
+                    </div>
+                    <div>
+                      <span class="font-semibold">Cuaca Ekstrem</span>: Jika cuaca sangat panas atau sangat dingin, laki-laki diperbolehkan menutup kepala dengan syarat membayar fidyah.
+                    </div>
+                  </li>
+                  <li class="flex items-start">
+                    <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                      <i class="bx bx-check text-green-500"></i>
+                    </div>
+                    <div>
+                      <span class="font-semibold">Binatang Berbahaya</span>: Diperbolehkan membunuh binatang berbahaya seperti kalajengking, ular, tikus, anjing galak, dan sejenisnya tanpa harus membayar dam.
+                    </div>
+                  </li>  anjing galak, dan sejenisnya tanpa harus membayar dam.
+                    </div>
+                  </li>
+                  <li class="flex items-start">
+                    <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                      <i class="bx bx-check text-green-500"></i>
+                    </div>
+                    <div>
+                      <span class="font-semibold">Keadaan Darurat</span>: Dalam keadaan darurat yang mengancam keselamatan jiwa, semua larangan dapat dikecualikan dengan syarat membayar fidyah sesuai kemampuan.
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="flex justify-center mb-6 animate-fadeIn">
+                <img src="https://placeholder.pics/svg/800x300/F0FDF4/22C55E/PENGECUALIAN%20LARANGAN%20HAJI" alt="Ilustrasi Pengecualian Larangan Haji" class="rounded-lg shadow-md">
+              </div>
+              
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Hikmah Larangan Haji</h3>
+              <p class="text-gray-700 mb-4">
+                Adanya larangan-larangan dalam ibadah haji mengandung berbagai hikmah, di antaranya:
+              </p>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                  <h4 class="font-bold text-blue-700 mb-2">Hikmah Spiritual</h4>
+                  <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                    <li>Melatih ketaatan kepada Allah SWT</li>
+                    <li>Menumbuhkan kesadaran akan pengawasan Allah</li>
+                    <li>Meningkatkan ketakwaan dan kesabaran</li>
+                    <li>Menjauhkan diri dari kemewahan duniawi</li>
+                    <li>Mengingatkan tentang kesederhanaan dan kesetaraan manusia</li>
+                  </ul>
+                </div>
+                <div class="bg-amber-50 p-4 rounded-lg border border-amber-100">
+                  <h4 class="font-bold text-amber-700 mb-2">Hikmah Sosial</h4>
+                  <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                    <li>Menciptakan suasana damai dan harmonis</li>
+                    <li>Menghindari perselisihan dan pertengkaran</li>
+                    <li>Menumbuhkan rasa persaudaraan antar jamaah haji</li>
+                    <li>Menghilangkan perbedaan status sosial</li>
+                    <li>Menjaga kekhusyukan ibadah haji</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="bg-yellow-50 p-4 rounded-md border-l-4 border-yellow-500">
+                <p class="text-gray-700">
+                  <span class="font-bold text-amber-600">Catatan Penting:</span> Ketentuan larangan haji dan dam (denda) dapat berbeda-beda menurut madzhab fikih yang dianut. Penjelasan di atas mengacu pada pendapat mayoritas ulama. Jamaah haji disarankan untuk berkonsultasi dengan ulama atau pembimbing haji untuk mendapatkan penjelasan yang lebih rinci sesuai dengan madzhab yang dianut.
+                </p>
+              </div>
+            </div>
+    
+            <div class="bg-blue-50 rounded-lg p-6 border border-blue-100">
+              <h2 class="text-xl font-bold text-blue-700 mb-3">Kesimpulan</h2>
+              <p class="text-gray-700 mb-4">
+                Larangan haji merupakan hal-hal yang dilarang dilakukan selama dalam keadaan ihram. Larangan-larangan ini terbagi menjadi larangan umum yang berlaku bagi semua jamaah haji, serta larangan khusus yang hanya berlaku bagi laki-laki atau perempuan saja.
+              </p>
+              <p class="text-gray-700">
+                Memahami dan mematuhi larangan-larangan haji sangat penting untuk kesempurnaan ibadah haji. Melanggar larangan haji dapat mengakibatkan kewajiban membayar dam (denda) atau fidyah, bahkan dalam kasus tertentu dapat membatalkan ibadah haji. Oleh karena itu, setiap jamaah haji perlu mempelajari dan memahami larangan-larangan haji dengan baik sebelum melaksanakan ibadah haji.
+              </p>
+            </div>
+          </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t mt-12">
+            <div class="container mx-auto px-4 py-8">
+                <div class="text-center">
+                    <p class="text-secondary-500">© 2025 SukaFikih. Hak Cipta Dilindungi.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Toggle sidebar
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('backdrop');
+        
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            backdrop.classList.toggle('active');
+        });
+        
+        backdrop.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            backdrop.classList.remove('active');
+        });
+        
+        // Toggle dropdown menus
+        const menuItems = document.querySelectorAll('.menu-item');
+        
+        menuItems.forEach(item => {
+            const button = item.querySelector('button');
+            const dropdown = item.querySelector('div');
+            const arrow = button.querySelector('svg:last-child');
+            
+            if (button && dropdown && arrow) {
+                button.addEventListener('click', function() {
+                    dropdown.classList.toggle('hidden');
+                    arrow.classList.toggle('rotate-180');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
