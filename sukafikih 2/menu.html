@@ -1,276 +1,368 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
+    <title>Pengertian Haji - SukaFikih</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Sora', 'sans-serif'],
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        secondary: {
+                            600: '#475569',
+                            800: '#1e293b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
-
-        :root {
-            --gradient-haji: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            --gradient-umrah: linear-gradient(135deg, #10b981, #059669);
-            --gradient-latihan: linear-gradient(135deg, #8b5cf6, #6d28d9);
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
         }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-            padding-top: 80px;
-            min-height: 100vh;
+        
+        .sidebar.active {
+            transform: translateX(0);
         }
-
-        .menu-item {
-            position: relative;
-            border-radius: 1rem;
-            padding: 3px;
-            transition: all 0.4s ease;
+        
+        .backdrop {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
         }
-
-        .menu-item-haji {
-            background: var(--gradient-haji);
+        
+        .backdrop.active {
+            opacity: 1;
+            visibility: visible;
         }
-
-        .menu-item-umrah {
-            background: var(--gradient-umrah);
-        }
-
-        .menu-item-latihan {
-            background: var(--gradient-latihan);
-        }
-
-        .menu-item:hover {
-            transform: translateY(-5px) scale(1.02);
-        }
-
-        .menu-item-content {
-            background: white;
-            border-radius: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .menu-item:hover .menu-item-content {
-            background: rgba(255, 255, 255, 0.95);
-            transform: translateX(5px);
-        }
-
-        .menu-item-haji:hover {
-            box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.2),
-                       0 10px 10px -5px rgba(59, 130, 246, 0.1);
-        }
-
-        .menu-item-umrah:hover {
-            box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.2),
-                       0 10px 10px -5px rgba(16, 185, 129, 0.1);
-        }
-
-        .menu-item-latihan:hover {
-            box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.2),
-                       0 10px 10px -5px rgba(139, 92, 246, 0.1);
-        }
-
-        .icon-container {
-            transition: transform 0.3s ease;
-        }
-
-        .menu-item:hover .icon-container {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .arrow-icon {
-            transition: transform 0.3s ease;
-        }
-
-        .menu-item:hover .arrow-icon {
-            transform: translateX(5px);
-        }
-
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .logo-text {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 700;
-        }
-
-        .exit-button {
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            background: linear-gradient(to right, #ef4444, #dc2626);
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .exit-button:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2);
-        }
-
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
+        
         .animate-fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 700;
-        }
-
-        .logo .suka {
-            color: #2563eb;
-        }
-
-        .logo .fikih {
-            color: #495683;
+            animation: fadeIn 0.8s ease-out forwards;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 glass-effect z-50">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-            <div class="logo">
-                <span class="suka">suka</span><span class="fikih">fikih</span>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Same sidebar as index.html -->
+    <div id="backdrop" class="fixed inset-0 bg-black/50 z-40 backdrop lg:hidden"></div>
+    
+    <aside id="sidebar" class="fixed z-50 w-72 bg-white border-r border-gray-200 h-screen sidebar lg:transform-none lg:shadow-none">
+        <!-- Sidebar content same as index.html -->
+        <div class="p-6 h-full flex flex-col">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <h1 class="text-xl font-display font-bold">
+                    <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+                </h1>
             </div>
-            <a href="../index.html" class="exit-button flex items-center space-x-2">
-                <span class="font-medium">Exit</span>
-                <i class="fas fa-sign-out-alt text-xl"></i>
-            </a>
+            
+            <!-- Search -->
+            <div class="relative mb-8">
+                <input 
+                    type="search" 
+                    placeholder="Cari materi..." 
+                    class="w-full h-11 pl-11 pr-4 rounded-xl bg-gray-100 border-transparent focus:border-primary-300 focus:bg-white focus:ring-0 text-sm transition-all"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-4 top-3.5 h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="space-y-1 flex-1 overflow-y-auto">
+                <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-secondary-600 hover:bg-gray-100 rounded-xl font-medium transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <span>Beranda</span>
+                </a>
+                
+                <!-- Haji Menu -->
+                <div class="menu-item">
+                    <button class="w-full flex items-center justify-between px-4 py-3 text-primary-600 bg-primary-50 rounded-xl font-medium">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            <span>Materi Haji</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="pl-12 mt-1 space-y-1">
+                        <a href="haji-pengertian.html" class="block px-4 py-2 text-sm text-primary-600 bg-primary-50 rounded-lg">Pengertian Haji</a>
+                        <a href="haji-dalil.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Dalil Haji</a>
+                        <a href="haji-hukum.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Hukum Haji</a>
+                        <a href="haji-rukun.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Rukun Haji</a>
+                        <a href="haji-syarat.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Syarat Haji</a>
+                        <a href="haji-sunnah.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Sunnah Haji</a>
+                        <a href="haji-wajib.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Wajib Haji</a>
+                        <a href="haji-macam.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Macam-macam Haji</a>
+                        <a href="haji-larangan.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Larangan Haji</a>
+                    </div>
+                </div>
+                
+                <!-- Umrah Menu -->
+                <div class="menu-item">
+                    <button class="w-full flex items-center justify-between px-4 py-3 text-secondary-600 hover:bg-gray-100 rounded-xl font-medium transition-colors">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                            <span>Materi Umrah</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="pl-12 mt-1 space-y-1 hidden">
+                        <a href="umrah-pengertian.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Pengertian Umrah</a>
+                        <a href="umrah-rukun.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Rukun Umrah</a>
+                        <a href="umrah-syarat.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Syarat Umrah</a>
+                        <a href="umrah-larangan.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Larangan Umrah</a>
+                    </div>
+                </div>
+                
+                <!-- Latihan Menu -->
+                <a href="latihan.html" class="flex items-center gap-3 px-4 py-3 text-secondary-600 hover:bg-gray-100 rounded-xl font-medium transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    <span>Latihan Pemahaman</span>
+                </a>
+            </nav>
+            
+            <!-- User Profile -->
+            <div class="mt-auto pt-6 border-t">
+                <div class="flex items-center gap-3 px-4 py-3">
+                    <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-secondary-800">Pengguna</p>
+                        <p class="text-xs text-secondary-500">pengguna@email.com</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </header>
+    </aside>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-8 mb-12">
-        <h1 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-fade-in">
-            Menu Pembelajaran
-        </h1>
-
-        <div class="grid gap-8 max-w-3xl mx-auto">
-            <!-- Haji Button -->
-            <div class="bg-white rounded-xl shadow-soft border border-gray-100 overflow-hidden hover:shadow-medium transition-shadow animate-fade-in delay-100">
-                <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Haji" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+    <div class="lg:pl-72">
+        <!-- Header -->
+        <header class="bg-white border-b sticky top-0 z-30">
+            <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <button id="menuToggle" class="p-2 hover:bg-gray-100 rounded-lg lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <h1 class="text-xl font-display font-bold lg:hidden">
+                        <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+                    </h1>
                 </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-display font-bold text-secondary-900 mb-3 text-center">Materi Haji</h3>
-                    <p class="text-secondary-600 mb-4">
-                        Pelajari pengertian, dalil, rukun, syarat, dan berbagai aspek penting dalam ibadah haji.
-                    </p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center gap-2 text-sm text-secondary-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Pengertian & Dalil Haji
-                        </li>
-                        <li class="flex items-center gap-2 text-sm text-secondary-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Rukun & Syarat Haji
-                        </li>
-                        <li class="flex items-center gap-2 text-sm text-secondary-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Macam & Larangan Haji
-                        </li>
-                    </ul>
-                    <a href="./haji.html" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-blue-800 transition duration-200 bg-blue-100 rounded-xl hover:bg-primary-700 focus:shadow-outline focus:outline-none">
-                        Pelajari Sekarang
+                
+                <div class="flex items-center gap-4">
+                    <a href="#" class="hidden md:flex items-center gap-2 text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Bantuan</span>
                     </a>
+                    <button class="p-2 hover:bg-gray-100 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
                 </div>
             </div>
+        </header>
 
-            <!-- Umrah Button -->
-            <div class="bg-white rounded-xl shadow-soft border border-gray-100 overflow-hidden hover:shadow-medium transition-shadow animate-fade-in delay-200">
-                <div class="h-48 overflow-hidden">
-                    <img src="../image/logo menu haji.png" alt="Umrah" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-display font-bold text-secondary-900 mb-3 text-center">Materi Umrah</h3>
-                    <p class="text-secondary-600 mb-4">
-                        Pelajari pengertian, rukun, syarat, dan larangan dalam pelaksanaan ibadah umrah.
-                    </p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center gap-2 text-sm text-secondary-600">
-                            <svg xmlns="http://www.w3.org/2000/svg"  class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Pengertian Umrah
-                        </li>
-                        <li class="flex items-center gap-2 text-sm text-secondary-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Rukun & Syarat Umrah
-                        </li>
-                        <li class="flex items-center gap-2 text-sm text-secondary-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Larangan Umrah
-                        </li>
-                    </ul>
-                    <a href="./umrah.html" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-blue-800 transition duration-200 bg-blue-100 rounded-xl hover:bg-primary-700 focus:shadow-outline focus:outline-none">
-                        Pelajari Sekarang
-                    </a>
+        <!-- Content -->
+        <main class="container mx-auto px-6 py-8 mb-12">
+          <h1 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-fade-in">
+              Menu Pembelajaran
+          </h1>
+  
+          <div class="grid gap-8 max-w-3xl mx-auto">
+              <!-- Haji Button -->
+              <div class="bg-white rounded-xl shadow-soft border border-gray-100 overflow-hidden hover:shadow-medium transition-shadow animate-fade-in delay-100">
+                  <div class="h-48 overflow-hidden">
+                      <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Haji" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                  </div>
+                  <div class="p-6">
+                      <h3 class="text-xl font-display font-bold text-secondary-900 mb-3 text-center">Materi Haji</h3>
+                      <p class="text-secondary-600 mb-4">
+                          Pelajari pengertian, dalil, rukun, syarat, dan berbagai aspek penting dalam ibadah haji.
+                      </p>
+                      <ul class="space-y-2 mb-6">
+                          <li class="flex items-center gap-2 text-sm text-secondary-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                              </svg>
+                              Pengertian & Dalil Haji
+                          </li>
+                          <li class="flex items-center gap-2 text-sm text-secondary-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                              </svg>
+                              Rukun & Syarat Haji
+                          </li>
+                          <li class="flex items-center gap-2 text-sm text-secondary-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                              </svg>
+                              Macam & Larangan Haji
+                          </li>
+                      </ul>
+                      <a href="./haji.html" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-blue-800 transition duration-200 bg-blue-100 rounded-xl hover:bg-primary-700 focus:shadow-outline focus:outline-none">
+                          Pelajari Sekarang
+                      </a>
+                  </div>
+              </div>
+  
+              <!-- Umrah Button -->
+              <div class="bg-white rounded-xl shadow-soft border border-gray-100 overflow-hidden hover:shadow-medium transition-shadow animate-fade-in delay-200">
+                  <div class="h-48 overflow-hidden">
+                      <img src="../image/logo menu haji.png" alt="Umrah" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                  </div>
+                  <div class="p-6">
+                      <h3 class="text-xl font-display font-bold text-secondary-900 mb-3 text-center">Materi Umrah</h3>
+                      <p class="text-secondary-600 mb-4">
+                          Pelajari pengertian, rukun, syarat, dan larangan dalam pelaksanaan ibadah umrah.
+                      </p>
+                      <ul class="space-y-2 mb-6">
+                          <li class="flex items-center gap-2 text-sm text-secondary-600">
+                              <svg xmlns="http://www.w3.org/2000/svg"  class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                              </svg>
+                              Pengertian Umrah
+                          </li>
+                          <li class="flex items-center gap-2 text-sm text-secondary-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                              </svg>
+                              Rukun & Syarat Umrah
+                          </li>
+                          <li class="flex items-center gap-2 text-sm text-secondary-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                              </svg>
+                              Larangan Umrah
+                          </li>
+                      </ul>
+                      <a href="./umrah.html" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-blue-800 transition duration-200 bg-blue-100 rounded-xl hover:bg-primary-700 focus:shadow-outline focus:outline-none">
+                          Pelajari Sekarang
+                      </a>
+                  </div>
+              </div>
+  
+              <!-- Latihan Button -->
+              <div class="bg-white rounded-xl shadow-soft border border-gray-100 overflow-hidden hover:shadow-medium transition-shadow animate-fade-in delay-300">
+                  <div class="h-48 overflow-hidden">
+                      <img src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Latihan" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                  </div>
+                  <div class="p-6">
+                      <h3 class="text-xl font-display font-bold text-secondary-900 mb-3 text-center">Latihan Pemahaman</h3>
+                      <p class="text-secondary-600 mb-4">
+                          Uji pemahaman Anda dengan latihan soal interaktif dan kompetisi dengan pengguna lain.
+                      </p>
+                      <ul class="space-y-2 mb-6">
+                          <li class="flex items-center gap-2 text-sm text-secondary-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                              </svg>
+                              Kuis Interaktif
+                          </li>
+                          <li class="flex items-center gap-2 text-sm text-secondary-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                              </svg>
+                              Papan Peringkat
+                          </li>
+                          <li class="flex items-center gap-2 text-sm text-secondary-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                              </svg>
+                              Sertifikat Digital
+                          </li>
+                      </ul>
+                      <a href="./uji pemahaman.html" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-blue-800 transition duration-200 bg-blue-100 rounded-xl hover:bg-primary-700 focus:shadow-outline focus:outline-none">
+                          Mulai Latihan
+                      </a>
+                  </div>
+          </div>
+      </main>
+  
+        <!-- Footer -->
+        <footer class="bg-white border-t mt-8">
+            <div class="container mx-auto px-4 py-8">
+                <div class="text-center">
+                    <p class="text-secondary-500">© 2025 SukaFikih. Hak Cipta Dilindungi.</p>
                 </div>
             </div>
+        </footer>
+    </div>
 
-            <!-- Latihan Button -->
-            <div class="bg-white rounded-xl shadow-soft border border-gray-100 overflow-hidden hover:shadow-medium transition-shadow animate-fade-in delay-300">
-                <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Latihan" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-display font-bold text-secondary-900 mb-3 text-center">Latihan Pemahaman</h3>
-                    <p class="text-secondary-600 mb-4">
-                        Uji pemahaman Anda dengan latihan soal interaktif dan kompetisi dengan pengguna lain.
-                    </p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center gap-2 text-sm text-secondary-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Kuis Interaktif
-                        </li>
-                        <li class="flex items-center gap-2 text-sm text-secondary-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Papan Peringkat
-                        </li>
-                        <li class="flex items-center gap-2 text-sm text-secondary-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Sertifikat Digital
-                        </li>
-                    </ul>
-                    <a href="./uji pemahaman.html" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-blue-800 transition duration-200 bg-blue-100 rounded-xl hover:bg-primary-700 focus:shadow-outline focus:outline-none">
-                        Mulai Latihan
-                    </a>
-                </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="fixed bottom-0 left-0 right-0 glass-effect py-4">
-        <p class="text-center text-gray-700 font-medium">
-            Haji & Umrah © 2025
-        </p>
-    </footer>
+    <script>
+        // Toggle sidebar
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('backdrop');
+        
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            backdrop.classList.toggle('active');
+        });
+        
+        backdrop.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            backdrop.classList.remove('active');
+        });
+        
+        // Toggle dropdown menus
+        const menuItems = document.querySelectorAll('.menu-item');
+        
+        menuItems.forEach(item => {
+            const button = item.querySelector('button');
+            const dropdown = item.querySelector('div');
+            const arrow = button.querySelector('svg:last-child');
+            
+            if (button && dropdown && arrow) {
+                button.addEventListener('click', function() {
+                    dropdown.classList.toggle('hidden');
+                    arrow.classList.toggle('rotate-180');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
