@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengertian Haji - SukaFikih</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Sora', 'sans-serif'],
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        secondary: {
+                            600: '#475569',
+                            800: '#1e293b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .sidebar.active {
+            transform: translateX(0);
+        }
+        
+        .backdrop {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        
+        .backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Same sidebar as index.html -->
+    <div id="backdrop" class="fixed inset-0 bg-black/50 z-40 backdrop lg:hidden"></div>
+    
+    <aside id="sidebar" class="fixed z-50 w-72 bg-white border-r border-gray-200 h-screen sidebar lg:transform-none lg:shadow-none">
+        <!-- Sidebar content same as index.html -->
+        <div class="p-6 h-full flex flex-col">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <h1 class="text-xl font-display font-bold">
+                    <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+                </h1>
+            </div>
+            
+            <!-- Search -->
+            <div class="relative mb-8">
+                <input 
+                    type="search" 
+                    placeholder="Cari materi..." 
+                    class="w-full h-11 pl-11 pr-4 rounded-xl bg-gray-100 border-transparent focus:border-primary-300 focus:bg-white focus:ring-0 text-sm transition-all"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-4 top-3.5 h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="space-y-1 flex-1 overflow-y-auto">
+                <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-secondary-600 hover:bg-gray-100 rounded-xl font-medium transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <span>Beranda</span>
+                </a>
+                
+                <!-- Haji Menu -->
+                <div class="menu-item">
+                    <button class="w-full flex items-center justify-between px-4 py-3 text-primary-600 bg-primary-50 rounded-xl font-medium">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            <span>Materi Haji</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="pl-12 mt-1 space-y-1">
+                        <a href="haji-pengertian.html" class="block px-4 py-2 text-sm text-primary-600 bg-primary-50 rounded-lg">Pengertian Haji</a>
+                        <a href="haji-dalil.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Dalil Haji</a>
+                        <a href="haji-hukum.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Hukum Haji</a>
+                        <a href="haji-rukun.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Rukun Haji</a>
+                        <a href="haji-syarat.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Syarat Haji</a>
+                        <a href="haji-sunnah.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Sunnah Haji</a>
+                        <a href="haji-wajib.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Wajib Haji</a>
+                        <a href="haji-macam.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Macam-macam Haji</a>
+                        <a href="haji-larangan.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Larangan Haji</a>
+                    </div>
+                </div>
+                
+                <!-- Umrah Menu -->
+                <div class="menu-item">
+                    <button class="w-full flex items-center justify-between px-4 py-3 text-secondary-600 hover:bg-gray-100 rounded-xl font-medium transition-colors">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                            <span>Materi Umrah</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="pl-12 mt-1 space-y-1 hidden">
+                        <a href="umrah-pengertian.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Pengertian Umrah</a>
+                        <a href="umrah-rukun.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Rukun Umrah</a>
+                        <a href="umrah-syarat.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Syarat Umrah</a>
+                        <a href="umrah-larangan.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Larangan Umrah</a>
+                    </div>
+                </div>
+                
+                <!-- Latihan Menu -->
+                <a href="latihan.html" class="flex items-center gap-3 px-4 py-3 text-secondary-600 hover:bg-gray-100 rounded-xl font-medium transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    <span>Latihan Pemahaman</span>
+                </a>
+            </nav>
+            
+            <!-- User Profile -->
+            <div class="mt-auto pt-6 border-t">
+                <div class="flex items-center gap-3 px-4 py-3">
+                    <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-secondary-800">Pengguna</p>
+                        <p class="text-xs text-secondary-500">pengguna@email.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="lg:pl-72">
+        <!-- Header -->
+        <header class="bg-white border-b sticky top-0 z-30">
+            <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <button id="menuToggle" class="p-2 hover:bg-gray-100 rounded-lg lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <h1 class="text-xl font-display font-bold lg:hidden">
+                        <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+                    </h1>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <a href="#" class="hidden md:flex items-center gap-2 text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Bantuan</span>
+                    </a>
+                    <button class="p-2 hover:bg-gray-100 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <main class="flex-1 overflow-y-auto p-6">
+            <!-- Breadcrumb -->
+            <div class="flex items-center text-sm text-gray-500 mb-6">
+              <a href="#" class="hover:text-blue-500">Beranda</a>
+              <span class="mx-2">&gt;</span>
+              <a href="#" class="hover:text-blue-500">Materi Umrah</a>
+              <span class="mx-2">&gt;</span>
+              <span class="text-blue-500">Syarat Umrah</span>
+            </div>
+    
+            <!-- Title -->
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Syarat Umrah Umrah</h1>
+            <p class="text-gray-600 mb-6">Memahami Syarat Umrah yang harus dipenuhi dalam ibadah umrah</p>
+    
+            <!-- Content -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-6">
+              <!-- Pengertian Section -->
+              <section id="pengertian" class="p-8 border-b border-gray-100">
+                <div class="flex items-center mb-6">
+                  <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="bx bx-info-circle text-primary-500 text-2xl"></i>
+                  </div>
+                  <h2 class="text-3xl font-bold text-gray-800">Pengertian Syarat Umrah</h2>
+                </div>
+                
+                <div class="space-y-6">
+                  <div class="bg-gradient-to-r from-primary-50 to-primary-100 p-6 rounded-xl border border-primary-200 animate-fadeIn">
+                    <h3 class="text-xl font-bold text-primary-700 mb-3">Apa itu Syarat Umrah?</h3>
+                    <p class="text-gray-700 mb-4">
+                      <span class="font-bold text-primary-600">Syarat Umrah</span> adalah ketentuan atau persyaratan yang harus dipenuhi oleh seseorang sebelum melaksanakan ibadah umrah. Syarat-syarat ini menentukan apakah seseorang <span class="font-bold">wajib</span> melaksanakan umrah (syarat wajib) dan apakah umrah yang dilaksanakan <span class="font-bold">sah</span> secara syariat (syarat sah).
+                    </p>
+                    <p class="text-gray-700">
+                      Dalam fikih Islam, syarat umrah dibagi menjadi dua kategori utama: <span class="font-bold text-secondary-600">Syarat Wajib</span> (syarat yang menjadikan seseorang wajib melaksanakan umrah) dan <span class="font-bold text-accent-600">Syarat Sah</span> (syarat yang menjadikan ibadah umrah sah secara syariat).
+                    </p>
+                  </div>
+                  
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-primary-700">Perbedaan Syarat, Rukun, dan Wajib Umrah</h4>
+                      </div>
+                      <div class="p-5">
+                        <div class="overflow-x-auto">
+                          <table class="min-w-full">
+                            <thead>
+                              <tr class="border-b border-gray-200">
+                                <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Aspek</th>
+                                <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Syarat Umrah</th>
+                                <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Rukun Umrah</th>
+                                <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Wajib Umrah</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="border-b border-gray-200">
+                                <td class="py-2 px-3 text-sm text-gray-700 font-medium">Pengertian</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Ketentuan yang harus dipenuhi <span class="font-bold text-primary-600">sebelum</span> melaksanakan umrah</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Amalan pokok yang harus dilakukan <span class="font-bold text-secondary-600">saat</span> umrah</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Amalan yang harus dilakukan <span class="font-bold text-accent-600">saat</span> umrah</td>
+                              </tr>
+                              <tr class="border-b border-gray-200">
+                                <td class="py-2 px-3 text-sm text-gray-700 font-medium">Konsekuensi jika tidak terpenuhi</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Tidak wajib melaksanakan umrah (syarat wajib) atau umrah tidak sah (syarat sah)</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Umrah tidak sah dan harus diulang</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Umrah tetap sah, tapi wajib membayar dam (denda)</td>
+                              </tr>
+                              <tr>
+                                <td class="py-2 px-3 text-sm text-gray-700 font-medium">Contoh</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Islam, baligh, berakal, merdeka, mampu</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Ihram, thawaf, sa'i, tahallul</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Ihram dari miqat, menghindari larangan ihram</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-accent-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-accent-700">Hikmah Adanya Syarat Umrah</h4>
+                      </div>
+                      <div class="p-5">
+                        <ul class="space-y-3">
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Kesiapan Fisik dan Mental</span>
+                              <p class="text-sm text-gray-600 mt-1">Syarat umrah memastikan bahwa jamaah memiliki kesiapan fisik dan mental untuk melaksanakan rangkaian ibadah umrah.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Keadilan dalam Kewajiban</span>
+                              <p class="text-sm text-gray-600 mt-1">Syarat wajib umrah menunjukkan keadilan Islam, di mana kewajiban disesuaikan dengan kemampuan seseorang.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Kesempurnaan Ibadah</span>
+                              <p class="text-sm text-gray-600 mt-1">Syarat sah umrah memastikan bahwa ibadah umrah dilaksanakan dengan benar dan sempurna sesuai dengan tuntunan syariat.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Ketertiban dan Keteraturan</span>
+                              <p class="text-sm text-gray-600 mt-1">Syarat umrah membantu menciptakan ketertiban dan keteraturan dalam pelaksanaan ibadah umrah yang melibatkan jutaan jamaah dari seluruh dunia.</p>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="flex justify-center animate-fadeIn">
+                    <img src="https://placeholder.pics/svg/800x350/F0F7FF/0284C7/SYARAT%20UMRAH" alt="Ilustrasi Syarat Umrah" class="rounded-xl shadow-md">
+                  </div>
+                </div>
+              </section>
+              
+              <!-- Syarat Wajib Umrah Section -->
+              <section id="syarat-wajib" class="p-8 border-b border-gray-100">
+                <div class="flex items-center mb-6">
+                  <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="bx bx-check-circle text-secondary-500 text-2xl"></i>
+                  </div>
+                  <h2 class="text-3xl font-bold text-gray-800">Syarat Wajib Umrah</h2>
+                </div>
+                
+                <div class="space-y-8">
+                  <p class="text-gray-700">
+                    <span class="font-bold text-secondary-600">Syarat Wajib Umrah</span> adalah ketentuan yang menjadikan seseorang wajib melaksanakan ibadah umrah. Jika syarat-syarat ini tidak terpenuhi, maka seseorang tidak wajib melaksanakan umrah. Berikut adalah syarat-syarat wajib umrah:
+                  </p>
+                  
+                  <!-- Syarat 1: Islam -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-star text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Islam</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <p class="text-gray-700">
+                            Umrah hanya diwajibkan bagi orang yang beragama Islam. Non-muslim tidak diwajibkan untuk melaksanakan umrah, dan jika mereka melaksanakannya, umrah tersebut tidak sah kecuali jika mereka masuk Islam terlebih dahulu.
+                          </p>
+                          <div class="bg-primary-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-primary-700 mb-2">Dalil</h4>
+                            <p class="text-gray-700 text-sm">
+                              Allah SWT berfirman dalam Al-Qur'an:
+                            </p>
+                            <div class="mt-2">
+                              <p class="text-right text-gray-800 font-arabic text-xl leading-loose">وَلِلَّهِ عَلَى النَّاسِ حِجُّ الْبَيْتِ مَنِ اسْتَطَاعَ إِلَيْهِ سَبِيلًا ۚ وَمَنْ كَفَرَ فَإِنَّ اللَّهَ غَنِيٌّ عَنِ الْعَالَمِينَ</p>
+                              <p class="text-gray-600 text-sm mt-2">"Dan (di antara) kewajiban manusia terhadap Allah adalah melaksanakan ibadah haji ke Baitullah, yaitu bagi orang-orang yang mampu mengadakan perjalanan ke sana. Dan barangsiapa mengingkari (kewajiban haji), maka sesungguhnya Allah Maha Kaya (tidak memerlukan sesuatu) dari semesta alam." (QS. Ali Imran: 97)</p>
+                            </div>
+                            <p class="text-gray-700 text-sm mt-3">
+                              Ayat ini menunjukkan bahwa kewajiban haji (dan juga umrah) hanya berlaku bagi orang-orang yang beriman kepada Allah SWT, yaitu orang-orang Islam.
+                            </p>
+                          </div>
+                          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <h5 class="font-bold text-yellow-800 mb-1">Catatan Penting</h5>
+                            <p class="text-gray-700 text-sm">
+                              Jika seseorang masuk Islam setelah memiliki kemampuan untuk melaksanakan umrah, maka ia wajib melaksanakan umrah setelah masuk Islam. Namun, jika ia masuk Islam setelah tidak lagi memiliki kemampuan (misalnya karena sakit parah atau tua), maka ia tidak wajib melaksanakan umrah.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/E0EFFF/0284C7/ISLAM" alt="Ilustrasi Islam" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Syarat pertama dan utama</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Berlaku untuk semua ibadah</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Tidak ada pengecualian</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Syarat 2: Baligh -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-secondary-600 to-secondary-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-user text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Baligh (Dewasa)</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <p class="text-gray-700">
+                            Umrah hanya diwajibkan bagi orang yang sudah baligh (dewasa). Anak-anak yang belum baligh tidak diwajibkan untuk melaksanakan umrah, meskipun mereka diperbolehkan untuk melaksanakannya dan mendapatkan pahala.
+                          </p>
+                          <div class="bg-secondary-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-secondary-700 mb-2">Dalil</h4>
+                            <p class="text-gray-700 text-sm">
+                              Rasulullah SAW bersabda:
+                            </p>
+                            <div class="mt-2">
+                              <p class="text-right text-gray-800 font-arabic text-xl leading-loose">رُفِعَ الْقَلَمُ عَنْ ثَلَاثَةٍ: عَنِ النَّائِمِ حَتَّى يَسْتَيْقِظَ، وَعَنِ الصَّبِيِّ حَتَّى يَحْتَلِمَ، وَعَنِ الْمَجْنُونِ حَتَّى يَعْقِلَ</p>
+                              <p class="text-gray-600 text-sm mt-2">"Pena (pencatat amal) diangkat dari tiga orang: orang yang tidur hingga ia bangun, anak kecil hingga ia baligh, dan orang gila hingga ia berakal." (HR. Abu Dawud, Tirmidzi, dan Ibnu Majah)</p>
+                            </div>
+                            <p class="text-gray-700 text-sm mt-3">
+                              Hadits ini menunjukkan bahwa anak-anak yang belum baligh tidak dibebani kewajiban syariat, termasuk kewajiban umrah.
+                            </p>
+                          </div>
+                          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <h5 class="font-bold text-yellow-800 mb-1">Catatan Penting</h5>
+                            <p class="text-gray-700 text-sm">
+                              Jika seorang anak melaksanakan umrah sebelum baligh, maka umrahnya sah dan mendapatkan pahala, tetapi ia tetap wajib melaksanakan umrah lagi setelah baligh jika ia mampu. Hal ini berdasarkan hadits Nabi SAW: "Jika seorang anak melaksanakan haji, kemudian ia baligh, maka ia wajib melaksanakan haji lagi." (HR. Baihaqi)
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/FAE8FF/C026D3/BALIGH" alt="Ilustrasi Baligh" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Tanda baligh: mimpi basah (laki-laki)</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Tanda baligh: haid (perempuan)</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Usia 15 tahun (menurut mayoritas ulama)</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Syarat 3: Berakal -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-accent-600 to-accent-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-brain text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Berakal</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <p class="text-gray-700">
+                            Umrah hanya diwajibkan bagi orang yang berakal sehat. Orang gila atau yang kehilangan akal secara permanen tidak diwajibkan untuk melaksanakan umrah.
+                          </p>
+                          <div class="bg-accent-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-accent-700 mb-2">Dalil</h4>
+                            <p class="text-gray-700 text-sm">
+                              Rasulullah SAW bersabda:
+                            </p>
+                            <div class="mt-2">
+                              <p class="text-right text-gray-800 font-arabic text-xl leading-loose">رُفِعَ الْقَلَمُ عَنْ ثَلَاثَةٍ: عَنِ النَّائِمِ حَتَّى يَسْتَيْقِظَ، وَعَنِ الصَّبِيِّ حَتَّى يَحْتَلِمَ، وَعَنِ الْمَجْنُونِ حَتَّى يَعْقِلَ</p>
+                              <p class="text-gray-600 text-sm mt-2">"Pena (pencatat amal) diangkat dari tiga orang: orang yang tidur hingga ia bangun, anak kecil hingga ia baligh, dan orang gila hingga ia berakal." (HR. Abu Dawud, Tirmidzi, dan Ibnu Majah)</p>
+                            </div>
+                            <p class="text-gray-700 text-sm mt-3">
+                              Hadits ini menunjukkan bahwa orang gila atau yang kehilangan akal tidak dibebani kewajiban syariat, termasuk kewajiban umrah.
+                            </p>
+                          </div>
+                          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <h5 class="font-bold text-yellow-800 mb-1">Catatan Penting</h5>
+                            <p class="text-gray-700 text-sm">
+                              Jika seseorang mengalami gangguan jiwa yang bersifat sementara (misalnya, kadang sadar dan kadang tidak), maka ia wajib melaksanakan umrah pada saat ia sadar dan mampu. Jika ia sembuh setelah sebelumnya gila, maka ia wajib melaksanakan umrah jika ia mampu.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/FEF3C7/F59E0B/BERAKAL" alt="Ilustrasi Berakal" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Mampu membedakan baik dan buruk</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Memahami kewajiban agama</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Bertanggung jawab atas perbuatan</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Syarat 4: Merdeka -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-green-600 to-green-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-lock-open text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Merdeka</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <p class="text-gray-700">
+                            Umrah hanya diwajibkan bagi orang yang merdeka (bukan budak). Budak tidak diwajibkan untuk melaksanakan umrah karena ia sibuk dengan kewajiban terhadap tuannya.
+                          </p>
+                          <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-green-700 mb-2">Dalil</h4>
+                            <p class="text-gray-700 text-sm">
+                              Rasulullah SAW bersabda:
+                            </p>
+                            <div class="mt-2">
+                              <p class="text-right text-gray-800 font-arabic text-xl leading-loose">أَيُّمَا عَبْدٍ حَجَّ ثُمَّ عُتِقَ فَعَلَيْهِ حَجَّةٌ أُخْرَى</p>
+                              <p class="text-gray-600 text-sm mt-2">"Budak mana saja yang melaksanakan haji kemudian dimerdekakan, maka ia wajib melaksanakan haji lagi." (HR. Baihaqi)</p>
+                            </div>
+                            <p class="text-gray-700 text-sm mt-3">
+                              Hadits ini menunjukkan bahwa budak tidak wajib melaksanakan haji (dan juga umrah), dan jika ia melaksanakannya kemudian dimerdekakan, maka ia wajib melaksanakannya lagi setelah merdeka.
+                            </p>
+                          </div>
+                          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <h5 class="font-bold text-yellow-800 mb-1">Catatan Penting</h5>
+                            <p class="text-gray-700 text-sm">
+                              Meskipun syarat ini masih disebutkan dalam kitab-kitab fikih klasik, namun dalam konteks modern di mana perbudakan telah dihapuskan secara global, syarat ini tidak lagi relevan. Semua muslim yang memenuhi syarat-syarat lainnya wajib melaksanakan umrah jika mampu.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/DCFCE7/22C55E/MERDEKA" alt="Ilustrasi Merdeka" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Memiliki kebebasan penuh</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Tidak terikat dengan kewajiban lain</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Syarat tidak relevan di masa kini</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Syarat 5: Mampu (Istitha'ah) -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-wallet text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Mampu (Istitha'ah)</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <p class="text-gray-700">
+                            Umrah hanya diwajibkan bagi orang yang mampu (istitha'ah), baik dari segi fisik, finansial, maupun keamanan. Jika seseorang tidak mampu, maka ia tidak wajib melaksanakan umrah.
+                          </p>
+                          <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-blue-700 mb-2">Dalil</h4>
+                            <p class="text-gray-700 text-sm">
+                              Allah SWT berfirman dalam Al-Qur'an:
+                            </p>
+                            <div class="mt-2">
+                              <p class="text-right text-gray-800 font-arabic text-xl leading-loose">وَلِلَّهِ عَلَى النَّاسِ حِجُّ الْبَيْتِ مَنِ اسْتَطَاعَ إِلَيْهِ سَبِيلًا</p>
+                              <p class="text-gray-600 text-sm mt-2">"Dan (di antara) kewajiban manusia terhadap Allah adalah melaksanakan ibadah haji ke Baitullah, yaitu bagi orang-orang yang mampu mengadakan perjalanan ke sana." (QS. Ali Imran: 97)</p>
+                            </div>
+                            <p class="text-gray-700 text-sm mt-3">
+                              Ayat ini menunjukkan bahwa kewajiban haji (dan juga umrah) hanya berlaku bagi orang-orang yang mampu (istitha'ah).
+                            </p>
+                          </div>
+                          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <h5 class="font-bold text-yellow-800 mb-1">Bentuk-bentuk Kemampuan (Istitha'ah)</h5>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+                              <li><span class="font-bold">Kemampuan Fisik:</span> Sehat jasmani dan mampu melakukan perjalanan dan rangkaian ibadah umrah.</li>
+                              <li><span class="font-bold">Kemampuan Finansial:</span> Memiliki biaya untuk perjalanan, akomodasi, dan kebutuhan selama umrah, serta biaya untuk keluarga yang ditinggalkan.</li>
+                              <li><span class="font-bold">Keamanan:</span> Jalur perjalanan aman dan tidak ada halangan yang membahayakan jiwa, harta, atau kehormatan.</li>
+                              <li><span class="font-bold">Izin:</span> Bagi wanita, mendapatkan izin dari suami atau mahram yang akan menemani (menurut sebagian ulama).</li>
+                              <li><span class="font-bold">Waktu:</span> Memiliki waktu yang cukup untuk melaksanakan umrah tanpa menelantarkan kewajiban lain yang lebih penting.</li>
+                            </ul>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/E0EFFF/0284C7/MAMPU" alt="Ilustrasi Mampu" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Sehat jasmani dan rohani</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Memiliki biaya yang cukup</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Jalur perjalanan aman</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              
+              <!-- Syarat Sah Umrah Section -->
+              <section id="syarat-sah" class="p-8">
+                <div class="flex items-center mb-6">
+                  <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="bx bx-check-shield text-accent-500 text-2xl"></i>
+                  </div>
+                  <h2 class="text-3xl font-bold text-gray-800">Syarat Sah Umrah</h2>
+                </div>
+                
+                <div class="space-y-6">
+                  <p class="text-gray-700 mb-4">
+                    <span class="font-bold text-accent-600">Syarat Sah Umrah</span> adalah ketentuan yang menjadikan ibadah umrah sah secara syariat. Jika syarat-syarat ini tidak terpenuhi, maka umrah yang dilaksanakan tidak sah. Berikut adalah syarat-syarat sah umrah:
+                  </p>
+                  
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-primary-700">1. Islam</h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-gray-700 mb-4">
+                          Umrah hanya sah jika dilaksanakan oleh orang yang beragama Islam. Non-muslim yang melaksanakan umrah, umrahnya tidak sah.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                          <span class="font-bold">Dalil:</span> Allah SWT berfirman dalam Al-Qur'an:
+                        </p>
+                        <div class="bg-primary-50 p-3 rounded-md">
+                          <p class="text-right text-gray-800 font-arabic text-xl leading-loose">وَمَا مَنَعَهُمْ أَنْ تُقْبَلَ مِنْهُمْ نَفَقَاتُهُمْ إِلَّا أَنَّهُمْ كَفَرُوا بِاللَّهِ وَبِرَسُولِهِ</p>
+                          <p class="text-gray-600 text-sm mt-2">"Dan tidak ada yang menghalangi infak-infak mereka untuk diterima, melainkan karena mereka kafir kepada Allah dan Rasul-Nya." (QS. At-Taubah: 54)</p>
+                        </div>
+                        <p class="text-gray-700 mt-4">
+                          Ayat ini menunjukkan bahwa ibadah orang kafir tidak diterima, termasuk ibadah umrah.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-secondary-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-secondary-700">2. Tamyiz (Dapat Membedakan Baik dan Buruk)</h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-gray-700 mb-4">
+                          Umrah hanya sah jika dilaksanakan oleh orang yang sudah tamyiz (dapat membedakan baik dan buruk). Anak kecil yang belum tamyiz, umrahnya tidak sah.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                          <span class="font-bold">Dalil:</span> Rasulullah SAW bersabda:
+                        </p>
+                        <div class="bg-secondary-50 p-3 rounded-md">
+                          <p class="text-right text-gray-800 font-arabic text-xl leading-loose">رُفِعَ الْقَلَمُ عَنْ ثَلَاثَةٍ: عَنِ النَّائِمِ حَتَّى يَسْتَيْقِظَ، وَعَنِ الصَّبِيِّ حَتَّى يَحْتَلِمَ، وَعَنِ الْمَجْنُونِ حَتَّى يَعْقِلَ</p>
+                          <p class="text-gray-600 text-sm mt-2">"Pena (pencatat amal) diangkat dari tiga orang: orang yang tidur hingga ia bangun, anak kecil hingga ia baligh, dan orang gila hingga ia berakal." (HR. Abu Dawud, Tirmidzi, dan Ibnu Majah)</p>
+                        </div>
+                        <p class="text-gray-700 mt-4">
+                          Hadits ini menunjukkan bahwa anak kecil yang belum tamyiz tidak dibebani kewajiban syariat, termasuk umrah.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-accent-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-accent-700">3. Niat</h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-gray-700 mb-4">
+                          Umrah hanya sah jika dilaksanakan dengan niat yang benar. Niat umrah harus dilakukan saat ihram dan harus spesifik untuk umrah.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                          <span class="font-bold">Dalil:</span> Rasulullah SAW bersabda:
+                        </p>
+                        <div class="bg-accent-50 p-3 rounded-md">
+                          <p class="text-right text-gray-800 font-arabic text-xl leading-loose">إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى</p>
+                          <p class="text-gray-600 text-sm mt-2">"Sesungguhnya setiap amalan tergantung pada niatnya, dan sesungguhnya setiap orang akan mendapatkan sesuai dengan apa yang ia niatkan." (HR. Bukhari dan Muslim)</p>
+                        </div>
+                        <p class="text-gray-700 mt-4">
+                          Hadits ini menunjukkan bahwa niat adalah syarat sah setiap ibadah, termasuk umrah.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-green-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-green-700">4. Waktu yang Tepat</h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-gray-700 mb-4">
+                          Umrah hanya sah jika dilaksanakan pada waktu yang diperbolehkan. Umrah dapat dilaksanakan sepanjang tahun, kecuali pada hari-hari tertentu bagi jamaah haji (seperti 9-13 Dzulhijjah).
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                          <span class="font-bold">Dalil:</span> Rasulullah SAW bersabda:
+                        </p>
+                        <div class="bg-green-50 p-3 rounded-md">
+                          <p class="text-right text-gray-800 font-arabic text-xl leading-loose">الْعُمْرَةُ إِلَى الْعُمْرَةِ كَفَّارَةٌ لِمَا بَيْنَهُمَا</p>
+                          <p class="text-gray-600 text-sm mt-2">"Umrah ke umrah berikutnya adalah penghapus dosa di antara keduanya." (HR. Bukhari dan Muslim)</p>
+                        </div>
+                        <p class="text-gray-700 mt-4">
+                          Hadits ini menunjukkan bahwa umrah dapat dilaksanakan berulang kali, yang berarti dapat dilaksanakan sepanjang tahun.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-blue-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-blue-700">5. Tempat yang Tepat</h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-gray-700 mb-4">
+                          Umrah hanya sah jika dilaksanakan di tempat yang tepat, yaitu di Mekah. Thawaf harus dilakukan di Ka'bah dan sa'i harus dilakukan antara bukit Shafa dan Marwah.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                          <span class="font-bold">Dalil:</span> Allah SWT berfirman dalam Al-Qur'an:
+                        </p>
+                        <div class="bg-blue-50 p-3 rounded-md">
+                          <p class="text-right text-gray-800 font-arabic text-xl leading-loose">إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ ۖ فَمَنْ حَجَّ الْبَيْتَ أَوِ اعْتَمَرَ فَلَا جُنَاحَ عَلَيْهِ أَنْ يَطَّوَّفَ بِهِمَا</p>
+                          <p class="text-gray-600 text-sm mt-2">"Sesungguhnya Shafa dan Marwah adalah sebagian dari syiar Allah. Maka barangsiapa yang beribadah haji ke Baitullah atau berumrah, maka tidak ada dosa baginya untuk melakukan sa'i antara keduanya." (QS. Al-Baqarah: 158)</p>
+                        </div>
+                        <p class="text-gray-700 mt-4">
+                          Ayat ini menunjukkan bahwa sa'i antara Shafa dan Marwah adalah bagian dari ibadah umrah, yang berarti umrah harus dilaksanakan di tempat yang tepat.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-red-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-red-700">6. Tertib (Urutan yang Benar)</h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-gray-700 mb-4">
+                          Umrah hanya sah jika dilaksanakan dengan urutan yang benar, yaitu: ihram, thawaf, sa'i, dan tahallul. Urutan ini tidak boleh diubah.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                          <span class="font-bold">Dalil:</span> Rasulullah SAW bersabda:
+                        </p>
+                        <div class="bg-red-50 p-3 rounded-md">
+                          <p class="text-right text-gray-800 font-arabic text-xl leading-loose">خُذُوا عَنِّي مَنَاسِكَكُمْ</p>
+                          <p class="text-gray-600 text-sm mt-2">"Ambillah dariku manasik (tata cara) ibadah kalian." (HR. Muslim)</p>
+                        </div>
+                        <p class="text-gray-700 mt-4">
+                          Hadits ini menunjukkan bahwa tata cara ibadah haji dan umrah harus sesuai dengan yang diajarkan oleh Rasulullah SAW, termasuk urutan pelaksanaannya.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+                    <h4 class="text-xl font-bold text-yellow-800 mb-3">Kasus-kasus Khusus dalam Syarat Umrah</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-female text-yellow-600"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Wanita Haid atau Nifas</h5>
+                          <p class="text-sm text-gray-700 mt-1">Wanita yang sedang haid atau nifas tetap boleh melaksanakan semua rangkaian ibadah umrah kecuali thawaf. Ia harus menunggu hingga suci untuk melaksanakan thawaf.</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-child text-yellow-600"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Anak Kecil</h5>
+                          <p class="text-sm text-gray-700 mt-1">Anak kecil yang sudah tamyiz boleh melaksanakan umrah dengan niat sendiri. Sedangkan anak yang belum tamyiz, walinya yang berniat untuknya dan membimbingnya dalam melaksanakan rangkaian ibadah umrah.</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-handicap text-yellow-600"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Orang Sakit</h5>
+                          <p class="text-sm text-gray-700 mt-1">Orang sakit yang tidak mampu melaksanakan thawaf atau sa'i dengan berjalan kaki, boleh melaksanakannya dengan kursi roda atau digendong. Jika ia tidak mampu sama sekali, ia boleh mewakilkan umrahnya kepada orang lain (badal).</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-user-voice text-yellow-600"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Orang yang Tidak Mampu Berbicara</h5>
+                          <p class="text-sm text-gray-700 mt-1">Orang yang tidak mampu berbicara (bisu) boleh berniat umrah dalam hati tanpa harus mengucapkannya. Ia juga boleh menggunakan bahasa isyarat untuk mengucapkan talbiyah.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="bg-primary-50 p-4 rounded-md border-l-4 border-primary-500">
+                    <p class="text-gray-700">
+                      <span class="font-bold text-primary-600">Catatan Penting:</span> Syarat umrah dapat berbeda-beda menurut madzhab fikih yang dianut. Penjelasan di atas mengacu pada pendapat mayoritas ulama. Jamaah umrah disarankan untuk berkonsultasi dengan ulama atau pembimbing umrah untuk mendapatkan penjelasan yang lebih rinci sesuai dengan madzhab yang dianut.
+                    </p>
+                  </div>
+                </div>
+              </section>
+            </div>
+            
+            <!-- Conclusion -->
+            <div class="bg-gradient-to-r from-primary-50 to-white rounded-xl p-6 border border-primary-100 mb-6">
+              <h2 class="text-xl font-bold text-primary-700 mb-3">Kesimpulan</h2>
+              <p class="text-gray-700 mb-4">
+                <span class="font-bold text-primary-600">Syarat Umrah</span> terbagi menjadi dua kategori utama: Syarat Wajib dan Syarat Sah. Syarat Wajib menentukan apakah seseorang wajib melaksanakan umrah, sedangkan Syarat Sah menentukan apakah umrah yang dilaksanakan sah secara syariat.
+              </p>
+              <p class="text-gray-700 mb-4">
+                <span class="font-bold text-primary-600">Syarat Wajib Umrah</span> meliputi: Islam, baligh, berakal, merdeka, dan mampu (istitha'ah). Jika salah satu syarat ini tidak terpenuhi, maka seseorang tidak wajib melaksanakan umrah.
+              </p>
+              <p class="text-gray-700">
+                <span class="font-bold text-primary-600">Syarat Sah Umrah</span> meliputi: Islam, tamyiz, niat, waktu yang tepat, tempat yang tepat, dan tertib (urutan yang benar). Jika salah satu syarat ini tidak terpenuhi, maka umrah yang dilaksanakan tidak sah.
+              </p>
+            </div>
+   
+            
+            <!-- Related Topics -->
+          </main>
+        <!-- Footer -->
+        <footer class="bg-white border-t mt-12">
+            <div class="container mx-auto px-4 py-8">
+                <div class="text-center">
+                    <p class="text-secondary-500">© 2025 SukaFikih. Hak Cipta Dilindungi.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Toggle sidebar
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('backdrop');
+        
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            backdrop.classList.toggle('active');
+        });
+        
+        backdrop.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            backdrop.classList.remove('active');
+        });
+        
+        // Toggle dropdown menus
+        const menuItems = document.querySelectorAll('.menu-item');
+        
+        menuItems.forEach(item => {
+            const button = item.querySelector('button');
+            const dropdown = item.querySelector('div');
+            const arrow = button.querySelector('svg:last-child');
+            
+            if (button && dropdown && arrow) {
+                button.addEventListener('click', function() {
+                    dropdown.classList.toggle('hidden');
+                    arrow.classList.toggle('rotate-180');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

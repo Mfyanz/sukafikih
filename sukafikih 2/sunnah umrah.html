@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengertian Haji - SukaFikih</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Sora', 'sans-serif'],
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        secondary: {
+                            600: '#475569',
+                            800: '#1e293b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .sidebar.active {
+            transform: translateX(0);
+        }
+        
+        .backdrop {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        
+        .backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Same sidebar as index.html -->
+    <div id="backdrop" class="fixed inset-0 bg-black/50 z-40 backdrop lg:hidden"></div>
+    
+    <aside id="sidebar" class="fixed z-50 w-72 bg-white border-r border-gray-200 h-screen sidebar lg:transform-none lg:shadow-none">
+        <!-- Sidebar content same as index.html -->
+        <div class="p-6 h-full flex flex-col">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <h1 class="text-xl font-display font-bold">
+                    <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+                </h1>
+            </div>
+            
+            <!-- Search -->
+            <div class="relative mb-8">
+                <input 
+                    type="search" 
+                    placeholder="Cari materi..." 
+                    class="w-full h-11 pl-11 pr-4 rounded-xl bg-gray-100 border-transparent focus:border-primary-300 focus:bg-white focus:ring-0 text-sm transition-all"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-4 top-3.5 h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="space-y-1 flex-1 overflow-y-auto">
+                <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-secondary-600 hover:bg-gray-100 rounded-xl font-medium transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <span>Beranda</span>
+                </a>
+                
+                <!-- Haji Menu -->
+                <div class="menu-item">
+                    <button class="w-full flex items-center justify-between px-4 py-3 text-primary-600 bg-primary-50 rounded-xl font-medium">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            <span>Materi Haji</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="pl-12 mt-1 space-y-1">
+                        <a href="haji-pengertian.html" class="block px-4 py-2 text-sm text-primary-600 bg-primary-50 rounded-lg">Pengertian Haji</a>
+                        <a href="haji-dalil.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Dalil Haji</a>
+                        <a href="haji-hukum.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Hukum Haji</a>
+                        <a href="haji-rukun.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Rukun Haji</a>
+                        <a href="haji-syarat.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Syarat Haji</a>
+                        <a href="haji-sunnah.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Sunnah Haji</a>
+                        <a href="haji-wajib.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Wajib Haji</a>
+                        <a href="haji-macam.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Macam-macam Haji</a>
+                        <a href="haji-larangan.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Larangan Haji</a>
+                    </div>
+                </div>
+                
+                <!-- Umrah Menu -->
+                <div class="menu-item">
+                    <button class="w-full flex items-center justify-between px-4 py-3 text-secondary-600 hover:bg-gray-100 rounded-xl font-medium transition-colors">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                            <span>Materi Umrah</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="pl-12 mt-1 space-y-1 hidden">
+                        <a href="umrah-pengertian.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Pengertian Umrah</a>
+                        <a href="umrah-rukun.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Rukun Umrah</a>
+                        <a href="umrah-syarat.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Syarat Umrah</a>
+                        <a href="umrah-larangan.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 rounded-lg">Larangan Umrah</a>
+                    </div>
+                </div>
+                
+                <!-- Latihan Menu -->
+                <a href="latihan.html" class="flex items-center gap-3 px-4 py-3 text-secondary-600 hover:bg-gray-100 rounded-xl font-medium transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    <span>Latihan Pemahaman</span>
+                </a>
+            </nav>
+            
+            <!-- User Profile -->
+            <div class="mt-auto pt-6 border-t">
+                <div class="flex items-center gap-3 px-4 py-3">
+                    <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-secondary-800">Pengguna</p>
+                        <p class="text-xs text-secondary-500">pengguna@email.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="lg:pl-72">
+        <!-- Header -->
+        <header class="bg-white border-b sticky top-0 z-30">
+            <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <button id="menuToggle" class="p-2 hover:bg-gray-100 rounded-lg lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <h1 class="text-xl font-display font-bold lg:hidden">
+                        <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+                    </h1>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <a href="#" class="hidden md:flex items-center gap-2 text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Bantuan</span>
+                    </a>
+                    <button class="p-2 hover:bg-gray-100 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <main class="flex-1 overflow-y-auto p-6">
+            <!-- Breadcrumb -->
+            <div class="flex items-center text-sm text-gray-500 mb-6">
+              <a href="#" class="hover:text-blue-500">Beranda</a>
+              <span class="mx-2">&gt;</span>
+              <a href="#" class="hover:text-blue-500">Materi Umrah</a>
+              <span class="mx-2">&gt;</span>
+              <span class="text-blue-500">Sunnah umrah</span>
+            </div>
+    
+            <!-- Title -->
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Sunnah Umrah</h1>
+            <p class="text-gray-600 mb-6">Memahami Sunnah-sunnah yang dianjurkan dilaksanakan dalam ibadah umrah</p>
+    
+            <!-- Content -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-6">
+              <!-- Pengertian Section -->
+              <section id="pengertian" class="p-8 border-b border-gray-100">
+                <div class="flex items-center mb-6">
+                  <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="bx bx-info-circle text-primary-500 text-2xl"></i>
+                  </div>
+                  <h2 class="text-3xl font-bold text-gray-800">Pengertian Sunnah Umrah</h2>
+                </div>
+                
+                <div class="space-y-6">
+                  <div class="bg-gradient-to-r from-primary-50 to-primary-100 p-6 rounded-xl border border-primary-200 animate-fadeIn">
+                    <h3 class="text-xl font-bold text-primary-700 mb-3">Apa itu Sunnah Umrah?</h3>
+                    <p class="text-gray-700 mb-4">
+                      <span class="font-bold text-primary-600">Sunnah Umrah</span> adalah amalan-amalan yang <span class="font-bold">dianjurkan</span> untuk dilakukan dalam ibadah umrah, namun tidak berdosa jika ditinggalkan. Melaksanakan sunnah umrah akan <span class="font-bold text-secondary-600">menambah kesempurnaan</span> dan <span class="font-bold text-secondary-600">pahala</span> ibadah umrah, meskipun tidak memengaruhi keabsahan umrah itu sendiri.
+                    </p>
+                    <p class="text-gray-700">
+                      Berbeda dengan <span class="font-bold text-accent-600">rukun umrah</span> yang jika ditinggalkan menyebabkan umrahnya tidak sah, atau <span class="font-bold text-accent-600">wajib umrah</span> yang jika ditinggalkan mengharuskan pembayaran dam (denda), meninggalkan sunnah umrah <span class="font-bold text-red-600">tidak membatalkan</span> ibadah umrah dan <span class="font-bold text-red-600">tidak mewajibkan</span> pembayaran dam.
+                    </p>
+                  </div>
+                  
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-primary-700">Perbedaan Rukun, Wajib, dan Sunnah Umrah</h4>
+                      </div>
+                      <div class="p-5">
+                        <div class="overflow-x-auto">
+                          <table class="min-w-full">
+                            <thead>
+                              <tr class="border-b border-gray-200">
+                                <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Aspek</th>
+                                <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Rukun Umrah</th>
+                                <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Wajib Umrah</th>
+                                <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Sunnah Umrah</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="border-b border-gray-200">
+                                <td class="py-2 px-3 text-sm text-gray-700 font-medium">Pengertian</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Amalan pokok yang <span class="font-bold text-red-600">harus</span> dilakukan</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Amalan yang <span class="font-bold text-amber-600">harus</span> dilakukan</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Amalan yang <span class="font-bold text-green-600">dianjurkan</span> dilakukan</td>
+                              </tr>
+                              <tr class="border-b border-gray-200">
+                                <td class="py-2 px-3 text-sm text-gray-700 font-medium">Konsekuensi jika ditinggalkan</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Umrah <span class="font-bold text-red-600">tidak sah</span></td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Umrah sah, tapi <span class="font-bold text-amber-600">wajib membayar dam</span></td>
+                                <td class="py-2 px-3 text-sm text-gray-600"><span class="font-bold text-green-600">Tidak ada konsekuensi</span>, hanya kehilangan pahala tambahan</td>
+                              </tr>
+                              <tr>
+                                <td class="py-2 px-3 text-sm text-gray-700 font-medium">Contoh</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Ihram, thawaf, sa'i, tahallul</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Ihram dari miqat, menghindari larangan ihram</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Mandi sebelum ihram, shalat sunnah ihram, membaca talbiyah</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-accent-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-accent-700">Pendapat Ulama tentang Sunnah Umrah</h4>
+                      </div>
+                      <div class="p-5">
+                        <ul class="space-y-3">
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Mazhab Hanafi</span>
+                              <p class="text-sm text-gray-600 mt-1">Menekankan pentingnya sunnah-sunnah yang berkaitan dengan thawaf dan sa'i, seperti ramal dan idhtiba'.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Mazhab Maliki</span>
+                              <p class="text-sm text-gray-600 mt-1">Memberikan perhatian khusus pada sunnah-sunnah yang berkaitan dengan ihram dan talbiyah.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Mazhab Syafi'i dan Hanbali</span>
+                              <p class="text-sm text-gray-600 mt-1">Memiliki daftar sunnah umrah yang lebih rinci, mencakup berbagai aspek dari persiapan ihram hingga tahallul.</p>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="flex justify-center animate-fadeIn">
+                    <img src="https://placeholder.pics/svg/800x350/F0F7FF/0284C7/SUNNAH%20UMRAH" alt="Ilustrasi Sunnah Umrah" class="rounded-xl shadow-md">
+                  </div>
+                </div>
+              </section>
+              
+              <!-- Macam-macam Sunnah Umrah Section -->
+              <section id="macam" class="p-8 border-b border-gray-100">
+                <div class="flex items-center mb-6">
+                  <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="bx bx-list-check text-secondary-500 text-2xl"></i>
+                  </div>
+                  <h2 class="text-3xl font-bold text-gray-800">Macam-macam Sunnah Umrah</h2>
+                </div>
+                
+                <div class="space-y-8">
+                  <p class="text-gray-700">
+                    Berikut adalah beberapa amalan sunnah dalam ibadah umrah yang dianjurkan untuk dilaksanakan:
+                  </p>
+                  
+                  <!-- Sunnah Sebelum Ihram -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-shower text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Sunnah Sebelum Ihram</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <ol class="list-decimal pl-5 space-y-4 text-gray-700">
+                            <li>
+                              <span class="font-bold text-primary-600">Mandi Sebelum Ihram</span>
+                              <p class="mt-1">Disunnahkan untuk mandi sebelum berniat ihram, baik bagi laki-laki maupun perempuan, termasuk perempuan yang sedang haid atau nifas. Mandi ini bertujuan untuk membersihkan diri dan menghilangkan bau badan sebelum memasuki ibadah umrah.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-primary-600">Memotong Kuku dan Mencukur Bulu yang Disunnahkan</span>
+                              <p class="mt-1">Disunnahkan untuk memotong kuku, mencukur bulu ketiak, dan mencukur bulu kemaluan sebelum ihram. Hal ini bertujuan untuk menjaga kebersihan diri selama melaksanakan ibadah umrah, karena setelah ihram tidak diperbolehkan lagi memotong kuku dan mencukur rambut.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-primary-600">Memakai Wewangian pada Badan</span>
+                              <p class="mt-1">Disunnahkan untuk memakai wewangian pada badan (bukan pada pakaian ihram) sebelum berniat ihram. Hal ini berdasarkan hadits dari Aisyah r.a. yang menyatakan bahwa beliau memakaikan wewangian pada Rasulullah SAW sebelum ihram.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-primary-600">Shalat Sunnah Ihram</span>
+                              <p class="mt-1">Melaksanakan shalat sunnah dua rakaat setelah mandi dan sebelum berniat ihram. Pada rakaat pertama disunnahkan membaca surat Al-Kafirun dan pada rakaat kedua membaca surat Al-Ikhlas.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-primary-600">Mengenakan Pakaian Ihram yang Bersih</span>
+                              <p class="mt-1">Disunnahkan untuk mengenakan pakaian ihram yang bersih dan berwarna putih. Bagi laki-laki berupa dua helai kain yang tidak berjahit, dan bagi perempuan berupa pakaian yang menutup seluruh tubuh kecuali wajah dan telapak tangan.</p>
+                            </li>
+                          </ol>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/E0EFFF/0284C7/PERSIAPAN%20IHRAM" alt="Ilustrasi Persiapan Ihram" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Mandi untuk kebersihan diri</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Shalat sunnah sebelum ihram</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Pakaian ihram yang bersih</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Sunnah Saat Ihram -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-secondary-600 to-secondary-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-microphone text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Sunnah Saat Ihram</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <ol class="list-decimal pl-5 space-y-4 text-gray-700">
+                            <li>
+                              <span class="font-bold text-secondary-600">Membaca Talbiyah</span>
+                              <p class="mt-1">Memperbanyak membaca talbiyah selama dalam keadaan ihram, terutama ketika naik kendaraan, turun kendaraan, setelah shalat, dan ketika bertemu dengan rombongan jamaah umrah lainnya. Lafaz talbiyah adalah:</p>
+                              <div class="bg-secondary-50 p-3 rounded-md mt-2 text-center">
+                                <p class="text-right text-gray-800 font-arabic text-xl">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لاَ شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لاَ شَرِيكَ لَكَ</p>
+                                <p class="text-gray-600 mt-2 text-sm">"Labbaikallahumma labbaik, labbaika laa syariika laka labbaik. Innal hamda wan ni'mata laka wal mulk, laa syariika lak."</p>
+                                <p class="text-gray-600 mt-1 text-sm">"Aku memenuhi panggilan-Mu ya Allah, aku memenuhi panggilan-Mu. Aku memenuhi panggilan-Mu, tiada sekutu bagi-Mu, aku memenuhi panggilan-Mu. Sesungguhnya segala puji, nikmat, dan kerajaan adalah milik-Mu. Tiada sekutu bagi-Mu."</p>
+                              </div>
+                            </li>
+                            <li>
+                              <span class="font-bold text-secondary-600">Memperbanyak Dzikir dan Doa</span>
+                              <p class="mt-1">Disunnahkan untuk memperbanyak dzikir, doa, dan membaca Al-Qur'an selama dalam keadaan ihram. Hal ini bertujuan untuk meningkatkan kekhusyukan dan mendekatkan diri kepada Allah SWT.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-secondary-600">Menjaga Adab dan Akhlak</span>
+                              <p class="mt-1">Disunnahkan untuk menjaga adab dan akhlak selama dalam keadaan ihram, seperti tidak berbicara kasar, tidak bertengkar, tidak mengganggu orang lain, dan menjaga pandangan.</p>
+                            </li>
+                          </ol>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/FAE8FF/C026D3/TALBIYAH" alt="Ilustrasi Talbiyah" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Talbiyah dengan suara keras (laki-laki)</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Talbiyah dengan suara lembut (perempuan)</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Memperbanyak dzikir dan doa</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Sunnah Saat Thawaf -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-accent-600 to-accent-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-cycling text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Sunnah Saat Thawaf</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <ol class="list-decimal pl-5 space-y-4 text-gray-700">
+                            <li>
+                              <span class="font-bold text-accent-600">Mencium Hajar Aswad</span>
+                              <p class="mt-1">Mencium Hajar Aswad (batu hitam) ketika memulai thawaf dan setiap kali melewatinya. Jika tidak memungkinkan untuk menciumnya karena keramaian, maka cukup dengan mengusapnya dengan tangan. Jika itu pun tidak memungkinkan, maka cukup dengan memberi isyarat dengan tangan sambil mengucapkan takbir:</p>
+                              <div class="bg-accent-50 p-3 rounded-md mt-2 text-center">
+                                <p class="text-right text-gray-800 font-arabic text-xl">بِسْمِ اللهِ وَاللهُ أَكْبَرُ</p>
+                                <p class="text-gray-600 mt-2 text-sm">"Bismillahi wallahu akbar" (Dengan nama Allah, Allah Maha Besar)</p>
+                              </div>
+                            </li>
+                            <li>
+                              <span class="font-bold text-accent-600">Ramal pada Tiga Putaran Pertama</span>
+                              <p class="mt-1"><span class="font-bold text-accent-600">Ramal</span> adalah berjalan cepat dengan langkah pendek-pendek dan menggerakkan bahu. Ramal disunnahkan bagi laki-laki pada tiga putaran pertama dalam thawaf.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-accent-600">Idhtiba' saat Thawaf</span>
+                              <p class="mt-1"><span class="font-bold text-accent-600">Idhtiba'</span> adalah menyingkap bahu kanan dengan meletakkan kain ihram di bawah ketiak kanan dan melemparkan kedua ujungnya di atas bahu kiri. Idhtiba' disunnahkan bagi laki-laki selama thawaf, kemudian mengenakan kembali pakaian ihram seperti semula setelah thawaf.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-accent-600">Menyentuh Rukun Yamani</span>
+                              <p class="mt-1">Disunnahkan untuk menyentuh Rukun Yamani (sudut Ka'bah yang menghadap ke arah Yaman) pada setiap putaran jika memungkinkan, tanpa menciumnya atau memberi isyarat.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-accent-600">Berdoa di antara Rukun Yamani dan Hajar Aswad</span>
+                              <p class="mt-1">Disunnahkan untuk membaca doa berikut ketika berada di antara Rukun Yamani dan Hajar Aswad:</p>
+                              <div class="bg-accent-50 p-3 rounded-md mt-2 text-center">
+                                <p class="text-right text-gray-800 font-arabic text-xl">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</p>
+                                <p class="text-gray-600 mt-2 text-sm">"Rabbana atina fid-dunya hasanah, wa fil-akhirati hasanah, wa qina 'adzaban-nar"</p>
+                                <p class="text-gray-600 mt-1 text-sm">"Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat, dan lindungilah kami dari siksa neraka"</p>
+                              </div>
+                            </li>
+                            <li>
+                              <span class="font-bold text-accent-600">Shalat Dua Rakaat setelah Thawaf</span>
+                              <p class="mt-1">Melaksanakan shalat dua rakaat setelah selesai thawaf di belakang Maqam Ibrahim jika memungkinkan, atau di tempat lain di Masjidil Haram jika tidak memungkinkan. Pada rakaat pertama disunnahkan membaca surat Al-Kafirun dan pada rakaat kedua membaca surat Al-Ikhlas.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-accent-600">Minum Air Zamzam</span>
+                              <p class="mt-1">Minum air zamzam setelah selesai thawaf dan shalat dua rakaat. Disunnahkan untuk minum sampai kenyang, mengambil nafas tiga kali, dan membaca doa.</p>
+                            </li>
+                          </ol>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/FEF3C7/F59E0B/THAWAF" alt="Ilustrasi Thawaf" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Ramal pada 3 putaran pertama</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Idhtiba' selama thawaf</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Shalat 2 rakaat setelah thawaf</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Sunnah Saat Sa'i -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-success-500 to-success-600 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-run text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Sunnah Saat Sa'i</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <ol class="list-decimal pl-5 space-y-4 text-gray-700">
+                            <li>
+                              <span class="font-bold text-success-600">Naik ke Bukit Shafa dan Marwah</span>
+                              <p class="mt-1">Disunnahkan untuk naik ke bukit Shafa dan Marwah ketika sampai di kedua tempat tersebut, meskipun saat ini yang tersisa hanya sebagian kecil dari kedua bukit tersebut.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-success-600">Membaca Ayat Al-Qur'an saat Memulai Sa'i</span>
+                              <p class="mt-1">Disunnahkan untuk membaca ayat berikut ketika mendekati bukit Shafa untuk memulai sa'i:</p>
+                              <div class="bg-success-50 p-3 rounded-md mt-2 text-center">
+                                <p class="text-right text-gray-800 font-arabic text-xl">إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ</p>
+                                <p class="text-gray-600 mt-2 text-sm">"Innas shafa wal marwata min sya'airillah" (Sesungguhnya Shafa dan Marwah adalah sebagian dari syiar Allah)</p>
+                              </div>
+                              <p class="mt-1">Kemudian dilanjutkan dengan:</p>
+                              <div class="bg-success-50 p-3 rounded-md mt-2 text-center">
+                                <p class="text-gray-600 text-sm">"Abda'u bima bada'allahu bihi" (Aku mulai dengan apa yang Allah mulai dengannya)</p>
+                              </div>
+                            </li>
+                            <li>
+                              <span class="font-bold text-success-600">Menghadap Kiblat dan Berdoa di Bukit Shafa dan Marwah</span>
+                              <p class="mt-1">Disunnahkan untuk menghadap kiblat ketika berada di atas bukit Shafa dan Marwah, mengangkat tangan, dan berdoa. Disunnahkan untuk membaca takbir dan tahlil tiga kali:</p>
+                              <div class="bg-success-50 p-3 rounded-md mt-2 text-center">
+                                <p class="text-right text-gray-800 font-arabic text-xl">اللهُ أَكْبَرُ، اللهُ أَكْبَرُ، اللهُ أَكْبَرُ، لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، يُحْيِي وَيُمِيتُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ</p>
+                                <p class="text-gray-600 mt-2 text-sm">"Allahu akbar, Allahu akbar, Allahu akbar. La ilaha illallahu wahdahu la syarika lah, lahul mulku wa lahul hamdu, yuhyi wa yumit, wa huwa 'ala kulli syai'in qadir"</p>
+                              </div>
+                            </li>
+                            <li>
+                              <span class="font-bold text-success-600">Berlari Kecil di antara Dua Pilar Hijau</span>
+                              <p class="mt-1">Bagi laki-laki, disunnahkan untuk berlari kecil di antara dua pilar hijau yang menandai lembah antara Shafa dan Marwah saat melakukan sa'i. Sedangkan perempuan tetap berjalan biasa.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-success-600">Memperbanyak Dzikir dan Doa selama Sa'i</span>
+                              <p class="mt-1">Disunnahkan untuk memperbanyak dzikir dan doa selama melakukan sa'i. Tidak ada doa khusus yang diwajibkan selama sa'i, sehingga jamaah dapat berdoa dengan doa apa saja yang diinginkan.</p>
+                            </li>
+                          </ol>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/DCFCE7/22C55E/SAI" alt="Ilustrasi Sa'i" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Berdoa di Shafa dan Marwah</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Lari kecil di area hijau (laki-laki)</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Memperbanyak dzikir dan doa</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Sunnah Saat Tahallul -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-cut text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Sunnah Saat Tahallul</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <ol class="list-decimal pl-5 space-y-4 text-gray-700">
+                            <li>
+                              <span class="font-bold text-primary-600">Mencukur Rambut Seluruh Kepala (bagi laki-laki)</span>
+                              <p class="mt-1">Bagi laki-laki, mencukur habis seluruh rambut kepala (halq) lebih utama daripada hanya memotong sebagian rambut (taqshir). Hal ini berdasarkan hadits bahwa Rasulullah SAW mendoakan tiga kali untuk orang yang mencukur rambut dan satu kali untuk orang yang memotong rambut.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-primary-600">Memotong Rambut dari Seluruh Bagian Kepala (bagi perempuan)</span>
+                              <p class="mt-1">Bagi perempuan, disunnahkan untuk memotong rambut dari seluruh bagian kepala, bukan hanya dari satu sisi saja. Panjang potongan rambut sekitar satu ruas jari atau sekitar 2-3 cm.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-primary-600">Memulai dari Sisi Kanan</span>
+                              <p class="mt-1">Disunnahkan untuk memulai mencukur atau memotong rambut dari sisi kanan kepala, kemudian dilanjutkan ke sisi lainnya. Hal ini berdasarkan hadits bahwa Rasulullah SAW selalu mendahulukan yang kanan dalam segala hal yang baik.</p>
+                            </li>
+                            <li>
+                              <span class="font-bold text-primary-600">Membaca Doa setelah Tahallul</span>
+                              <p class="mt-1">Disunnahkan untuk membaca doa syukur setelah selesai tahallul, karena telah berhasil menyelesaikan ibadah umrah.</p>
+                            </li>
+                          </ol>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/F0F7FF/0284C7/TAHALLUL" alt="Ilustrasi Tahallul" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Mencukur lebih utama bagi laki-laki</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Memotong dari seluruh bagian kepala</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Memulai dari sisi kanan</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              
+              <!-- Manfaat dan Hikmah Section -->
+              <section id="manfaat" class="p-8">
+                <div class="flex items-center mb-6">
+                  <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="bx bx-heart text-accent-500 text-2xl"></i>
+                  </div>
+                  <h2 class="text-3xl font-bold text-gray-800">Manfaat dan Hikmah Sunnah Umrah</h2>
+                </div>
+                
+                <div class="space-y-6">
+                  <p class="text-gray-700 mb-4">
+                    Meskipun sunnah umrah tidak wajib dilaksanakan, namun melaksanakannya memberikan berbagai manfaat dan hikmah, di antaranya:
+                  </p>
+                  
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-primary-700">Manfaat Melaksanakan Sunnah Umrah</h4>
+                      </div>
+                      <div class="p-5">
+                        <ul class="space-y-3">
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-primary-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Mendapatkan Pahala Tambahan</span>
+                              <p class="text-sm text-gray-600 mt-1">Melaksanakan sunnah umrah akan mendapatkan pahala tambahan dari Allah SWT, meskipun tidak memengaruhi keabsahan umrah itu sendiri.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-primary-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Meningkatkan Kualitas Ibadah</span>
+                              <p class="text-sm text-gray-600 mt-1">Sunnah umrah membantu meningkatkan kualitas dan kesempurnaan ibadah umrah, sehingga lebih khusyuk dan bermakna.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-primary-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Mengikuti Sunnah Rasulullah SAW</span>
+                              <p class="text-sm text-gray-600 mt-1">Melaksanakan sunnah umrah berarti mengikuti cara Rasulullah SAW dalam melaksanakan ibadah umrah, yang merupakan bentuk kecintaan kepada beliau.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-primary-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Menjaga Kebersihan dan Kesucian</span>
+                              <p class="text-sm text-gray-600 mt-1">Sunnah umrah seperti mandi sebelum ihram dan menjaga kebersihan membantu jamaah untuk tetap bersih dan suci selama melaksanakan ibadah umrah.</p>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-accent-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-accent-700">Hikmah Sunnah Umrah</h4>
+                      </div>
+                      <div class="p-5">
+                        <ul class="space-y-3">
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Keseimbangan dalam Beribadah</span>
+                              <p class="text-sm text-gray-600 mt-1">Adanya ketentuan sunnah umrah mengajarkan keseimbangan antara kewajiban dan amalan tambahan dalam beribadah.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Keikhlasan dalam Beribadah</span>
+                              <p class="text-sm text-gray-600 mt-1">Sunnah umrah melatih keikhlasan dalam beribadah, karena dilakukan tanpa paksaan dan semata-mata untuk mendapatkan ridha Allah SWT.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Kemudahan dalam Beribadah</span>
+                              <p class="text-sm text-gray-600 mt-1">Adanya fleksibilitas dalam pelaksanaan sunnah umrah memberikan kemudahan bagi umat Islam, terutama bagi yang memiliki keterbatasan fisik atau kondisi tertentu.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Penghayatan Makna Ibadah</span>
+                              <p class="text-sm text-gray-600 mt-1">Sunnah umrah seperti memperbanyak dzikir dan doa membantu jamaah untuk lebih menghayati makna dan tujuan ibadah umrah.</p>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+                    <h4 class="text-xl font-bold text-yellow-800 mb-3">Tips Melaksanakan Sunnah Umrah</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-book-reader text-yellow-600"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Pelajari dengan Baik</h5>
+                          <p class="text-sm text-gray-700 mt-1">Pelajari sunnah-sunnah umrah dengan baik sebelum berangkat. Ikuti bimbingan manasik umrah dan tanyakan hal-hal yang belum dipahami.</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-group text-yellow-600"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Ikuti Pembimbing</h5>
+                          <p class="text-sm text-gray-700 mt-1">Selalu ikuti arahan pembimbing umrah yang berpengalaman. Jangan ragu untuk bertanya jika ada yang tidak jelas.</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-check-shield text-yellow-600"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Fokus dan Khusyuk</h5>
+                          <p class="text-sm text-gray-700 mt-1">Jaga kekhusyukan dan fokus selama melaksanakan ibadah umrah. Hindari terburu-buru dan tetap tenang meskipun dalam kondisi ramai.</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-notepad text-yellow-600"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Bawa Catatan Ringkas</h5>
+                          <p class="text-sm text-gray-700 mt-1">Siapkan catatan ringkas tentang sunnah-sunnah umrah yang bisa dibawa dan dibaca saat melaksanakan ibadah umrah.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="bg-primary-50 p-4 rounded-md border-l-4 border-primary-500">
+                    <p class="text-gray-700">
+                      <span class="font-bold text-primary-600">Catatan Penting:</span> Ketentuan sunnah umrah dapat berbeda-beda menurut madzhab fikih yang dianut. Penjelasan di atas mengacu pada pendapat mayoritas ulama. Jamaah umrah disarankan untuk berkonsultasi dengan ulama atau pembimbing umrah untuk mendapatkan penjelasan yang lebih rinci sesuai dengan madzhab yang dianut.
+                    </p>
+                  </div>
+                </div>
+              </section>
+            </div>
+            
+            <!-- Conclusion -->
+            <div class="bg-gradient-to-r from-primary-50 to-white rounded-xl p-6 border border-primary-100 mb-6">
+              <h2 class="text-xl font-bold text-primary-700 mb-3">Kesimpulan</h2>
+              <p class="text-gray-700 mb-4">
+                <span class="font-bold text-primary-600">Sunnah umrah</span> merupakan amalan-amalan yang dianjurkan untuk dilakukan dalam ibadah umrah, namun tidak berdosa jika ditinggalkan. Berbeda dengan rukun umrah yang jika ditinggalkan menyebabkan umrahnya tidak sah, atau wajib umrah yang jika ditinggalkan mengharuskan pembayaran dam, meninggalkan sunnah umrah tidak membatalkan ibadah umrah dan tidak mewajibkan pembayaran dam.
+              </p>
+              <p class="text-gray-700 mb-4">
+                Sunnah umrah mencakup berbagai amalan mulai dari persiapan ihram, saat ihram, thawaf, sa'i, hingga tahallul. Setiap amalan sunnah memiliki tujuan dan hikmah tersendiri yang dapat meningkatkan kualitas ibadah umrah.
+              </p>
+              <p class="text-gray-700">
+                Meskipun sunnah umrah bersifat anjuran, namun melaksanakannya akan <span class="font-bold text-primary-600">menyempurnakan</span> ibadah umrah dan mendatangkan <span class="font-bold text-primary-600">pahala tambahan</span>. Oleh karena itu, setiap jamaah umrah dianjurkan untuk mempelajari dan melaksanakan sunnah-sunnah umrah sesuai dengan kemampuannya.
+              </p>
+            </div>
+            
+            <!-- Related Topics -->
+            <div class="mb-6">
+              <h3 class="text-lg font-bold text-gray-800 mb-4">Materi Terkait</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <a href="#" class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all flex items-center">
+                  <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                    <i class="bx bx-book-open text-primary-500"></i>
+                  </div>
+                  <span class="font-medium text-gray-800">Pengertian Umrah</span>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all flex items-center">
+                  <div class="w-10 h-10 bg-secondary-100 rounded-full flex items-center justify-center mr-3">
+                    <i class="bx bx-list-check text-secondary-500"></i>
+                  </div>
+                  <span class="font-medium text-gray-800">Rukun Umrah</span>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all flex items-center">
+                  <div class="w-10 h-10 bg-accent-100 rounded-full flex items-center justify-center mr-3">
+                    <i class="bx bx-walk text-accent-500"></i>
+                  </div>
+                  <span class="font-medium text-gray-800">Tata Cara Umrah</span>
+                </a>
+              </div>
+            </div>
+          </main>
+   
+            
+            <!-- Related Topics -->
+          </main>
+        <!-- Footer -->
+        <footer class="bg-white border-t mt-12">
+            <div class="container mx-auto px-4 py-8">
+                <div class="text-center">
+                    <p class="text-secondary-500">© 2025 SukaFikih. Hak Cipta Dilindungi.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Toggle sidebar
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('backdrop');
+        
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            backdrop.classList.toggle('active');
+        });
+        
+        backdrop.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            backdrop.classList.remove('active');
+        });
+        
+        // Toggle dropdown menus
+        const menuItems = document.querySelectorAll('.menu-item');
+        
+        menuItems.forEach(item => {
+            const button = item.querySelector('button');
+            const dropdown = item.querySelector('div');
+            const arrow = button.querySelector('svg:last-child');
+            
+            if (button && dropdown && arrow) {
+                button.addEventListener('click', function() {
+                    dropdown.classList.toggle('hidden');
+                    arrow.classList.toggle('rotate-180');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
