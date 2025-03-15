@@ -222,149 +222,803 @@
             <p class="text-gray-600 mb-8">Memahami amalan-amalan wajib dalam ibadah haji</p>
     
             <!-- Content -->
-            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
-              <h2 class="text-2xl font-bold text-gray-800 mb-4">Pengertian Wajib Haji</h2>
-              <p class="text-gray-700 mb-4">
-                <span class="font-semibold text-blue-600">Wajib Haji</span> adalah amalan-amalan yang harus dilakukan dalam ibadah haji, namun jika ditinggalkan karena udzur (alasan yang dibenarkan syariat), maka dapat diganti dengan membayar dam (denda) berupa menyembelih seekor kambing atau berpuasa 10 hari.
-              </p>
-              <p class="text-gray-700 mb-6">
-                Wajib haji berbeda dengan rukun haji. Jika rukun haji ditinggalkan, maka hajinya tidak sah dan tidak dapat diganti dengan dam. Sedangkan jika wajib haji ditinggalkan, hajinya tetap sah namun harus membayar dam.
-              </p>
-    
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Macam-macam Wajib Haji</h3>
-              <p class="text-gray-700 mb-4">
-                Menurut mayoritas ulama, terdapat 7 wajib haji yang harus dilaksanakan oleh jamaah haji:
-              </p>
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-6">
+              <!-- Pengertian Section -->
+              <section id="pengertian" class="p-8 border-b border-gray-100">
+                <div class="flex items-center mb-6">
+                  <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="bx bx-info-circle text-primary-500 text-2xl"></i>
+                  </div>
+                  <h2 class="text-3xl font-bold text-gray-800">Pengertian Wajib Haji</h2>
+                </div>
+                
+                <div class="space-y-6">
+                  <div class="bg-gradient-to-r from-primary-50 to-primary-100 p-6 rounded-xl border border-primary-200 animate-fadeIn">
+                    <h3 class="text-xl font-bold text-primary-700 mb-3">Apa itu Wajib Haji?</h3>
+                    <p class="text-gray-700 mb-4">
+                      <span class="font-bold text-primary-600">Wajib Haji</span> adalah amalan-amalan yang harus dilaksanakan dalam ibadah haji, namun jika ditinggalkan karena udzur (alasan yang dibenarkan), maka ibadah haji tetap sah dengan kewajiban membayar dam (denda).
+                    </p>
+                    <p class="text-gray-700">
+                      Berbeda dengan rukun haji yang jika ditinggalkan menyebabkan ibadah haji tidak sah, wajib haji yang ditinggalkan dapat diganti dengan membayar dam berupa menyembelih seekor kambing atau berpuasa sepuluh hari (tiga hari saat haji dan tujuh hari setelah kembali ke tanah air).
+                    </p>
+                  </div>
+                  
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-primary-700">Perbedaan Rukun dan Wajib Haji</h4>
+                      </div>
+                      <div class="p-5">
+                        <div class="overflow-x-auto">
+                          <table class="min-w-full">
+                            <thead>
+                              <tr class="border-b border-gray-200">
+                                <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Aspek</th>
+                                <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Rukun Haji</th>
+                                <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Wajib Haji</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="border-b border-gray-200">
+                                <td class="py-2 px-3 text-sm text-gray-700 font-medium">Pengertian</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Amalan pokok yang harus dilakukan</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Amalan yang harus dilakukan</td>
+                              </tr>
+                              <tr class="border-b border-gray-200">
+                                <td class="py-2 px-3 text-sm text-gray-700 font-medium">Konsekuensi jika tidak dilakukan</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Haji tidak sah dan harus diulang</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Haji tetap sah, tapi wajib membayar dam</td>
+                              </tr>
+                              <tr>
+                                <td class="py-2 px-3 text-sm text-gray-700 font-medium">Contoh</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Ihram, wukuf, thawaf ifadhah, sa'i, tahallul</td>
+                                <td class="py-2 px-3 text-sm text-gray-600">Ihram dari miqat, mabit di Muzdalifah, mabit di Mina, melempar jumrah</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-accent-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-accent-700">Hikmah Adanya Wajib Haji</h4>
+                      </div>
+                      <div class="p-5">
+                        <ul class="space-y-3">
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Kesempurnaan Ibadah</span>
+                              <p class="text-sm text-gray-600 mt-1">Wajib haji melengkapi rukun haji untuk menyempurnakan ibadah haji sesuai dengan tuntunan syariat.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Keringanan dalam Ibadah</span>
+                              <p class="text-sm text-gray-600 mt-1">Adanya konsep wajib haji yang dapat diganti dengan dam menunjukkan keringanan dalam syariat Islam.</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Mengikuti Sunnah Rasulullah</span>
+                              <p class="text-sm text-gray-600 mt-1">Wajib haji merupakan amalan yang dilakukan oleh Rasulullah SAW dalam haji wada' (haji perpisahan).</p>
+                            </div>
+                          </li>
+                          <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                              <i class="bx bx-check text-accent-500"></i>
+                            </div>
+                            <div>
+                              <span class="font-semibold text-gray-800">Memahami Prioritas Ibadah</span>
+                              <p class="text-sm text-gray-600 mt-1">Pembagian amalan haji menjadi rukun dan wajib membantu jamaah memahami prioritas dalam ibadah haji.</p>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="flex justify-center animate-fadeIn">
+                    <img src="https://placeholder.pics/svg/800x350/F0F7FF/0284C7/WAJIB%20HAJI" alt="Ilustrasi Wajib Haji" class="rounded-xl shadow-md">
+                  </div>
+                </div>
+              </section>
               
-              <div class="bg-gray-50 p-6 rounded-lg mb-6 border border-gray-200">
-                <ol class="list-decimal pl-5 space-y-4 text-gray-700">
-                  <li>
-                    <span class="font-semibold">Ihram dari Miqat</span>
-                    <p class="mt-1">Berniat ihram (memulai ibadah haji) dari tempat-tempat yang telah ditentukan (miqat). Miqat makani (tempat) yang telah ditentukan adalah:</p>
-                    <ul class="list-disc pl-5 mt-2 space-y-1">
-                      <li>Dzul Hulaifah (Bir Ali) untuk jamaah dari Madinah</li>
-                      <li>Al-Juhfah untuk jamaah dari Syam, Mesir, dan Maroko</li>
-                      <li>Qarnul Manazil untuk jamaah dari Najd</li>
-                      <li>Yalamlam untuk jamaah dari Yaman</li>
-                      <li>Dzatu 'Irqin untuk jamaah dari Irak</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <span class="font-semibold">Mabit (Bermalam) di Muzdalifah</span>
-                    <p class="mt-1">Bermalam di Muzdalifah pada malam 10 Dzulhijjah, meskipun hanya sebentar, setelah wukuf di Arafah. Waktu mabit di Muzdalifah adalah setelah Maghrib hingga terbit fajar pada hari Nahr (10 Dzulhijjah).</p>
-                  </li>
-                  <li>
-                    <span class="font-semibold">Mabit (Bermalam) di Mina</span>
-                    <p class="mt-1">Bermalam di Mina pada hari Tasyriq (11, 12, dan 13 Dzulhijjah). Bagi yang mengambil nafar awal (meninggalkan Mina pada 12 Dzulhijjah setelah Ashar), maka wajib bermalam pada malam 11 dan 12 Dzulhijjah.</p>
-                  </li>
-                  <li>
-                    <span class="font-semibold">Melempar Jumrah</span>
-                    <p class="mt-1">Melempar jumrah (batu) pada hari-hari Tasyriq dengan ketentuan:</p>
-                    <ul class="list-disc pl-5 mt-2 space-y-1">
-                      <li>Tanggal 10 Dzulhijjah: melempar Jumrah Aqabah saja dengan 7 batu</li>
-                      <li>Tanggal 11, 12, 13 Dzulhijjah: melempar ketiga jumrah (Ula, Wustha, Aqabah) masing-masing dengan 7 batu</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <span class="font-semibold">Thawaf Wada'</span>
-                    <p class="mt-1">Melakukan thawaf perpisahan sebelum meninggalkan Mekah. Thawaf ini dilakukan setelah semua rangkaian ibadah haji selesai dan jamaah hendak kembali ke negara asal.</p>
-                  </li>
-                  <li>
-                    <span class="font-semibold">Menjauhi Larangan Ihram</span>
-                    <p class="mt-1">Selama dalam keadaan ihram, jamaah haji wajib menjauhi larangan-larangan ihram seperti:</p>
-                    <ul class="list-disc pl-5 mt-2 space-y-1">
-                      <li>Memakai pakaian berjahit (untuk laki-laki)</li>
-                      <li>Menutup kepala (untuk laki-laki)</li>
-                      <li>Memakai wewangian</li>
-                      <li>Memotong kuku dan rambut</li>
-                      <li>Berburu atau membunuh binatang darat</li>
-                      <li>Menikah, menikahkan, atau meminang</li>
-                      <li>Berhubungan suami istri atau pendahuluannya</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <span class="font-semibold">Melaksanakan Haji sesuai dengan Jenis yang Diniatkan</span>
-                    <p class="mt-1">Jamaah haji wajib melaksanakan ibadah haji sesuai dengan jenis yang telah diniatkan, baik itu Haji Ifrad, Tamattu', atau Qiran.</p>
-                  </li>
-                </ol>
-              </div>
+              <!-- Wajib Haji Section -->
+              <section id="wajib-haji" class="p-8 border-b border-gray-100">
+                <div class="flex items-center mb-6">
+                  <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="bx bx-list-check text-secondary-500 text-2xl"></i>
+                  </div>
+                  <h2 class="text-3xl font-bold text-gray-800">Wajib-wajib Haji</h2>
+                </div>
+                
+                <div class="space-y-8">
+                  <p class="text-gray-700">
+                    Para ulama berbeda pendapat tentang jumlah wajib haji. Menurut mayoritas ulama, wajib haji ada tujuh. Berikut adalah wajib-wajib haji menurut pendapat mayoritas ulama:
+                  </p>
+                  
+                  <!-- Wajib 1: Ihram dari Miqat -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-map-pin text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">1. Ihram dari Miqat</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <p class="text-gray-700">
+                            <span class="font-bold text-primary-600">Ihram dari Miqat</span> adalah berniat ihram haji dari tempat-tempat yang telah ditentukan oleh syariat. Miqat adalah batas tempat dan waktu untuk memulai ihram bagi jamaah haji.
+                          </p>
+                          <div class="bg-primary-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-primary-700 mb-2">Dalil</h4>
+                            <p class="text-gray-700 text-sm">
+                              Rasulullah SAW bersabda:
+                            </p>
+                            <div class="mt-2">
+                              <p class="text-right text-gray-800 font-arabic text-xl leading-loose">هُنَّ لَهُنَّ وَلِمَنْ أَتَى عَلَيْهِنَّ مِنْ غَيْرِ أَهْلِهِنَّ مِمَّنْ أَرَادَ الْحَجَّ وَالْعُمْرَةَ</p>
+                              <p class="text-gray-600 text-sm mt-2">"Miqat-miqat tersebut adalah untuk penduduk daerah tersebut dan untuk orang-orang yang melewatinya dari daerah lain yang hendak melaksanakan haji dan umrah." (HR. Bukhari dan Muslim)</p>
+                            </div>
+                          </div>
+                          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <h5 class="font-bold text-yellow-800 mb-1">Miqat-miqat Makani (Tempat)</h5>
+                            <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                              <li><span class="font-bold">Dzul Hulaifah (Bir Ali)</span> - Miqat penduduk Madinah</li>
+                              <li><span class="font-bold">Al-Juhfah</span> - Miqat penduduk Syam, Mesir, dan Maroko</li>
+                              <li><span class="font-bold">Qarn Al-Manazil</span> - Miqat penduduk Najd</li>
+                              <li><span class="font-bold">Yalamlam</span> - Miqat penduduk Yaman</li>
+                              <li><span class="font-bold">Dzat Irq</span> - Miqat penduduk Irak</li>
+                            </ol>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/E0EFFF/0284C7/MIQAT" alt="Ilustrasi Miqat" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Wajib pertama haji</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Batas tempat memulai ihram</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Berbeda-beda sesuai arah kedatangan</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Wajib 2: Mabit di Muzdalifah -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-secondary-600 to-secondary-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-moon text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">2. Mabit di Muzdalifah</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <p class="text-gray-700">
+                            <span class="font-bold text-secondary-600">Mabit di Muzdalifah</span> adalah bermalam atau berhenti sejenak di Muzdalifah pada malam 10 Dzulhijjah (malam Idul Adha) setelah wukuf di Arafah. Minimal waktu mabit di Muzdalifah adalah setelah tengah malam hingga sebelum terbit fajar.
+                          </p>
+                          <div class="bg-secondary-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-secondary-700 mb-2">Dalil</h4>
+                            <p class="text-gray-700 text-sm">
+                              Allah SWT berfirman dalam Al-Qur'an:
+                            </p>
+                            <div class="mt-2">
+                              <p class="text-right text-gray-800 font-arabic text-xl leading-loose">فَإِذَا أَفَضْتُمْ مِنْ عَرَفَاتٍ فَاذْكُرُوا اللَّهَ عِنْدَ الْمَشْعَرِ الْحَرَامِ</p>
+                              <p class="text-gray-600 text-sm mt-2">"Maka apabila kamu telah bertolak dari Arafah, berzikirlah kepada Allah di Masy'aril Haram (Muzdalifah)." (QS. Al-Baqarah: 198)</p>
+                            </div>
+                          </div>
+                          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <h5 class="font-bold text-yellow-800 mb-1">Tata Cara Mabit di Muzdalifah</h5>
+                            <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                              <li>Setelah wukuf di Arafah, jamaah berangkat menuju Muzdalifah</li>
+                              <li>Shalat Maghrib dan Isya dijamak ta'khir dan diqashar di Muzdalifah</li>
+                              <li>Bermalam di Muzdalifah hingga setelah tengah malam</li>
+                              <li>Disunnahkan untuk mengambil batu kerikil untuk melempar jumrah</li>
+                              <li>Setelah mabit, jamaah berangkat menuju Mina sebelum terbit matahari</li>
+                            </ol>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/FAE8FF/C026D3/MUZDALIFAH" alt="Ilustrasi Mabit di Muzdalifah" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Malam 10 Dzulhijjah</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Setelah wukuf di Arafah</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Minimal setelah tengah malam</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Wajib 3: Mabit di Mina -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-accent-600 to-accent-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-home text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">3. Mabit di Mina</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <p class="text-gray-700">
+                            <span class="font-bold text-accent-600">Mabit di Mina</span> adalah bermalam di Mina pada malam-malam Tasyriq, yaitu malam 11, 12, dan 13 Dzulhijjah. Bagi yang mengambil nafar awal (meninggalkan Mina pada tanggal 12 Dzulhijjah sebelum maghrib), maka cukup mabit dua malam (malam 11 dan 12 Dzulhijjah).
+                          </p>
+                          <div class="bg-accent-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-accent-700 mb-2">Dalil</h4>
+                            <p class="text-gray-700 text-sm">
+                              Allah SWT berfirman dalam Al-Qur'an:
+                            </p>
+                            <div class="mt-2">
+                              <p class="text-right text-gray-800 font-arabic text-xl leading-loose">وَاذْكُرُوا اللَّهَ فِي أَيَّامٍ مَعْدُودَاتٍ ۚ فَمَنْ تَعَجَّلَ فِي يَوْمَيْنِ فَلَا إِثْمَ عَلَيْهِ وَمَنْ تَأَخَّرَ فَلَا إِثْمَ عَلَيْهِ ۚ لِمَنِ اتَّقَىٰ</p>
+                              <p class="text-gray-600 text-sm mt-2">"Dan berzikirlah (dengan menyebut) Allah dalam beberapa hari yang terbatas. Barangsiapa yang ingin cepat berangkat (dari Mina) setelah dua hari, maka tiada dosa baginya. Dan barangsiapa yang ingin menangguhkan (keberangkatannya dari dua hari itu), maka tidak ada dosa pula baginya, bagi orang yang bertakwa." (QS. Al-Baqarah: 203)</p>
+                            </div>
+                          </div>
+                          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <h5 class="font-bold text-yellow-800 mb-1">Tata Cara Mabit di Mina</h5>
+                            <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                              <li>Setelah dari Muzdalifah, jamaah menuju Mina pada tanggal 10 Dzulhijjah</li>
+                              <li>Melempar jumrah Aqabah pada tanggal 10 Dzulhijjah</li>
+                              <li>Bermalam di Mina pada malam 11, 12, dan 13 Dzulhijjah</li>
+                              <li>Melempar tiga jumrah (Ula, Wustha, dan Aqabah) pada tanggal 11, 12, dan 13 Dzulhijjah</li>
+                              <li>Bagi yang mengambil nafar awal, boleh meninggalkan Mina pada tanggal 12 Dzulhijjah sebelum maghrib</li>
+                            </ol>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/FEF3C7/F59E0B/MINA" alt="Ilustrasi Mabit di Mina" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Malam-malam Tasyriq</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Minimal dua malam (nafar awal)</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Tiga malam (nafar tsani)</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Wajib 4: Melempar Jumrah -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-green-600 to-green-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-target-lock text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">4. Melempar Jumrah</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <p class="text-gray-700">
+                            <span class="font-bold text-green-600">Melempar Jumrah</span> adalah melempar batu kerikil ke tiga tempat yang telah ditentukan di Mina. Pada tanggal 10 Dzulhijjah, jamaah hanya melempar jumrah Aqabah. Pada tanggal 11, 12, dan 13 Dzulhijjah, jamaah melempar ketiga jumrah (Ula, Wustha, dan Aqabah).
+                          </p>
+                          <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-green-700 mb-2">Dalil</h4>
+                            <p class="text-gray-700 text-sm">
+                              Rasulullah SAW bersabda:
+                            </p>
+                            <div class="mt-2">
+                              <p class="text-right text-gray-800 font-arabic text-xl leading-loose">خُذُوا عَنِّي مَنَاسِكَكُمْ</p>
+                              <p class="text-gray-600 text-sm mt-2">"Ambillah dariku manasik (tata cara) ibadah kalian." (HR. Muslim)</p>
+                            </div>
+                          </div>
+                          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <h5 class="font-bold text-yellow-800 mb-1">Tata Cara Melempar Jumrah</h5>
+                            <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                              <li><span class="font-bold">Tanggal 10 Dzulhijjah:</span> Melempar jumrah Aqabah dengan 7 kerikil</li>
+                              <li><span class="font-bold">Tanggal 11, 12, dan 13 Dzulhijjah:</span> Melempar jumrah Ula, Wustha, dan Aqabah masing-masing dengan 7 kerikil</li>
+                              <li>Melempar dimulai dari jumrah Ula, kemudian Wustha, dan terakhir Aqabah</li>
+                              <li>Setiap lemparan disertai dengan takbir</li>
+                              <li>Waktu melempar adalah setelah matahari tergelincir (waktu Dzuhur) hingga terbenam matahari</li>
+                            </ol>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/DCFCE7/22C55E/JUMRAH" alt="Ilustrasi Melempar Jumrah" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">7 kerikil untuk setiap jumrah</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Urutan: Ula, Wustha, Aqabah</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Setelah matahari tergelincir</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Wajib 5: Thawaf Wada' -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-cycling text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">5. Thawaf Wada'</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <p class="text-gray-700">
+                            <span class="font-bold text-blue-600">Thawaf Wada'</span> adalah thawaf perpisahan yang dilakukan sebelum meninggalkan Mekah. Thawaf ini dilakukan sebagai amalan terakhir di Mekah sebelum pulang ke tanah air.
+                          </p>
+                          <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-blue-700 mb-2">Dalil</h4>
+                            <p class="text-gray-700 text-sm">
+                              Rasulullah SAW bersabda:
+                            </p>
+                            <div class="mt-2">
+                              <p class="text-right text-gray-800 font-arabic text-xl leading-loose">لَا يَنْفِرَنَّ أَحَدٌ حَتَّى يَكُونَ آخِرُ عَهْدِهِ بِالْبَيْتِ</p>
+                              <p class="text-gray-600 text-sm mt-2">"Janganlah seseorang meninggalkan (Mekah) hingga akhir pertemuannya adalah dengan Baitullah (Ka'bah)." (HR. Muslim)</p>
+                            </div>
+                          </div>
+                          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <h5 class="font-bold text-yellow-800 mb-1">Tata Cara Thawaf Wada'</h5>
+                            <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                              <li>Thawaf Wada' dilakukan seperti thawaf biasa, yaitu mengelilingi Ka'bah sebanyak 7 kali putaran</li>
+                              <li>Dimulai dari Hajar Aswad dan berakhir di Hajar Aswad</li>
+                              <li>Tidak disyaratkan untuk ramal (berlari-lari kecil) dan tidak disyaratkan untuk sa'i setelahnya</li>
+                              <li>Setelah thawaf, disunnahkan untuk berdoa di Multazam (antara Hajar Aswad dan pintu Ka'bah)</li>
+                              <li>Setelah thawaf, jamaah langsung meninggalkan Mekah tanpa melakukan aktivitas lain yang tidak perlu</li>
+                            </ol>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/E0EFFF/0284C7/THAWAF%20WADA" alt="Ilustrasi Thawaf Wada'" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Amalan terakhir di Mekah</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">7 putaran mengelilingi Ka'bah</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Sebelum meninggalkan Mekah</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Wajib 6: Menjauhi Larangan Ihram -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-red-600 to-red-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-block text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">6. Menjauhi Larangan Ihram</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <p class="text-gray-700">
+                            <span class="font-bold text-red-600">Menjauhi Larangan Ihram</span> adalah menghindari hal-hal yang dilarang selama dalam keadaan ihram, seperti memakai wewangian, mencukur rambut, memotong kuku, menutup kepala (bagi laki-laki), memakai pakaian berjahit (bagi laki-laki), dan lain-lain.
+                          </p>
+                          <div class="bg-red-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-red-700 mb-2">Dalil</h4>
+                            <p class="text-gray-700 text-sm">
+                              Allah SWT berfirman dalam Al-Qur'an:
+                            </p>
+                            <div class="mt-2">
+                              <p class="text-right text-gray-800 font-arabic text-xl leading-loose">فَمَنْ فَرَضَ فِيهِنَّ الْحَجَّ فَلَا رَفَثَ وَلَا فُسُوقَ وَلَا جِدَالَ فِي الْحَجِّ</p>
+                              <p class="text-gray-600 text-sm mt-2">"Barangsiapa yang menetapkan niatnya dalam bulan itu akan mengerjakan haji, maka tidak boleh rafats (mengeluarkan perkataan yang menimbulkan berahi, bersetubuh atau bercumbu), berbuat fasik dan berbantah-bantahan di dalam masa mengerjakan haji." (QS. Al-Baqarah: 197)</p>
+                            </div>
+                          </div>
+                          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <h5 class="font-bold text-yellow-800 mb-1">Larangan-larangan Ihram</h5>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+                              <li><span class="font-bold">Larangan untuk laki-laki dan perempuan:</span> Mencukur rambut, memotong kuku, memakai wewangian, berburu, menikah, berhubungan suami istri, dan membunuh binatang</li>
+                              <li><span class="font-bold">Larangan khusus untuk laki-laki:</span> Memakai pakaian berjahit, menutup kepala, dan memakai alas kaki yang menutupi mata kaki</li>
+                              <li><span class="font-bold">Larangan khusus untuk perempuan:</span> Memakai cadar dan sarung tangan</li>
+                            </ul>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/FEE2E2/EF4444/LARANGAN%20IHRAM" alt="Ilustrasi Larangan Ihram" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Berlaku selama ihram</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Ada yang umum dan khusus</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Melanggar wajib bayar dam</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Wajib 7: Tertib dalam Pelaksanaan -->
+                  <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                    <div class="p-6 bg-gradient-to-r from-purple-600 to-purple-700 text-white">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                          <i class="bx bx-list-ol text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">7. Tertib dalam Pelaksanaan</h3>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                          <p class="text-gray-700">
+                            <span class="font-bold text-purple-600">Tertib dalam Pelaksanaan</span> adalah melaksanakan wajib-wajib haji sesuai dengan urutannya. Misalnya, ihram dari miqat harus dilakukan sebelum wukuf di Arafah, melempar jumrah Aqabah dilakukan pada tanggal 10 Dzulhijjah, dan thawaf wada' dilakukan sebagai amalan terakhir di Mekah.
+                          </p>
+                          <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-purple-700 mb-2">Dalil</h4>
+                            <p class="text-gray-700 text-sm">
+                              Rasulullah SAW bersabda:
+                            </p>
+                            <div class="mt-2">
+                              <p class="text-right text-gray-800 font-arabic text-xl leading-loose">خُذُوا عَنِّي مَنَاسِكَكُمْ</p>
+                              <p class="text-gray-600 text-sm mt-2">"Ambillah dariku manasik (tata cara) ibadah kalian." (HR. Muslim)</p>
+                            </div>
+                          </div>
+                          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <h5 class="font-bold text-yellow-800 mb-1">Urutan Pelaksanaan Wajib Haji</h5>
+                            <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                              <li>Ihram dari miqat sebelum memasuki Mekah</li>
+                              <li>Wukuf di Arafah pada tanggal 9 Dzulhijjah</li>
+                              <li>Mabit di Muzdalifah pada malam 10 Dzulhijjah</li>
+                              <li>Melempar jumrah Aqabah pada tanggal 10 Dzulhijjah</li>
+                              <li>Mabit di Mina pada malam 11, 12, dan 13 Dzulhijjah</li>
+                              <li>Melempar jumrah pada tanggal 11, 12, dan 13 Dzulhijjah</li>
+                              <li>Thawaf wada' sebagai amalan terakhir sebelum meninggalkan Mekah</li>
+                            </ol>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <img src="https://placeholder.pics/svg/300x400/F3E8FF/9333EA/TERTIB" alt="Ilustrasi Tertib dalam Pelaksanaan" class="w-full h-auto rounded-lg shadow-md">
+                          <div class="mt-4 space-y-2">
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Urutan sesuai waktu</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Mengikuti sunnah Rasulullah</p>
+                            </div>
+                            <div class="flex items-center">
+                              <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                <i class="bx bx-check text-success-500"></i>
+                              </div>
+                              <p class="text-sm text-gray-700">Memudahkan pelaksanaan haji</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
               
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Perbedaan Rukun Haji dan Wajib Haji</h3>
-              <div class="overflow-x-auto mb-6">
-                <table class="min-w-full bg-white border border-gray-200">
-                  <thead>
-                    <tr>
-                      <th class="py-3 px-4 bg-gray-100 text-left text-gray-700 font-semibold border-b border-gray-200">Aspek</th>
-                      <th class="py-3 px-4 bg-gray-100 text-left text-gray-700 font-semibold border-b border-gray-200">Rukun Haji</th>
-                      <th class="py-3 px-4 bg-gray-100 text-left text-gray-700 font-semibold border-b border-gray-200">Wajib Haji</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Pengertian</td>
-                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Amalan pokok yang harus dilakukan dalam ibadah haji</td>
-                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Amalan yang harus dilakukan dalam ibadah haji</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Konsekuensi jika ditinggalkan</td>
-                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Haji tidak sah dan tidak dapat diganti dengan dam</td>
-                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Haji tetap sah tetapi wajib membayar dam</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Contoh</td>
-                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Ihram, wukuf di Arafah, thawaf ifadhah, sa'i, tahallul</td>
-                      <td class="py-3 px-4 border-b border-gray-200 text-gray-700">Ihram dari miqat, mabit di Muzdalifah, mabit di Mina, melempar jumrah, thawaf wada'</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Dam (Denda) dalam Wajib Haji</h3>
-              <p class="text-gray-700 mb-4">
-                Jika seseorang meninggalkan salah satu wajib haji, maka ia wajib membayar dam. Dam dalam ibadah haji dapat berupa:
-              </p>
-              
-              <div class="bg-blue-50 p-4 rounded-md mb-6 border-l-4 border-blue-500">
-                <ol class="list-decimal pl-5 space-y-2 text-gray-700">
-                  <li>Menyembelih seekor kambing yang sah untuk kurban dan dibagikan kepada fakir miskin di tanah haram</li>
-                  <li>Jika tidak mampu menyembelih kambing, maka wajib berpuasa 10 hari dengan ketentuan:
-                    <ul class="list-disc pl-5 mt-1">
-                      <li>3 hari dilaksanakan saat masih dalam ibadah haji</li>
-                      <li>7 hari dilaksanakan setelah kembali ke negara asal</li>
-                    </ul>
-                  </li>
-                </ol>
-              </div>
-              
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Hikmah Wajib Haji</h3>
-              <p class="text-gray-700 mb-4">
-                Adanya ketentuan wajib haji dalam ibadah haji mengandung berbagai hikmah, di antaranya:
-              </p>
-              
-              <ul class="list-disc pl-5 space-y-2 text-gray-700 mb-4">
-                <li>Melatih kedisiplinan dalam menjalankan ibadah sesuai dengan ketentuan syariat</li>
-                <li>Mengajarkan ketertiban dalam melaksanakan rangkaian ibadah haji</li>
-                <li>Melatih kesabaran dalam menghadapi berbagai kesulitan dan tantangan</li>
-                <li>Menumbuhkan rasa kebersamaan dan persaudaraan antar sesama jamaah haji</li>
-                <li>Mengajarkan nilai-nilai pengorbanan dan keikhlasan dalam beribadah</li>
-                <li>Memberikan kemudahan bagi umat Islam dengan adanya alternatif dam jika terpaksa meninggalkan wajib haji</li>
-              </ul>
-              
-              <div class="bg-yellow-50 p-4 rounded-md border-l-4 border-yellow-500">
-                <p class="text-gray-700">
-                  <span class="font-semibold">Catatan Penting:</span> Ketentuan wajib haji dapat berbeda-beda menurut madzhab fikih yang dianut. Penjelasan di atas mengacu pada pendapat mayoritas ulama. Jamaah haji disarankan untuk berkonsultasi dengan ulama atau pembimbing haji untuk mendapatkan penjelasan yang lebih rinci sesuai dengan madzhab yang dianut.
-                </p>
-              </div>
+              <!-- Perbedaan Rukun dan Wajib Haji Section -->
+              <section id="perbedaan" class="p-8">
+                <div class="flex items-center mb-6">
+                  <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="bx bx-git-compare text-accent-500 text-2xl"></i>
+                  </div>
+                  <h2 class="text-3xl font-bold text-gray-800">Perbedaan Rukun dan Wajib Haji</h2>
+                </div>
+                
+                <div class="space-y-6">
+                  <p class="text-gray-700 mb-4">
+                    Dalam ibadah haji, terdapat perbedaan antara rukun haji dan wajib haji. Perbedaan ini penting untuk dipahami karena memiliki konsekuensi yang berbeda jika ditinggalkan.
+                  </p>
+                  
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-primary-700">Rukun Haji</h4>
+                      </div>
+                      <div class="p-5 space-y-4">
+                        <p class="text-gray-700">
+                          <span class="font-bold text-primary-600">Pengertian:</span> Rukun haji adalah amalan-amalan pokok yang wajib dilaksanakan dalam ibadah haji. Jika salah satu rukun haji ditinggalkan, maka ibadah haji tidak sah dan tidak dapat diganti dengan dam (denda).
+                        </p>
+                        <p class="text-gray-700">
+                          <span class="font-bold text-primary-600">Konsekuensi jika ditinggalkan:</span> Haji tidak sah dan harus diulang pada tahun berikutnya.
+                        </p>
+                        <p class="text-gray-700">
+                          <span class="font-bold text-primary-600">Rukun-rukun Haji:</span>
+                        </p>
+                        <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                          <li>Ihram (niat)</li>
+                          <li>Wukuf di Arafah</li>
+                          <li>Thawaf Ifadhah</li>
+                          <li>Sa'i</li>
+                          <li>Tahallul (mencukur atau memotong rambut)</li>
+                          <li>Tertib (menurut sebagian ulama)</li>
+                        </ol>
+                        <div class="bg-primary-50 p-3 rounded-md">
+                          <p class="text-gray-700 text-sm italic">
+                            "Rukun haji adalah amalan yang tidak dapat ditinggalkan dan tidak dapat diganti dengan dam. Jika ditinggalkan, maka haji tidak sah." - Imam Nawawi dalam kitab Al-Majmu'.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                      <div class="p-5 bg-gradient-to-r from-secondary-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-secondary-700">Wajib Haji</h4>
+                      </div>
+                      <div class="p-5 space-y-4">
+                        <p class="text-gray-700">
+                          <span class="font-bold text-secondary-600">Pengertian:</span> Wajib haji adalah amalan-amalan yang wajib dilaksanakan dalam ibadah haji, tetapi jika ditinggalkan dapat diganti dengan membayar dam (denda).
+                        </p>
+                        <p class="text-gray-700">
+                          <span class="font-bold text-secondary-600">Konsekuensi jika ditinggalkan:</span> Haji tetap sah, tetapi wajib membayar dam (denda) berupa menyembelih seekor kambing atau puasa 10 hari (3 hari saat haji dan 7 hari setelah kembali).
+                        </p>
+                        <p class="text-gray-700">
+                          <span class="font-bold text-secondary-600">Wajib-wajib Haji:</span>
+                        </p>
+                        <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                          <li>Ihram dari miqat</li>
+                          <li>Mabit di Muzdalifah</li>
+                          <li>Mabit di Mina</li>
+                          <li>Melempar jumrah</li>
+                          <li>Thawaf wada' (perpisahan)</li>
+                          <li>Menjauhi larangan ihram</li>
+                          <li>Tertib dalam pelaksanaan</li>
+                        </ol>
+                        <div class="bg-secondary-50 p-3 rounded-md">
+                          <p class="text-gray-700 text-sm italic">
+                            "Wajib haji adalah amalan yang wajib dilaksanakan, tetapi jika ditinggalkan karena udzur (alasan yang dibenarkan), maka dapat diganti dengan membayar dam." - Ibnu Qudamah dalam kitab Al-Mughni.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm p-6 card-hover">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4">Perbedaan Pendapat Ulama tentang Wajib Haji</h4>
+                    <p class="text-gray-700 mb-4">
+                      Para ulama berbeda pendapat tentang jumlah wajib haji. Berikut adalah pendapat-pendapat utama dari berbagai mazhab fikih:
+                    </p>
+                    <div class="overflow-x-auto">
+                      <table class="min-w-full">
+                        <thead>
+                          <tr class="border-b border-gray-200">
+                            <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Mazhab</th>
+                            <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Jumlah Wajib</th>
+                            <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Wajib-wajib Haji</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="border-b border-gray-200">
+                            <td class="py-2 px-3 text-sm text-gray-600 font-medium">Mazhab Hanafi</td>
+                            <td class="py-2 px-3 text-sm text-gray-600">6</td>
+                            <td class="py-2 px-3 text-sm text-gray-600">1. Ihram dari miqat<br>2. Wukuf di Arafah hingga terbenam matahari<br>3. Thawaf ziarah<br>4. Sa'i<br>5. Mencukur rambut<br>6. Tertib</td>
+                          </tr>
+                          <tr class="border-b border-gray-200">
+                            <td class="py-2 px-3 text-sm text-gray-600 font-medium">Mazhab Maliki</td>
+                            <td class="py-2 px-3 text-sm text-gray-600">7</td>
+                            <td class="py-2 px-3 text-sm text-gray-600">1. Ihram dari miqat<br>2. Mabit di Muzdalifah<br>3. Mabit di Mina<br>4. Melempar jumrah<br>5. Thawaf wada'<br>6. Menjauhi larangan ihram<br>7. Tertib</td>
+                          </tr>
+                          <tr class="border-b border-gray-200">
+                            <td class="py-2 px-3 text-sm text-gray-600 font-medium">Mazhab Syafi'i</td>
+                            <td class="py-2 px-3 text-sm text-gray-600">5</td>
+                            <td class="py-2 px-3 text-sm text-gray-600">1. Ihram dari miqat<br>2. Melempar jumrah<br>3. Mabit di Mina<br>4. Mabit di Muzdalifah<br>5. Thawaf wada'</td>
+                          </tr>
+                          <tr>
+                            <td class="py-2 px-3 text-sm text-gray-600 font-medium">Mazhab Hanbali</td>
+                            <td class="py-2 px-3 text-sm text-gray-600">7</td>
+                            <td class="py-2 px-3 text-sm text-gray-600">1. Ihram dari miqat<br>2. Wukuf di Arafah hingga terbenam matahari<br>3. Mabit di Muzdalifah<br>4. Mabit di Mina<br>5. Melempar jumrah<br>6. Mencukur rambut<br>7. Thawaf wada'</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  
+                  <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+                    <h4 class="text-xl font-bold text-yellow-800 mb-3">Dam (Denda) untuk Wajib Haji yang Ditinggalkan</h4>
+                    <p class="text-gray-700 mb-4">
+                      Jika salah satu wajib haji ditinggalkan, maka wajib membayar dam (denda). Berikut adalah jenis-jenis dam dan cara membayarnya:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-map-pin text-yellow-600"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Meninggalkan Ihram dari Miqat</h5>
+                          <p class="text-sm text-gray-700 mt-1">Jika seseorang tidak berihram dari miqat (misalnya berihram setelah melewati miqat), maka ia wajib membayar dam berupa menyembelih seekor kambing atau berpuasa 10 hari (3 hari saat haji dan 7 hari setelah kembali).</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-moon text-yellow-600"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Meninggalkan Mabit di Muzdalifah</h5>
+                          <p class="text-sm text-gray-700 mt-1">Jika seseorang tidak mabit di Muzdalifah tanpa udzur, maka ia wajib membayar dam berupa menyembelih seekor kambing atau berpuasa 10 hari.</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-home text-yellow-600"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Meninggalkan Mabit di Mina</h5>
+                          <p class="text-sm text-gray-700 mt-1">Jika seseorang tidak mabit di Mina tanpa udzur, maka ia wajib membayar dam berupa menyembelih seekor kambing atau berpuasa 10 hari. Jika hanya meninggalkan sebagian malam, maka dam disesuaikan dengan jumlah malam yang ditinggalkan.</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                          <i class="bx bx-cycling text-yellow-600"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-gray-800">Meninggalkan Thawaf Wada'</h5>
+                          <p class="text-sm text-gray-700 mt-1">Jika seseorang tidak melakukan thawaf wada' tanpa udzur, maka ia wajib membayar dam berupa menyembelih seekor kambing atau berpuasa 10 hari. Wanita yang haid atau nifas dibolehkan meninggalkan thawaf wada' tanpa membayar dam.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="bg-primary-50 p-4 rounded-md border-l-4 border-primary-500">
+                    <p class="text-gray-700">
+                      <span class="font-bold text-primary-600">Catatan Penting:</span> Ketentuan wajib haji dapat berbeda-beda menurut madzhab fikih yang dianut. Penjelasan di atas mengacu pada pendapat mayoritas ulama. Jamaah haji disarankan untuk berkonsultasi dengan ulama atau pembimbing haji untuk mendapatkan penjelasan yang lebih rinci sesuai dengan madzhab yang dianut.
+                    </p>
+                  </div>
+                </div>
+              </section>
             </div>
-    
-            <div class="bg-blue-50 rounded-lg p-6 border border-blue-100">
-              <h2 class="text-xl font-bold text-blue-700 mb-3">Kesimpulan</h2>
+            
+            <!-- Conclusion -->
+            <div class="bg-gradient-to-r from-primary-50 to-white rounded-xl p-6 border border-primary-100 mb-6">
+              <h2 class="text-xl font-bold text-primary-700 mb-3">Kesimpulan</h2>
               <p class="text-gray-700 mb-4">
-                Wajib haji merupakan amalan-amalan yang harus dilakukan dalam ibadah haji, namun jika ditinggalkan karena udzur, dapat diganti dengan membayar dam. Berbeda dengan rukun haji yang jika ditinggalkan menyebabkan hajinya tidak sah, meninggalkan wajib haji tidak membatalkan ibadah haji, tetapi mengharuskan pembayaran dam.
+                <span class="font-bold text-primary-600">Wajib Haji</span> adalah amalan-amalan yang harus dilaksanakan dalam ibadah haji, namun jika ditinggalkan karena udzur (alasan yang dibenarkan), maka ibadah haji tetap sah dengan kewajiban membayar dam (denda).
+              </p>
+              <p class="text-gray-700 mb-4">
+                <span class="font-bold text-primary-600">Wajib-wajib Haji</span> menurut mayoritas ulama adalah: ihram dari miqat, mabit di Muzdalifah, mabit di Mina, melempar jumrah, thawaf wada', menjauhi larangan ihram, dan tertib dalam pelaksanaan.
               </p>
               <p class="text-gray-700">
-                Memahami dan melaksanakan wajib haji dengan baik akan menyempurnakan ibadah haji seseorang. Oleh karena itu, setiap jamaah haji perlu mempelajari dan memahami ketentuan wajib haji dengan baik sebelum melaksanakan ibadah haji.
+                <span class="font-bold text-primary-600">Perbedaan antara rukun dan wajib haji</span> terletak pada konsekuensinya jika ditinggalkan. Jika rukun haji ditinggalkan, maka haji tidak sah dan harus diulang. Sedangkan jika wajib haji ditinggalkan, maka haji tetap sah tetapi wajib membayar dam (denda).
               </p>
+            </div>
+            
+            <!-- Related Topics -->
+            <div class="mb-6">
+              <h3 class="text-lg font-bold text-gray-800 mb-4">Materi Terkait</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <a href="#" class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all flex items-center">
+                  <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                    <i class="bx bx-book-open text-primary-500"></i>
+                  </div>
+                  <span class="font-medium text-gray-800">Pengertian Haji</span>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all flex items-center">
+                  <div class="w-10 h-10 bg-secondary-100 rounded-full flex items-center justify-center mr-3">
+                    <i class="bx bx-list-check text-secondary-500"></i>
+                  </div>
+                  <span class="font-medium text-gray-800">Rukun Haji</span>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all flex items-center">
+                  <div class="w-10 h-10 bg-accent-100 rounded-full flex items-center justify-center mr-3">
+                    <i class="bx bx-walk text-accent-500"></i>
+                  </div>
+                  <span class="font-medium text-gray-800">Tata Cara Haji</span>
+                </a>
+              </div>
             </div>
           </main>
 
