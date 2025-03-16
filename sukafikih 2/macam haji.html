@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hukum Haji</title>
+    <title>Macam-macam Haji</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
@@ -72,6 +72,15 @@
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
+
+        /* Chevron rotation */
+        .chevron {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .chevron.active {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -130,12 +139,12 @@
                     <div class="menu-content active pl-12 mt-1 space-y-1">
                         <a href="./pengertian haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Pengertian Haji</a>
                         <a href="./dalil haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Dalil Haji</a>
-                        <a href="./hukum haji.html" class="block px-4 py-2 text-sm text-primary-600 bg-primary-50 rounded-lg">Hukum Haji</a>
+                        <a href="./hukum haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Hukum Haji</a>
                         <a href="./rukun haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Rukun Haji</a>
                         <a href="./syarat wajib dan sah haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Syarat Haji</a>
                         <a href="./sunnah haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Sunnah Haji</a>
                         <a href="./wajib haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Wajib Haji</a>
-                        <a href="./macam haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Macam-macam Haji</a>
+                        <a href="./macam haji.html" class="block px-4 py-2 text-sm text-primary-600 bg-primary-50 rounded-lg">Macam-macam Haji</a>
                         <a href="./larangan haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Larangan Haji</a>
                     </div>
                 </div>
@@ -229,117 +238,239 @@
               <span class="mx-2">&gt;</span>
               <a href="#" class="hover:text-blue-500">Materi Haji</a>
               <span class="mx-2">&gt;</span>
-              <span class="text-blue-500">Hukum Haji</span>
+              <span class="text-blue-500">Macam-macam Haji</span>
             </div>
     
             <!-- Title -->
-            <h1 class="text-4xl font-bold text-gray-800 mb-2">Hukum Haji</h1>
-            <p class="text-gray-600 mb-8">Memahami dasar hukum dan ketentuan ibadah haji dalam Islam</p>
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Macam-macam Haji</h1>
+            <p class="text-gray-600 mb-8">Memahami berbagai jenis pelaksanaan ibadah haji dalam Islam</p>
     
             <!-- Content -->
-            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
-              <h2 class="text-2xl font-bold text-gray-800 mb-4">Hukum Haji dalam Islam</h2>
-              <p class="text-gray-700 mb-4">
-                <span class="font-semibold text-blue-600">Hukum Haji</span> adalah wajib bagi setiap muslim yang mampu (istitha'ah) sekali seumur hidup. Haji merupakan rukun Islam yang kelima dan menjadi kewajiban bagi setiap muslim yang telah memenuhi syarat-syarat tertentu.
-              </p>
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+              <h2 class="text-2xl font-bold text-gray-800 mb-4">Tiga Jenis Pelaksanaan Ibadah Haji</h2>
               <p class="text-gray-700 mb-6">
-                Kewajiban haji hanya sekali seumur hidup. Jika seseorang melaksanakan haji lebih dari sekali, maka haji yang kedua dan seterusnya hukumnya sunnah.
-              </p>
-    
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Dasar Hukum Haji</h3>
-              <p class="text-gray-700 mb-4">
-                Kewajiban haji dalam Islam didasarkan pada beberapa dalil dari Al-Qur'an dan Hadits:
+                Dalam syariat Islam, terdapat tiga macam cara pelaksanaan ibadah haji yang dapat dipilih oleh jamaah sesuai dengan kondisi dan kemampuannya. Ketiga macam haji tersebut adalah Haji Ifrad, Haji Tamattu', dan Haji Qiran.
               </p>
               
-              <div class="bg-blue-50 p-4 rounded-md mb-6 border-l-4 border-blue-500">
-                <p class="text-gray-700 italic">
-                  "Mengerjakan haji adalah kewajiban manusia terhadap Allah, yaitu (bagi) orang yang sanggup mengadakan perjalanan ke Baitullah. Barangsiapa mengingkari (kewajiban haji), maka sesungguhnya Allah Maha Kaya (tidak memerlukan sesuatu) dari semesta alam."
-                </p>
-                <p class="text-gray-600 text-sm mt-2">
-                  (QS. Ali Imran [3]: 97)
-                </p>
+              <div class="grid gap-8 md:grid-cols-3 mb-8">
+                <!-- Haji Ifrad -->
+                <div class="bg-primary-50 rounded-xl p-6 border border-primary-100">
+                  <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mb-4">
+                    <span class="text-white text-2xl font-bold">1</span>
+                  </div>
+                  <h3 class="text-xl font-bold text-primary-700 mb-3">Haji Ifrad</h3>
+                  <p class="text-gray-700">
+                    Haji Ifrad adalah melaksanakan ibadah haji saja tanpa disertai dengan umrah dalam satu perjalanan ke tanah suci.
+                  </p>
+                </div>
+                
+                <!-- Haji Tamattu -->
+                <div class="bg-primary-50 rounded-xl p-6 border border-primary-100">
+                  <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mb-4">
+                    <span class="text-white text-2xl font-bold">2</span>
+                  </div>
+                  <h3 class="text-xl font-bold text-primary-700 mb-3">Haji Tamattu'</h3>
+                  <p class="text-gray-700">
+                    Haji Tamattu' adalah melaksanakan umrah terlebih dahulu pada bulan-bulan haji, kemudian melaksanakan haji pada tahun yang sama.
+                  </p>
+                </div>
+                
+                <!-- Haji Qiran -->
+                <div class="bg-primary-50 rounded-xl p-6 border border-primary-100">
+                  <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mb-4">
+                    <span class="text-white text-2xl font-bold">3</span>
+                  </div>
+                  <h3 class="text-xl font-bold text-primary-700 mb-3">Haji Qiran</h3>
+                  <p class="text-gray-700">
+                    Haji Qiran adalah melaksanakan ibadah haji dan umrah secara bersamaan dengan satu niat dan satu rangkaian ibadah.
+                  </p>
+                </div>
               </div>
               
-              <div class="bg-blue-50 p-4 rounded-md mb-6 border-l-4 border-blue-500">
-                <p class="text-gray-700 italic">
-                  "Islam dibangun di atas lima perkara: bersaksi bahwa tiada Tuhan selain Allah dan Muhammad adalah utusan Allah, mendirikan shalat, menunaikan zakat, melaksanakan haji, dan puasa Ramadhan."
-                </p>
-                <p class="text-gray-600 text-sm mt-2">
-                  (HR. Bukhari dan Muslim)
-                </p>
+              <h3 class="text-xl font-bold text-gray-800 mb-4">Penjelasan Detail Macam-macam Haji</h3>
+              
+              <!-- Haji Ifrad Detail -->
+              <div class="mb-8">
+                <h4 class="text-lg font-bold text-primary-600 mb-3">1. Haji Ifrad</h4>
+                <div class="pl-6 border-l-4 border-primary-600">
+                  <p class="text-gray-700 mb-4">
+                    <span class="font-semibold">Pengertian:</span> Haji Ifrad adalah melaksanakan ibadah haji saja tanpa disertai dengan umrah dalam satu perjalanan ke tanah suci.
+                  </p>
+                  
+                  <p class="text-gray-700 mb-4">
+                    <span class="font-semibold">Tata Cara:</span>
+                  </p>
+                  <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700">
+                    <li>Jamaah berniat ihram untuk haji saja dari miqat</li>
+                    <li>Mengucapkan talbiyah untuk haji: "Labbaik Allahumma hajjan"</li>
+                    <li>Tetap dalam keadaan ihram hingga selesai melaksanakan seluruh rangkaian ibadah haji</li>
+                    <li>Setelah selesai ibadah haji, jamaah dapat melaksanakan umrah jika menghendaki (tidak wajib)</li>
+                  </ul>
+                  
+                  <p class="text-gray-700 mb-4">
+                    <span class="font-semibold">Kelebihan:</span>
+                  </p>
+                  <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700">
+                    <li>Lebih sederhana karena hanya fokus pada satu ibadah (haji)</li>
+                    <li>Tidak dikenakan dam (denda)</li>
+                    <li>Cocok bagi jamaah yang datang ke Mekah mendekati waktu wukuf</li>
+                  </ul>
+                  
+                  <p class="text-gray-700">
+                    <span class="font-semibold">Kekurangan:</span>
+                  </p>
+                  <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700">
+                    <li>Jamaah harus tetap dalam keadaan ihram untuk waktu yang lebih lama</li>
+                    <li>Larangan ihram berlaku lebih lama sehingga mungkin kurang nyaman bagi sebagian jamaah</li>
+                  </ul>
+                </div>
               </div>
               
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Ketentuan Haji dalam Islam</h3>
-              <p class="text-gray-700 mb-4">
-                Berikut adalah beberapa ketentuan penting terkait ibadah haji dalam Islam:
-              </p>
+              <!-- Haji Tamattu Detail -->
+              <div class="mb-8">
+                <h4 class="text-lg font-bold text-primary-600 mb-3">2. Haji Tamattu'</h4>
+                <div class="pl-6 border-l-4 border-primary-600">
+                  <p class="text-gray-700 mb-4">
+                    <span class="font-semibold">Pengertian:</span> Haji Tamattu' adalah melaksanakan umrah terlebih dahulu pada bulan-bulan haji, kemudian melaksanakan haji pada tahun yang sama.
+                  </p>
+                  
+                  <p class="text-gray-700 mb-4">
+                    <span class="font-semibold">Tata Cara:</span>
+                  </p>
+                  <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700">
+                    <li>Jamaah berniat ihram untuk umrah dari miqat</li>
+                    <li>Mengucapkan talbiyah untuk umrah: "Labbaik Allahumma umratan"</li>
+                    <li>Melaksanakan umrah (tawaf, sa'i, dan tahallul)</li>
+                    <li>Setelah umrah selesai, jamaah bertahallul (mencukur/memotong rambut) dan keluar dari ihram</li>
+                    <li>Jamaah bebas dari larangan ihram sampai tanggal 8 Dzulhijjah</li>
+                    <li>Pada tanggal 8 Dzulhijjah, jamaah berniat ihram untuk haji dari tempat tinggalnya di Mekah</li>
+                    <li>Melaksanakan rangkaian ibadah haji</li>
+                  </ul>
+                  
+                  <p class="text-gray-700 mb-4">
+                    <span class="font-semibold">Kelebihan:</span>
+                  </p>
+                  <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700">
+                    <li>Ada masa istirahat antara umrah dan haji (bebas dari larangan ihram)</li>
+                    <li>Lebih nyaman karena tidak perlu terus-menerus dalam keadaan ihram</li>
+                    <li>Paling banyak dipilih oleh jamaah haji Indonesia</li>
+                  </ul>
+                  
+                  <p class="text-gray-700">
+                    <span class="font-semibold">Kekurangan:</span>
+                  </p>
+                  <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700">
+                    <li>Wajib membayar dam (denda) berupa menyembelih seekor kambing</li>
+                    <li>Jika tidak mampu menyembelih kambing, wajib berpuasa 10 hari (3 hari di tanah suci dan 7 hari setelah kembali ke tanah air)</li>
+                  </ul>
+                </div>
+              </div>
               
-              <h4 class="text-lg font-semibold text-gray-800 mb-2">1. Syarat Wajib Haji</h4>
-              <ul class="list-disc pl-5 mb-4 space-y-1 text-gray-700">
-                <li>Muslim</li>
-                <li>Baligh (dewasa)</li>
-                <li>Berakal sehat</li>
-                <li>Merdeka (bukan budak)</li>
-                <li>Istitha'ah (mampu), meliputi:</li>
-                <ul class="list-circle pl-5 mt-1 space-y-1">
-                  <li>Sehat jasmani dan rohani</li>
-                  <li>Memiliki biaya untuk perjalanan haji dan kebutuhan keluarga yang ditinggalkan</li>
-                  <li>Aman dalam perjalanan</li>
-                  <li>Bagi wanita, harus didampingi mahram atau kelompok wanita yang terpercaya</li>
+              <!-- Haji Qiran Detail -->
+              <div class="mb-8">
+                <h4 class="text-lg font-bold text-primary-600 mb-3">3. Haji Qiran</h4>
+                <div class="pl-6 border-l-4 border-primary-600">
+                  <p class="text-gray-700 mb-4">
+                    <span class="font-semibold">Pengertian:</span> Haji Qiran adalah melaksanakan ibadah haji dan umrah secara bersamaan dengan satu niat dan satu rangkaian ibadah.
+                  </p>
+                  
+                  <p class="text-gray-700 mb-4">
+                    <span class="font-semibold">Tata Cara:</span>
+                  </p>
+                  <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700">
+                    <li>Jamaah berniat ihram untuk haji dan umrah sekaligus dari miqat</li>
+                    <li>Mengucapkan talbiyah untuk haji dan umrah: "Labbaik Allahumma hajjan wa umratan"</li>
+                    <li>Tetap dalam keadaan ihram hingga selesai melaksanakan seluruh rangkaian ibadah haji</li>
+                    <li>Cukup melakukan satu kali tawaf (tawaf ifadah) dan satu kali sa'i untuk haji dan umrah</li>
+                  </ul>
+                  
+                  <p class="text-gray-700 mb-4">
+                    <span class="font-semibold">Kelebihan:</span>
+                  </p>
+                  <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700">
+                    <li>Lebih ringkas karena amalan haji dan umrah dilakukan dalam satu rangkaian</li>
+                    <li>Cocok bagi jamaah yang memiliki waktu terbatas</li>
+                    <li>Hanya perlu melakukan satu kali tawaf dan sa'i untuk kedua ibadah</li>
+                  </ul>
+                  
+                  <p class="text-gray-700">
+                    <span class="font-semibold">Kekurangan:</span>
+                  </p>
+                  <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700">
+                    <li>Wajib membayar dam (denda) berupa menyembelih seekor kambing</li>
+                    <li>Jamaah harus tetap dalam keadaan ihram untuk waktu yang lama</li>
+                    <li>Larangan ihram berlaku lebih lama sehingga mungkin kurang nyaman bagi sebagian jamaah</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <!-- Perbandingan -->
+              <h3 class="text-xl font-bold text-gray-800 mb-4">Perbandingan Macam-macam Haji</h3>
+              
+              <div class="overflow-x-auto mb-6">
+                <table class="min-w-full border-collapse">
+                  <thead>
+                    <tr class="bg-primary-600 text-white">
+                      <th class="border border-primary-500 px-4 py-3 text-left">Aspek</th>
+                      <th class="border border-primary-500 px-4 py-3 text-left">Haji Ifrad</th>
+                      <th class="border border-primary-500 px-4 py-3 text-left">Haji Tamattu'</th>
+                      <th class="border border-primary-500 px-4 py-3 text-left">Haji Qiran</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="bg-white">
+                      <td class="border border-gray-200 px-4 py-3 font-medium">Niat</td>
+                      <td class="border border-gray-200 px-4 py-3">Haji saja</td>
+                      <td class="border border-gray-200 px-4 py-3">Umrah dulu, kemudian haji</td>
+                      <td class="border border-gray-200 px-4 py-3">Haji dan umrah bersamaan</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                      <td class="border border-gray-200 px-4 py-3 font-medium">Ihram</td>
+                      <td class="border border-gray-200 px-4 py-3">Satu kali untuk haji</td>
+                      <td class="border border-gray-200 px-4 py-3">Dua kali (umrah dan haji)</td>
+                      <td class="border border-gray-200 px-4 py-3">Satu kali untuk keduanya</td>
+                    </tr>
+                    <tr class="bg-white">
+                      <td class="border border-gray-200 px-4 py-3 font-medium">Tawaf dan Sa'i</td>
+                      <td class="border border-gray-200 px-4 py-3">Satu kali untuk haji</td>
+                      <td class="border border-gray-200 px-4 py-3">Dua kali (umrah dan haji)</td>
+                      <td class="border border-gray-200 px-4 py-3">Satu kali untuk keduanya</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                      <td class="border border-gray-200 px-4 py-3 font-medium">Dam (Denda)</td>
+                      <td class="border border-gray-200 px-4 py-3">Tidak wajib</td>
+                      <td class="border border-gray-200 px-4 py-3">Wajib</td>
+                      <td class="border border-gray-200 px-4 py-3">Wajib</td>
+                    </tr>
+                    <tr class="bg-white">
+                      <td class="border border-gray-200 px-4 py-3 font-medium">Tahallul</td>
+                      <td class="border border-gray-200 px-4 py-3">Sekali setelah haji</td>
+                      <td class="border border-gray-200 px-4 py-3">Dua kali (setelah umrah dan haji)</td>
+                      <td class="border border-gray-200 px-4 py-3">Sekali setelah haji</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="bg-primary-50 p-6 rounded-lg border border-primary-100">
+                <h4 class="text-lg font-bold text-primary-700 mb-3">Mana yang Lebih Utama?</h4>
+                <p class="text-gray-700 mb-4">
+                  Para ulama berbeda pendapat tentang mana di antara ketiga macam haji yang lebih utama:
+                </p>
+                <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                  <li>Menurut Imam Syafi'i dan Imam Ahmad, Haji Tamattu' adalah yang paling utama</li>
+                  <li>Menurut Imam Abu Hanifah, Haji Qiran adalah yang paling utama</li>
+                  <li>Menurut Imam Malik, Haji Ifrad adalah yang paling utama</li>
                 </ul>
-              </ul>
-              
-              <h4 class="text-lg font-semibold text-gray-800 mb-2">2. Waktu Pelaksanaan Haji</h4>
-              <p class="text-gray-700 mb-4">
-                Ibadah haji dilaksanakan pada bulan-bulan haji, yaitu Syawal, Dzulqa'dah, dan 10 hari pertama bulan Dzulhijjah. Puncak ibadah haji adalah pada tanggal 9 Dzulhijjah saat wukuf di Arafah.
-              </p>
-              
-              <h4 class="text-lg font-semibold text-gray-800 mb-2">3. Macam-macam Haji</h4>
-              <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700">
-                <li>
-                  <span class="font-semibold">Haji Ifrad</span> - Melaksanakan ibadah haji saja tanpa umrah dalam satu perjalanan.
-                </li>
-                <li>
-                  <span class="font-semibold">Haji Tamattu'</span> - Melaksanakan umrah terlebih dahulu pada bulan-bulan haji, kemudian melaksanakan haji pada tahun yang sama.
-                </li>
-                <li>
-                  <span class="font-semibold">Haji Qiran</span> - Melaksanakan ibadah haji dan umrah secara bersamaan dengan satu niat dan satu rangkaian.
-                </li>
-              </ul>
-              
-              <h4 class="text-lg font-semibold text-gray-800 mb-2">4. Hukum Meninggalkan Haji</h4>
-              <p class="text-gray-700 mb-4">
-                Bagi muslim yang telah memenuhi syarat wajib haji namun sengaja tidak melaksanakannya, maka ia berdosa. Rasulullah SAW bersabda:
-              </p>
-              
-              <div class="bg-blue-50 p-4 rounded-md mb-4 border-l-4 border-blue-500">
-                <p class="text-gray-700 italic">
-                  "Barangsiapa yang memiliki bekal dan kendaraan yang dapat mengantarkannya kepada Baitullah, tetapi ia tidak melaksanakan haji, maka ia mati dalam keadaan seperti Yahudi atau Nasrani."
-                </p>
-                <p class="text-gray-600 text-sm mt-2">
-                  (HR. Tirmidzi)
+                <p class="text-gray-700 mt-4">
+                  Rasulullah SAW sendiri pernah melaksanakan Haji Qiran pada haji wada' (haji perpisahan). Namun, beliau juga pernah memerintahkan para sahabatnya untuk melaksanakan Haji Tamattu'.
                 </p>
               </div>
-            </div>
-    
-            <div class="bg-blue-50 rounded-lg p-6 border border-blue-100">
-              <h2 class="text-xl font-bold text-blue-700 mb-3">Hikmah Kewajiban Haji</h2>
-              <p class="text-gray-700 mb-4">
-                Ibadah haji memiliki banyak hikmah dan manfaat bagi umat Islam, di antaranya:
-              </p>
-              <ul class="list-disc pl-5 space-y-2 text-gray-700">
-                <li>Menguji ketaatan dan kepatuhan seorang muslim kepada Allah SWT</li>
-                <li>Membersihkan diri dari dosa-dosa yang telah dilakukan</li>
-                <li>Memperkuat persaudaraan dan persatuan umat Islam dari berbagai penjuru dunia</li>
-                <li>Melatih kesabaran, ketabahan, dan keikhlasan dalam beribadah</li>
-                <li>Mengingatkan tentang kesetaraan manusia di hadapan Allah SWT tanpa memandang status sosial, ras, atau bangsa</li>
-                <li>Melatih kedisiplinan dalam menjalankan ritual ibadah sesuai dengan waktu dan tempat yang telah ditentukan</li>
-              </ul>
             </div>
           </main>
 
         <!-- Footer -->
-        <footer class="bg-white border-t mt-12">
+        <footer class="bg-white border-t mt-8">
             <div class="container mx-auto px-4 py-8">
                 <div class="text-center">
                     <p class="text-secondary-500">© 2025 SukaFikih. Hak Cipta Dilindungi.</p>

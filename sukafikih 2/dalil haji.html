@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hukum Haji</title>
+    <title>Dalil Haji</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
@@ -31,6 +31,7 @@
         }
     </script>
     <style>
+        /* Transition for menu items */
         .menu-content {
             max-height: 0;
             overflow: hidden;
@@ -53,6 +54,7 @@
             transform: translateX(0);
         }
         
+        /* Transition for backdrop */
         .backdrop {
             opacity: 0;
             visibility: hidden;
@@ -64,6 +66,23 @@
             visibility: visible;
         }
         
+        /* Transition for chevron rotation */
+        .chevron {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .chevron.active {
+            transform: rotate(180deg);
+        }
+
+        /* Arabic text styling */
+        .arabic {
+            font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+            direction: rtl;
+            line-height: 1.8;
+        }
+
+        /* Animation for content */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -74,12 +93,12 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <!-- Same sidebar as index.html -->
+<body class="bg-gray-50 min-h-screen font-sans">
+    <!-- Backdrop for mobile -->
     <div id="backdrop" class="fixed inset-0 bg-black/50 z-40 backdrop lg:hidden"></div>
     
-    <aside id="sidebar" class="fixed z-50 w-72 bg-white border-r border-gray-200 h-screen sidebar lg:transform-none lg:shadow-none">
-        <!-- Sidebar content same as index.html -->
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed z-50 w-72 bg-white border-r border-gray-200 h-screen sidebar lg:transform-none">
         <div class="p-6 h-full flex flex-col">
             <!-- Logo -->
             <div class="flex items-center gap-3 mb-8">
@@ -118,9 +137,9 @@
                 <div class="menu-item">
                     <button class="w-full flex items-center justify-between px-4 py-3 text-primary-600 hover:bg-primary-50 rounded-xl font-medium transition-colors">
                         <div class="flex items-center gap-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
                             <span>Materi Haji</span>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 chevron active" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -129,8 +148,8 @@
                     </button>
                     <div class="menu-content active pl-12 mt-1 space-y-1">
                         <a href="./pengertian haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Pengertian Haji</a>
-                        <a href="./dalil haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Dalil Haji</a>
-                        <a href="./hukum haji.html" class="block px-4 py-2 text-sm text-primary-600 bg-primary-50 rounded-lg">Hukum Haji</a>
+                        <a href="./dalil haji.html" class="block px-4 py-2 text-sm text-primary-600 bg-primary-50 rounded-lg">Dalil Haji</a>
+                        <a href="./hukum haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Hukum Haji</a>
                         <a href="./rukun haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Rukun Haji</a>
                         <a href="./syarat wajib dan sah haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Syarat Haji</a>
                         <a href="./sunnah haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Sunnah Haji</a>
@@ -222,124 +241,124 @@
         </header>
 
         <!-- Content -->
-        <main class="flex-1 overflow-y-auto p-4">
-            <!-- Breadcrumb -->
-            <div class="flex items-center text-sm text-gray-500 mb-6">
-              <a href="#" class="hover:text-blue-500">Beranda</a>
-              <span class="mx-2">&gt;</span>
-              <a href="#" class="hover:text-blue-500">Materi Haji</a>
-              <span class="mx-2">&gt;</span>
-              <span class="text-blue-500">Hukum Haji</span>
+        <main class="p-6">
+            <div class="max-w-4xl mx-auto">
+                <!-- Header Banner -->
+                <div class="bg-primary-600 text-white rounded-lg p-8 mb-8 animate-fade-in">
+                    <h2 class="text-3xl font-bold">Dalil Haji</h2>
+                    <p class="mt-2 text-primary-100">
+                        Dasar hukum dan dalil-dalil yang mewajibkan ibadah Haji dalam Islam
+                    </p>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="bg-white rounded-lg border shadow-sm p-8 mb-8 animate-fade-in">
+                    <h3 class="text-2xl font-bold text-secondary-800 mb-6">Dalil Al-Qur'an</h3>
+                    
+                    <div class="mb-8">
+                        <div class="bg-primary-50 p-6 rounded-lg mb-4">
+                            <p class="arabic text-xl mb-4 text-secondary-800 leading-loose">
+                                وَلِلَّهِ عَلَى النَّاسِ حِجُّ الْبَيْتِ مَنِ اسْتَطَاعَ إِلَيْهِ سَبِيلًا ۚ وَمَن كَفَرَ فَإِنَّ اللَّهَ غَنِيٌّ عَنِ الْعَالَمِينَ
+                            </p>
+                            <p class="text-secondary-600 italic">
+                                "Dan (di antara) kewajiban manusia terhadap Allah adalah melaksanakan ibadah haji ke Baitullah, yaitu bagi orang-orang yang mampu mengadakan perjalanan ke sana. Dan barangsiapa mengingkari (kewajiban) haji, maka ketahuilah bahwa Allah Maha Kaya (tidak memerlukan sesuatu) dari seluruh alam."
+                            </p>
+                            <p class="text-sm text-secondary-500 mt-2">
+                                (QS. Ali 'Imran [3]: 97)
+                            </p>
+                        </div>
+                        
+                        <p class="text-secondary-600 mb-4">
+                            Ayat di atas merupakan dalil utama yang mewajibkan ibadah haji bagi setiap muslim yang mampu. Allah SWT menegaskan bahwa haji adalah kewajiban manusia terhadap Allah, khususnya bagi mereka yang memiliki kemampuan untuk melaksanakannya.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="bg-primary-50 p-6 rounded-lg mb-4">
+                            <p class="arabic text-xl mb-4 text-secondary-800 leading-loose">
+                                وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ
+                            </p>
+                            <p class="text-secondary-600 italic">
+                                "Dan sempurnakanlah ibadah haji dan umrah karena Allah."
+                            </p>
+                            <p class="text-sm text-secondary-500 mt-2">
+                                (QS. Al-Baqarah [2]: 196)
+                            </p>
+                        </div>
+                        
+                        <p class="text-secondary-600 mb-4">
+                            Ayat ini memerintahkan untuk menyempurnakan ibadah haji dan umrah dengan melaksanakannya secara sempurna sesuai dengan ketentuan yang telah ditetapkan oleh Allah SWT.
+                        </p>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-secondary-800 mb-6">Dalil Hadits</h3>
+                    
+                    <div class="mb-8">
+                        <div class="bg-primary-50 p-6 rounded-lg mb-4">
+                            <p class="text-secondary-800 mb-2">
+                                Dari Abu Hurairah radhiyallahu 'anhu, ia berkata: Rasulullah shallallahu 'alaihi wa sallam berkhutbah kepada kami, beliau bersabda:
+                            </p>
+                            <p class="arabic text-xl mb-4 text-secondary-800 leading-loose">
+                                يَا أَيُّهَا النَّاسُ قَدْ فَرَضَ اللَّهُ عَلَيْكُمُ الْحَجَّ فَحُجُّوا
+                            </p>
+                            <p class="text-secondary-600 italic">
+                                "Wahai manusia, sesungguhnya Allah telah mewajibkan haji atas kalian, maka berhajilah."
+                            </p>
+                            <p class="text-sm text-secondary-500 mt-2">
+                                (HR. Muslim)
+                            </p>
+                        </div>
+                        
+                        <p class="text-secondary-600 mb-4">
+                            Hadits ini dengan jelas menunjukkan bahwa haji adalah kewajiban yang ditetapkan oleh Allah SWT kepada umat Islam. Rasulullah SAW menyampaikan kewajiban ini kepada umatnya dan memerintahkan mereka untuk melaksanakannya.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="bg-primary-50 p-6 rounded-lg mb-4">
+                            <p class="text-secondary-800 mb-2">
+                                Dari Ibnu Umar radhiyallahu 'anhuma, bahwa Rasulullah shallallahu 'alaihi wa sallam bersabda:
+                            </p>
+                            <p class="arabic text-xl mb-4 text-secondary-800 leading-loose">
+                                بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَالْحَجِّ، وَصَوْمِ رَمَضَانَ
+                            </p>
+                            <p class="text-secondary-600 italic">
+                                "Islam dibangun di atas lima perkara: bersaksi bahwa tidak ada ilah (yang berhak disembah) selain Allah dan bahwa Muhammad adalah utusan Allah, mendirikan shalat, menunaikan zakat, haji, dan puasa Ramadhan."
+                            </p>
+                            <p class="text-sm text-secondary-500 mt-2">
+                                (HR. Bukhari dan Muslim)
+                            </p>
+                        </div>
+                        
+                        <p class="text-secondary-600 mb-4">
+                            Hadits ini menunjukkan bahwa haji merupakan salah satu dari lima rukun Islam yang menjadi pondasi agama. Ini menegaskan betapa pentingnya kedudukan ibadah haji dalam ajaran Islam.
+                        </p>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-secondary-800 mb-6">Ijma' Ulama</h3>
+                    
+                    <div class="mb-8">
+                        <p class="text-secondary-600 mb-4">
+                            Para ulama telah sepakat (ijma') bahwa haji adalah kewajiban yang harus dilaksanakan sekali seumur hidup bagi setiap muslim yang memenuhi syarat-syarat wajib haji. Kewajiban ini berlaku sejak tahun 9 Hijriyah, ketika turunnya ayat tentang kewajiban haji.
+                        </p>
+                        
+                        <p class="text-secondary-600 mb-4">
+                            Imam An-Nawawi rahimahullah berkata: "Kaum muslimin telah berijma' (sepakat) bahwa haji merupakan salah satu rukun Islam dan kewajiban yang harus dilaksanakan sekali seumur hidup bagi yang mampu."
+                        </p>
+                    </div>
+                    
+                    <div class="bg-primary-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-secondary-800 mb-2">Kesimpulan</h4>
+                        <p class="text-secondary-600">
+                            Berdasarkan dalil-dalil dari Al-Qur'an, Hadits, dan Ijma' ulama di atas, dapat disimpulkan bahwa haji merupakan kewajiban yang ditetapkan oleh Allah SWT bagi setiap muslim yang mampu, dan merupakan salah satu rukun Islam yang harus dilaksanakan sekali seumur hidup.
+                        </p>
+                    </div>
+                </div>
             </div>
-    
-            <!-- Title -->
-            <h1 class="text-4xl font-bold text-gray-800 mb-2">Hukum Haji</h1>
-            <p class="text-gray-600 mb-8">Memahami dasar hukum dan ketentuan ibadah haji dalam Islam</p>
-    
-            <!-- Content -->
-            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
-              <h2 class="text-2xl font-bold text-gray-800 mb-4">Hukum Haji dalam Islam</h2>
-              <p class="text-gray-700 mb-4">
-                <span class="font-semibold text-blue-600">Hukum Haji</span> adalah wajib bagi setiap muslim yang mampu (istitha'ah) sekali seumur hidup. Haji merupakan rukun Islam yang kelima dan menjadi kewajiban bagi setiap muslim yang telah memenuhi syarat-syarat tertentu.
-              </p>
-              <p class="text-gray-700 mb-6">
-                Kewajiban haji hanya sekali seumur hidup. Jika seseorang melaksanakan haji lebih dari sekali, maka haji yang kedua dan seterusnya hukumnya sunnah.
-              </p>
-    
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Dasar Hukum Haji</h3>
-              <p class="text-gray-700 mb-4">
-                Kewajiban haji dalam Islam didasarkan pada beberapa dalil dari Al-Qur'an dan Hadits:
-              </p>
-              
-              <div class="bg-blue-50 p-4 rounded-md mb-6 border-l-4 border-blue-500">
-                <p class="text-gray-700 italic">
-                  "Mengerjakan haji adalah kewajiban manusia terhadap Allah, yaitu (bagi) orang yang sanggup mengadakan perjalanan ke Baitullah. Barangsiapa mengingkari (kewajiban haji), maka sesungguhnya Allah Maha Kaya (tidak memerlukan sesuatu) dari semesta alam."
-                </p>
-                <p class="text-gray-600 text-sm mt-2">
-                  (QS. Ali Imran [3]: 97)
-                </p>
-              </div>
-              
-              <div class="bg-blue-50 p-4 rounded-md mb-6 border-l-4 border-blue-500">
-                <p class="text-gray-700 italic">
-                  "Islam dibangun di atas lima perkara: bersaksi bahwa tiada Tuhan selain Allah dan Muhammad adalah utusan Allah, mendirikan shalat, menunaikan zakat, melaksanakan haji, dan puasa Ramadhan."
-                </p>
-                <p class="text-gray-600 text-sm mt-2">
-                  (HR. Bukhari dan Muslim)
-                </p>
-              </div>
-              
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Ketentuan Haji dalam Islam</h3>
-              <p class="text-gray-700 mb-4">
-                Berikut adalah beberapa ketentuan penting terkait ibadah haji dalam Islam:
-              </p>
-              
-              <h4 class="text-lg font-semibold text-gray-800 mb-2">1. Syarat Wajib Haji</h4>
-              <ul class="list-disc pl-5 mb-4 space-y-1 text-gray-700">
-                <li>Muslim</li>
-                <li>Baligh (dewasa)</li>
-                <li>Berakal sehat</li>
-                <li>Merdeka (bukan budak)</li>
-                <li>Istitha'ah (mampu), meliputi:</li>
-                <ul class="list-circle pl-5 mt-1 space-y-1">
-                  <li>Sehat jasmani dan rohani</li>
-                  <li>Memiliki biaya untuk perjalanan haji dan kebutuhan keluarga yang ditinggalkan</li>
-                  <li>Aman dalam perjalanan</li>
-                  <li>Bagi wanita, harus didampingi mahram atau kelompok wanita yang terpercaya</li>
-                </ul>
-              </ul>
-              
-              <h4 class="text-lg font-semibold text-gray-800 mb-2">2. Waktu Pelaksanaan Haji</h4>
-              <p class="text-gray-700 mb-4">
-                Ibadah haji dilaksanakan pada bulan-bulan haji, yaitu Syawal, Dzulqa'dah, dan 10 hari pertama bulan Dzulhijjah. Puncak ibadah haji adalah pada tanggal 9 Dzulhijjah saat wukuf di Arafah.
-              </p>
-              
-              <h4 class="text-lg font-semibold text-gray-800 mb-2">3. Macam-macam Haji</h4>
-              <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700">
-                <li>
-                  <span class="font-semibold">Haji Ifrad</span> - Melaksanakan ibadah haji saja tanpa umrah dalam satu perjalanan.
-                </li>
-                <li>
-                  <span class="font-semibold">Haji Tamattu'</span> - Melaksanakan umrah terlebih dahulu pada bulan-bulan haji, kemudian melaksanakan haji pada tahun yang sama.
-                </li>
-                <li>
-                  <span class="font-semibold">Haji Qiran</span> - Melaksanakan ibadah haji dan umrah secara bersamaan dengan satu niat dan satu rangkaian.
-                </li>
-              </ul>
-              
-              <h4 class="text-lg font-semibold text-gray-800 mb-2">4. Hukum Meninggalkan Haji</h4>
-              <p class="text-gray-700 mb-4">
-                Bagi muslim yang telah memenuhi syarat wajib haji namun sengaja tidak melaksanakannya, maka ia berdosa. Rasulullah SAW bersabda:
-              </p>
-              
-              <div class="bg-blue-50 p-4 rounded-md mb-4 border-l-4 border-blue-500">
-                <p class="text-gray-700 italic">
-                  "Barangsiapa yang memiliki bekal dan kendaraan yang dapat mengantarkannya kepada Baitullah, tetapi ia tidak melaksanakan haji, maka ia mati dalam keadaan seperti Yahudi atau Nasrani."
-                </p>
-                <p class="text-gray-600 text-sm mt-2">
-                  (HR. Tirmidzi)
-                </p>
-              </div>
-            </div>
-    
-            <div class="bg-blue-50 rounded-lg p-6 border border-blue-100">
-              <h2 class="text-xl font-bold text-blue-700 mb-3">Hikmah Kewajiban Haji</h2>
-              <p class="text-gray-700 mb-4">
-                Ibadah haji memiliki banyak hikmah dan manfaat bagi umat Islam, di antaranya:
-              </p>
-              <ul class="list-disc pl-5 space-y-2 text-gray-700">
-                <li>Menguji ketaatan dan kepatuhan seorang muslim kepada Allah SWT</li>
-                <li>Membersihkan diri dari dosa-dosa yang telah dilakukan</li>
-                <li>Memperkuat persaudaraan dan persatuan umat Islam dari berbagai penjuru dunia</li>
-                <li>Melatih kesabaran, ketabahan, dan keikhlasan dalam beribadah</li>
-                <li>Mengingatkan tentang kesetaraan manusia di hadapan Allah SWT tanpa memandang status sosial, ras, atau bangsa</li>
-                <li>Melatih kedisiplinan dalam menjalankan ritual ibadah sesuai dengan waktu dan tempat yang telah ditentukan</li>
-              </ul>
-            </div>
-          </main>
+        </main>
 
         <!-- Footer -->
-        <footer class="bg-white border-t mt-12">
+        <footer class="bg-white border-t mt-8">
             <div class="container mx-auto px-4 py-8">
                 <div class="text-center">
                     <p class="text-secondary-500">© 2025 SukaFikih. Hak Cipta Dilindungi.</p>
