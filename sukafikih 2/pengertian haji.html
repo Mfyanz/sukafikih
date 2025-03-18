@@ -72,6 +72,33 @@
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
+        .image-container {
+    max-width: 90%; /* Default lebih kecil */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Ukuran lebih kecil di tablet */
+@media (min-width: 768px) {
+    .image-container {
+        max-width: 500px; /* Lebih kecil dari sebelumnya */
+    }
+}
+
+/* Ukuran sedang di laptop */
+@media (min-width: 1024px) {
+    .image-container {
+        max-width: 450px;
+    }
+}
+
+/* Ukuran lebih besar di layar lebar */
+@media (min-width: 1280px) {
+    .image-container {
+        max-width: 600px;
+    }
+}
+
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -220,8 +247,12 @@
               </p>
     
               <div class="flex justify-center mb-8 animate-fadeIn">
-                <img src="../image/mekkah haji.webp" alt="Ilustrasi Ka'bah di Mekah" class="rounded-lg shadow-md">
+                <div class="image-container">
+                  <img src="../image/mekkah haji.webp" alt="Ilustrasi Ka'bah di Mekah" 
+                    class="rounded-lg shadow-md w-full max-h-[350px] object-cover">
+                </div>
               </div>
+              
     
               <h3 class="text-xl font-bold text-gray-800 mb-3">Sejarah Singkat Haji</h3>
               <p class="text-gray-700 mb-4">
@@ -254,7 +285,7 @@
               </div>
               
               <div class="flex justify-center mb-8 animate-fadeIn">
-                <img src="../image/sejarah haji.webp" alt="Ilustrasi Sejarah Haji" class="rounded-lg shadow-md">
+                <img src="../image/sejarah haji.webp" alt="Ilustrasi Sejarah Haji" class="rounded-lg shadow-md w-full max-h-[350px] object-cover">
               </div>
               
               <h3 class="text-xl font-bold text-gray-800 mb-3">Dalil Haji</h3>
@@ -392,7 +423,7 @@
               </div>
               
               <div class="flex justify-center mb-6 animate-fadeIn">
-                <img src="../image/hikmah haji.webp" alt="Ilustrasi Hikmah Haji" class="rounded-lg shadow-md">
+                <img src="../image/hikmah haji.webp" alt="Ilustrasi Hikmah Haji" class="rounded-lg shadow-md w-full max-h-[350px] object-cover">
               </div>
               
               <h3 class="text-xl font-bold text-gray-800 mb-3">Waktu Pelaksanaan Haji</h3>

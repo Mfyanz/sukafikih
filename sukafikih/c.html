@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengertian Haji - SukaFikih</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Sora', 'sans-serif'],
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        secondary: {
+                            600: '#475569',
+                            800: '#1e293b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .menu-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+        
+        .menu-content.active {
+            max-height: 500px;
+            opacity: 1;
+        }
+        
+        /* Transition for sidebar */
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .sidebar.active {
+            transform: translateX(0);
+        }
+        
+        .backdrop {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        
+        .backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        /* Image container class to keep images proportional */
+        .image-container {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Make images wider on desktop */
+    @media (min-width: 768px) {
+        .image-container {
+            max-width: 800px; /* Increased from 600px */
+        }
+    }
+    
+    /* Wider but still proportional on larger screens */
+    @media (min-width: 1024px) {
+        .image-container {
+            max-width: 700px; /* Increased from 500px */
+        }
+    }
+    
+    /* Even wider on very large screens */
+    @media (min-width: 1280px) {
+        .image-container {
+            max-width: 800px;
+        }
+    }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Same sidebar as index.html -->
+    <div id="backdrop" class="fixed inset-0 bg-black/50 z-40 backdrop lg:hidden"></div>
+    
+    <aside id="sidebar" class="fixed z-50 w-72 bg-white border-r border-gray-200 h-screen sidebar lg:transform-none lg:shadow-none">
+        <!-- Sidebar content - unchanged -->
+        <div class="p-6 h-full flex flex-col">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <h1 class="text-xl font-display font-bold">
+                    <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+                </h1>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="space-y-1 flex-1 overflow-y-auto">
+              <!-- Navigation content - unchanged -->
+              <!-- Rest of navigation content -->
+            </nav>
+            <!-- User Profile -->
+            <div class="mt-auto pt-6 border-t">
+                <div class="flex items-center gap-3 px-4 py-3">
+                    <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-secondary-800">Pengguna</p>
+                        <p class="text-xs text-secondary-500">pengguna@email.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="lg:pl-72">
+        <!-- Header - unchanged -->
+        <header class="bg-white border-b sticky top-0 z-30">
+            <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <button id="menuToggle" class="p-2 hover:bg-gray-100 rounded-lg lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <h1 class="text-xl font-display font-bold lg:hidden">
+                        <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+                    </h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <main class="flex-1 overflow-y-auto p-4">
+            <!-- Breadcrumb - unchanged -->
+            <div class="flex items-center text-sm text-gray-500 mb-6">
+              <a href="#" class="hover:text-blue-500">Beranda</a>
+              <span class="mx-2">&gt;</span>
+              <a href="#" class="hover:text-blue-500">Materi Haji</a>
+              <span class="mx-2">&gt;</span>
+              <span class="text-blue-500">Pengertian Haji</span>
+            </div>
+    
+            <!-- Title - unchanged -->
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Pengertian Haji</h1>
+            <p class="text-gray-600 mb-8">Memahami definisi, sejarah, dalil, dan hikmah ibadah haji dalam Islam</p>
+    
+            <!-- Content -->
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+              <h2 class="text-2xl font-bold text-gray-800 mb-4">Apa itu Haji?</h2>
+              <p class="text-gray-700 mb-4">
+                <span class="font-bold text-blue-600">Haji</span> secara bahasa berasal dari kata <span class="font-bold text-amber-600">حج</span> (hajja) yang berarti <span class="font-bold">menyengaja</span> atau <span class="font-bold">menuju</span>. Sedangkan secara istilah, haji adalah berkunjung ke <span class="font-bold text-green-600">Baitullah (Ka'bah)</span> di Mekah untuk melaksanakan serangkaian ibadah tertentu pada waktu tertentu dengan syarat-syarat tertentu.
+              </p>
+              <p class="text-gray-700 mb-6">
+                Ibadah haji merupakan salah satu dari <span class="font-bold text-purple-600">rukun Islam yang kelima</span> yang wajib dilaksanakan oleh setiap muslim yang mampu (istitha'ah), baik secara fisik, finansial, maupun keamanan, sekali seumur hidup.
+              </p>
+    
+              <!-- Updated image container with proportional sizing -->
+              <div class="flex justify-center mb-8 animate-fadeIn">
+                <div class="image-container">
+                  <img src="../image/mekkah haji.webp" alt="Ilustrasi Ka'bah di Mekah" class="rounded-lg shadow-md w-full">
+                </div>
+              </div>
+    
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Sejarah Singkat Haji</h3>
+              <p class="text-gray-700 mb-4">
+                Sejarah ibadah haji tidak bisa dipisahkan dari sejarah pembangunan Ka'bah oleh Nabi Ibrahim AS dan putranya, Nabi Ismail AS. Berikut adalah rangkaian sejarah singkat ibadah haji:
+              </p>
+              
+              <div class="bg-gray-50 p-6 rounded-lg mb-6 border border-gray-200">
+                <ol class="list-decimal pl-5 space-y-4 text-gray-700">
+                  <li>
+                    <span class="font-bold text-blue-600">Pembangunan Ka'bah</span>
+                    <p class="mt-1">Sekitar 4.000 tahun yang lalu, Nabi Ibrahim AS dan putranya, Nabi Ismail AS, membangun kembali Ka'bah sebagai rumah ibadah pertama yang didedikasikan untuk menyembah Allah SWT. Pembangunan ini atas perintah langsung dari Allah SWT.</p>
+                  </li>
+                  <li>
+                    <span class="font-bold text-blue-600">Perintah Haji kepada Nabi Ibrahim AS</span>
+                    <p class="mt-1">Setelah pembangunan Ka'bah selesai, Allah SWT memerintahkan Nabi Ibrahim AS untuk menyeru manusia melaksanakan ibadah haji. Meskipun saat itu Mekah adalah lembah yang tandus dan tidak berpenghuni, namun seruan Nabi Ibrahim AS didengar oleh seluruh manusia di berbagai penjuru dunia.</p>
+                  </li>
+                  <li>
+                    <span class="font-bold text-blue-600">Masa Jahiliyah</span>
+                    <p class="mt-1">Pada masa jahiliyah (sebelum Islam), bangsa Arab tetap melaksanakan haji, namun telah banyak dicampuri dengan praktik-praktik syirik dan penyembahan berhala. Ka'bah dipenuhi dengan 360 berhala dan ritual haji telah menyimpang dari ajaran Nabi Ibrahim AS.</p>
+                  </li>
+                  <li>
+                    <span class="font-bold text-blue-600">Pemurnian Ibadah Haji oleh Nabi Muhammad SAW</span>
+                    <p class="mt-1">Setelah penaklukan Mekah (Fathu Makkah) pada tahun 8 Hijriah, Nabi Muhammad SAW menghancurkan semua berhala di sekitar Ka'bah. Kemudian pada tahun 10 Hijriah, Nabi Muhammad SAW melaksanakan haji yang dikenal dengan Haji Wada' (Haji Perpisahan). Pada saat itulah Nabi Muhammad SAW memurnikan dan mengajarkan tata cara ibadah haji yang benar sesuai dengan ajaran Nabi Ibrahim AS.</p>
+                  </li>
+                  <li>
+                    <span class="font-bold text-blue-600">Haji Hingga Saat Ini</span>
+                    <p class="mt-1">Sejak masa Nabi Muhammad SAW hingga sekarang, ibadah haji terus dilaksanakan oleh umat Islam dari seluruh penjuru dunia. Setiap tahun, jutaan muslim dari berbagai negara berkumpul di Mekah untuk melaksanakan ibadah haji, menjadikannya sebagai pertemuan umat Islam terbesar di dunia.</p>
+                  </li>
+                </ol>
+              </div>
+              
+              <!-- Updated image container with proportional sizing -->
+              <div class="flex justify-center mb-8 animate-fadeIn">
+                <div class="image-container">
+                  <img src="../image/sejarah haji.webp" alt="Ilustrasi Sejarah Haji" class="rounded-lg shadow-md w-full">
+                </div>
+              </div>
+              
+              <!-- Rest of the content is unchanged -->
+              
+              <!-- Updated image container with proportional sizing -->
+              <div class="flex justify-center mb-6 animate-fadeIn">
+                <div class="image-container">
+                  <img src="../image/hikmah haji.webp" alt="Ilustrasi Hikmah Haji" class="rounded-lg shadow-md w-full">
+                </div>
+              </div>
+              
+              <!-- Rest of the content is unchanged -->
+              
+            </div>
+    
+            <div class="bg-blue-50 rounded-lg p-6 border border-blue-100">
+              <h2 class="text-xl font-bold text-blue-700 mb-3">Kesimpulan</h2>
+              <p class="text-gray-700 mb-4">
+                Haji merupakan ibadah yang memiliki kedudukan penting dalam Islam sebagai rukun Islam
