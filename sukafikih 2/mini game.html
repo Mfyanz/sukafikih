@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Game Haji dan Umrah</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .draggable {
+      cursor: grab;
+    }
+    .draggable:active {
+      cursor: grabbing;
+    }
+    .drag-over {
+      border: 2px dashed #059669;
+      background-color: rgba(5, 150, 105, 0.1);
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-50 to-emerald-100 py-8 px-4">
+  <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+    <div class="p-8">
+      <h1 class="text-3xl font-bold text-center text-emerald-800 mb-6">Perjalanan Haji dan Umrah</h1>
+
+      <!-- Game Selection Screen -->
+      <div id="game-selection" class="text-center">
+        <p class="text-gray-600 mb-8">Pilih jenis ibadah yang ingin Anda pelajari:</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button id="hajj-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-8 rounded-lg transition-all transform hover:scale-105">
+            Haji
+          </button>
+          <button id="umrah-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-8 rounded-lg transition-all transform hover:scale-105">
+            Umrah
+          </button>
+        </div>
+      </div>
+
+      <!-- Game Screen -->
+      <div id="game-screen" class="hidden">
+        <div class="flex justify-between items-center mb-6">
+          <h2 id="game-title" class="text-2xl font-semibold text-emerald-700">Rukun Haji</h2>
+          <div class="flex items-center gap-2">
+            <span id="score-display" class="text-gray-600">Skor: 0/0</span>
+            <button id="reset-btn" class="p-2 text-gray-500 hover:text-gray-700" aria-label="Reset game">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-cw"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <p id="game-instructions" class="text-gray-600 mb-6">
+          Susun langkah-langkah Haji dalam urutan yang benar dengan cara menarik dan melepaskan kartu-kartu di bawah ini.
+        </p>
+
+        <div id="steps-container" class="space-y-3">
+          <!-- Steps will be added here dynamically -->
+        </div>
+
+        <div id="feedback-message" class="mt-6 p-4 rounded-lg hidden"></div>
+
+        <div id="game-completed" class="mt-8 text-center hidden">
+          <div class="flex justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-500"><path d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2A2 2 0 0 1 4.5 4h15a2 2 0 0 1 1.72.94 2 2 0 0 1 .12 2.2L16.79 15"/><path d="M12 4v9"/><path d="M8 15h8l-4 4-4-4Z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-emerald-800 mb-2">Selamat!</h3>
+          <p id="final-score" class="text-gray-600 mb-4">
+            Anda telah menyelesaikan permainan dengan skor 0/0
+          </p>
+          <button id="play-again-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-lg transition-all">
+            Main Lagi
+          </button>
+        </div>
+
+        <div id="check-order-btn-container" class="mt-8 text-center">
+          <button id="check-order-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-lg transition-all">
+            Periksa Urutan
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto mt-8 bg-white rounded-xl shadow-lg overflow-hidden">
+    <div class="p-8">
+      <h2 class="text-2xl font-semibold text-emerald-800 mb-4">Petunjuk Permainan</h2>
+      <ol class="list-decimal pl-5 space-y-2 text-gray-600">
+        <li>Pilih jenis ibadah (Haji atau Umrah) yang ingin Anda pelajari.</li>
+        <li>Susun langkah-langkah dalam urutan yang benar dengan cara menarik dan melepaskan kartu.</li>
+        <li>Klik tombol "Periksa Urutan" untuk melihat apakah urutan Anda sudah benar.</li>
+        <li>Jika semua langkah sudah benar, Anda akan mendapatkan skor penuh!</li>
+        <li>Jika belum benar, Anda dapat mencoba lagi sampai berhasil.</li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    // Game data
+    const hajjSteps = [
+      {
+        id: "step-1",
+        title: "Ihram",
+        description: "Niat dan mengenakan pakaian ihram",
+        icon: "🕋",
+        order: 1,
+      },
+      {
+        id: "step-2",
+        title: "Wukuf di Arafah",
+        description: "Berdiam diri di Padang Arafah pada 9 Dzulhijjah",
+        icon: "🏔️",
+        order: 2,
+      },
+      {
+        id: "step-3",
+        title: "Mabit di Muzdalifah",
+        description: "Bermalam di Muzdalifah setelah wukuf",
+        icon: "🌙",
+        order: 3,
+      },
+      {
+        id: "step-4",
+        title: "Melontar Jumrah",
+        description: "Melempar batu ke tiga jumrah",
+        icon: "🪨",
+        order: 4,
+      },
+      {
+        id: "step-5",
+        title: "Tawaf Ifadah",
+        description: "Mengelilingi Ka'bah tujuh kali",
+        icon: "🔄",
+        order: 5,
+      },
+      {
+        id: "step-6",
+        title: "Sa'i",
+        description: "Berjalan antara bukit Safa dan Marwah",
+        icon: "🚶",
+        order: 6,
+      },
+      {
+        id: "step-7",
+        title: "Tahallul",
+        description: "Mencukur atau memotong rambut",
+        icon: "✂️",
+        order: 7,
+      }
+    ];
+
+    const umrahSteps = [
+      {
+        id: "step-1",
+        title: "Ihram",
+        description: "Niat dan mengenakan pakaian ihram",
+        icon: "🕋",
+        order: 1,
+      },
+      {
+        id: "step-2",
+        title: "Tawaf",
+        description: "Mengelilingi Ka'bah tujuh kali",
+        icon: "🔄",
+        order: 2,
+      },
+      {
+        id: "step-3",
+        title: "Sa'i",
+        description: "Berjalan antara bukit Safa dan Marwah",
+        icon: "🚶",
+        order: 3,
+      },
+      {
+        id: "step-4",
+        title: "Tahallul",
+        description: "Mencukur atau memotong rambut",
+        icon: "✂️",
+        order: 4,
+      }
+    ];
+
+    // Game state
+    let gameMode = null;
+    let steps = [];
+    let score = 0;
+    let maxScore = 0;
+    let gameCompleted = false;
+
+    // DOM elements
+    const gameSelection = document.getElementById('game-selection');
+    const gameScreen = document.getElementById('game-screen');
+    const gameTitle = document.getElementById('game-title');
+    const gameInstructions = document.getElementById('game-instructions');
+    const stepsContainer = document.getElementById('steps-container');
+    const scoreDisplay = document.getElementById('score-display');
+    const feedbackMessage = document.getElementById('feedback-message');
+    const gameCompletedScreen = document.getElementById('game-completed');
+    const finalScore = document.getElementById('final-score');
+    const checkOrderBtnContainer = document.getElementById('check-order-btn-container');
+
+    // Buttons
+    const hajjBtn = document.getElementById('hajj-btn');
+    const umrahBtn = document.getElementById('umrah-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const checkOrderBtn = document.getElementById('check-order-btn');
+    const playAgainBtn = document.getElementById('play-again-btn');
+
+    // Event listeners
+    hajjBtn.addEventListener('click', () => startGame('hajj'));
+    umrahBtn.addEventListener('click', () => startGame('umrah'));
+    resetBtn.addEventListener('click', resetGame);
+    checkOrderBtn.addEventListener('click', checkOrder);
+    playAgainBtn.addEventListener('click', resetGame);
+
+    // Game functions
+    function startGame(mode) {
+      gameMode = mode;
+      gameCompleted = false;
+      score = 0;
+
+      const stepsToUse = mode === 'hajj' ? hajjSteps : umrahSteps;
+      maxScore = stepsToUse.length;
+
+      // Update UI
+      gameSelection.classList.add('hidden');
+      gameScreen.classList.remove('hidden');
+      gameTitle.textContent = mode === 'hajj' ? 'Rukun Haji' : 'Rukun Umrah';
+      gameInstructions.textContent = `Susun langkah-langkah ${mode === 'hajj' ? 'Haji' : 'Umrah'} dalam urutan yang benar dengan cara menarik dan melepaskan kartu-kartu di bawah ini.`;
+      scoreDisplay.textContent = `Skor: 0/${maxScore}`;
+
+      // Shuffle the steps
+      steps = [...stepsToUse].sort(() => Math.random() - 0.5);
+      
+      // Render steps
+      renderSteps();
+    }
+
+    function renderSteps() {
+      stepsContainer.innerHTML = '';
+      
+      steps.forEach((step, index) => {
+        const stepElement = document.createElement('div');
+        stepElement.id = step.id;
+        stepElement.className = `bg-white border-2 ${
+          gameCompleted
+            ? step.order === index + 1
+              ? "border-green-500"
+              : "border-red-500"
+            : "border-emerald-200"
+        } rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow draggable`;
+        stepElement.draggable = true;
+        
+        stepElement.innerHTML = `
+          <div class="flex items-center">
+            <div class="text-3xl mr-4">${step.icon}</div>
+            <div>
+              <h3 class="font-bold text-emerald-800">${step.title}</h3>
+              <p class="text-gray-600 text-sm">${step.description}</p>
+            </div>
+            ${gameCompleted ? `
+              <div class="ml-auto">
+                ${step.order === index + 1 
+                  ? '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><polyline points="20 6 9 17 4 12"></polyline></svg>' 
+                  : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
+                }
+              </div>
+            ` : ''}
+          </div>
+        `;
+        
+        // Add drag events
+        stepElement.addEventListener('dragstart', dragStart);
+        stepElement.addEventListener('dragover', dragOver);
+        stepElement.addEventListener('dragenter', dragEnter);
+        stepElement.addEventListener('dragleave', dragLeave);
+        stepElement.addEventListener('drop', drop);
+        stepElement.addEventListener('dragend', dragEnd);
+        
+        stepsContainer.appendChild(stepElement);
+      });
+    }
+
+    function checkOrder() {
+      let correctCount = 0;
+      
+      steps.forEach((step, index) => {
+        if (step.order === index + 1) {
+          correctCount++;
+        }
+      });
+      
+      score = correctCount;
+      scoreDisplay.textContent = `Skor: ${score}/${maxScore}`;
+      
+      if (correctCount === steps.length) {
+        gameCompleted = true;
+        showFeedback(true, "Selamat! Anda telah mengurutkan semua langkah dengan benar!");
+        showGameCompleted();
+      } else {
+        showFeedback(false, `Anda mendapatkan ${correctCount} dari ${steps.length} langkah yang benar. Coba lagi!`);
+      }
+      
+      renderSteps();
+    }
+
+    function showFeedback(isCorrect, message) {
+      feedbackMessage.textContent = message;
+      feedbackMessage.className = `mt-6 p-4 rounded-lg ${isCorrect ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`;
+      feedbackMessage.classList.remove('hidden');
+      
+      setTimeout(() => {
+        feedbackMessage.classList.add('hidden');
+      }, 3000);
+    }
+
+    function showGameCompleted() {
+      gameCompletedScreen.classList.remove('hidden');
+      checkOrderBtnContainer.classList.add('hidden');
+      finalScore.textContent = `Anda telah menyelesaikan permainan dengan skor ${score}/${maxScore}`;
+    }
+
+    function resetGame() {
+      gameMode = null;
+      steps = [];
+      score = 0;
+      gameCompleted = false;
+      
+      gameScreen.classList.add('hidden');
+      gameSelection.classList.remove('hidden');
+      gameCompletedScreen.classList.add('hidden');
+      checkOrderBtnContainer.classList.remove('hidden');
+      feedbackMessage.classList.add('hidden');
+    }
+
+    // Drag and drop functionality
+    let draggedItem = null;
+
+    function dragStart() {
+      draggedItem = this;
+      setTimeout(() => this.style.opacity = '0.5', 0);
+    }
+
+    function dragEnd() {
+      this.style.opacity = '1';
+      
+      document.querySelectorAll('.draggable').forEach(item => {
+        item.classList.remove('drag-over');
+      });
+    }
+
+    function dragOver(e) {
+      e.preventDefault();
+    }
+
+    function dragEnter(e) {
+      e.preventDefault();
+      this.classList.add('drag-over');
+    }
+
+    function dragLeave() {
+      this.classList.remove('drag-over');
+    }
+
+    function drop() {
+      this.classList.remove('drag-over');
+      
+      if (this === draggedItem) return;
+      
+      // Get the indices of the dragged item and the drop target
+      const allItems = [...document.querySelectorAll('.draggable')];
+      const draggedIndex = allItems.indexOf(draggedItem);
+      const dropIndex = allItems.indexOf(this);
+      
+      // Reorder the steps array
+      const draggedStep = steps[draggedIndex];
+      steps.splice(draggedIndex, 1);
+      steps.splice(dropIndex, 0, draggedStep);
+      
+      // Re-render the steps
+      renderSteps();
+    }
+  </script>
+</body>
+</html>

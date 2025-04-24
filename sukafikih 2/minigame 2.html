@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kartu Memori Haji dan Umrah</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .memory-card {
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+    .memory-card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s;
+      transform-style: preserve-3d;
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+    }
+    @keyframes celebrate {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .celebrate {
+      animation: celebrate 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-50 to-emerald-100 py-8 px-4">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+      <div class="p-6 md:p-8">
+        <h1 class="text-3xl font-bold text-center text-emerald-800 mb-4">Kartu Memori Haji dan Umrah</h1>
+        <p class="text-gray-600 text-center mb-6">Temukan pasangan kartu yang cocok untuk menguji pengetahuan Anda tentang Haji dan Umrah</p>
+        
+        <!-- Game Controls -->
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-4">
+          <div class="flex gap-4">
+            <button id="hajj-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-6 rounded-lg transition-all">
+              Haji
+            </button>
+            <button id="umrah-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-6 rounded-lg transition-all">
+              Umrah
+            </button>
+          </div>
+          <div class="flex items-center gap-4">
+            <span id="moves-counter" class="text-gray-700 font-medium">Gerakan: 0</span>
+            <span id="matches-counter" class="text-gray-700 font-medium">Pasangan: 0/0</span>
+            <button id="reset-btn" class="p-2 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-100" aria-label="Reset game">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Board -->
+    <div id="game-board" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <!-- Cards will be generated here -->
+    </div>
+
+    <!-- Game Completion Message -->
+    <div id="completion-message" class="bg-white rounded-xl shadow-lg overflow-hidden p-8 text-center hidden">
+      <div class="flex justify-center mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-500"><path d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2A2 2 0 0 1 4.5 4h15a2 2 0 0 1 1.72.94 2 2 0 0 1 .12 2.2L16.79 15"/><path d="M12 4v9"/><path d="M8 15h8l-4 4-4-4Z"/></svg>
+      </div>
+      <h2 class="text-2xl font-bold text-emerald-800 mb-2">Selamat!</h2>
+      <p id="completion-stats" class="text-gray-600 mb-6">Anda telah menyelesaikan permainan dengan 0 gerakan!</p>
+      <button id="play-again-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-lg transition-all">
+        Main Lagi
+      </button>
+    </div>
+
+    <!-- Instructions -->
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+      <div class="p-6 md:p-8">
+        <h2 class="text-2xl font-semibold text-emerald-800 mb-4">Petunjuk Permainan</h2>
+        <ol class="list-decimal pl-5 space-y-2 text-gray-600">
+          <li>Pilih jenis ibadah (Haji atau Umrah) yang ingin Anda pelajari.</li>
+          <li>Klik pada kartu untuk membaliknya dan melihat isinya.</li>
+          <li>Temukan pasangan yang cocok antara istilah dan penjelasannya.</li>
+          <li>Jika dua kartu yang dibuka cocok, keduanya akan tetap terbuka.</li>
+          <li>Jika tidak cocok, keduanya akan tertutup kembali.</li>
+          <li>Permainan selesai ketika semua pasangan telah ditemukan.</li>
+          <li>Cobalah menyelesaikan dengan gerakan seminimal mungkin!</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Game data
+    const hajjCards = [
+      { id: 1, type: 'term', content: 'Ihram', match: 2, icon: '🕋' },
+      { id: 2, type: 'definition', content: 'Niat dan mengenakan pakaian ihram sebagai tanda memulai ibadah haji', match: 1 },
+      
+      { id: 3, type: 'term', content: 'Wukuf', match: 4, icon: '🏔️' },
+      { id: 4, type: 'definition', content: 'Berdiam diri di Padang Arafah pada tanggal 9 Dzulhijjah', match: 3 },
+      
+      { id: 5, type: 'term', content: 'Tawaf', match: 6, icon: '🔄' },
+      { id: 6, type: 'definition', content: 'Mengelilingi Ka\'bah sebanyak tujuh kali', match: 5 },
+      
+      { id: 7, type: 'term', content: 'Sa\'i', match: 8, icon: '🚶' },
+      { id: 8, type: 'definition', content: 'Berjalan atau berlari-lari kecil antara bukit Safa dan Marwah', match: 7 },
+      
+      { id: 9, type: 'term', content: 'Tahallul', match: 10, icon: '✂️' },
+      { id: 10, type: 'definition', content: 'Mencukur atau memotong rambut sebagai tanda selesainya sebagian atau seluruh ibadah haji', match: 9 },
+      
+      { id: 11, type: 'term', content: 'Mabit di Muzdalifah', match: 12, icon: '🌙' },
+      { id: 12, type: 'definition', content: 'Bermalam di Muzdalifah pada malam 10 Dzulhijjah setelah wukuf', match: 11 },
+      
+      { id: 13, type: 'term', content: 'Melontar Jumrah', match: 14, icon: '🪨' },
+      { id: 14, type: 'definition', content: 'Melempar batu ke tiga tugu jumrah sebagai simbol melawan godaan setan', match: 13 },
+      
+      { id: 15, type: 'term', content: 'Mabit di Mina', match: 16, icon: '⛺' },
+      { id: 16, type: 'definition', content: 'Bermalam di Mina pada hari Tasyrik (11, 12, 13 Dzulhijjah)', match: 15 }
+    ];
+
+    const umrahCards = [
+      { id: 1, type: 'term', content: 'Ihram', match: 2, icon: '🕋' },
+      { id: 2, type: 'definition', content: 'Niat dan mengenakan pakaian ihram sebagai tanda memulai ibadah umrah', match: 1 },
+      
+      { id: 3, type: 'term', content: 'Tawaf', match: 4, icon: '🔄' },
+      { id: 4, type: 'definition', content: 'Mengelilingi Ka\'bah sebanyak tujuh kali dimulai dari Hajar Aswad', match: 3 },
+      
+      { id: 5, type: 'term', content: 'Sa\'i', match: 6, icon: '🚶' },
+      { id: 6, type: 'definition', content: 'Berjalan atau berlari-lari kecil antara bukit Safa dan Marwah sebanyak tujuh kali', match: 5 },
+      
+      { id: 7, type: 'term', content: 'Tahallul', match: 8, icon: '✂️' },
+      { id: 8, type: 'definition', content: 'Mencukur atau memotong rambut sebagai tanda selesainya ibadah umrah', match: 7 },
+      
+      { id: 9, type: 'term', content: 'Miqat', match: 10, icon: '📍' },
+      { id: 10, type: 'definition', content: 'Tempat dan waktu mulai berihram untuk melaksanakan ibadah umrah', match: 9 },
+      
+      { id: 11, type: 'term', content: 'Hajar Aswad', match: 12, icon: '⚫' },
+      { id: 12, type: 'definition', content: 'Batu hitam di sudut tenggara Ka\'bah yang menjadi titik awal tawaf', match: 11 },
+      
+      { id: 13, type: 'term', content: 'Multazam', match: 14, icon: '🏛️' },
+      { id: 14, type: 'definition', content: 'Bagian antara Hajar Aswad dan pintu Ka\'bah yang merupakan tempat mustajab untuk berdoa', match: 13 },
+      
+      { id: 15, type: 'term', content: 'Air Zamzam', match: 16, icon: '💧' },
+      { id: 16, type: 'definition', content: 'Air suci yang berasal dari sumur di dekat Ka\'bah yang memiliki banyak khasiat', match: 15 }
+    ];
+
+    // Game state
+    let cards = [];
+    let flippedCards = [];
+    let matchedPairs = 0;
+    let totalPairs = 0;
+    let moves = 0;
+    let canFlip = true;
+    let gameMode = null;
+
+    // DOM elements
+    const gameBoard = document.getElementById('game-board');
+    const movesCounter = document.getElementById('moves-counter');
+    const matchesCounter = document.getElementById('matches-counter');
+    const completionMessage = document.getElementById('completion-message');
+    const completionStats = document.getElementById('completion-stats');
+    
+    // Buttons
+    const hajjBtn = document.getElementById('hajj-btn');
+    const umrahBtn = document.getElementById('umrah-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const playAgainBtn = document.getElementById('play-again-btn');
+
+    // Event listeners
+    hajjBtn.addEventListener('click', () => startGame('hajj'));
+    umrahBtn.addEventListener('click', () => startGame('umrah'));
+    resetBtn.addEventListener('click', resetGame);
+    playAgainBtn.addEventListener('click', resetGame);
+
+    // Start the game with Hajj mode by default
+    startGame('hajj');
+
+    // Game functions
+    function startGame(mode) {
+      gameMode = mode;
+      flippedCards = [];
+      matchedPairs = 0;
+      moves = 0;
+      canFlip = true;
+      
+      // Select cards based on game mode
+      cards = mode === 'hajj' ? [...hajjCards] : [...umrahCards];
+      totalPairs = cards.length / 2;
+      
+      // Shuffle cards
+      cards = shuffleArray(cards);
+      
+      // Update UI
+      movesCounter.textContent = `Gerakan: ${moves}`;
+      matchesCounter.textContent = `Pasangan: ${matchedPairs}/${totalPairs}`;
+      completionMessage.classList.add('hidden');
+      
+      // Render cards
+      renderCards();
+    }
+
+    function renderCards() {
+      gameBoard.innerHTML = '';
+      
+      cards.forEach(card => {
+        const cardElement = document.createElement('div');
+        cardElement.className = 'memory-card aspect-square';
+        cardElement.dataset.id = card.id;
+        
+        const cardInner = document.createElement('div');
+        cardInner.className = 'card-inner h-full';
+        
+        // Card front (back side when not flipped)
+        const cardFront = document.createElement('div');
+        cardFront.className = 'card-front rounded-xl bg-emerald-700 text-white flex items-center justify-center h-full shadow-md';
+        cardFront.innerHTML = `
+          <div class="text-center p-4">
+            <span class="text-3xl">?</span>
+          </div>
+        `;
+        
+        // Card back (front side when flipped)
+        const cardBack = document.createElement('div');
+        cardBack.className = `card-back rounded-xl ${card.type === 'term' ? 'bg-emerald-100 text-emerald-900' : 'bg-white text-gray-800'} flex items-center justify-center h-full shadow-md border-2 border-emerald-200`;
+        
+        if (card.type === 'term') {
+          cardBack.innerHTML = `
+            <div class="text-center p-4">
+              <div class="text-4xl mb-2">${card.icon || ''}</div>
+              <h3 class="font-bold text-lg">${card.content}</h3>
+            </div>
+          `;
+        } else {
+          cardBack.innerHTML = `
+            <div class="text-center p-4">
+              <p class="text-sm">${card.content}</p>
+            </div>
+          `;
+        }
+        
+        cardInner.appendChild(cardFront);
+        cardInner.appendChild(cardBack);
+        cardElement.appendChild(cardInner);
+        
+        cardElement.addEventListener('click', () => flipCard(cardElement, card));
+        
+        gameBoard.appendChild(cardElement);
+      });
+    }
+
+    function flipCard(cardElement, card) {
+      // Prevent flipping if animations are running or card is already flipped/matched
+      if (!canFlip || flippedCards.length >= 2 || cardElement.classList.contains('flipped')) {
+        return;
+      }
+      
+      // Flip the card
+      cardElement.classList.add('flipped');
+      flippedCards.push({ element: cardElement, card: card });
+      
+      // Check for matches if two cards are flipped
+      if (flippedCards.length === 2) {
+        moves++;
+        movesCounter.textContent = `Gerakan: ${moves}`;
+        canFlip = false;
+        
+        const card1 = flippedCards[0].card;
+        const card2 = flippedCards[1].card;
+        
+        if (card1.match === card2.id && card2.match === card1.id) {
+          // Cards match
+          setTimeout(() => {
+            flippedCards[0].element.classList.add('celebrate');
+            flippedCards[1].element.classList.add('celebrate');
+            
+            matchedPairs++;
+            matchesCounter.textContent = `Pasangan: ${matchedPairs}/${totalPairs}`;
+            
+            flippedCards = [];
+            canFlip = true;
+            
+            // Check if game is complete
+            if (matchedPairs === totalPairs) {
+              showCompletion();
+            }
+          }, 500);
+        } else {
+          // Cards don't match
+          setTimeout(() => {
+            flippedCards[0].element.classList.remove('flipped');
+            flippedCards[1].element.classList.remove('flipped');
+            flippedCards = [];
+            canFlip = true;
+          }, 1000);
+        }
+      }
+    }
+
+    function showCompletion() {
+      completionStats.textContent = `Anda telah menyelesaikan permainan dengan ${moves} gerakan!`;
+      completionMessage.classList.remove('hidden');
+    }
+
+    function resetGame() {
+      startGame(gameMode);
+    }
+
+    // Utility functions
+    function shuffleArray(array) {
+      const newArray = [...array];
+      for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+      }
+      return newArray;
+    }
+  </script>
+</body>
+</html>

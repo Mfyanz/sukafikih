@@ -1,618 +1,924 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uji Pemahaman Materi Haji dan Umrah</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        emerald: {
-                            50: '#ecfdf5',
-                            100: '#d1fae5',
-                            200: '#a7f3d0',
-                            300: '#6ee7b7',
-                            400: '#34d399',
-                            500: '#10b981',
-                            600: '#059669',
-                            700: '#047857',
-                            800: '#065f46',
-                            900: '#064e3b',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Ibadah Haji dan Umrah</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+    .quiz-option:hover {
+      transform: translateX(5px);
+    }
+    .shake {
+      animation: shake 0.5s ease-in-out;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+    .card-shadow {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+  </style>
 </head>
-<body class="min-h-screen bg-gradient-to-b from-emerald-50 to-emerald-100 flex flex-col items-center justify-center p-4">
-    <div class="max-w-4xl w-full">
-        <h1 class="text-3xl md:text-4xl font-bold text-center text-emerald-800 mb-6">
-            Uji Pemahaman Materi Haji dan Umrah
-        </h1>
-
-        <!-- Start Screen -->
-        <div id="start-screen" class="w-full shadow-lg bg-white rounded-lg overflow-hidden animate-fade-in">
-            <div class="p-6 border-b">
-                <h2 class="text-2xl text-center font-bold">Selamat Datang di Quiz Haji dan Umrah</h2>
-                <p class="text-center text-gray-600 mt-2">
-                    Uji pengetahuan Anda tentang ibadah Haji dan Umrah dan dapatkan peringkat tertinggi!
-                </p>
-            </div>
-            <div class="p-6 space-y-4">
-                <div>
-                    <label for="username" class="block text-sm font-medium mb-1">
-                        Masukkan Nama Anda
-                    </label>
-                    <input
-                        id="username"
-                        type="text"
-                        placeholder="Nama Pengguna"
-                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                    />
-                </div>
-                
-                <div class="flex justify-center space-x-4">
-                    <button 
-                        id="start-button"
-                        class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-md transition-colors"
-                    >
-                        Mulai Quiz
-                    </button>
-                    <button 
-                        id="toggle-leaderboard-button"
-                        class="px-4 py-2 border border-emerald-600 text-emerald-600 font-medium rounded-md hover:bg-emerald-50 transition-colors"
-                    >
-                        Lihat Peringkat
-                    </button>
-                </div>
-            </div>
-            
-            <div id="start-leaderboard" class="hidden p-6 border-t"></div>
+<body class="min-h-screen bg-gradient-to-b from-emerald-50 to-emerald-100 py-8 px-4">
+  <div class="max-w-3xl mx-auto">
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+      <div class="p-8">
+        <h1 class="text-3xl font-bold text-center text-emerald-800 mb-6">Quiz Ibadah Haji dan Umrah</h1>
+        <p class="text-gray-600 text-center mb-8">Uji pengetahuan Anda tentang ibadah Haji dan Umrah dengan menjawab 30 pertanyaan berikut.</p>
+        
+        <!-- Name Input -->
+        <div class="mb-6 max-w-md mx-auto">
+          <label for="user-name" class="block text-sm font-medium text-gray-700 mb-2">Masukkan Nama Anda:</label>
+          <input 
+            type="text" 
+            id="user-name" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors" 
+            placeholder="Nama Anda"
+          >
+          <p id="name-error" class="mt-1 text-red-500 text-sm hidden">Silakan masukkan nama Anda untuk melanjutkan</p>
         </div>
-
-        <!-- Quiz Screen -->
-        <div id="quiz-screen" class="hidden w-full shadow-lg bg-white rounded-lg overflow-hidden animate-fade-in">
-            <div class="p-6 border-b">
-                <div class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <i class="fas fa-trophy text-yellow-500 mr-1"></i>
-                        <span class="font-bold">Skor: <span id="score-display">0</span></span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-clock text-red-500 mr-1"></i>
-                        <span id="timer" class="font-bold">30 detik</span>
-                    </div>
-                </div>
-                <h2 class="text-xl font-bold">
-                    Pertanyaan <span id="question-number">1</span> dari <span id="total-questions">15</span>
-                </h2>
-                <p id="question-text" class="text-lg font-medium mt-2"></p>
-            </div>
-            <div id="answers-container" class="p-6 space-y-3"></div>
-            <div class="p-6 border-t flex justify-between items-center">
-                <div id="feedback-text" class="text-sm"></div>
-                <button 
-                    id="next-button" 
-                    class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-md transition-colors hidden"
-                >
-                    Pertanyaan Berikutnya
-                </button>
-            </div>
+        
+        <div class="flex justify-center">
+          <button id="start-quiz-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105">
+            Mulai Quiz
+          </button>
         </div>
-
-        <!-- Results Screen -->
-        <div id="results-screen" class="hidden w-full shadow-lg bg-white rounded-lg overflow-hidden animate-fade-in">
-            <div class="p-6 border-b">
-                <h2 class="text-2xl text-center font-bold">Quiz Selesai!</h2>
-                <p id="results-username" class="text-center text-lg">
-                    Terima kasih telah berpartisipasi!
-                </p>
-            </div>
-            <div class="p-6 space-y-6">
-                <div class="text-center">
-                    <p id="final-score" class="text-3xl font-bold text-emerald-600 mb-2">0 Poin</p>
-                    <p class="text-gray-600">Anda telah menyelesaikan quiz Haji dan Umrah</p>
-                </div>
-                
-                <div id="results-leaderboard"></div>
-                
-                <div class="flex justify-center space-x-4">
-                    <button 
-                        id="play-again-button"
-                        class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-md transition-colors"
-                    >
-                        Main Lagi
-                    </button>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
 
-    <script>
-        // Quiz questions
-        const questions = [
-            {
-                question: "Apa arti kata 'Haji' secara bahasa?",
-                answers: [
-                    "Berkunjung",
-                    "Berdoa",
-                    "Menyembah",
-                    "Bersuci"
-                ],
-                correctAnswer: 0
-            },
-            {
-                question: "Kapan ibadah Haji dilaksanakan?",
-                answers: [
-                    "Bulan Ramadhan",
-                    "Bulan Dzulhijjah",
-                    "Bulan Syawal",
-                    "Bulan Rajab"
-                ],
-                correctAnswer: 1
-            },
-            {
-                question: "Apa perbedaan utama antara Haji dan Umrah?",
-                answers: [
-                    "Haji wajib, Umrah sunnah",
-                    "Haji dilakukan kapan saja, Umrah hanya di bulan tertentu",
-                    "Haji memiliki waktu tertentu, Umrah dapat dilakukan kapan saja",
-                    "Tidak ada perbedaan"
-                ],
-                correctAnswer: 2
-            },
-            {
-                question: "Rukun Haji yang pertama adalah...",
-                answers: [
-                    "Wukuf di Arafah",
-                    "Thawaf Ifadhah",
-                    "Sa'i",
-                    "Niat (Ihram)"
-                ],
-                correctAnswer: 3
-            },
-            {
-                question: "Wukuf di Arafah dilaksanakan pada tanggal berapa?",
-                answers: [
-                    "8 Dzulhijjah",
-                    "9 Dzulhijjah",
-                    "10 Dzulhijjah",
-                    "11 Dzulhijjah"
-                ],
-                correctAnswer: 1
-            },
-            {
-                question: "Apa yang dimaksud dengan Thawaf?",
-                answers: [
-                    "Berlari-lari kecil antara Shafa dan Marwah",
-                    "Melempar jumrah",
-                    "Mengelilingi Ka'bah sebanyak 7 kali",
-                    "Berdiam diri di Arafah"
-                ],
-                correctAnswer: 2
-            },
-            {
-                question: "Berapa jumlah putaran dalam Sa'i?",
-                answers: [
-                    "5 putaran",
-                    "6 putaran",
-                    "7 putaran",
-                    "8 putaran"
-                ],
-                correctAnswer: 2
-            },
-            {
-                question: "Apa yang dimaksud dengan Ihram?",
-                answers: [
-                    "Pakaian khusus untuk ibadah Haji dan Umrah",
-                    "Niat memulai ibadah Haji atau Umrah",
-                    "Larangan-larangan selama ibadah Haji",
-                    "Semua jawaban benar"
-                ],
-                correctAnswer: 3
-            },
-            {
-                question: "Apa yang dimaksud dengan Tahallul?",
-                answers: [
-                    "Bersuci sebelum ibadah",
-                    "Mengelilingi Ka'bah",
-                    "Melempar jumrah",
-                    "Berakhirnya sebagian atau seluruh larangan ihram"
-                ],
-                correctAnswer: 3
-            },
-            {
-                question: "Apa hukum melaksanakan ibadah Umrah?",
-                answers: [
-                    "Wajib sekali seumur hidup",
-                    "Sunnah muakkad",
-                    "Mubah",
-                    "Makruh"
-                ],
-                correctAnswer: 1
-            },
-            {
-                question: "Apa yang dimaksud dengan Miqat?",
-                answers: [
-                    "Tempat berdo'a",
-                    "Batas waktu ibadah",
-                    "Tempat atau batas untuk memulai ihram",
-                    "Tempat bermalam selama haji"
-                ],
-                correctAnswer: 2
-            },
-            {
-                question: "Apa yang dimaksud dengan Tawaf Qudum?",
-                answers: [
-                    "Tawaf perpisahan",
-                    "Tawaf kedatangan",
-                    "Tawaf rukun haji",
-                    "Tawaf sunnah"
-                ],
-                correctAnswer: 1
-            },
-            {
-                question: "Apa yang dimaksud dengan Tawaf Wada?",
-                answers: [
-                    "Tawaf perpisahan",
-                    "Tawaf kedatangan",
-                    "Tawaf rukun haji",
-                    "Tawaf sunnah"
-                ],
-                correctAnswer: 0
-            },
-            {
-                question: "Apa yang dimaksud dengan Jumrah?",
-                answers: [
-                    "Tempat bermalam di Mina",
-                    "Tempat melempar batu",
-                    "Batu yang dilemparkan",
-                    "Tempat berkumpul jamaah haji"
-                ],
-                correctAnswer: 2
-            },
-            {
-                question: "Berapa jumlah Jumrah yang dilempar pada hari Tasyrik?",
-                answers: [
-                    "Satu jumrah",
-                    "Dua jumrah",
-                    "Tiga jumrah",
-                    "Empat jumrah"
-                ],
-                correctAnswer: 2
-            }
-        ];
-
-        // Game state
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let username = '';
-        let timeLeft = 30;
-        let timerInterval;
-        let selectedAnswer = null;
-
-        // DOM elements
-        const startScreen = document.getElementById('start-screen');
-        const quizScreen = document.getElementById('quiz-screen');
-        const resultsScreen = document.getElementById('results-screen');
-        const usernameInput = document.getElementById('username');
-        const startButton = document.getElementById('start-button');
-        const toggleLeaderboardButton = document.getElementById('toggle-leaderboard-button');
-        const startLeaderboard = document.getElementById('start-leaderboard');
-        const questionNumber = document.getElementById('question-number');
-        const totalQuestions = document.getElementById('total-questions');
-        const questionText = document.getElementById('question-text');
-        const answersContainer = document.getElementById('answers-container');
-        const scoreDisplay = document.getElementById('score-display');
-        const timer = document.getElementById('timer');
-        const feedbackText = document.getElementById('feedback-text');
-        const nextButton = document.getElementById('next-button');
-        const finalScore = document.getElementById('final-score');
-        const resultsUsername = document.getElementById('results-username');
-        const resultsLeaderboard = document.getElementById('results-leaderboard');
-        const playAgainButton = document.getElementById('play-again-button');
-
-        // Initialize
-        totalQuestions.textContent = questions.length;
-
-        // Leaderboard functions
-        function getLeaderboard() {
-            const leaderboard = JSON.parse(localStorage.getItem('hajj-umrah-quiz-leaderboard')) || [];
-            return leaderboard.sort((a, b) => b.score - a.score);
-        }
-
-        function saveScore(username, score) {
-            const leaderboard = getLeaderboard();
-            const userIndex = leaderboard.findIndex(entry => entry.username === username);
+    <!-- Quiz Container -->
+    <div id="quiz-container" class="hidden">
+      <!-- Quiz Header -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
+        <div class="p-6">
+          <!-- User Info Bar -->
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+            <div class="flex items-center bg-emerald-50 px-3 py-1.5 rounded-full">
+              <div class="w-7 h-7 rounded-full bg-emerald-100 flex items-center justify-center mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-700" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <span id="user-name-display" class="text-emerald-800 font-medium text-sm"></span>
+            </div>
             
-            if (userIndex !== -1) {
-                if (score > leaderboard[userIndex].score) {
-                    leaderboard[userIndex].score = score;
-                }
-            } else {
-                leaderboard.push({ username, score });
-            }
-            
-            localStorage.setItem('hajj-umrah-quiz-leaderboard', JSON.stringify(leaderboard));
-        }
+            <div class="flex flex-wrap gap-3">
+              <div class="bg-gray-100 px-3 py-1.5 rounded-full flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                </svg>
+                <span id="question-counter" class="text-gray-700 font-medium text-sm">1/30</span>
+              </div>
+              
+              <div class="bg-emerald-100 px-3 py-1.5 rounded-full flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-700 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <span id="score-display" class="text-emerald-800 font-medium text-sm">0</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Progress Bar -->
+          <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+            <div id="progress-bar" class="bg-emerald-600 h-2.5 rounded-full" style="width: 3.33%"></div>
+          </div>
+        </div>
+      </div>
 
-        function renderLeaderboard(container, highlightUser = null) {
-            const leaderboard = getLeaderboard();
-            
-            if (leaderboard.length === 0) {
-                container.innerHTML = `
-                    <div class="w-full text-center py-4">
-                        <p class="text-gray-500">Belum ada data peringkat</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            let leaderboardHTML = `
-                <h3 class="text-xl font-bold mb-4 text-center">Peringkat Tertinggi</h3>
-                <div class="overflow-hidden rounded-lg border">
-                    <table class="w-full">
-                        <thead class="bg-emerald-50">
-                            <tr>
-                                <th class="px-4 py-3 text-left text-sm font-medium text-emerald-800">Peringkat</th>
-                                <th class="px-4 py-3 text-left text-sm font-medium text-emerald-800">Nama</th>
-                                <th class="px-4 py-3 text-right text-sm font-medium text-emerald-800">Skor</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y">
-            `;
-            
-            leaderboard.slice(0, 10).forEach((entry, index) => {
-                const isHighlighted = highlightUser && entry.username === highlightUser;
-                const rowClass = isHighlighted 
-                    ? 'bg-emerald-100' 
-                    : index % 2 === 0 ? 'bg-white' : 'bg-gray-50';
-                
-                let rankDisplay = '';
-                if (index < 3) {
-                    const trophyColor = index === 0 
-                        ? 'text-yellow-500' 
-                        : index === 1 ? 'text-gray-400' : 'text-amber-700';
-                    
-                    rankDisplay = `
-                        <div class="flex items-center">
-                            <i class="fas fa-trophy ${trophyColor} mr-1"></i>
-                            <span>${index + 1}</span>
-                        </div>
-                    `;
-                } else {
-                    rankDisplay = `<span class="pl-6">${index + 1}</span>`;
-                }
-                
-                leaderboardHTML += `
-                    <tr class="${rowClass}">
-                        <td class="px-4 py-3 text-sm">${rankDisplay}</td>
-                        <td class="px-4 py-3 text-sm font-medium">
-                            ${entry.username}
-                            ${isHighlighted ? '<span class="ml-2 text-xs text-emerald-600">(Anda)</span>' : ''}
-                        </td>
-                        <td class="px-4 py-3 text-sm text-right font-bold">${entry.score}</td>
-                    </tr>
-                `;
-            });
-            
-            leaderboardHTML += `
-                        </tbody>
-                    </table>
+      <!-- Question Card -->
+      <div id="question-card" class="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
+        <div class="p-6">
+          <h3 id="question-text" class="text-xl font-medium text-gray-800 mb-6">Pertanyaan akan muncul di sini</h3>
+          <div id="options-container" class="space-y-3">
+            <!-- Options will be generated here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="flex justify-between">
+        <button id="prev-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-6 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+          Sebelumnya
+        </button>
+        <button id="next-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-6 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+          Selanjutnya
+        </button>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="hidden bg-white rounded-xl shadow-lg overflow-hidden">
+      <div class="p-8">
+        <h2 class="text-2xl font-bold text-center text-emerald-800 mb-4">Hasil Quiz</h2>
+        
+        <!-- User Info Card -->
+        <div class="bg-emerald-50 rounded-lg p-4 mb-6 flex flex-col sm:flex-row items-center justify-between">
+          <div class="flex items-center mb-3 sm:mb-0">
+            <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mr-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-700" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm text-emerald-600 font-medium">Peserta</p>
+              <p id="result-name" class="text-lg font-semibold text-emerald-800">Nama Peserta</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg px-4 py-2 shadow-sm">
+            <p class="text-sm text-gray-500">Tanggal</p>
+            <p id="quiz-date" class="font-medium text-gray-800"></p>
+          </div>
+        </div>
+        
+        <!-- Score Display -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="bg-white rounded-lg p-4 text-center card-shadow">
+            <div id="score-circle" class="w-24 h-24 rounded-full mx-auto flex items-center justify-center border-8 border-emerald-500 mb-2">
+              <span id="final-score" class="text-2xl font-bold text-emerald-800">0/30</span>
+            </div>
+            <p id="score-percentage" class="text-lg font-medium text-gray-700">0%</p>
+            <p class="text-sm text-gray-500">Skor Total</p>
+          </div>
+          
+          <div class="bg-white rounded-lg p-4 text-center card-shadow flex flex-col justify-center">
+            <div class="grid grid-cols-3 gap-2">
+              <div class="text-center">
+                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-1">
+                  <span id="correct-answers" class="text-lg font-bold text-green-600">0</span>
                 </div>
-            `;
-            
-            container.innerHTML = leaderboardHTML;
-        }
-
-        // Game functions
-        function startGame() {
-            username = usernameInput.value.trim();
-            if (!username) return;
-            
-            currentQuestionIndex = 0;
-            score = 0;
-            timeLeft = 30;
-            
-            startScreen.classList.add('hidden');
-            quizScreen.classList.remove('hidden');
-            resultsScreen.classList.add('hidden');
-            
-            scoreDisplay.textContent = score;
-            loadQuestion();
-            startTimer();
-        }
-
-        function loadQuestion() {
-            const currentQuestion = questions[currentQuestionIndex];
-            questionNumber.textContent = currentQuestionIndex + 1;
-            questionText.textContent = currentQuestion.question;
-            
-            // Clear previous answers
-            answersContainer.innerHTML = '';
-            selectedAnswer = null;
-            nextButton.classList.add('hidden');
-            feedbackText.textContent = '';
-            
-            // Add new answers
-            currentQuestion.answers.forEach((answer, index) => {
-                const button = document.createElement('button');
-                button.className = 'w-full justify-start text-left p-4 h-auto border rounded-md hover:bg-gray-50 transition-colors mb-2';
-                button.innerHTML = `<span>${answer}</span>`;
-                
-                button.addEventListener('click', () => handleAnswerSelect(index));
-                answersContainer.appendChild(button);
-            });
-        }
-
-        function handleAnswerSelect(answerIndex) {
-            if (selectedAnswer !== null) return;
-            
-            selectedAnswer = answerIndex;
-            const currentQuestion = questions[currentQuestionIndex];
-            const isCorrect = answerIndex === currentQuestion.correctAnswer;
-            
-            // Update UI for selected answer
-            const answerButtons = answersContainer.querySelectorAll('button');
-            
-            answerButtons.forEach((button, index) => {
-                button.disabled = true;
-                
-                if (index === answerIndex) {
-                    if (isCorrect) {
-                        button.className = 'w-full justify-start text-left p-4 h-auto bg-green-100 border border-green-500 text-green-800 rounded-md mb-2';
-                        button.innerHTML = `<div class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i><span>${currentQuestion.answers[index]}</span></div>`;
-                    } else {
-                        button.className = 'w-full justify-start text-left p-4 h-auto bg-red-100 border border-red-500 text-red-800 rounded-md mb-2';
-                        button.innerHTML = `<div class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-2"></i><span>${currentQuestion.answers[index]}</span></div>`;
-                    }
-                }
-                
-                // Always highlight the correct answer
-                if (index === currentQuestion.correctAnswer && index !== answerIndex) {
-                    button.className = 'w-full justify-start text-left p-4 h-auto bg-green-100 border border-green-500 text-green-800 rounded-md mb-2';
-                    button.innerHTML = `<div class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i><span>${currentQuestion.answers[index]}</span></div>`;
-                }
-            });
-            
-            // Update score and feedback
-            if (isCorrect) {
-                const pointsToAdd = Math.max(10, 10 + timeLeft);
-                score += pointsToAdd;
-                scoreDisplay.textContent = score;
-                feedbackText.textContent = `Jawaban benar! +${pointsToAdd} poin`;
-                feedbackText.className = 'text-sm text-green-600';
-            } else {
-                feedbackText.textContent = 'Jawaban salah!';
-                feedbackText.className = 'text-sm text-red-600';
-            }
-            
-            // Show next button
-            nextButton.classList.remove('hidden');
-            
-            // Clear timer
-            clearInterval(timerInterval);
-        }
-
-        function startTimer() {
-            clearInterval(timerInterval);
-            timeLeft = 30;
-            timer.textContent = `${timeLeft} detik`;
-            timer.className = 'font-bold';
-            
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                timer.textContent = `${timeLeft} detik`;
-                
-                if (timeLeft < 10) {
-                    timer.className = 'font-bold text-red-500';
-                }
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    handleTimeUp();
-                }
-            }, 1000);
-        }
-
-        function handleTimeUp() {
-            if (selectedAnswer === null) {
-                feedbackText.textContent = 'Waktu habis!';
-                feedbackText.className = 'text-sm text-red-600';
-                
-                // Highlight the correct answer
-                const currentQuestion = questions[currentQuestionIndex];
-                const answerButtons = answersContainer.querySelectorAll('button');
-                
-                answerButtons.forEach((button, index) => {
-                    button.disabled = true;
-                    
-                    if (index === currentQuestion.correctAnswer) {
-                        button.className = 'w-full justify-start text-left p-4 h-auto bg-green-100 border border-green-500 text-green-800 rounded-md mb-2';
-                        button.innerHTML = `<div class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i><span>${currentQuestion.answers[index]}</span></div>`;
-                    }
-                });
-                
-                selectedAnswer = -1; // Mark as answered
-                nextButton.classList.remove('hidden');
-            }
-        }
-
-        function handleNextQuestion() {
-            if (currentQuestionIndex < questions.length - 1) {
-                currentQuestionIndex++;
-                loadQuestion();
-                startTimer();
-            } else {
-                finishGame();
-            }
-        }
-
-        function finishGame() {
-            clearInterval(timerInterval);
-            
-            // Save score
-            saveScore(username, score);
-            
-            // Update UI
-            quizScreen.classList.add('hidden');
-            resultsScreen.classList.remove('hidden');
-            
-            resultsUsername.textContent = `Terima kasih telah berpartisipasi, ${username}!`;
-            finalScore.textContent = `${score} Poin`;
-            
-            // Render leaderboard
-            renderLeaderboard(resultsLeaderboard, username);
-        }
-
-        function resetGame() {
-            startScreen.classList.remove('hidden');
-            resultsScreen.classList.add('hidden');
-        }
-
-        // Event listeners
-        startButton.addEventListener('click', startGame);
+                <p class="text-xs text-gray-600">Benar</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-1">
+                  <span id="wrong-answers" class="text-lg font-bold text-red-600">0</span>
+                </div>
+                <p class="text-xs text-gray-600">Salah</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-1">
+                  <span id="unanswered" class="text-lg font-bold text-gray-600">0</span>
+                </div>
+                <p class="text-xs text-gray-600">Kosong</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg p-4 card-shadow flex items-center justify-center">
+            <div class="text-center">
+              <div class="mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <p id="completion-status" class="text-lg font-medium text-emerald-800">Selesai</p>
+              <p class="text-sm text-gray-500">Status</p>
+            </div>
+          </div>
+        </div>
         
-        toggleLeaderboardButton.addEventListener('click', () => {
-            if (startLeaderboard.classList.contains('hidden')) {
-                startLeaderboard.classList.remove('hidden');
-                renderLeaderboard(startLeaderboard);
-                toggleLeaderboardButton.textContent = 'Sembunyikan Peringkat';
-            } else {
-                startLeaderboard.classList.add('hidden');
-                toggleLeaderboardButton.textContent = 'Lihat Peringkat';
-            }
-        });
+        <!-- Feedback Message -->
+        <div class="bg-white rounded-lg p-6 mb-8 card-shadow">
+          <h3 class="text-lg font-semibold text-emerald-800 mb-2">Umpan Balik</h3>
+          <p id="score-message" class="text-gray-600">Pesan berdasarkan skor Anda akan muncul di sini.</p>
+        </div>
         
-        nextButton.addEventListener('click', handleNextQuestion);
-        playAgainButton.addEventListener('click', resetGame);
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <button id="review-btn" class="bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-medium py-2 px-6 rounded-lg transition-all">
+            Lihat Jawaban
+          </button>
+          <button id="restart-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-6 rounded-lg transition-all">
+            Mulai Ulang
+          </button>
+        </div>
+      </div>
+    </div>
 
-        // Initialize leaderboard
-        if (!localStorage.getItem('hajj-umrah-quiz-leaderboard')) {
-            // Add some sample data for demonstration
-            const sampleData = [
-                { username: "Ahmad", score: 120 },
-                { username: "Fatimah", score: 105 },
-                { username: "Muhammad", score: 95 },
-                { username: "Aisyah", score: 85 },
-                { username: "Ibrahim", score: 75 }
-            ];
-            localStorage.setItem('hajj-umrah-quiz-leaderboard', JSON.stringify(sampleData));
+    <!-- Review Answers Screen -->
+    <div id="review-screen" class="hidden">
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
+        <div class="p-6">
+          <!-- Review Header -->
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-3">
+            <h2 class="text-2xl font-semibold text-emerald-800">Tinjauan Jawaban</h2>
+            
+            <div class="flex items-center bg-emerald-50 px-3 py-1.5 rounded-full">
+              <div class="w-7 h-7 rounded-full bg-emerald-100 flex items-center justify-center mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-700" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <span id="review-name" class="text-emerald-800 font-medium text-sm"></span>
+            </div>
+          </div>
+          
+          <div class="bg-emerald-50 rounded-lg p-4 mb-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+              <p class="text-emerald-800">Ringkasan hasil jawaban Anda:</p>
+              <div class="flex gap-4">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 rounded-full bg-green-500 mr-1.5"></div>
+                  <span id="review-correct" class="text-sm font-medium">0 Benar</span>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-3 h-3 rounded-full bg-red-500 mr-1.5"></div>
+                  <span id="review-wrong" class="text-sm font-medium">0 Salah</span>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-3 h-3 rounded-full bg-gray-400 mr-1.5"></div>
+                  <span id="review-unanswered" class="text-sm font-medium">0 Kosong</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div id="review-container" class="space-y-6">
+            <!-- Review items will be generated here -->
+          </div>
+          
+          <div class="mt-8 text-center">
+            <button id="back-to-results-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-6 rounded-lg transition-all">
+              Kembali ke Hasil
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Quiz questions
+    const quizQuestions = [
+      {
+        question: "Apa arti kata 'Haji' secara bahasa?",
+        options: [
+          "Berkunjung",
+          "Berdoa",
+          "Menyembah",
+          "Bersuci"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Kapan ibadah Haji dilaksanakan?",
+        options: [
+          "Bulan Ramadhan",
+          "Bulan Syawal",
+          "Bulan Dzulhijjah",
+          "Bulan Muharram"
+        ],
+        correctAnswer: 2
+      },
+      {
+        question: "Apa perbedaan utama antara Haji dan Umrah?",
+        options: [
+          "Haji wajib, Umrah sunnah",
+          "Haji dilakukan kapan saja, Umrah hanya di bulan tertentu",
+          "Haji memiliki wukuf di Arafah, Umrah tidak",
+          "Haji tidak memiliki tawaf, Umrah memiliki tawaf"
+        ],
+        correctAnswer: 2
+      },
+      {
+        question: "Rukun Haji yang tidak terdapat dalam Umrah adalah...",
+        options: [
+          "Ihram",
+          "Wukuf di Arafah",
+          "Tawaf",
+          "Sa'i"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "Apa yang dimaksud dengan Ihram?",
+        options: [
+          "Pakaian khusus untuk ibadah Haji dan Umrah",
+          "Niat dan keadaan suci untuk melaksanakan ibadah Haji atau Umrah",
+          "Tempat memulai ibadah Haji dan Umrah",
+          "Doa khusus saat memulai ibadah Haji dan Umrah"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "Kapan waktu pelaksanaan wukuf di Arafah?",
+        options: [
+          "Tanggal 8 Dzulhijjah",
+          "Tanggal 9 Dzulhijjah",
+          "Tanggal 10 Dzulhijjah",
+          "Tanggal 11 Dzulhijjah"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "Apa yang dimaksud dengan Tawaf?",
+        options: [
+          "Berlari-lari kecil antara Shafa dan Marwah",
+          "Melempar jumrah di Mina",
+          "Mengelilingi Ka'bah sebanyak tujuh kali",
+          "Berdiam diri di Arafah"
+        ],
+        correctAnswer: 2
+      },
+      {
+        question: "Apa yang dimaksud dengan Sa'i?",
+        options: [
+          "Berlari-lari kecil antara Shafa dan Marwah",
+          "Melempar jumrah di Mina",
+          "Mengelilingi Ka'bah sebanyak tujuh kali",
+          "Berdiam diri di Arafah"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Apa yang dimaksud dengan Tahallul?",
+        options: [
+          "Niat untuk memulai ibadah Haji",
+          "Mencukur atau memotong rambut sebagai tanda berakhirnya ihram",
+          "Bermalam di Muzdalifah",
+          "Melempar jumrah di Mina"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "Berapa kali Sa'i dilakukan dalam ibadah Haji dan Umrah?",
+        options: [
+          "3 kali",
+          "5 kali",
+          "7 kali",
+          "9 kali"
+        ],
+        correctAnswer: 2
+      },
+      {
+        question: "Apa yang dimaksud dengan Miqat?",
+        options: [
+          "Tempat bermalam selama ibadah Haji",
+          "Tempat dan waktu mulai berihram",
+          "Tempat melempar jumrah",
+          "Tempat berkumpul setelah wukuf"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "Apa nama tempat yang menjadi lokasi wukuf?",
+        options: [
+          "Mina",
+          "Muzdalifah",
+          "Arafah",
+          "Jeddah"
+        ],
+        correctAnswer: 2
+      },
+      {
+        question: "Apa yang dimaksud dengan Mabit di Muzdalifah?",
+        options: [
+          "Bermalam di Muzdalifah setelah wukuf",
+          "Berdoa di Muzdalifah sebelum wukuf",
+          "Melakukan tawaf di Muzdalifah",
+          "Melakukan sa'i di Muzdalifah"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Apa yang dimaksud dengan Jumrah?",
+        options: [
+          "Tempat bermalam di Mina",
+          "Tempat mengambil batu untuk dilempar",
+          "Tugu tempat melempar batu sebagai simbol melawan godaan setan",
+          "Tempat berkumpul sebelum wukuf"
+        ],
+        correctAnswer: 2
+      },
+      {
+        question: "Ada berapa Jumrah yang dilempar selama ibadah Haji?",
+        options: [
+          "1 Jumrah",
+          "2 Jumrah",
+          "3 Jumrah",
+          "4 Jumrah"
+        ],
+        correctAnswer: 2
+      },
+      {
+        question: "Apa nama Jumrah yang paling besar?",
+        options: [
+          "Jumrah Ula",
+          "Jumrah Wustha",
+          "Jumrah Aqabah",
+          "Jumrah Kubra"
+        ],
+        correctAnswer: 2
+      },
+      {
+        question: "Kapan waktu melempar Jumrah Aqabah pada hari Nahr (10 Dzulhijjah)?",
+        options: [
+          "Setelah terbit matahari",
+          "Setelah Dzuhur",
+          "Setelah Ashar",
+          "Setelah Maghrib"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Apa yang dimaksud dengan Dam dalam ibadah Haji?",
+        options: [
+          "Denda berupa puasa",
+          "Denda berupa sedekah",
+          "Denda berupa menyembelih hewan",
+          "Denda berupa memberi makan fakir miskin"
+        ],
+        correctAnswer: 2
+      },
+      {
+        question: "Apa yang dimaksud dengan Haji Ifrad?",
+        options: [
+          "Melaksanakan Haji dan Umrah dengan satu ihram",
+          "Melaksanakan Umrah terlebih dahulu kemudian Haji dengan ihram yang berbeda",
+          "Melaksanakan Haji saja tanpa Umrah",
+          "Melaksanakan Haji dan Umrah secara bersamaan"
+        ],
+        correctAnswer: 2
+      },
+      {
+        question: "Apa yang dimaksud dengan Haji Tamattu?",
+        options: [
+          "Melaksanakan Haji dan Umrah dengan satu ihram",
+          "Melaksanakan Umrah terlebih dahulu kemudian Haji dengan ihram yang berbeda",
+          "Melaksanakan Haji saja tanpa Umrah",
+          "Melaksanakan Haji dan Umrah secara bersamaan"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "Apa yang dimaksud dengan Haji Qiran?",
+        options: [
+          "Melaksanakan Haji dan Umrah dengan satu ihram",
+          "Melaksanakan Umrah terlebih dahulu kemudian Haji dengan ihram yang berbeda",
+          "Melaksanakan Haji saja tanpa Umrah",
+          "Melaksanakan Haji dan Umrah secara bersamaan"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Apa hukum melaksanakan ibadah Umrah?",
+        options: [
+          "Wajib sekali seumur hidup",
+          "Sunnah",
+          "Mubah",
+          "Makruh"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "Apa hukum melaksanakan ibadah Haji bagi yang mampu?",
+        options: [
+          "Wajib sekali seumur hidup",
+          "Sunnah",
+          "Mubah",
+          "Makruh"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Apa yang dimaksud dengan Tawaf Ifadhah?",
+        options: [
+          "Tawaf saat pertama kali tiba di Mekah",
+          "Tawaf setelah wukuf di Arafah",
+          "Tawaf perpisahan sebelum meninggalkan Mekah",
+          "Tawaf sunnah yang boleh dilakukan kapan saja"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "Apa yang dimaksud dengan Tawaf Wada?",
+        options: [
+          "Tawaf saat pertama kali tiba di Mekah",
+          "Tawaf setelah wukuf di Arafah",
+          "Tawaf perpisahan sebelum meninggalkan Mekah",
+          "Tawaf sunnah yang boleh dilakukan kapan saja"
+        ],
+        correctAnswer: 2
+      },
+      {
+        question: "Apa yang dimaksud dengan Tawaf Qudum?",
+        options: [
+          "Tawaf saat pertama kali tiba di Mekah",
+          "Tawaf setelah wukuf di Arafah",
+          "Tawaf perpisahan sebelum meninggalkan Mekah",
+          "Tawaf sunnah yang boleh dilakukan kapan saja"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Apa yang dimaksud dengan Hari Tarwiyah?",
+        options: [
+          "Tanggal 8 Dzulhijjah",
+          "Tanggal 9 Dzulhijjah",
+          "Tanggal 10 Dzulhijjah",
+          "Tanggal 11-13 Dzulhijjah"
+        ],
+        correctAnswer: 0
+      },
+      {
+        question: "Apa yang dimaksud dengan Hari Arafah?",
+        options: [
+          "Tanggal 8 Dzulhijjah",
+          "Tanggal 9 Dzulhijjah",
+          "Tanggal 10 Dzulhijjah",
+          "Tanggal 11-13 Dzulhijjah"
+        ],
+        correctAnswer: 1
+      },
+      {
+        question: "Apa yang dimaksud dengan Hari Nahr?",
+        options: [
+          "Tanggal 8 Dzulhijjah",
+          "Tanggal 9 Dzulhijjah",
+          "Tanggal 10 Dzulhijjah",
+          "Tanggal 11-13 Dzulhijjah"
+        ],
+        correctAnswer: 2
+      },
+      {
+        question: "Apa yang dimaksud dengan Hari Tasyriq?",
+        options: [
+          "Tanggal 8 Dzulhijjah",
+          "Tanggal 9 Dzulhijjah",
+          "Tanggal 10 Dzulhijjah",
+          "Tanggal 11-13 Dzulhijjah"
+        ],
+        correctAnswer: 3
+      }
+    ];
+
+    // Game state
+    let currentQuestion = 0;
+    let score = 0;
+    let userAnswers = Array(quizQuestions.length).fill(null);
+    let userName = "";
+
+    // DOM elements
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const quizContainer = document.getElementById('quiz-container');
+    const resultsScreen = document.getElementById('results-screen');
+    const reviewScreen = document.getElementById('review-screen');
+    
+    const userNameInput = document.getElementById('user-name');
+    const nameError = document.getElementById('name-error');
+    const userNameDisplay = document.getElementById('user-name-display');
+    const resultName = document.getElementById('result-name');
+    const reviewName = document.getElementById('review-name');
+    const quizDate = document.getElementById('quiz-date');
+    
+    const questionCounter = document.getElementById('question-counter');
+    const scoreDisplay = document.getElementById('score-display');
+    const progressBar = document.getElementById('progress-bar');
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    
+    const finalScore = document.getElementById('final-score');
+    const scorePercentage = document.getElementById('score-percentage');
+    const scoreMessage = document.getElementById('score-message');
+    const correctAnswers = document.getElementById('correct-answers');
+    const wrongAnswers = document.getElementById('wrong-answers');
+    const unanswered = document.getElementById('unanswered');
+    
+    const reviewCorrect = document.getElementById('review-correct');
+    const reviewWrong = document.getElementById('review-wrong');
+    const reviewUnanswered = document.getElementById('review-unanswered');
+    const reviewContainer = document.getElementById('review-container');
+
+    // Buttons
+    const startQuizBtn = document.getElementById('start-quiz-btn');
+    const reviewBtn = document.getElementById('review-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const backToResultsBtn = document.getElementById('back-to-results-btn');
+
+    // Event listeners
+    startQuizBtn.addEventListener('click', validateAndStartQuiz);
+    prevBtn.addEventListener('click', goToPreviousQuestion);
+    nextBtn.addEventListener('click', goToNextQuestion);
+    reviewBtn.addEventListener('click', showReviewScreen);
+    restartBtn.addEventListener('click', restartQuiz);
+    backToResultsBtn.addEventListener('click', showResultsScreen);
+    
+    // Enter key for name input
+    userNameInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        validateAndStartQuiz();
+      }
+    });
+
+    // Validate name and start the quiz
+    function validateAndStartQuiz() {
+      userName = userNameInput.value.trim();
+      
+      if (userName === '') {
+        nameError.classList.remove('hidden');
+        userNameInput.classList.add('border-red-500');
+        userNameInput.classList.add('shake');
+        
+        // Remove shake animation after it completes
+        setTimeout(() => {
+          userNameInput.classList.remove('shake');
+        }, 500);
+        
+        return;
+      }
+      
+      // Hide error if previously shown
+      nameError.classList.add('hidden');
+      userNameInput.classList.remove('border-red-500');
+      
+      // Display user name
+      userNameDisplay.textContent = userName;
+      
+      startQuiz();
+    }
+
+    // Start the quiz
+    function startQuiz() {
+      welcomeScreen.classList.add('hidden');
+      quizContainer.classList.remove('hidden');
+      loadQuestion();
+    }
+
+    // Load current question
+    function loadQuestion() {
+      const question = quizQuestions[currentQuestion];
+      
+      // Update question counter and progress bar
+      questionCounter.textContent = `${currentQuestion + 1}/${quizQuestions.length}`;
+      progressBar.style.width = `${((currentQuestion + 1) / quizQuestions.length) * 100}%`;
+      
+      // Display question
+      questionText.textContent = question.question;
+      
+      // Clear previous options
+      optionsContainer.innerHTML = '';
+      
+      // Add options
+      question.options.forEach((option, index) => {
+        const optionElement = document.createElement('div');
+        optionElement.className = `quiz-option p-3 rounded-lg border ${
+          userAnswers[currentQuestion] === index 
+            ? 'border-emerald-500 bg-emerald-50' 
+            : 'border-gray-200 hover:border-emerald-300'
+        } cursor-pointer transition-all duration-200`;
+        
+        optionElement.innerHTML = `
+          <div class="flex items-center">
+            <div class="w-6 h-6 rounded-full ${
+              userAnswers[currentQuestion] === index 
+                ? 'bg-emerald-500 text-white' 
+                : 'bg-gray-200 text-gray-700'
+            } flex items-center justify-center mr-3 font-medium text-sm">
+              ${String.fromCharCode(65 + index)}
+            </div>
+            <span>${option}</span>
+          </div>
+        `;
+        
+        optionElement.addEventListener('click', () => selectOption(index));
+        optionElement.classList.add('fade-in');
+        optionElement.style.animationDelay = `${index * 0.1}s`;
+        
+        optionsContainer.appendChild(optionElement);
+      });
+      
+      // Update navigation buttons
+      prevBtn.disabled = currentQuestion === 0;
+      nextBtn.textContent = currentQuestion === quizQuestions.length - 1 ? 'Selesai' : 'Selanjutnya';
+    }
+
+    // Select an option
+    function selectOption(optionIndex) {
+      userAnswers[currentQuestion] = optionIndex;
+      
+      // Update score if answer is correct
+      if (optionIndex === quizQuestions[currentQuestion].correctAnswer) {
+        if (userAnswers[currentQuestion] === null) {
+          score++;
+          scoreDisplay.textContent = score;
         }
-    </script>
+      } else {
+        if (userAnswers[currentQuestion] === quizQuestions[currentQuestion].correctAnswer) {
+          score--;
+          scoreDisplay.textContent = score;
+        }
+      }
+      
+      // Reload question to update UI
+      loadQuestion();
+      
+      // Automatically go to next question if not the last one
+      if (currentQuestion < quizQuestions.length - 1) {
+        setTimeout(() => {
+          goToNextQuestion();
+        }, 700);
+      }
+    }
+
+    // Go to previous question
+    function goToPreviousQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        loadQuestion();
+      }
+    }
+
+    // Go to next question
+    function goToNextQuestion() {
+      if (currentQuestion < quizQuestions.length - 1) {
+        currentQuestion++;
+        loadQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    // Finish the quiz and show results
+    function finishQuiz() {
+      quizContainer.classList.add('hidden');
+      resultsScreen.classList.remove('hidden');
+      
+      // Set current date
+      const today = new Date();
+      quizDate.textContent = today.toLocaleDateString('id-ID', { 
+        day: 'numeric', 
+        month: 'long', 
+        year: 'numeric' 
+      });
+      
+      // Set user name in results
+      resultName.textContent = userName;
+      
+      // Calculate final statistics
+      const correctCount = userAnswers.filter((answer, index) => answer === quizQuestions[index].correctAnswer).length;
+      const wrongCount = userAnswers.filter((answer, index) => answer !== null && answer !== quizQuestions[index].correctAnswer).length;
+      const unansweredCount = userAnswers.filter(answer => answer === null).length;
+      
+      // Update UI
+      finalScore.textContent = `${correctCount}/${quizQuestions.length}`;
+      scorePercentage.textContent = `${Math.round((correctCount / quizQuestions.length) * 100)}%`;
+      
+      correctAnswers.textContent = correctCount;
+      wrongAnswers.textContent = wrongCount;
+      unanswered.textContent = unansweredCount;
+      
+      // Set score message based on performance
+      if (correctCount >= 25) {
+        scoreMessage.textContent = `Luar biasa, ${userName}! Anda memiliki pemahaman yang sangat baik tentang ibadah Haji dan Umrah.`;
+      } else if (correctCount >= 20) {
+        scoreMessage.textContent = `Bagus, ${userName}! Anda memiliki pemahaman yang baik tentang ibadah Haji dan Umrah.`;
+      } else if (correctCount >= 15) {
+        scoreMessage.textContent = `Cukup baik, ${userName}. Anda memiliki pemahaman dasar tentang ibadah Haji dan Umrah.`;
+      } else {
+        scoreMessage.textContent = `${userName}, Anda perlu belajar lebih banyak tentang ibadah Haji dan Umrah.`;
+      }
+      
+      // Animate score circle
+      const scoreCircle = document.getElementById('score-circle');
+      scoreCircle.style.borderColor = getScoreColor(correctCount / quizQuestions.length);
+    }
+
+    // Show review screen
+    function showReviewScreen() {
+      resultsScreen.classList.add('hidden');
+      reviewScreen.classList.remove('hidden');
+      
+      // Set user name in review
+      reviewName.textContent = userName;
+      
+      // Calculate statistics
+      const correctCount = userAnswers.filter((answer, index) => answer === quizQuestions[index].correctAnswer).length;
+      const wrongCount = userAnswers.filter((answer, index) => answer !== null && answer !== quizQuestions[index].correctAnswer).length;
+      const unansweredCount = userAnswers.filter(answer => answer === null).length;
+      
+      // Update statistics in review
+      reviewCorrect.textContent = `${correctCount} Benar`;
+      reviewWrong.textContent = `${wrongCount} Salah`;
+      reviewUnanswered.textContent = `${unansweredCount} Kosong`;
+      
+      // Clear previous review items
+      reviewContainer.innerHTML = '';
+      
+      // Add review items
+      quizQuestions.forEach((question, index) => {
+        const isCorrect = userAnswers[index] === question.correctAnswer;
+        const isAnswered = userAnswers[index] !== null;
+        
+        const reviewItem = document.createElement('div');
+        reviewItem.className = `p-4 rounded-lg ${
+          isAnswered 
+            ? isCorrect 
+              ? 'bg-green-50 border border-green-200' 
+              : 'bg-red-50 border border-red-200'
+            : 'bg-gray-50 border border-gray-200'
+        }`;
+        
+        reviewItem.innerHTML = `
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full ${
+              isAnswered 
+                ? isCorrect 
+                  ? 'bg-green-500 text-white' 
+                  : 'bg-red-500 text-white'
+                : 'bg-gray-400 text-white'
+            } flex items-center justify-center flex-shrink-0 mt-1 font-medium text-sm">
+              ${index + 1}
+            </div>
+            <div class="flex-1">
+              <h4 class="font-medium text-gray-800 mb-2">${question.question}</h4>
+              <div class="space-y-1 mb-3">
+                ${question.options.map((option, optionIndex) => `
+                  <div class="flex items-center">
+                    <div class="w-5 h-5 rounded-full ${
+                      userAnswers[index] === optionIndex 
+                        ? userAnswers[index] === question.correctAnswer 
+                          ? 'bg-green-500 text-white' 
+                          : 'bg-red-500 text-white'
+                        : question.correctAnswer === optionIndex 
+                          ? 'bg-green-500 text-white' 
+                          : 'bg-gray-200 text-gray-700'
+                    } flex items-center justify-center mr-2 text-xs font-medium">
+                      ${String.fromCharCode(65 + optionIndex)}
+                    </div>
+                    <span class="${
+                      question.correctAnswer === optionIndex ? 'font-medium text-green-700' : ''
+                    }">${option}</span>
+                    ${
+                      question.correctAnswer === optionIndex 
+                        ? '<span class="ml-2 text-green-600 text-sm">(Jawaban benar)</span>' 
+                        : ''
+                    }
+                  </div>
+                `).join('')}
+              </div>
+              <div class="text-sm ${
+                isAnswered 
+                  ? isCorrect 
+                    ? 'text-green-600' 
+                    : 'text-red-600'
+                  : 'text-gray-500'
+              }">
+                ${
+                  isAnswered 
+                    ? isCorrect 
+                      ? 'Jawaban Anda benar!' 
+                      : `Jawaban Anda salah. Jawaban yang benar adalah: ${question.options[question.correctAnswer]}`
+                    : 'Tidak dijawab'
+                }
+              </div>
+            </div>
+          </div>
+        `;
+        
+        reviewContainer.appendChild(reviewItem);
+      });
+    }
+
+    // Show results screen
+    function showResultsScreen() {
+      reviewScreen.classList.add('hidden');
+      resultsScreen.classList.remove('hidden');
+    }
+
+    // Restart the quiz
+    function restartQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      userAnswers = Array(quizQuestions.length).fill(null);
+      
+      resultsScreen.classList.add('hidden');
+      welcomeScreen.classList.remove('hidden');
+      
+      scoreDisplay.textContent = score;
+      userNameInput.value = userName; // Pre-fill the name field
+    }
+
+    // Get color based on score percentage
+    function getScoreColor(percentage) {
+      if (percentage >= 0.8) return '#10b981'; // emerald-500
+      if (percentage >= 0.6) return '#22c55e'; // green-500
+      if (percentage >= 0.4) return '#eab308'; // yellow-500
+      if (percentage >= 0.2) return '#f97316'; // orange-500
+      return '#ef4444'; // red-500
+    }
+  </script>
 </body>
 </html>
