@@ -3,255 +3,536 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Ibadah Haji dan Umrah</title>
+  <title>Evaluasi Haji dan Umrah</title>
+  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              200: '#99f6e4',
+              300: '#5eead4',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              900: '#134e4a',
+              950: '#042f2e',
+            },
+          },
+          animation: {
+            'bounce-slow': 'bounce 3s infinite',
+            'pulse-slow': 'pulse 3s infinite',
+            'spin-slow': 'spin 8s linear infinite',
+          },
+        },
+      },
+    }
+  </script>
   <style>
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes scale {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .fade-in {
-      animation: fadeIn 0.5s ease-out forwards;
+    
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
     }
-    .quiz-option:hover {
-      transform: translateX(5px);
+    
+    @keyframes fadeOutLeft {
+      from { opacity: 1; transform: translateX(0); }
+      to { opacity: 0; transform: translateX(-20px); }
     }
-    .shake {
-      animation: shake 0.5s ease-in-out;
+    
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
     }
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    
+    @keyframes fadeOutRight {
+      from { opacity: 1; transform: translateX(0); }
+      to { opacity: 0; transform: translateX(20px); }
     }
+    
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes progress {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .animate-scale {
+      animation: scale 3s ease-in-out infinite;
+    }
+    
+    .animate-fadeInUp {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+    
+    .animate-fadeInRight {
+      animation: fadeInRight 0.6s ease-out forwards;
+    }
+    
+    .animate-fadeInLeft {
+      animation: fadeInLeft 0.6s ease-out forwards;
+    }
+    
+    .animate-scaleIn {
+      animation: scaleIn 0.5s ease-out forwards;
+    }
+    
+    .animate-progress {
+      animation: progress 15s linear forwards;
+    }
+    
+    .option-hover:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .option-selected {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .bg-pattern {
+      background-color: #f9fafb;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2314b8a6' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .bg-gradient {
+      background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+    }
+    
+    .text-shadow {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
     .card-shadow {
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .timer-animation {
+      transition: width 1s linear;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #14b8a6;
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0d9488;
+    }
+    
+    /* Confetti animation */
+    @keyframes confetti-slow {
+      0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
+      100% { transform: translate3d(25px, 105vh, 0) rotateX(360deg) rotateY(180deg); }
+    }
+    
+    @keyframes confetti-medium {
+      0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
+      100% { transform: translate3d(100px, 105vh, 0) rotateX(100deg) rotateY(360deg); }
+    }
+    
+    @keyframes confetti-fast {
+      0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
+      100% { transform: translate3d(-50px, 105vh, 0) rotateX(10deg) rotateY(250deg); }
+    }
+    
+    .confetti {
+      position: absolute;
+      z-index: 1;
+      top: -10px;
+      border-radius: 0%;
+    }
+    
+    .confetti--animation-slow {
+      animation: confetti-slow 2.5s linear 1 forwards;
+    }
+    
+    .confetti--animation-medium {
+      animation: confetti-medium 2s linear 1 forwards;
+    }
+    
+    .confetti--animation-fast {
+      animation: confetti-fast 1.5s linear 1 forwards;
     }
   </style>
 </head>
-<body class="min-h-screen bg-gradient-to-b from-emerald-50 to-emerald-100 py-8 px-4">
-  <div class="max-w-3xl mx-auto">
-    <!-- Welcome Screen -->
-    <div id="welcome-screen" class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
-      <div class="p-8">
-        <h1 class="text-3xl font-bold text-center text-emerald-800 mb-6">Quiz Ibadah Haji dan Umrah</h1>
-        <p class="text-gray-600 text-center mb-8">Uji pengetahuan Anda tentang ibadah Haji dan Umrah dengan menjawab 30 pertanyaan berikut.</p>
-        
-        <!-- Name Input -->
-        <div class="mb-6 max-w-md mx-auto">
-          <label for="user-name" class="block text-sm font-medium text-gray-700 mb-2">Masukkan Nama Anda:</label>
-          <input 
-            type="text" 
-            id="user-name" 
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors" 
-            placeholder="Nama Anda"
-          >
-          <p id="name-error" class="mt-1 text-red-500 text-sm hidden">Silakan masukkan nama Anda untuk melanjutkan</p>
+<body class="bg-pattern min-h-screen font-sans text-gray-800">
+  <div id="confetti-container" class="fixed inset-0 pointer-events-none hidden"></div>
+  
+  <div class="container mx-auto px-4 py-8 max-w-5xl">
+    <!-- Header -->
+    <header class="text-center mb-8 relative">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow"></div>
+      <h1 class="text-4xl md:text-5xl font-bold text-brand-800 mb-2 relative z-10">Evaluasi Haji dan Umrah</h1>
+      <p class="text-gray-600 text-lg relative z-10">Uji pemahaman Anda tentang ibadah Haji dan Umrah</p>
+    </header>
+    
+    <!-- Start Screen -->
+    <div id="start-screen" class="relative">
+      <div class="absolute -top-10 -left-10 w-40 h-40 bg-brand-200 rounded-full filter blur-3xl opacity-30 animate-float"></div>
+      <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-brand-200 rounded-full filter blur-3xl opacity-30 animate-float" style="animation-delay: 1s;"></div>
+      
+      <div class="bg-white rounded-3xl overflow-hidden card-shadow relative z-10">
+        <div class="bg-gradient p-8 text-white relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/4 -translate-y-1/4"></div>
+          <div class="absolute bottom-0 left-0 w-40 h-40 bg-white opacity-5 rounded-full translate-x-1/4 translate-y-1/4"></div>
+          
+          <h2 class="text-3xl font-bold mb-3 text-shadow">Selamat Datang</h2>
+          <p class="text-lg opacity-90">Siap untuk menguji pengetahuan Anda tentang Haji dan Umrah?</p>
         </div>
         
-        <div class="flex justify-center">
-          <button id="start-quiz-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105">
-            Mulai Quiz
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quiz Container -->
-    <div id="quiz-container" class="hidden">
-      <!-- Quiz Header -->
-      <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
-        <div class="p-6">
-          <!-- User Info Bar -->
-          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
-            <div class="flex items-center bg-emerald-50 px-3 py-1.5 rounded-full">
-              <div class="w-7 h-7 rounded-full bg-emerald-100 flex items-center justify-center mr-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-700" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                </svg>
+        <div class="p-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-brand-50 rounded-2xl p-5 border border-brand-100 animate-fadeInUp" style="animation-delay: 0.1s;">
+              <div class="flex items-center gap-4">
+                <div class="bg-brand-100 p-3 rounded-xl">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-gray-500 font-medium">Jumlah Soal</h3>
+                  <p class="text-2xl font-bold text-brand-700">15 Soal</p>
+                </div>
               </div>
-              <span id="user-name-display" class="text-emerald-800 font-medium text-sm"></span>
             </div>
             
-            <div class="flex flex-wrap gap-3">
-              <div class="bg-gray-100 px-3 py-1.5 rounded-full flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                </svg>
-                <span id="question-counter" class="text-gray-700 font-medium text-sm">1/30</span>
+            <div class="bg-brand-50 rounded-2xl p-5 border border-brand-100 animate-fadeInUp" style="animation-delay: 0.2s;">
+              <div class="flex items-center gap-4">
+                <div class="bg-brand-100 p-3 rounded-xl">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-gray-500 font-medium">Waktu</h3>
+                  <p class="text-2xl font-bold text-brand-700">15 Menit</p>
+                </div>
               </div>
-              
-              <div class="bg-emerald-100 px-3 py-1.5 rounded-full flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-700 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <span id="score-display" class="text-emerald-800 font-medium text-sm">0</span>
+            </div>
+            
+            <div class="bg-brand-50 rounded-2xl p-5 border border-brand-100 animate-fadeInUp" style="animation-delay: 0.3s;">
+              <div class="flex items-center gap-4">
+                <div class="bg-brand-100 p-3 rounded-xl">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-gray-500 font-medium">Nilai Lulus</h3>
+                  <p class="text-2xl font-bold text-brand-700">70%</p>
+                </div>
               </div>
             </div>
           </div>
           
-          <!-- Progress Bar -->
-          <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-            <div id="progress-bar" class="bg-emerald-600 h-2.5 rounded-full" style="width: 3.33%"></div>
+          <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-8 animate-fadeInUp" style="animation-delay: 0.4s;">
+            <div class="flex items-start gap-4">
+              <div class="bg-amber-100 p-2 rounded-lg mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-amber-800 mb-2">Petunjuk Pengerjaan</h3>
+                <ul class="text-amber-700 space-y-2 list-disc pl-5">
+                  <li>Quiz ini terdiri dari 15 pertanyaan pilihan ganda</li>
+                  <li>Anda memiliki waktu 15 menit untuk menyelesaikan quiz</li>
+                  <li>Setiap pertanyaan bernilai 1 poin</li>
+                  <li>Hasil dan jawaban benar akan ditampilkan setelah quiz selesai</li>
+                  <li>Jawablah dengan jujur dan teliti</li>
+                </ul>
+              </div>
+            </div>
           </div>
+          
+          <button id="start-button" class="w-full py-4 bg-gradient text-white text-lg font-semibold rounded-xl card-shadow transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] animate-fadeInUp flex items-center justify-center gap-3" style="animation-delay: 0.5s;">
+            <span>Mulai Quiz</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
         </div>
-      </div>
-
-      <!-- Question Card -->
-      <div id="question-card" class="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
-        <div class="p-6">
-          <h3 id="question-text" class="text-xl font-medium text-gray-800 mb-6">Pertanyaan akan muncul di sini</h3>
-          <div id="options-container" class="space-y-3">
-            <!-- Options will be generated here -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Navigation Buttons -->
-      <div class="flex justify-between">
-        <button id="prev-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-6 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed">
-          Sebelumnya
-        </button>
-        <button id="next-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-6 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed">
-          Selanjutnya
-        </button>
       </div>
     </div>
-
-    <!-- Results Screen -->
-    <div id="results-screen" class="hidden bg-white rounded-xl shadow-lg overflow-hidden">
-      <div class="p-8">
-        <h2 class="text-2xl font-bold text-center text-emerald-800 mb-4">Hasil Quiz</h2>
+    
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="hidden">
+      <!-- Timer and Progress -->
+      <div class="flex flex-col md:flex-row gap-4 mb-6">
+        <div class="bg-white rounded-2xl p-4 card-shadow flex-grow animate-fadeInUp">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="bg-brand-100 p-2 rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Waktu Tersisa</div>
+                <div id="timer" class="text-xl font-bold text-brand-700">15:00</div>
+              </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+              <div class="text-sm text-gray-500">Pertanyaan</div>
+              <div class="bg-brand-100 text-brand-800 font-bold px-3 py-1 rounded-lg">
+                <span id="current-question">1</span>/<span id="total-questions">15</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-4 relative h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div id="timer-bar" class="absolute top-0 left-0 h-full bg-brand-500 animate-progress"></div>
+          </div>
+        </div>
         
-        <!-- User Info Card -->
-        <div class="bg-emerald-50 rounded-lg p-4 mb-6 flex flex-col sm:flex-row items-center justify-between">
-          <div class="flex items-center mb-3 sm:mb-0">
-            <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mr-3">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-700" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+        <div class="bg-white rounded-2xl p-4 card-shadow md:w-48 animate-fadeInUp" style="animation-delay: 0.1s;">
+          <div class="flex items-center gap-3">
+            <div class="bg-brand-100 p-2 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </div>
             <div>
-              <p class="text-sm text-emerald-600 font-medium">Peserta</p>
-              <p id="result-name" class="text-lg font-semibold text-emerald-800">Nama Peserta</p>
+              <div class="text-sm text-gray-500">Skor Saat Ini</div>
+              <div id="current-score" class="text-xl font-bold text-brand-700">0</div>
             </div>
-          </div>
-          <div class="bg-white rounded-lg px-4 py-2 shadow-sm">
-            <p class="text-sm text-gray-500">Tanggal</p>
-            <p id="quiz-date" class="font-medium text-gray-800"></p>
           </div>
         </div>
-        
-        <!-- Score Display -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div class="bg-white rounded-lg p-4 text-center card-shadow">
-            <div id="score-circle" class="w-24 h-24 rounded-full mx-auto flex items-center justify-center border-8 border-emerald-500 mb-2">
-              <span id="final-score" class="text-2xl font-bold text-emerald-800">0/30</span>
+      </div>
+      
+      <!-- Question Card -->
+      <div id="question-container" class="bg-white rounded-2xl overflow-hidden card-shadow mb-6 animate-fadeInRight">
+        <div class="bg-gradient p-6 text-white relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/4 -translate-y-1/4"></div>
+          <div class="absolute bottom-0 left-0 w-40 h-40 bg-white opacity-5 rounded-full translate-x-1/4 translate-y-1/4"></div>
+          
+          <div class="flex items-center gap-3 mb-2">
+            <div class="bg-white bg-opacity-20 w-10 h-10 rounded-lg flex items-center justify-center font-bold text-lg">
+              <span id="question-number">1</span>
             </div>
-            <p id="score-percentage" class="text-lg font-medium text-gray-700">0%</p>
-            <p class="text-sm text-gray-500">Skor Total</p>
+            <h3 class="text-lg opacity-80">Pertanyaan</h3>
           </div>
           
-          <div class="bg-white rounded-lg p-4 text-center card-shadow flex flex-col justify-center">
-            <div class="grid grid-cols-3 gap-2">
-              <div class="text-center">
-                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-1">
-                  <span id="correct-answers" class="text-lg font-bold text-green-600">0</span>
-                </div>
-                <p class="text-xs text-gray-600">Benar</p>
+          <h2 id="question-text" class="text-xl md:text-2xl font-semibold"></h2>
+        </div>
+        
+        <div id="options-container" class="p-6 space-y-4">
+          <!-- Options will be inserted here by JavaScript -->
+        </div>
+      </div>
+      
+      <!-- Navigation Buttons -->
+      <div class="flex justify-between gap-4 animate-fadeInUp" style="animation-delay: 0.3s;">
+        <button id="prev-button" class="px-6 py-3 bg-white text-brand-700 font-medium rounded-xl card-shadow transition-all duration-200 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-brand-50">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Sebelumnya
+        </button>
+        
+        <button id="next-button" class="px-6 py-3 bg-gradient text-white font-medium rounded-xl card-shadow transition-all duration-200 flex items-center gap-2 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
+          <span id="next-button-text">Selanjutnya</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Results Screen -->
+    <div id="results-screen" class="hidden">
+      <div class="bg-white rounded-3xl overflow-hidden card-shadow mb-8 animate-scaleIn">
+        <div class="bg-gradient p-8 text-white text-center relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/4 -translate-y-1/4"></div>
+          <div class="absolute bottom-0 left-0 w-40 h-40 bg-white opacity-5 rounded-full translate-x-1/4 translate-y-1/4"></div>
+          
+          <h2 class="text-3xl font-bold mb-2 text-shadow">Hasil Evaluasi</h2>
+          <p class="text-lg opacity-90">Berikut adalah hasil evaluasi pembelajaran Anda</p>
+        </div>
+        
+        <div class="p-8">
+          <!-- Score Summary -->
+          <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
+            <!-- Score Circle -->
+            <div class="relative w-56 h-56 animate-fadeInUp" style="animation-delay: 0.2s;">
+              <svg class="w-full h-full" viewBox="0 0 100 100">
+                <circle class="text-gray-100" stroke-width="8" stroke="currentColor" fill="transparent" r="46" cx="50" cy="50"></circle>
+                <circle id="score-circle" class="text-brand-500 transition-all duration-1000 ease-out" stroke-width="8" stroke="currentColor" fill="transparent" r="46" cx="50" cy="50" stroke-dasharray="0 289" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 50 50)"></circle>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span id="percentage-score" class="text-5xl font-bold text-brand-700">0%</span>
+                <span class="text-gray-500 text-lg">Nilai Anda</span>
               </div>
-              <div class="text-center">
-                <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-1">
-                  <span id="wrong-answers" class="text-lg font-bold text-red-600">0</span>
+            </div>
+            
+            <!-- Score Details -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl">
+              <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-100 animate-fadeInUp" style="animation-delay: 0.3s;">
+                <div class="flex items-center gap-4">
+                  <div class="bg-emerald-100 p-3 rounded-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-gray-500 font-medium">Jawaban Benar</h3>
+                    <p id="correct-answers" class="text-2xl font-bold text-emerald-600">0</p>
+                  </div>
                 </div>
-                <p class="text-xs text-gray-600">Salah</p>
               </div>
-              <div class="text-center">
-                <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-1">
-                  <span id="unanswered" class="text-lg font-bold text-gray-600">0</span>
+              
+              <div class="bg-rose-50 p-5 rounded-2xl border border-rose-100 animate-fadeInUp" style="animation-delay: 0.4s;">
+                <div class="flex items-center gap-4">
+                  <div class="bg-rose-100 p-3 rounded-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-gray-500 font-medium">Jawaban Salah</h3>
+                    <p id="wrong-answers" class="text-2xl font-bold text-rose-600">0</p>
+                  </div>
                 </div>
-                <p class="text-xs text-gray-600">Kosong</p>
+              </div>
+              
+              <div class="bg-amber-50 p-5 rounded-2xl border border-amber-100 animate-fadeInUp" style="animation-delay: 0.5s;">
+                <div class="flex items-center gap-4">
+                  <div class="bg-amber-100 p-3 rounded-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-gray-500 font-medium">Waktu</h3>
+                    <p id="time-spent" class="text-2xl font-bold text-amber-600">00:00</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div id="status-card" class="p-5 rounded-2xl border animate-fadeInUp" style="animation-delay: 0.6s;">
+                <div class="flex items-center gap-4">
+                  <div class="p-3 rounded-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-gray-500 font-medium">Status</h3>
+                    <p id="pass-status" class="text-2xl font-bold">-</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           
-          <div class="bg-white rounded-lg p-4 card-shadow flex items-center justify-center">
-            <div class="text-center">
-              <div class="mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <p id="completion-status" class="text-lg font-medium text-emerald-800">Selesai</p>
-              <p class="text-sm text-gray-500">Status</p>
-            </div>
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 mb-8 animate-fadeInUp" style="animation-delay: 0.7s;">
+            <button id="share-button" class="flex-1 py-4 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-xl card-shadow transition-all duration-200 flex items-center justify-center gap-2 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+              Bagikan Hasil
+            </button>
+            
+            <button id="review-button" class="flex-1 py-4 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-xl card-shadow transition-all duration-200 flex items-center justify-center gap-2 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              Lihat Jawaban
+            </button>
+            
+            <button id="retry-button" class="flex-1 py-4 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-xl card-shadow transition-all duration-200 flex items-center justify-center gap-2 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Coba Lagi
+            </button>
           </div>
         </div>
-        
-        <!-- Feedback Message -->
-        <div class="bg-white rounded-lg p-6 mb-8 card-shadow">
-          <h3 class="text-lg font-semibold text-emerald-800 mb-2">Umpan Balik</h3>
-          <p id="score-message" class="text-gray-600">Pesan berdasarkan skor Anda akan muncul di sini.</p>
+      </div>
+      
+      <!-- Answer Review Section -->
+      <div id="answer-review" class="bg-white rounded-3xl overflow-hidden card-shadow mb-8 animate-scaleIn hidden">
+        <div class="bg-gradient p-6 text-white relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/4 -translate-y-1/4"></div>
+          <div class="absolute bottom-0 left-0 w-40 h-40 bg-white opacity-5 rounded-full translate-x-1/4 translate-y-1/4"></div>
+          
+          <h2 class="text-2xl font-bold mb-1 text-shadow">Pembahasan Jawaban</h2>
+          <p class="opacity-90">Berikut adalah jawaban yang benar untuk setiap pertanyaan</p>
         </div>
         
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <button id="review-btn" class="bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-medium py-2 px-6 rounded-lg transition-all">
-            Lihat Jawaban
-          </button>
-          <button id="restart-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-6 rounded-lg transition-all">
-            Mulai Ulang
-          </button>
+        <div id="review-container" class="p-6 divide-y divide-gray-200">
+          <!-- Review items will be inserted here by JavaScript -->
         </div>
       </div>
     </div>
-
-    <!-- Review Answers Screen -->
-    <div id="review-screen" class="hidden">
-      <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
-        <div class="p-6">
-          <!-- Review Header -->
-          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-3">
-            <h2 class="text-2xl font-semibold text-emerald-800">Tinjauan Jawaban</h2>
-            
-            <div class="flex items-center bg-emerald-50 px-3 py-1.5 rounded-full">
-              <div class="w-7 h-7 rounded-full bg-emerald-100 flex items-center justify-center mr-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-700" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span id="review-name" class="text-emerald-800 font-medium text-sm"></span>
-            </div>
-          </div>
+    
+    <!-- Share Dialog -->
+    <div id="share-dialog" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden backdrop-blur-sm">
+      <div class="bg-white rounded-2xl max-w-md w-full mx-4 card-shadow transform transition-all duration-300 scale-100 p-6 animate-scaleIn">
+        <h3 class="text-xl font-bold mb-4 text-brand-800">Bagikan Hasil</h3>
+        <p class="text-gray-600 mb-6">Bagikan hasil evaluasi pembelajaran Haji dan Umrah Anda melalui:</p>
+        
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <button id="whatsapp-share" class="flex flex-col items-center justify-center gap-2 p-4 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-xl transition-all duration-200 hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span class="font-medium">WhatsApp</span>
+          </button>
           
-          <div class="bg-emerald-50 rounded-lg p-4 mb-6">
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
-              <p class="text-emerald-800">Ringkasan hasil jawaban Anda:</p>
-              <div class="flex gap-4">
-                <div class="flex items-center">
-                  <div class="w-3 h-3 rounded-full bg-green-500 mr-1.5"></div>
-                  <span id="review-correct" class="text-sm font-medium">0 Benar</span>
-                </div>
-                <div class="flex items-center">
-                  <div class="w-3 h-3 rounded-full bg-red-500 mr-1.5"></div>
-                  <span id="review-wrong" class="text-sm font-medium">0 Salah</span>
-                </div>
-                <div class="flex items-center">
-                  <div class="w-3 h-3 rounded-full bg-gray-400 mr-1.5"></div>
-                  <span id="review-unanswered" class="text-sm font-medium">0 Kosong</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div id="review-container" class="space-y-6">
-            <!-- Review items will be generated here -->
-          </div>
-          
-          <div class="mt-8 text-center">
-            <button id="back-to-results-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-6 rounded-lg transition-all">
-              Kembali ke Hasil
-            </button>
-          </div>
+          <button id="copy-result" class="flex flex-col items-center justify-center gap-2 p-4 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-xl transition-all duration-200 hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+            </svg>
+            <span class="font-medium">Salin Hasil</span>
+          </button>
+        </div>
+        
+        <div class="flex justify-end gap-3 mt-6">
+          <button id="cancel-share" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-200 hover:scale-105">
+            Tutup
+          </button>
         </div>
       </div>
     </div>
@@ -259,630 +540,540 @@
 
   <script>
     // Quiz questions
-    const quizQuestions = [
+    const questions = [
       {
-        question: "Apa arti kata 'Haji' secara bahasa?",
+        id: 1,
+        question: "Apa yang dimaksud dengan Istitha'ah dalam konteks ibadah haji?",
         options: [
-          "Berkunjung",
-          "Berdoa",
-          "Menyembah",
-          "Bersuci"
+          { id: "a", text: "Kemampuan fisik dan finansial untuk melaksanakan haji" },
+          { id: "b", text: "Kemampuan membaca doa-doa haji dengan benar" },
+          { id: "c", text: "Kemampuan menghafal manasik haji" },
+          { id: "d", text: "Kemampuan berjalan kaki selama ibadah haji" },
         ],
-        correctAnswer: 0
+        correctAnswer: "a",
+        explanation: "Istitha'ah adalah kemampuan atau kesanggupan seseorang untuk melaksanakan ibadah haji, baik dari segi fisik (kesehatan) maupun finansial (biaya). Ini merupakan syarat wajib haji sebagaimana disebutkan dalam QS. Ali Imran ayat 97."
       },
       {
-        question: "Kapan ibadah Haji dilaksanakan?",
+        id: 2,
+        question: "Apa perbedaan antara haji ifrad, haji qiran, dan haji tamattu?",
         options: [
-          "Bulan Ramadhan",
-          "Bulan Syawal",
-          "Bulan Dzulhijjah",
-          "Bulan Muharram"
+          { id: "a", text: "Perbedaan waktu pelaksanaannya" },
+          { id: "b", text: "Perbedaan jumlah tawaf yang dilakukan" },
+          { id: "c", text: "Perbedaan cara pelaksanaan dan urutan ibadah haji dan umrah" },
+          { id: "d", text: "Perbedaan tempat pelaksanaannya" },
         ],
-        correctAnswer: 2
+        correctAnswer: "c",
+        explanation: "Perbedaan utama antara haji ifrad, qiran, dan tamattu terletak pada cara pelaksanaan dan urutan ibadah haji dan umrah. Haji ifrad adalah melaksanakan haji saja tanpa umrah. Haji qiran adalah melaksanakan haji dan umrah secara bersamaan dengan satu niat dan satu rangkaian. Haji tamattu adalah melaksanakan umrah terlebih dahulu pada bulan haji, lalu bertahallul, kemudian berniat haji lagi pada tanggal 8 Dzulhijjah."
       },
       {
-        question: "Apa perbedaan utama antara Haji dan Umrah?",
-        options: [
-          "Haji wajib, Umrah sunnah",
-          "Haji dilakukan kapan saja, Umrah hanya di bulan tertentu",
-          "Haji memiliki wukuf di Arafah, Umrah tidak",
-          "Haji tidak memiliki tawaf, Umrah memiliki tawaf"
-        ],
-        correctAnswer: 2
-      },
-      {
-        question: "Rukun Haji yang tidak terdapat dalam Umrah adalah...",
-        options: [
-          "Ihram",
-          "Wukuf di Arafah",
-          "Tawaf",
-          "Sa'i"
-        ],
-        correctAnswer: 1
-      },
-      {
-        question: "Apa yang dimaksud dengan Ihram?",
-        options: [
-          "Pakaian khusus untuk ibadah Haji dan Umrah",
-          "Niat dan keadaan suci untuk melaksanakan ibadah Haji atau Umrah",
-          "Tempat memulai ibadah Haji dan Umrah",
-          "Doa khusus saat memulai ibadah Haji dan Umrah"
-        ],
-        correctAnswer: 1
-      },
-      {
+        id: 3,
         question: "Kapan waktu pelaksanaan wukuf di Arafah?",
         options: [
-          "Tanggal 8 Dzulhijjah",
-          "Tanggal 9 Dzulhijjah",
-          "Tanggal 10 Dzulhijjah",
-          "Tanggal 11 Dzulhijjah"
+          { id: "a", text: "Tanggal 8 Dzulhijjah" },
+          { id: "b", text: "Tanggal 9 Dzulhijjah" },
+          { id: "c", text: "Tanggal 10 Dzulhijjah" },
+          { id: "d", text: "Tanggal 11 Dzulhijjah" },
         ],
-        correctAnswer: 1
+        correctAnswer: "b",
+        explanation: "Wukuf di Arafah dilaksanakan pada tanggal 9 Dzulhijjah, dimulai setelah matahari tergelincir (waktu Dzuhur) hingga terbit fajar pada tanggal 10 Dzulhijjah. Wukuf merupakan rukun haji yang paling utama, sehingga jika seseorang tidak melaksanakan wukuf, maka hajinya tidak sah."
       },
       {
-        question: "Apa yang dimaksud dengan Tawaf?",
+        id: 4,
+        question: "Apa yang dimaksud dengan Miqat Makani?",
         options: [
-          "Berlari-lari kecil antara Shafa dan Marwah",
-          "Melempar jumrah di Mina",
-          "Mengelilingi Ka'bah sebanyak tujuh kali",
-          "Berdiam diri di Arafah"
+          { id: "a", text: "Waktu untuk melaksanakan ibadah haji" },
+          { id: "b", text: "Tempat untuk memulai ihram" },
+          { id: "c", text: "Tempat untuk melaksanakan tawaf" },
+          { id: "d", text: "Waktu untuk melaksanakan umrah" },
         ],
-        correctAnswer: 2
+        correctAnswer: "b",
+        explanation: "Miqat Makani adalah tempat-tempat tertentu yang telah ditetapkan oleh Rasulullah SAW sebagai batas untuk memulai ihram bagi jamaah haji atau umrah. Ada lima miqat makani utama: Dzulhulaifah (untuk penduduk Madinah), Juhfah (untuk penduduk Syam), Qarnul Manazil (untuk penduduk Najd), Yalamlam (untuk penduduk Yaman), dan Dzatu Irqin (untuk penduduk Irak)."
       },
       {
-        question: "Apa yang dimaksud dengan Sa'i?",
-        options: [
-          "Berlari-lari kecil antara Shafa dan Marwah",
-          "Melempar jumrah di Mina",
-          "Mengelilingi Ka'bah sebanyak tujuh kali",
-          "Berdiam diri di Arafah"
-        ],
-        correctAnswer: 0
-      },
-      {
-        question: "Apa yang dimaksud dengan Tahallul?",
-        options: [
-          "Niat untuk memulai ibadah Haji",
-          "Mencukur atau memotong rambut sebagai tanda berakhirnya ihram",
-          "Bermalam di Muzdalifah",
-          "Melempar jumrah di Mina"
-        ],
-        correctAnswer: 1
-      },
-      {
-        question: "Berapa kali Sa'i dilakukan dalam ibadah Haji dan Umrah?",
-        options: [
-          "3 kali",
-          "5 kali",
-          "7 kali",
-          "9 kali"
-        ],
-        correctAnswer: 2
-      },
-      {
-        question: "Apa yang dimaksud dengan Miqat?",
-        options: [
-          "Tempat bermalam selama ibadah Haji",
-          "Tempat dan waktu mulai berihram",
-          "Tempat melempar jumrah",
-          "Tempat berkumpul setelah wukuf"
-        ],
-        correctAnswer: 1
-      },
-      {
-        question: "Apa nama tempat yang menjadi lokasi wukuf?",
-        options: [
-          "Mina",
-          "Muzdalifah",
-          "Arafah",
-          "Jeddah"
-        ],
-        correctAnswer: 2
-      },
-      {
-        question: "Apa yang dimaksud dengan Mabit di Muzdalifah?",
-        options: [
-          "Bermalam di Muzdalifah setelah wukuf",
-          "Berdoa di Muzdalifah sebelum wukuf",
-          "Melakukan tawaf di Muzdalifah",
-          "Melakukan sa'i di Muzdalifah"
-        ],
-        correctAnswer: 0
-      },
-      {
-        question: "Apa yang dimaksud dengan Jumrah?",
-        options: [
-          "Tempat bermalam di Mina",
-          "Tempat mengambil batu untuk dilempar",
-          "Tugu tempat melempar batu sebagai simbol melawan godaan setan",
-          "Tempat berkumpul sebelum wukuf"
-        ],
-        correctAnswer: 2
-      },
-      {
-        question: "Ada berapa Jumrah yang dilempar selama ibadah Haji?",
-        options: [
-          "1 Jumrah",
-          "2 Jumrah",
-          "3 Jumrah",
-          "4 Jumrah"
-        ],
-        correctAnswer: 2
-      },
-      {
-        question: "Apa nama Jumrah yang paling besar?",
-        options: [
-          "Jumrah Ula",
-          "Jumrah Wustha",
-          "Jumrah Aqabah",
-          "Jumrah Kubra"
-        ],
-        correctAnswer: 2
-      },
-      {
-        question: "Kapan waktu melempar Jumrah Aqabah pada hari Nahr (10 Dzulhijjah)?",
-        options: [
-          "Setelah terbit matahari",
-          "Setelah Dzuhur",
-          "Setelah Ashar",
-          "Setelah Maghrib"
-        ],
-        correctAnswer: 0
-      },
-      {
-        question: "Apa yang dimaksud dengan Dam dalam ibadah Haji?",
-        options: [
-          "Denda berupa puasa",
-          "Denda berupa sedekah",
-          "Denda berupa menyembelih hewan",
-          "Denda berupa memberi makan fakir miskin"
-        ],
-        correctAnswer: 2
-      },
-      {
-        question: "Apa yang dimaksud dengan Haji Ifrad?",
-        options: [
-          "Melaksanakan Haji dan Umrah dengan satu ihram",
-          "Melaksanakan Umrah terlebih dahulu kemudian Haji dengan ihram yang berbeda",
-          "Melaksanakan Haji saja tanpa Umrah",
-          "Melaksanakan Haji dan Umrah secara bersamaan"
-        ],
-        correctAnswer: 2
-      },
-      {
-        question: "Apa yang dimaksud dengan Haji Tamattu?",
-        options: [
-          "Melaksanakan Haji dan Umrah dengan satu ihram",
-          "Melaksanakan Umrah terlebih dahulu kemudian Haji dengan ihram yang berbeda",
-          "Melaksanakan Haji saja tanpa Umrah",
-          "Melaksanakan Haji dan Umrah secara bersamaan"
-        ],
-        correctAnswer: 1
-      },
-      {
-        question: "Apa yang dimaksud dengan Haji Qiran?",
-        options: [
-          "Melaksanakan Haji dan Umrah dengan satu ihram",
-          "Melaksanakan Umrah terlebih dahulu kemudian Haji dengan ihram yang berbeda",
-          "Melaksanakan Haji saja tanpa Umrah",
-          "Melaksanakan Haji dan Umrah secara bersamaan"
-        ],
-        correctAnswer: 0
-      },
-      {
-        question: "Apa hukum melaksanakan ibadah Umrah?",
-        options: [
-          "Wajib sekali seumur hidup",
-          "Sunnah",
-          "Mubah",
-          "Makruh"
-        ],
-        correctAnswer: 1
-      },
-      {
-        question: "Apa hukum melaksanakan ibadah Haji bagi yang mampu?",
-        options: [
-          "Wajib sekali seumur hidup",
-          "Sunnah",
-          "Mubah",
-          "Makruh"
-        ],
-        correctAnswer: 0
-      },
-      {
-        question: "Apa yang dimaksud dengan Tawaf Ifadhah?",
-        options: [
-          "Tawaf saat pertama kali tiba di Mekah",
-          "Tawaf setelah wukuf di Arafah",
-          "Tawaf perpisahan sebelum meninggalkan Mekah",
-          "Tawaf sunnah yang boleh dilakukan kapan saja"
-        ],
-        correctAnswer: 1
-      },
-      {
-        question: "Apa yang dimaksud dengan Tawaf Wada?",
-        options: [
-          "Tawaf saat pertama kali tiba di Mekah",
-          "Tawaf setelah wukuf di Arafah",
-          "Tawaf perpisahan sebelum meninggalkan Mekah",
-          "Tawaf sunnah yang boleh dilakukan kapan saja"
-        ],
-        correctAnswer: 2
-      },
-      {
+        id: 5,
         question: "Apa yang dimaksud dengan Tawaf Qudum?",
         options: [
-          "Tawaf saat pertama kali tiba di Mekah",
-          "Tawaf setelah wukuf di Arafah",
-          "Tawaf perpisahan sebelum meninggalkan Mekah",
-          "Tawaf sunnah yang boleh dilakukan kapan saja"
+          { id: "a", text: "Tawaf yang dilakukan setelah wukuf di Arafah" },
+          { id: "b", text: "Tawaf yang dilakukan saat pertama kali tiba di Makkah" },
+          { id: "c", text: "Tawaf perpisahan sebelum meninggalkan Makkah" },
+          { id: "d", text: "Tawaf yang dilakukan sebagai pengganti dam (denda)" },
         ],
-        correctAnswer: 0
+        correctAnswer: "b",
+        explanation: "Tawaf Qudum adalah tawaf yang dilakukan saat pertama kali tiba di Makkah sebagai penghormatan kepada Baitullah. Tawaf ini hukumnya sunnah bagi jamaah haji yang melaksanakan haji ifrad atau qiran, dan tidak dilakukan oleh jamaah yang melaksanakan haji tamattu karena mereka langsung melaksanakan tawaf umrah."
       },
       {
-        question: "Apa yang dimaksud dengan Hari Tarwiyah?",
+        id: 6,
+        question: "Apa yang dimaksud dengan Tawaf Wada?",
         options: [
-          "Tanggal 8 Dzulhijjah",
-          "Tanggal 9 Dzulhijjah",
-          "Tanggal 10 Dzulhijjah",
-          "Tanggal 11-13 Dzulhijjah"
+          { id: "a", text: "Tawaf yang dilakukan saat pertama kali tiba di Makkah" },
+          { id: "b", text: "Tawaf yang dilakukan setelah wukuf di Arafah" },
+          { id: "c", text: "Tawaf perpisahan sebelum meninggalkan Makkah" },
+          { id: "d", text: "Tawaf yang dilakukan sebagai pengganti dam (denda)" },
         ],
-        correctAnswer: 0
+        correctAnswer: "c",
+        explanation: "Tawaf Wada adalah tawaf perpisahan yang dilakukan sebelum meninggalkan Makkah untuk pulang ke negeri masing-masing. Tawaf ini hukumnya wajib bagi jamaah haji dan umrah, kecuali bagi wanita yang sedang haid atau nifas."
       },
       {
-        question: "Apa yang dimaksud dengan Hari Arafah?",
+        id: 7,
+        question: "Apa yang dimaksud dengan Mabit di Muzdalifah?",
         options: [
-          "Tanggal 8 Dzulhijjah",
-          "Tanggal 9 Dzulhijjah",
-          "Tanggal 10 Dzulhijjah",
-          "Tanggal 11-13 Dzulhijjah"
+          { id: "a", text: "Bermalam di Muzdalifah pada malam 10 Dzulhijjah" },
+          { id: "b", text: "Bermalam di Muzdalifah pada malam 9 Dzulhijjah" },
+          { id: "c", text: "Bermalam di Muzdalifah pada malam 11 Dzulhijjah" },
+          { id: "d", text: "Bermalam di Muzdalifah pada malam 12 Dzulhijjah" },
         ],
-        correctAnswer: 1
+        correctAnswer: "a",
+        explanation: "Mabit di Muzdalifah adalah bermalam atau berhenti sejenak di Muzdalifah pada malam 10 Dzulhijjah (setelah wukuf di Arafah). Waktu mabit di Muzdalifah adalah setelah Maghrib hingga terbit fajar. Di Muzdalifah, jamaah haji melaksanakan shalat Maghrib dan Isya dengan jama' ta'khir dan mengumpulkan batu untuk melempar jumrah."
       },
       {
-        question: "Apa yang dimaksud dengan Hari Nahr?",
+        id: 8,
+        question: "Apa yang dimaksud dengan Mabit di Mina?",
         options: [
-          "Tanggal 8 Dzulhijjah",
-          "Tanggal 9 Dzulhijjah",
-          "Tanggal 10 Dzulhijjah",
-          "Tanggal 11-13 Dzulhijjah"
+          { id: "a", text: "Bermalam di Mina pada tanggal 8 Dzulhijjah" },
+          { id: "b", text: "Bermalam di Mina pada tanggal 9 Dzulhijjah" },
+          { id: "c", text: "Bermalam di Mina pada malam hari tasyriq (11, 12, dan 13 Dzulhijjah)" },
+          { id: "d", text: "Bermalam di Mina pada tanggal 10 Dzulhijjah" },
         ],
-        correctAnswer: 2
+        correctAnswer: "c",
+        explanation: "Mabit di Mina adalah bermalam di Mina pada malam hari-hari tasyriq, yaitu malam 11, 12, dan 13 Dzulhijjah. Mabit di Mina hukumnya wajib bagi jamaah haji, dan bagi yang tidak melaksanakannya wajib membayar dam (denda)."
       },
       {
-        question: "Apa yang dimaksud dengan Hari Tasyriq?",
+        id: 9,
+        question: "Apa yang dimaksud dengan Tahallul dalam ibadah haji?",
         options: [
-          "Tanggal 8 Dzulhijjah",
-          "Tanggal 9 Dzulhijjah",
-          "Tanggal 10 Dzulhijjah",
-          "Tanggal 11-13 Dzulhijjah"
+          { id: "a", text: "Niat untuk memulai ibadah haji" },
+          { id: "b", text: "Proses pengundian untuk mendapatkan kuota haji" },
+          { id: "c", text: "Keadaan diperbolehkannya melakukan hal-hal yang dilarang saat ihram" },
+          { id: "d", text: "Proses pembayaran biaya haji" },
         ],
-        correctAnswer: 3
+        correctAnswer: "c",
+        explanation: "Tahallul adalah keadaan diperbolehkannya kembali melakukan hal-hal yang dilarang saat ihram setelah melakukan amalan-amalan tertentu. Dalam haji, ada tahallul awal (setelah melakukan dua dari tiga amalan: melempar jumrah aqabah, mencukur/memotong rambut, dan tawaf ifadah) dan tahallul tsani (setelah melakukan semua amalan tersebut)."
+      },
+      {
+        id: 10,
+        question: "Apa yang dimaksud dengan Dam dalam konteks ibadah haji?",
+        options: [
+          { id: "a", text: "Doa khusus yang dibaca saat tawaf" },
+          { id: "b", text: "Denda atau tebusan karena melanggar larangan ihram atau meninggalkan wajib haji" },
+          { id: "c", text: "Tempat khusus untuk bermalam di Mina" },
+          { id: "d", text: "Ritual khusus setelah melempar jumrah" },
+        ],
+        correctAnswer: "b",
+        explanation: "Dam adalah denda atau tebusan yang harus dibayarkan oleh jamaah haji atau umrah karena melanggar larangan ihram atau meninggalkan salah satu wajib haji/umrah. Dam dapat berupa menyembelih seekor kambing, berpuasa 10 hari, atau memberi makan 6 orang miskin, tergantung jenis pelanggarannya."
+      },
+      {
+        id: 11,
+        question: "Apa yang dimaksud dengan Jumrah dalam ibadah haji?",
+        options: [
+          { id: "a", text: "Tempat untuk bermalam di Mina" },
+          { id: "b", text: "Batu kecil yang digunakan untuk melempar" },
+          { id: "c", text: "Tiang atau tempat untuk melempar batu" },
+          { id: "d", text: "Ritual khusus setelah wukuf di Arafah" },
+        ],
+        correctAnswer: "c",
+        explanation: "Jumrah adalah tiang atau tempat yang menjadi sasaran lemparan batu dalam ritual melempar jumrah pada ibadah haji. Ada tiga jumrah: Jumrah Ula (kecil), Jumrah Wustha (tengah), dan Jumrah Aqabah (besar). Ritual melempar jumrah dilakukan pada hari-hari tasyriq (11, 12, dan 13 Dzulhijjah) sebagai simbolisasi pengusiran setan."
+      },
+      {
+        id: 12,
+        question: "Apa yang dimaksud dengan Sa'i dalam ibadah haji dan umrah?",
+        options: [
+          { id: "a", text: "Berjalan mengelilingi Ka'bah sebanyak 7 kali" },
+          { id: "b", text: "Berjalan atau berlari-lari kecil antara bukit Shafa dan Marwah sebanyak 7 kali" },
+          { id: "c", text: "Berdiam diri di Arafah pada tanggal 9 Dzulhijjah" },
+          { id: "d", text: "Melempar jumrah pada hari-hari tasyriq" },
+        ],
+        correctAnswer: "b",
+        explanation: "Sa'i adalah berjalan atau berlari-lari kecil antara bukit Shafa dan Marwah sebanyak 7 kali. Sa'i dimulai dari bukit Shafa dan berakhir di bukit Marwah. Sa'i merupakan salah satu rukun haji dan umrah yang mengenang perjuangan Siti Hajar saat mencari air untuk putranya, Ismail."
+      },
+      {
+        id: 13,
+        question: "Apa yang dimaksud dengan Thawaf Ifadhah dalam ibadah haji?",
+        options: [
+          { id: "a", text: "Tawaf yang dilakukan saat pertama kali tiba di Makkah" },
+          { id: "b", text: "Tawaf perpisahan sebelum meninggalkan Makkah" },
+          { id: "c", text: "Tawaf yang dilakukan setelah wukuf di Arafah" },
+          { id: "d", text: "Tawaf yang dilakukan sebagai pengganti dam (denda)" },
+        ],
+        correctAnswer: "c",
+        explanation: "Thawaf Ifadhah adalah tawaf yang dilakukan setelah wukuf di Arafah, biasanya pada tanggal 10 Dzulhijjah atau hari-hari tasyriq. Thawaf Ifadhah merupakan salah satu rukun haji, sehingga jika tidak dilaksanakan, maka hajinya tidak sah."
+      },
+      {
+        id: 14,
+        question: "Apa yang dimaksud dengan Ihram dalam ibadah haji dan umrah?",
+        options: [
+          { id: "a", text: "Pakaian khusus yang dikenakan saat melaksanakan haji dan umrah" },
+          { id: "b", text: "Niat untuk memulai ibadah haji atau umrah dan memakai pakaian ihram" },
+          { id: "c", text: "Ritual khusus sebelum memasuki kota Makkah" },
+          { id: "d", text: "Doa khusus yang dibaca saat memulai tawaf" },
+        ],
+        correctAnswer: "b",
+        explanation: "Ihram adalah niat untuk memulai ibadah haji atau umrah dan memakai pakaian ihram. Pakaian ihram untuk laki-laki berupa dua helai kain putih tidak berjahit, sedangkan untuk perempuan berupa pakaian yang menutup seluruh tubuh kecuali wajah dan telapak tangan. Saat ihram, ada beberapa larangan yang harus dijauhi."
+      },
+      {
+        id: 15,
+        question: "Apa hikmah dari ritual melempar jumrah dalam ibadah haji?",
+        options: [
+          { id: "a", text: "Untuk melatih ketepatan dalam melempar" },
+          { id: "b", text: "Untuk menguji kesabaran jamaah haji" },
+          { id: "c", text: "Untuk mengenang perjuangan Nabi Ibrahim AS melawan godaan setan" },
+          { id: "d", text: "Untuk membersihkan diri dari dosa-dosa kecil" },
+        ],
+        correctAnswer: "c",
+        explanation: "Hikmah dari ritual melempar jumrah adalah untuk mengenang perjuangan Nabi Ibrahim AS ketika melawan godaan setan yang berusaha menghalanginya melaksanakan perintah Allah untuk menyembelih putranya, Ismail AS. Ritual ini juga melambangkan tekad kuat seorang muslim untuk melawan godaan setan dalam kehidupan sehari-hari."
       }
     ];
 
-    // Game state
-    let currentQuestion = 0;
-    let score = 0;
-    let userAnswers = Array(quizQuestions.length).fill(null);
-    let userName = "";
+    // Quiz state
+    let currentQuestionIndex = 0;
+    let selectedAnswers = {};
+    let timeLeft = 15 * 60; // 15 minutes in seconds
+    let timerInterval;
+    let quizStarted = false;
+    let quizFinished = false;
+    let startTime;
+    let direction = 'next'; // For animation direction
 
     // DOM elements
-    const welcomeScreen = document.getElementById('welcome-screen');
-    const quizContainer = document.getElementById('quiz-container');
+    const startScreen = document.getElementById('start-screen');
+    const quizScreen = document.getElementById('quiz-screen');
     const resultsScreen = document.getElementById('results-screen');
-    const reviewScreen = document.getElementById('review-screen');
+    const answerReview = document.getElementById('answer-review');
+    const shareDialog = document.getElementById('share-dialog');
+    const confettiContainer = document.getElementById('confetti-container');
     
-    const userNameInput = document.getElementById('user-name');
-    const nameError = document.getElementById('name-error');
-    const userNameDisplay = document.getElementById('user-name-display');
-    const resultName = document.getElementById('result-name');
-    const reviewName = document.getElementById('review-name');
-    const quizDate = document.getElementById('quiz-date');
+    const startButton = document.getElementById('start-button');
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    const nextButtonText = document.getElementById('next-button-text');
+    const shareButton = document.getElementById('share-button');
+    const reviewButton = document.getElementById('review-button');
+    const retryButton = document.getElementById('retry-button');
+    const cancelShareButton = document.getElementById('cancel-share');
+    const whatsappShareButton = document.getElementById('whatsapp-share');
+    const copyResultButton = document.getElementById('copy-result');
     
-    const questionCounter = document.getElementById('question-counter');
-    const scoreDisplay = document.getElementById('score-display');
-    const progressBar = document.getElementById('progress-bar');
-    const questionText = document.getElementById('question-text');
+    const totalQuestionsSpan = document.getElementById('total-questions');
+    const currentQuestionSpan = document.getElementById('current-question');
+    const questionNumberSpan = document.getElementById('question-number');
+    const questionTextElement = document.getElementById('question-text');
+    const questionContainer = document.getElementById('question-container');
     const optionsContainer = document.getElementById('options-container');
+    const timerElement = document.getElementById('timer');
+    const timerBar = document.getElementById('timer-bar');
+    const currentScoreSpan = document.getElementById('current-score');
     
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    
-    const finalScore = document.getElementById('final-score');
-    const scorePercentage = document.getElementById('score-percentage');
-    const scoreMessage = document.getElementById('score-message');
-    const correctAnswers = document.getElementById('correct-answers');
-    const wrongAnswers = document.getElementById('wrong-answers');
-    const unanswered = document.getElementById('unanswered');
-    
-    const reviewCorrect = document.getElementById('review-correct');
-    const reviewWrong = document.getElementById('review-wrong');
-    const reviewUnanswered = document.getElementById('review-unanswered');
+    const percentageScoreSpan = document.getElementById('percentage-score');
+    const correctAnswersSpan = document.getElementById('correct-answers');
+    const wrongAnswersSpan = document.getElementById('wrong-answers');
+    const timeSpentSpan = document.getElementById('time-spent');
+    const passStatusSpan = document.getElementById('pass-status');
+    const statusCard = document.getElementById('status-card');
+    const scoreCircle = document.getElementById('score-circle');
     const reviewContainer = document.getElementById('review-container');
 
-    // Buttons
-    const startQuizBtn = document.getElementById('start-quiz-btn');
-    const reviewBtn = document.getElementById('review-btn');
-    const restartBtn = document.getElementById('restart-btn');
-    const backToResultsBtn = document.getElementById('back-to-results-btn');
-
-    // Event listeners
-    startQuizBtn.addEventListener('click', validateAndStartQuiz);
-    prevBtn.addEventListener('click', goToPreviousQuestion);
-    nextBtn.addEventListener('click', goToNextQuestion);
-    reviewBtn.addEventListener('click', showReviewScreen);
-    restartBtn.addEventListener('click', restartQuiz);
-    backToResultsBtn.addEventListener('click', showResultsScreen);
-    
-    // Enter key for name input
-    userNameInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        validateAndStartQuiz();
-      }
-    });
-
-    // Validate name and start the quiz
-    function validateAndStartQuiz() {
-      userName = userNameInput.value.trim();
+    // Initialize
+    function init() {
+      totalQuestionsSpan.textContent = questions.length;
       
-      if (userName === '') {
-        nameError.classList.remove('hidden');
-        userNameInput.classList.add('border-red-500');
-        userNameInput.classList.add('shake');
-        
-        // Remove shake animation after it completes
-        setTimeout(() => {
-          userNameInput.classList.remove('shake');
-        }, 500);
-        
-        return;
-      }
-      
-      // Hide error if previously shown
-      nameError.classList.add('hidden');
-      userNameInput.classList.remove('border-red-500');
-      
-      // Display user name
-      userNameDisplay.textContent = userName;
-      
-      startQuiz();
+      // Event listeners
+      startButton.addEventListener('click', startQuiz);
+      prevButton.addEventListener('click', () => {
+        direction = 'prev';
+        handlePrevQuestion();
+      });
+      nextButton.addEventListener('click', () => {
+        direction = 'next';
+        handleNextQuestion();
+      });
+      shareButton.addEventListener('click', () => shareDialog.classList.remove('hidden'));
+      reviewButton.addEventListener('click', toggleReviewSection);
+      retryButton.addEventListener('click', handleRetry);
+      cancelShareButton.addEventListener('click', () => shareDialog.classList.add('hidden'));
+      whatsappShareButton.addEventListener('click', handleShareWhatsApp);
+      copyResultButton.addEventListener('click', handleCopyResult);
     }
 
-    // Start the quiz
+    // Start quiz
     function startQuiz() {
-      welcomeScreen.classList.add('hidden');
-      quizContainer.classList.remove('hidden');
+      quizStarted = true;
+      startTime = new Date();
+      
+      startScreen.classList.add('hidden');
+      quizScreen.classList.remove('hidden');
+      
+      // Reset timer animation
+      timerBar.classList.remove('animate-progress');
+      void timerBar.offsetWidth; // Trigger reflow
+      timerBar.classList.add('animate-progress');
+      
+      // Start timer
+      startTimer();
+      
+      // Load first question
       loadQuestion();
     }
 
-    // Load current question
+    // Load question
     function loadQuestion() {
-      const question = quizQuestions[currentQuestion];
+      const question = questions[currentQuestionIndex];
       
-      // Update question counter and progress bar
-      questionCounter.textContent = `${currentQuestion + 1}/${quizQuestions.length}`;
-      progressBar.style.width = `${((currentQuestion + 1) / quizQuestions.length) * 100}%`;
+      // Update question number and text
+      currentQuestionSpan.textContent = currentQuestionIndex + 1;
+      questionNumberSpan.textContent = currentQuestionIndex + 1;
+      questionTextElement.textContent = question.question;
       
-      // Display question
-      questionText.textContent = question.question;
+      // Apply animation based on direction
+      questionContainer.classList.remove('animate-fadeInRight', 'animate-fadeInLeft');
+      void questionContainer.offsetWidth; //  'animate-fadeInLeft');
+      void questionContainer.offsetWidth; // Trigger reflow
+      questionContainer.classList.add(direction === 'next' ? 'animate-fadeInRight' : 'animate-fadeInLeft');
       
-      // Clear previous options
+      // Clear options container
       optionsContainer.innerHTML = '';
       
-      // Add options
+      // Add options with animation
       question.options.forEach((option, index) => {
+        const isSelected = selectedAnswers[question.id] === option.id;
         const optionElement = document.createElement('div');
-        optionElement.className = `quiz-option p-3 rounded-lg border ${
-          userAnswers[currentQuestion] === index 
-            ? 'border-emerald-500 bg-emerald-50' 
-            : 'border-gray-200 hover:border-emerald-300'
-        } cursor-pointer transition-all duration-200`;
-        
+        optionElement.className = `p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer option-hover ${isSelected ? 'border-brand-500 bg-brand-50 option-selected' : 'border-gray-200 hover:border-brand-300 hover:bg-brand-50'}`;
+        optionElement.style.animationDelay = `${index * 0.1}s`;
         optionElement.innerHTML = `
-          <div class="flex items-center">
-            <div class="w-6 h-6 rounded-full ${
-              userAnswers[currentQuestion] === index 
-                ? 'bg-emerald-500 text-white' 
-                : 'bg-gray-200 text-gray-700'
-            } flex items-center justify-center mr-3 font-medium text-sm">
-              ${String.fromCharCode(65 + index)}
+          <div class="flex items-center gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-xl ${isSelected ? 'bg-brand-500 text-white' : 'bg-gray-100 text-gray-700'} flex items-center justify-center font-bold text-lg transition-all duration-300">
+              ${option.id.toUpperCase()}
             </div>
-            <span>${option}</span>
+            <div class="flex-grow text-lg">${option.text}</div>
           </div>
         `;
         
-        optionElement.addEventListener('click', () => selectOption(index));
-        optionElement.classList.add('fade-in');
-        optionElement.style.animationDelay = `${index * 0.1}s`;
+        optionElement.addEventListener('click', () => {
+          // Select this option
+          selectedAnswers[question.id] = option.id;
+          
+          // Update UI
+          loadQuestion();
+          
+          // Update score
+          updateScore();
+        });
         
         optionsContainer.appendChild(optionElement);
       });
       
-      // Update navigation buttons
-      prevBtn.disabled = currentQuestion === 0;
-      nextBtn.textContent = currentQuestion === quizQuestions.length - 1 ? 'Selesai' : 'Selanjutnya';
+      // Update button text
+      nextButtonText.textContent = currentQuestionIndex === questions.length - 1 ? 'Selesai' : 'Selanjutnya';
+      
+      // Update prev button state
+      prevButton.disabled = currentQuestionIndex === 0;
     }
 
-    // Select an option
-    function selectOption(optionIndex) {
-      userAnswers[currentQuestion] = optionIndex;
-      
-      // Update score if answer is correct
-      if (optionIndex === quizQuestions[currentQuestion].correctAnswer) {
-        if (userAnswers[currentQuestion] === null) {
-          score++;
-          scoreDisplay.textContent = score;
-        }
-      } else {
-        if (userAnswers[currentQuestion] === quizQuestions[currentQuestion].correctAnswer) {
-          score--;
-          scoreDisplay.textContent = score;
-        }
-      }
-      
-      // Reload question to update UI
-      loadQuestion();
-      
-      // Automatically go to next question if not the last one
-      if (currentQuestion < quizQuestions.length - 1) {
-        setTimeout(() => {
-          goToNextQuestion();
-        }, 700);
-      }
-    }
-
-    // Go to previous question
-    function goToPreviousQuestion() {
-      if (currentQuestion > 0) {
-        currentQuestion--;
-        loadQuestion();
-      }
-    }
-
-    // Go to next question
-    function goToNextQuestion() {
-      if (currentQuestion < quizQuestions.length - 1) {
-        currentQuestion++;
+    // Handle next question
+    function handleNextQuestion() {
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
         loadQuestion();
       } else {
         finishQuiz();
       }
     }
 
-    // Finish the quiz and show results
+    // Handle previous question
+    function handlePrevQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        loadQuestion();
+      }
+    }
+
+    // Start timer
+    function startTimer() {
+      updateTimerDisplay();
+      
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          finishQuiz();
+        }
+      }, 1000);
+    }
+
+    // Update timer display
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      
+      // Add warning class when time is running low
+      if (timeLeft <= 60) {
+        timerElement.classList.add('text-rose-600');
+        timerElement.parentElement.classList.add('animate-pulse');
+      }
+    }
+
+    // Update score
+    function updateScore() {
+      const score = calculateScore();
+      currentScoreSpan.textContent = score;
+    }
+
+    // Calculate score
+    function calculateScore() {
+      let score = 0;
+      questions.forEach(question => {
+        if (selectedAnswers[question.id] === question.correctAnswer) {
+          score++;
+        }
+      });
+      return score;
+    }
+
+    // Create confetti
+    function createConfetti() {
+      confettiContainer.classList.remove('hidden');
+      
+      const colors = ['#14b8a6', '#0d9488', '#0f766e', '#115e59', '#134e4a'];
+      const shapes = ['square', 'circle'];
+      
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        const size = Math.random() * 10 + 5;
+        
+        confetti.className = `confetti ${shape === 'circle' ? 'rounded-full' : ''}`;
+        confetti.style.width = `${size}px`;
+        confetti.style.height = `${size}px`;
+        confetti.style.backgroundColor = color;
+        confetti.style.left = `${Math.random() * 100}%`;
+        
+        const animationDuration = Math.random() * 3 + 2;
+        const animationDelay = Math.random() * 5;
+        
+        confetti.style.animationDuration = `${animationDuration}s`;
+        confetti.style.animationDelay = `${animationDelay}s`;
+        
+        if (Math.random() > 0.7) {
+          confetti.classList.add('confetti--animation-slow');
+        } else if (Math.random() > 0.4) {
+          confetti.classList.add('confetti--animation-medium');
+        } else {
+          confetti.classList.add('confetti--animation-fast');
+        }
+        
+        confettiContainer.appendChild(confetti);
+      }
+      
+      setTimeout(() => {
+        confettiContainer.classList.add('hidden');
+        confettiContainer.innerHTML = '';
+      }, 8000);
+    }
+
+    // Finish quiz
     function finishQuiz() {
-      quizContainer.classList.add('hidden');
+      quizFinished = true;
+      clearInterval(timerInterval);
+      
+      const endTime = new Date();
+      const timeSpent = Math.floor((endTime - startTime) / 1000);
+      const minutes = Math.floor(timeSpent / 60);
+      const seconds = timeSpent % 60;
+      
+      quizScreen.classList.add('hidden');
       resultsScreen.classList.remove('hidden');
       
-      // Set current date
-      const today = new Date();
-      quizDate.textContent = today.toLocaleDateString('id-ID', { 
-        day: 'numeric', 
-        month: 'long', 
-        year: 'numeric' 
-      });
+      const score = calculateScore();
+      const percentage = Math.round((score / questions.length) * 100);
+      const wrong = questions.length - score;
       
-      // Set user name in results
-      resultName.textContent = userName;
+      // Update results UI
+      percentageScoreSpan.textContent = `${percentage}%`;
+      correctAnswersSpan.textContent = score;
+      wrongAnswersSpan.textContent = wrong;
+      timeSpentSpan.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
       
-      // Calculate final statistics
-      const correctCount = userAnswers.filter((answer, index) => answer === quizQuestions[index].correctAnswer).length;
-      const wrongCount = userAnswers.filter((answer, index) => answer !== null && answer !== quizQuestions[index].correctAnswer).length;
-      const unansweredCount = userAnswers.filter(answer => answer === null).length;
-      
-      // Update UI
-      finalScore.textContent = `${correctCount}/${quizQuestions.length}`;
-      scorePercentage.textContent = `${Math.round((correctCount / quizQuestions.length) * 100)}%`;
-      
-      correctAnswers.textContent = correctCount;
-      wrongAnswers.textContent = wrongCount;
-      unanswered.textContent = unansweredCount;
-      
-      // Set score message based on performance
-      if (correctCount >= 25) {
-        scoreMessage.textContent = `Luar biasa, ${userName}! Anda memiliki pemahaman yang sangat baik tentang ibadah Haji dan Umrah.`;
-      } else if (correctCount >= 20) {
-        scoreMessage.textContent = `Bagus, ${userName}! Anda memiliki pemahaman yang baik tentang ibadah Haji dan Umrah.`;
-      } else if (correctCount >= 15) {
-        scoreMessage.textContent = `Cukup baik, ${userName}. Anda memiliki pemahaman dasar tentang ibadah Haji dan Umrah.`;
+      // Determine pass status
+      if (percentage >= 70) {
+        passStatusSpan.textContent = 'Lulus';
+        passStatusSpan.classList.add('text-emerald-600');
+        statusCard.classList.add('bg-emerald-50', 'border-emerald-100');
+        statusCard.querySelector('div').classList.add('bg-emerald-100');
+        statusCard.querySelector('svg').classList.add('text-emerald-600');
+        
+        // Show confetti for passing
+        createConfetti();
       } else {
-        scoreMessage.textContent = `${userName}, Anda perlu belajar lebih banyak tentang ibadah Haji dan Umrah.`;
+        passStatusSpan.textContent = 'Belum Lulus';
+        passStatusSpan.classList.add('text-rose-600');
+        statusCard.classList.add('bg-rose-50', 'border-rose-100');
+        statusCard.querySelector('div').classList.add('bg-rose-100');
+        statusCard.querySelector('svg').classList.add('text-rose-600');
       }
       
       // Animate score circle
-      const scoreCircle = document.getElementById('score-circle');
-      scoreCircle.style.borderColor = getScoreColor(correctCount / quizQuestions.length);
+      setTimeout(() => {
+        scoreCircle.style.strokeDasharray = `${(percentage / 100) * 289} 289`;
+      }, 500);
+      
+      // Populate review section
+      populateReviewSection();
     }
 
-    // Show review screen
-    function showReviewScreen() {
-      resultsScreen.classList.add('hidden');
-      reviewScreen.classList.remove('hidden');
-      
-      // Set user name in review
-      reviewName.textContent = userName;
-      
-      // Calculate statistics
-      const correctCount = userAnswers.filter((answer, index) => answer === quizQuestions[index].correctAnswer).length;
-      const wrongCount = userAnswers.filter((answer, index) => answer !== null && answer !== quizQuestions[index].correctAnswer).length;
-      const unansweredCount = userAnswers.filter(answer => answer === null).length;
-      
-      // Update statistics in review
-      reviewCorrect.textContent = `${correctCount} Benar`;
-      reviewWrong.textContent = `${wrongCount} Salah`;
-      reviewUnanswered.textContent = `${unansweredCount} Kosong`;
-      
-      // Clear previous review items
+    // Populate review section
+    function populateReviewSection() {
       reviewContainer.innerHTML = '';
       
-      // Add review items
-      quizQuestions.forEach((question, index) => {
-        const isCorrect = userAnswers[index] === question.correctAnswer;
-        const isAnswered = userAnswers[index] !== null;
+      questions.forEach((question, index) => {
+        const userAnswer = selectedAnswers[question.id] || '';
+        const isCorrect = userAnswer === question.correctAnswer;
         
         const reviewItem = document.createElement('div');
-        reviewItem.className = `p-4 rounded-lg ${
-          isAnswered 
-            ? isCorrect 
-              ? 'bg-green-50 border border-green-200' 
-              : 'bg-red-50 border border-red-200'
-            : 'bg-gray-50 border border-gray-200'
-        }`;
+        reviewItem.className = 'py-6 animate-fadeInUp';
+        reviewItem.style.animationDelay = `${index * 0.1}s`;
         
         reviewItem.innerHTML = `
-          <div class="flex items-start gap-3">
-            <div class="w-6 h-6 rounded-full ${
-              isAnswered 
-                ? isCorrect 
-                  ? 'bg-green-500 text-white' 
-                  : 'bg-red-500 text-white'
-                : 'bg-gray-400 text-white'
-            } flex items-center justify-center flex-shrink-0 mt-1 font-medium text-sm">
+          <div class="flex items-start gap-4 mb-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-xl ${isCorrect ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'} flex items-center justify-center font-bold text-lg mt-1">
               ${index + 1}
             </div>
-            <div class="flex-1">
-              <h4 class="font-medium text-gray-800 mb-2">${question.question}</h4>
-              <div class="space-y-1 mb-3">
-                ${question.options.map((option, optionIndex) => `
-                  <div class="flex items-center">
-                    <div class="w-5 h-5 rounded-full ${
-                      userAnswers[index] === optionIndex 
-                        ? userAnswers[index] === question.correctAnswer 
-                          ? 'bg-green-500 text-white' 
-                          : 'bg-red-500 text-white'
-                        : question.correctAnswer === optionIndex 
-                          ? 'bg-green-500 text-white' 
-                          : 'bg-gray-200 text-gray-700'
-                    } flex items-center justify-center mr-2 text-xs font-medium">
-                      ${String.fromCharCode(65 + optionIndex)}
+            <div class="flex-grow">
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">${question.question}</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                ${question.options.map(option => {
+                  let optionClass = 'border-2 rounded-xl p-3 flex items-center gap-3';
+                  
+                  if (option.id === question.correctAnswer) {
+                    optionClass += ' bg-emerald-50 border-emerald-200 text-emerald-800';
+                  } else if (option.id === userAnswer && option.id !== question.correctAnswer) {
+                    optionClass += ' bg-rose-50 border-rose-200 text-rose-800';
+                  } else {
+                    optionClass += ' border-gray-200 text-gray-600';
+                  }
+                  
+                  return `
+                    <div class="${optionClass}">
+                      <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center font-medium ${option.id === question.correctAnswer ? 'bg-emerald-200 text-emerald-800' : (option.id === userAnswer && option.id !== question.correctAnswer ? 'bg-rose-200 text-rose-800' : 'bg-gray-200 text-gray-700')}">
+                        ${option.id.toUpperCase()}
+                      </div>
+                      <span>${option.text}</span>
+                      ${option.id === question.correctAnswer ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-auto text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>' : ''}
                     </div>
-                    <span class="${
-                      question.correctAnswer === optionIndex ? 'font-medium text-green-700' : ''
-                    }">${option}</span>
-                    ${
-                      question.correctAnswer === optionIndex 
-                        ? '<span class="ml-2 text-green-600 text-sm">(Jawaban benar)</span>' 
-                        : ''
-                    }
-                  </div>
-                `).join('')}
+                  `;
+                }).join('')}
               </div>
-              <div class="text-sm ${
-                isAnswered 
-                  ? isCorrect 
-                    ? 'text-green-600' 
-                    : 'text-red-600'
-                  : 'text-gray-500'
-              }">
-                ${
-                  isAnswered 
-                    ? isCorrect 
-                      ? 'Jawaban Anda benar!' 
-                      : `Jawaban Anda salah. Jawaban yang benar adalah: ${question.options[question.correctAnswer]}`
-                    : 'Tidak dijawab'
-                }
+              
+              <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-amber-800">
+                <div class="font-medium mb-2 flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Penjelasan:
+                </div>
+                <p>${question.explanation}</p>
               </div>
             </div>
           </div>
@@ -892,33 +1083,78 @@
       });
     }
 
-    // Show results screen
-    function showResultsScreen() {
-      reviewScreen.classList.add('hidden');
-      resultsScreen.classList.remove('hidden');
+    // Toggle review section
+    function toggleReviewSection() {
+      answerReview.classList.toggle('hidden');
+      
+      if (!answerReview.classList.contains('hidden')) {
+        answerReview.scrollIntoView({ behavior: 'smooth' });
+      }
     }
 
-    // Restart the quiz
-    function restartQuiz() {
-      currentQuestion = 0;
-      score = 0;
-      userAnswers = Array(quizQuestions.length).fill(null);
+    // Handle share to WhatsApp
+    function handleShareWhatsApp() {
+      const score = calculateScore();
+      const percentage = Math.round((score / questions.length) * 100);
+      const passStatus = percentage >= 70 ? 'Lulus' : 'Belum Lulus';
       
+      const text = `Saya baru saja menyelesaikan Quiz Evaluasi Haji dan Umrah dengan skor ${score}/${questions.length} (${percentage}%). Status: ${passStatus}`;
+      const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+      
+      window.open(url, "_blank");
+      shareDialog.classList.add('hidden');
+    }
+
+    // Handle copy result
+    function handleCopyResult() {
+      const score = calculateScore();
+      const percentage = Math.round((score / questions.length) * 100);
+      const passStatus = percentage >= 70 ? 'Lulus' : 'Belum Lulus';
+      
+      const text = `Quiz Evaluasi Haji dan Umrah\nSkor: ${score}/${questions.length} (${percentage}%)\nStatus: ${passStatus}`;
+      
+      navigator.clipboard.writeText(text).then(() => {
+        copyResultButton.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span class="font-medium">Tersalin!</span>
+        `;
+        
+        setTimeout(() => {
+          copyResultButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+            </svg>
+            <span class="font-medium">Salin Hasil</span>
+          `;
+        }, 2000);
+      });
+      
+      shareDialog.classList.add('hidden');
+    }
+
+    // Handle retry
+    function handleRetry() {
+      // Reset quiz state
+      currentQuestionIndex = 0;
+      selectedAnswers = {};
+      timeLeft = 15 * 60;
+      quizStarted = false;
+      quizFinished = false;
+      
+      // Reset UI
       resultsScreen.classList.add('hidden');
-      welcomeScreen.classList.remove('hidden');
+      answerReview.classList.add('hidden');
+      startScreen.classList.remove('hidden');
       
-      scoreDisplay.textContent = score;
-      userNameInput.value = userName; // Pre-fill the name field
+      // Reset timer display
+      timerElement.classList.remove('text-rose-600');
+      timerElement.parentElement.classList.remove('animate-pulse');
     }
 
-    // Get color based on score percentage
-    function getScoreColor(percentage) {
-      if (percentage >= 0.8) return '#10b981'; // emerald-500
-      if (percentage >= 0.6) return '#22c55e'; // green-500
-      if (percentage >= 0.4) return '#eab308'; // yellow-500
-      if (percentage >= 0.2) return '#f97316'; // orange-500
-      return '#ef4444'; // red-500
-    }
+    // Initialize the app
+    init();
   </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Evaluasi Haji dan Umrah</title>
+  <title>Evaluasi Haji dan Umrah</title>
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -11,93 +11,132 @@
       theme: {
         extend: {
           colors: {
-            primary: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              200: '#bae6fd',
-              300: '#7dd3fc',
-              400: '#38bdf8',
-              500: '#0ea5e9',
-              600: '#0284c7',
-              700: '#0369a1',
-              800: '#075985',
-              900: '#0c4a6e',
-              950: '#082f49',
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              200: '#99f6e4',
+              300: '#5eead4',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              900: '#134e4a',
+              950: '#042f2e',
             },
           },
           animation: {
-            'bounce-once': 'bounce 0.6s ease-in-out 1',
-            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'fade-in': 'fadeIn 0.5s ease-in-out',
-            'slide-in': 'slideIn 0.5s ease-in-out',
-            'scale-in': 'scaleIn 0.3s ease-in-out',
-          },
-          keyframes: {
-            fadeIn: {
-              '0%': { opacity: '0', transform: 'translateY(10px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            slideIn: {
-              '0%': { opacity: '0', transform: 'translateX(20px)' },
-              '100%': { opacity: '1', transform: 'translateX(0)' },
-            },
-            scaleIn: {
-              '0%': { opacity: '0', transform: 'scale(0.95)' },
-              '100%': { opacity: '1', transform: 'scale(1)' },
-            },
+            'bounce-slow': 'bounce 3s infinite',
+            'pulse-slow': 'pulse 3s infinite',
+            'spin-slow': 'spin 8s linear infinite',
           },
         },
       },
     }
   </script>
   <style>
-    @keyframes ripple {
-      0% {
-        transform: scale(0);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(2.5);
-        opacity: 0;
-      }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
     
-    .ripple {
-      position: relative;
-      overflow: hidden;
+    @keyframes scale {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
     
-    .ripple-effect {
-      position: absolute;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.7);
-      animation: ripple 0.6s linear;
-      transform: scale(0);
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes fadeOutLeft {
+      from { opacity: 1; transform: translateX(0); }
+      to { opacity: 0; transform: translateX(-20px); }
+    }
+    
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes fadeOutRight {
+      from { opacity: 1; transform: translateX(0); }
+      to { opacity: 0; transform: translateX(20px); }
+    }
+    
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes progress {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .animate-scale {
+      animation: scale 3s ease-in-out infinite;
+    }
+    
+    .animate-fadeInUp {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+    
+    .animate-fadeInRight {
+      animation: fadeInRight 0.6s ease-out forwards;
+    }
+    
+    .animate-fadeInLeft {
+      animation: fadeInLeft 0.6s ease-out forwards;
+    }
+    
+    .animate-scaleIn {
+      animation: scaleIn 0.5s ease-out forwards;
+    }
+    
+    .animate-progress {
+      animation: progress 15s linear forwards;
+    }
+    
+    .option-hover:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .option-selected {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .bg-pattern {
+      background-color: #f9fafb;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2314b8a6' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .bg-gradient {
+      background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+    }
+    
+    .text-shadow {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-shadow {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
     
     .timer-animation {
       transition: width 1s linear;
-    }
-    
-    .option-selected {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .option-selected::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 100%);
-      pointer-events: none;
-    }
-    
-    /* Smooth transitions */
-    .fade-transition {
-      transition: all 0.3s ease;
     }
     
     /* Custom scrollbar */
@@ -111,146 +150,227 @@
     }
     
     ::-webkit-scrollbar-thumb {
-      background: #94a3b8;
+      background: #14b8a6;
       border-radius: 10px;
     }
     
     ::-webkit-scrollbar-thumb:hover {
-      background: #64748b;
+      background: #0d9488;
+    }
+    
+    /* Confetti animation */
+    @keyframes confetti-slow {
+      0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
+      100% { transform: translate3d(25px, 105vh, 0) rotateX(360deg) rotateY(180deg); }
+    }
+    
+    @keyframes confetti-medium {
+      0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
+      100% { transform: translate3d(100px, 105vh, 0) rotateX(100deg) rotateY(360deg); }
+    }
+    
+    @keyframes confetti-fast {
+      0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
+      100% { transform: translate3d(-50px, 105vh, 0) rotateX(10deg) rotateY(250deg); }
+    }
+    
+    .confetti {
+      position: absolute;
+      z-index: 1;
+      top: -10px;
+      border-radius: 0%;
+    }
+    
+    .confetti--animation-slow {
+      animation: confetti-slow 2.5s linear 1 forwards;
+    }
+    
+    .confetti--animation-medium {
+      animation: confetti-medium 2s linear 1 forwards;
+    }
+    
+    .confetti--animation-fast {
+      animation: confetti-fast 1.5s linear 1 forwards;
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen font-sans text-slate-800">
-  <div class="container mx-auto px-4 py-8 max-w-4xl">
+<body class="bg-pattern min-h-screen font-sans text-gray-800">
+  <div id="confetti-container" class="fixed inset-0 pointer-events-none hidden"></div>
+  
+  <div class="container mx-auto px-4 py-8 max-w-5xl">
     <!-- Header -->
-    <header class="text-center mb-8">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary-800 mb-2">Evaluasi Pembelajaran Haji dan Umrah</h1>
-      <p class="text-slate-600">Uji pemahaman Anda tentang ibadah Haji dan Umrah</p>
+    <header class="text-center mb-8 relative">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow"></div>
+      <h1 class="text-4xl md:text-5xl font-bold text-brand-800 mb-2 relative z-10">Evaluasi Haji dan Umrah</h1>
+      <p class="text-gray-600 text-lg relative z-10">Uji pemahaman Anda tentang ibadah Haji dan Umrah</p>
     </header>
     
     <!-- Start Screen -->
-    <div id="start-screen" class="bg-white rounded-2xl shadow-xl overflow-hidden animate-fade-in">
-      <div class="bg-gradient-to-r from-primary-600 to-primary-800 px-6 py-8 text-white">
-        <h2 class="text-2xl font-bold mb-2">Selamat Datang di Quiz Evaluasi</h2>
-        <p class="opacity-90">Siap untuk menguji pengetahuan Anda tentang Haji dan Umrah?</p>
-      </div>
-      <div class="p-6 md:p-8">
-        <div class="flex flex-col md:flex-row items-center gap-6 mb-8">
-          <div class="bg-primary-50 p-4 rounded-xl flex items-center gap-3 w-full md:w-auto">
-            <div class="bg-primary-100 p-3 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-medium text-slate-700">Jumlah Soal</h3>
-              <p class="text-lg font-semibold text-primary-700">15 Pertanyaan</p>
-            </div>
-          </div>
+    <div id="start-screen" class="relative">
+      <div class="absolute -top-10 -left-10 w-40 h-40 bg-brand-200 rounded-full filter blur-3xl opacity-30 animate-float"></div>
+      <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-brand-200 rounded-full filter blur-3xl opacity-30 animate-float" style="animation-delay: 1s;"></div>
+      
+      <div class="bg-white rounded-3xl overflow-hidden card-shadow relative z-10">
+        <div class="bg-gradient p-8 text-white relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/4 -translate-y-1/4"></div>
+          <div class="absolute bottom-0 left-0 w-40 h-40 bg-white opacity-5 rounded-full translate-x-1/4 translate-y-1/4"></div>
           
-          <div class="bg-primary-50 p-4 rounded-xl flex items-center gap-3 w-full md:w-auto">
-            <div class="bg-primary-100 p-3 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-medium text-slate-700">Waktu</h3>
-              <p class="text-lg font-semibold text-primary-700">15 Menit</p>
-            </div>
-          </div>
-          
-          <div class="bg-primary-50 p-4 rounded-xl flex items-center gap-3 w-full md:w-auto">
-            <div class="bg-primary-100 p-3 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-medium text-slate-700">Nilai Lulus</h3>
-              <p class="text-lg font-semibold text-primary-700">70%</p>
-            </div>
-          </div>
+          <h2 class="text-3xl font-bold mb-3 text-shadow">Selamat Datang</h2>
+          <p class="text-lg opacity-90">Siap untuk menguji pengetahuan Anda tentang Haji dan Umrah?</p>
         </div>
         
-        <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-8">
-          <h3 class="font-semibold text-amber-800 mb-2 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <div class="p-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-brand-50 rounded-2xl p-5 border border-brand-100 animate-fadeInUp" style="animation-delay: 0.1s;">
+              <div class="flex items-center gap-4">
+                <div class="bg-brand-100 p-3 rounded-xl">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-gray-500 font-medium">Jumlah Soal</h3>
+                  <p class="text-2xl font-bold text-brand-700">15 Soal</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-brand-50 rounded-2xl p-5 border border-brand-100 animate-fadeInUp" style="animation-delay: 0.2s;">
+              <div class="flex items-center gap-4">
+                <div class="bg-brand-100 p-3 rounded-xl">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-gray-500 font-medium">Waktu</h3>
+                  <p class="text-2xl font-bold text-brand-700">15 Menit</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-brand-50 rounded-2xl p-5 border border-brand-100 animate-fadeInUp" style="animation-delay: 0.3s;">
+              <div class="flex items-center gap-4">
+                <div class="bg-brand-100 p-3 rounded-xl">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-gray-500 font-medium">Nilai Lulus</h3>
+                  <p class="text-2xl font-bold text-brand-700">70%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-8 animate-fadeInUp" style="animation-delay: 0.4s;">
+            <div class="flex items-start gap-4">
+              <div class="bg-amber-100 p-2 rounded-lg mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-amber-800 mb-2">Petunjuk Pengerjaan</h3>
+                <ul class="text-amber-700 space-y-2 list-disc pl-5">
+                  <li>Quiz ini terdiri dari 15 pertanyaan pilihan ganda</li>
+                  <li>Anda memiliki waktu 15 menit untuk menyelesaikan quiz</li>
+                  <li>Setiap pertanyaan bernilai 1 poin</li>
+                  <li>Hasil dan jawaban benar akan ditampilkan setelah quiz selesai</li>
+                  <li>Jawablah dengan jujur dan teliti</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <button id="start-button" class="w-full py-4 bg-gradient text-white text-lg font-semibold rounded-xl card-shadow transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] animate-fadeInUp flex items-center justify-center gap-3" style="animation-delay: 0.5s;">
+            <span>Mulai Quiz</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
-            Petunjuk
-          </h3>
-          <ul class="text-amber-700 space-y-2 pl-6 list-disc">
-            <li>Quiz ini terdiri dari 15 pertanyaan pilihan ganda</li>
-            <li>Anda memiliki waktu 15 menit untuk menyelesaikan quiz</li>
-            <li>Setiap pertanyaan bernilai 1 poin</li>
-            <li>Hasil dan jawaban benar akan ditampilkan setelah quiz selesai</li>
-            <li>Jawablah dengan jujur dan teliti</li>
-          </ul>
+          </button>
         </div>
-        
-        <button id="start-button" class="w-full py-4 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group">
-          Mulai Quiz
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </button>
       </div>
     </div>
     
     <!-- Quiz Screen -->
     <div id="quiz-screen" class="hidden">
-      <!-- Timer and Progress Bar -->
-      <div class="bg-white rounded-2xl shadow-lg p-4 mb-6 animate-fade-in">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
-          <div class="flex items-center gap-3 bg-primary-50 px-4 py-2 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <div class="font-medium text-primary-800">Waktu: <span id="timer" class="font-bold">15:00</span></div>
-          </div>
-          
-          <div class="flex items-center gap-3">
-            <div class="text-sm text-slate-600">Pertanyaan</div>
-            <div class="bg-primary-100 text-primary-800 font-bold px-3 py-1 rounded-md">
-              <span id="current-question">1</span>/<span id="total-questions">15</span>
+      <!-- Timer and Progress -->
+      <div class="flex flex-col md:flex-row gap-4 mb-6">
+        <div class="bg-white rounded-2xl p-4 card-shadow flex-grow animate-fadeInUp">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="bg-brand-100 p-2 rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Waktu Tersisa</div>
+                <div id="timer" class="text-xl font-bold text-brand-700">15:00</div>
+              </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+              <div class="text-sm text-gray-500">Pertanyaan</div>
+              <div class="bg-brand-100 text-brand-800 font-bold px-3 py-1 rounded-lg">
+                <span id="current-question">1</span>/<span id="total-questions">15</span>
+              </div>
             </div>
           </div>
           
-          <div class="flex items-center gap-3 bg-emerald-50 px-4 py-2 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <div class="font-medium text-emerald-800">Skor: <span id="current-score" class="font-bold">0</span></div>
+          <div class="mt-4 relative h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div id="timer-bar" class="absolute top-0 left-0 h-full bg-brand-500 animate-progress"></div>
           </div>
         </div>
         
-        <div class="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
-          <div id="progress-bar" class="bg-primary-600 h-2.5 rounded-full timer-animation" style="width: 0%"></div>
+        <div class="bg-white rounded-2xl p-4 card-shadow md:w-48 animate-fadeInUp" style="animation-delay: 0.1s;">
+          <div class="flex items-center gap-3">
+            <div class="bg-brand-100 p-2 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <div>
+              <div class="text-sm text-gray-500">Skor Saat Ini</div>
+              <div id="current-score" class="text-xl font-bold text-brand-700">0</div>
+            </div>
+          </div>
         </div>
       </div>
       
       <!-- Question Card -->
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-6 animate-fade-in">
-        <div class="bg-gradient-to-r from-primary-600 to-primary-800 p-6">
-          <h2 id="question-text" class="text-xl md:text-2xl font-semibold text-white"></h2>
+      <div id="question-container" class="bg-white rounded-2xl overflow-hidden card-shadow mb-6 animate-fadeInRight">
+        <div class="bg-gradient p-6 text-white relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/4 -translate-y-1/4"></div>
+          <div class="absolute bottom-0 left-0 w-40 h-40 bg-white opacity-5 rounded-full translate-x-1/4 translate-y-1/4"></div>
+          
+          <div class="flex items-center gap-3 mb-2">
+            <div class="bg-white bg-opacity-20 w-10 h-10 rounded-lg flex items-center justify-center font-bold text-lg">
+              <span id="question-number">1</span>
+            </div>
+            <h3 class="text-lg opacity-80">Pertanyaan</h3>
+          </div>
+          
+          <h2 id="question-text" class="text-xl md:text-2xl font-semibold"></h2>
         </div>
         
-        <div id="options-container" class="p-6 space-y-3">
+        <div id="options-container" class="p-6 space-y-4">
           <!-- Options will be inserted here by JavaScript -->
         </div>
       </div>
       
       <!-- Navigation Buttons -->
-      <div class="flex justify-between gap-4 animate-fade-in">
-        <button id="prev-button" class="px-6 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium rounded-xl transition-all duration-200 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+      <div class="flex justify-between gap-4 animate-fadeInUp" style="animation-delay: 0.3s;">
+        <button id="prev-button" class="px-6 py-3 bg-white text-brand-700 font-medium rounded-xl card-shadow transition-all duration-200 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-brand-50">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
           Sebelumnya
         </button>
         
-        <button id="next-button" class="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2">
+        <button id="next-button" class="px-6 py-3 bg-gradient text-white font-medium rounded-xl card-shadow transition-all duration-200 flex items-center gap-2 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
           <span id="next-button-text">Selanjutnya</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -261,96 +381,107 @@
     
     <!-- Results Screen -->
     <div id="results-screen" class="hidden">
-      <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8 animate-fade-in">
-        <div class="bg-gradient-to-r from-primary-600 to-primary-800 px-6 py-8 text-white text-center">
-          <h2 class="text-2xl font-bold mb-2">Hasil Evaluasi</h2>
-          <p class="opacity-90">Berikut adalah hasil evaluasi pembelajaran Anda</p>
+      <div class="bg-white rounded-3xl overflow-hidden card-shadow mb-8 animate-scaleIn">
+        <div class="bg-gradient p-8 text-white text-center relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/4 -translate-y-1/4"></div>
+          <div class="absolute bottom-0 left-0 w-40 h-40 bg-white opacity-5 rounded-full translate-x-1/4 translate-y-1/4"></div>
+          
+          <h2 class="text-3xl font-bold mb-2 text-shadow">Hasil Evaluasi</h2>
+          <p class="text-lg opacity-90">Berikut adalah hasil evaluasi pembelajaran Anda</p>
         </div>
         
-        <div class="p-6 md:p-8">
+        <div class="p-8">
           <!-- Score Summary -->
           <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
             <!-- Score Circle -->
-            <div class="relative w-48 h-48">
+            <div class="relative w-56 h-56 animate-fadeInUp" style="animation-delay: 0.2s;">
               <svg class="w-full h-full" viewBox="0 0 100 100">
-                <circle class="text-slate-100" stroke-width="10" stroke="currentColor" fill="transparent" r="40" cx="50" cy="50"></circle>
-                <circle id="score-circle" class="text-primary-500 transition-all duration-1000 ease-out" stroke-width="10" stroke="currentColor" fill="transparent" r="40" cx="50" cy="50" stroke-dasharray="0 251.2" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 50 50)"></circle>
+                <circle class="text-gray-100" stroke-width="8" stroke="currentColor" fill="transparent" r="46" cx="50" cy="50"></circle>
+                <circle id="score-circle" class="text-brand-500 transition-all duration-1000 ease-out" stroke-width="8" stroke="currentColor" fill="transparent" r="46" cx="50" cy="50" stroke-dasharray="0 289" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 50 50)"></circle>
               </svg>
               <div class="absolute inset-0 flex flex-col items-center justify-center">
-                <span id="percentage-score" class="text-4xl font-bold text-primary-700">0%</span>
-                <span class="text-slate-500">Nilai Anda</span>
+                <span id="percentage-score" class="text-5xl font-bold text-brand-700">0%</span>
+                <span class="text-gray-500 text-lg">Nilai Anda</span>
               </div>
             </div>
             
             <!-- Score Details -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="bg-emerald-50 p-4 rounded-xl flex items-center gap-3">
-                <div class="bg-emerald-100 p-3 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-medium text-slate-700">Jawaban Benar</h3>
-                  <p id="correct-answers" class="text-lg font-semibold text-emerald-700">0</p>
-                </div>
-              </div>
-              
-              <div class="bg-rose-50 p-4 rounded-xl flex items-center gap-3">
-                <div class="bg-rose-100 p-3 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-medium text-slate-700">Jawaban Salah</h3>
-                  <p id="wrong-answers" class="text-lg font-semibold text-rose-700">0</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl">
+              <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-100 animate-fadeInUp" style="animation-delay: 0.3s;">
+                <div class="flex items-center gap-4">
+                  <div class="bg-emerald-100 p-3 rounded-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-gray-500 font-medium">Jawaban Benar</h3>
+                    <p id="correct-answers" class="text-2xl font-bold text-emerald-600">0</p>
+                  </div>
                 </div>
               </div>
               
-              <div class="bg-amber-50 p-4 rounded-xl flex items-center gap-3">
-                <div class="bg-amber-100 p-3 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-medium text-slate-700">Waktu</h3>
-                  <p id="time-spent" class="text-lg font-semibold text-amber-700">00:00</p>
+              <div class="bg-rose-50 p-5 rounded-2xl border border-rose-100 animate-fadeInUp" style="animation-delay: 0.4s;">
+                <div class="flex items-center gap-4">
+                  <div class="bg-rose-100 p-3 rounded-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-gray-500 font-medium">Jawaban Salah</h3>
+                    <p id="wrong-answers" class="text-2xl font-bold text-rose-600">0</p>
+                  </div>
                 </div>
               </div>
               
-              <div class="bg-blue-50 p-4 rounded-xl flex items-center gap-3">
-                <div class="bg-blue-100 p-3 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                  </svg>
+              <div class="bg-amber-50 p-5 rounded-2xl border border-amber-100 animate-fadeInUp" style="animation-delay: 0.5s;">
+                <div class="flex items-center gap-4">
+                  <div class="bg-amber-100 p-3 rounded-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-gray-500 font-medium">Waktu</h3>
+                    <p id="time-spent" class="text-2xl font-bold text-amber-600">00:00</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 class="font-medium text-slate-700">Status</h3>
-                  <p id="pass-status" class="text-lg font-semibold text-blue-700">-</p>
+              </div>
+              
+              <div id="status-card" class="p-5 rounded-2xl border animate-fadeInUp" style="animation-delay: 0.6s;">
+                <div class="flex items-center gap-4">
+                  <div class="p-3 rounded-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-gray-500 font-medium">Status</h3>
+                    <p id="pass-status" class="text-2xl font-bold">-</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           
           <!-- Action Buttons -->
-          <div class="flex flex-col sm:flex-row gap-4 mb-8">
-            <button id="share-button" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2">
+          <div class="flex flex-col sm:flex-row gap-4 mb-8 animate-fadeInUp" style="animation-delay: 0.7s;">
+            <button id="share-button" class="flex-1 py-4 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-xl card-shadow transition-all duration-200 flex items-center justify-center gap-2 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
               </svg>
               Bagikan Hasil
             </button>
             
-            <button id="review-button" class="flex-1 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2">
+            <button id="review-button" class="flex-1 py-4 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-xl card-shadow transition-all duration-200 flex items-center justify-center gap-2 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
               </svg>
               Lihat Jawaban
             </button>
             
-            <button id="retry-button" class="flex-1 py-3 bg-slate-600 hover:bg-slate-700 text-white font-medium rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2">
+            <button id="retry-button" class="flex-1 py-4 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-xl card-shadow transition-all duration-200 flex items-center justify-center gap-2 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
@@ -361,13 +492,16 @@
       </div>
       
       <!-- Answer Review Section -->
-      <div id="answer-review" class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8 animate-fade-in hidden">
-        <div class="bg-gradient-to-r from-primary-700 to-primary-900 px-6 py-6 text-white">
-          <h2 class="text-xl font-bold">Pembahasan Jawaban</h2>
-          <p class="opacity-90 text-sm">Berikut adalah jawaban yang benar untuk setiap pertanyaan</p>
+      <div id="answer-review" class="bg-white rounded-3xl overflow-hidden card-shadow mb-8 animate-scaleIn hidden">
+        <div class="bg-gradient p-6 text-white relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/4 -translate-y-1/4"></div>
+          <div class="absolute bottom-0 left-0 w-40 h-40 bg-white opacity-5 rounded-full translate-x-1/4 translate-y-1/4"></div>
+          
+          <h2 class="text-2xl font-bold mb-1 text-shadow">Pembahasan Jawaban</h2>
+          <p class="opacity-90">Berikut adalah jawaban yang benar untuk setiap pertanyaan</p>
         </div>
         
-        <div id="review-container" class="p-6 divide-y divide-slate-200">
+        <div id="review-container" class="p-6 divide-y divide-gray-200">
           <!-- Review items will be inserted here by JavaScript -->
         </div>
       </div>
@@ -375,20 +509,20 @@
     
     <!-- Share Dialog -->
     <div id="share-dialog" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden backdrop-blur-sm">
-      <div class="bg-white rounded-xl max-w-md w-full mx-4 shadow-2xl transform transition-all duration-300 scale-100 p-6">
-        <h3 class="text-xl font-medium mb-4 text-slate-800">Bagikan Hasil</h3>
-        <p class="text-slate-600 mb-6">Bagikan hasil evaluasi pembelajaran Haji dan Umrah Anda melalui:</p>
+      <div class="bg-white rounded-2xl max-w-md w-full mx-4 card-shadow transform transition-all duration-300 scale-100 p-6 animate-scaleIn">
+        <h3 class="text-xl font-bold mb-4 text-brand-800">Bagikan Hasil</h3>
+        <p class="text-gray-600 mb-6">Bagikan hasil evaluasi pembelajaran Haji dan Umrah Anda melalui:</p>
         
         <div class="grid grid-cols-2 gap-4 mb-6">
-          <button id="whatsapp-share" class="flex flex-col items-center justify-center gap-2 p-4 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-xl transition-all duration-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+          <button id="whatsapp-share" class="flex flex-col items-center justify-center gap-2 p-4 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-xl transition-all duration-200 hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
             <span class="font-medium">WhatsApp</span>
           </button>
           
-          <button id="copy-result" class="flex flex-col items-center justify-center gap-2 p-4 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-xl transition-all duration-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <button id="copy-result" class="flex flex-col items-center justify-center gap-2 p-4 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-xl transition-all duration-200 hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
             </svg>
             <span class="font-medium">Salin Hasil</span>
@@ -396,7 +530,7 @@
         </div>
         
         <div class="flex justify-end gap-3 mt-6">
-          <button id="cancel-share" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-lg transition-all duration-200">
+          <button id="cancel-share" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-200 hover:scale-105">
             Tutup
           </button>
         </div>
@@ -409,183 +543,183 @@
     const questions = [
       {
         id: 1,
-        question: "Apa hukum melaksanakan ibadah haji bagi yang mampu?",
+        question: "Apa yang dimaksud dengan Istitha'ah dalam konteks ibadah haji?",
         options: [
-          { id: "a", text: "Wajib" },
-          { id: "b", text: "Sunnah" },
-          { id: "c", text: "Mubah" },
-          { id: "d", text: "Makruh" },
+          { id: "a", text: "Kemampuan fisik dan finansial untuk melaksanakan haji" },
+          { id: "b", text: "Kemampuan membaca doa-doa haji dengan benar" },
+          { id: "c", text: "Kemampuan menghafal manasik haji" },
+          { id: "d", text: "Kemampuan berjalan kaki selama ibadah haji" },
         ],
         correctAnswer: "a",
-        explanation: "Hukum melaksanakan ibadah haji bagi yang mampu adalah wajib. Ini berdasarkan firman Allah dalam QS. Ali Imran ayat 97."
+        explanation: "Istitha'ah adalah kemampuan atau kesanggupan seseorang untuk melaksanakan ibadah haji, baik dari segi fisik (kesehatan) maupun finansial (biaya). Ini merupakan syarat wajib haji sebagaimana disebutkan dalam QS. Ali Imran ayat 97."
       },
       {
         id: 2,
-        question: "Kapan waktu pelaksanaan ibadah haji?",
+        question: "Apa perbedaan antara haji ifrad, haji qiran, dan haji tamattu?",
         options: [
-          { id: "a", text: "Bulan Ramadhan" },
-          { id: "b", text: "Bulan Syawal sampai 10 Dzulhijjah" },
-          { id: "c", text: "Sepanjang tahun" },
-          { id: "d", text: "Bulan Muharram" },
+          { id: "a", text: "Perbedaan waktu pelaksanaannya" },
+          { id: "b", text: "Perbedaan jumlah tawaf yang dilakukan" },
+          { id: "c", text: "Perbedaan cara pelaksanaan dan urutan ibadah haji dan umrah" },
+          { id: "d", text: "Perbedaan tempat pelaksanaannya" },
         ],
-        correctAnswer: "b",
-        explanation: "Waktu pelaksanaan ibadah haji adalah pada bulan-bulan haji yaitu Syawal, Dzulqa'dah, dan 10 hari pertama bulan Dzulhijjah."
+        correctAnswer: "c",
+        explanation: "Perbedaan utama antara haji ifrad, qiran, dan tamattu terletak pada cara pelaksanaan dan urutan ibadah haji dan umrah. Haji ifrad adalah melaksanakan haji saja tanpa umrah. Haji qiran adalah melaksanakan haji dan umrah secara bersamaan dengan satu niat dan satu rangkaian. Haji tamattu adalah melaksanakan umrah terlebih dahulu pada bulan haji, lalu bertahallul, kemudian berniat haji lagi pada tanggal 8 Dzulhijjah."
       },
       {
         id: 3,
-        question: "Apa perbedaan utama antara haji dan umrah?",
+        question: "Kapan waktu pelaksanaan wukuf di Arafah?",
         options: [
-          { id: "a", text: "Haji hanya dapat dilakukan di Makkah, umrah di Madinah" },
-          { id: "b", text: "Umrah wajib, haji sunnah" },
-          { id: "c", text: "Haji memiliki waktu tertentu, umrah dapat dilakukan kapan saja" },
-          { id: "d", text: "Tidak ada perbedaan antara keduanya" },
+          { id: "a", text: "Tanggal 8 Dzulhijjah" },
+          { id: "b", text: "Tanggal 9 Dzulhijjah" },
+          { id: "c", text: "Tanggal 10 Dzulhijjah" },
+          { id: "d", text: "Tanggal 11 Dzulhijjah" },
         ],
-        correctAnswer: "c",
-        explanation: "Perbedaan utama antara haji dan umrah adalah waktu pelaksanaannya. Haji hanya dapat dilakukan pada waktu tertentu (bulan-bulan haji), sedangkan umrah dapat dilakukan kapan saja sepanjang tahun."
+        correctAnswer: "b",
+        explanation: "Wukuf di Arafah dilaksanakan pada tanggal 9 Dzulhijjah, dimulai setelah matahari tergelincir (waktu Dzuhur) hingga terbit fajar pada tanggal 10 Dzulhijjah. Wukuf merupakan rukun haji yang paling utama, sehingga jika seseorang tidak melaksanakan wukuf, maka hajinya tidak sah."
       },
       {
         id: 4,
-        question: "Apa yang dimaksud dengan wukuf?",
+        question: "Apa yang dimaksud dengan Miqat Makani?",
         options: [
-          { id: "a", text: "Berdiam diri di Masjidil Haram" },
-          { id: "b", text: "Berdiam diri di Arafah pada 9 Dzulhijjah" },
-          { id: "c", text: "Berlari kecil antara Shafa dan Marwah" },
-          { id: "d", text: "Melempar jumrah" },
+          { id: "a", text: "Waktu untuk melaksanakan ibadah haji" },
+          { id: "b", text: "Tempat untuk memulai ihram" },
+          { id: "c", text: "Tempat untuk melaksanakan tawaf" },
+          { id: "d", text: "Waktu untuk melaksanakan umrah" },
         ],
         correctAnswer: "b",
-        explanation: "Wukuf adalah berdiam diri di padang Arafah pada tanggal 9 Dzulhijjah, mulai dari tergelincirnya matahari hingga terbenamnya matahari. Wukuf merupakan rukun haji yang paling utama."
+        explanation: "Miqat Makani adalah tempat-tempat tertentu yang telah ditetapkan oleh Rasulullah SAW sebagai batas untuk memulai ihram bagi jamaah haji atau umrah. Ada lima miqat makani utama: Dzulhulaifah (untuk penduduk Madinah), Juhfah (untuk penduduk Syam), Qarnul Manazil (untuk penduduk Najd), Yalamlam (untuk penduduk Yaman), dan Dzatu Irqin (untuk penduduk Irak)."
       },
       {
         id: 5,
-        question: "Berapa kali tawaf yang dilakukan dalam ibadah haji?",
+        question: "Apa yang dimaksud dengan Tawaf Qudum?",
         options: [
-          { id: "a", text: "3 kali" },
-          { id: "b", text: "5 kali" },
-          { id: "c", text: "7 kali" },
-          { id: "d", text: "9 kali" },
+          { id: "a", text: "Tawaf yang dilakukan setelah wukuf di Arafah" },
+          { id: "b", text: "Tawaf yang dilakukan saat pertama kali tiba di Makkah" },
+          { id: "c", text: "Tawaf perpisahan sebelum meninggalkan Makkah" },
+          { id: "d", text: "Tawaf yang dilakukan sebagai pengganti dam (denda)" },
         ],
-        correctAnswer: "c",
-        explanation: "Tawaf dalam ibadah haji dilakukan sebanyak 7 kali mengelilingi Ka'bah dengan posisi Ka'bah berada di sebelah kiri dan dimulai dari Hajar Aswad."
+        correctAnswer: "b",
+        explanation: "Tawaf Qudum adalah tawaf yang dilakukan saat pertama kali tiba di Makkah sebagai penghormatan kepada Baitullah. Tawaf ini hukumnya sunnah bagi jamaah haji yang melaksanakan haji ifrad atau qiran, dan tidak dilakukan oleh jamaah yang melaksanakan haji tamattu karena mereka langsung melaksanakan tawaf umrah."
       },
       {
         id: 6,
-        question: "Apa yang dimaksud dengan sa'i?",
+        question: "Apa yang dimaksud dengan Tawaf Wada?",
         options: [
-          { id: "a", text: "Berjalan mengelilingi Ka'bah" },
-          { id: "b", text: "Berlari kecil antara bukit Shafa dan Marwah" },
-          { id: "c", text: "Melempar jumrah" },
-          { id: "d", text: "Berdiam diri di Arafah" },
+          { id: "a", text: "Tawaf yang dilakukan saat pertama kali tiba di Makkah" },
+          { id: "b", text: "Tawaf yang dilakukan setelah wukuf di Arafah" },
+          { id: "c", text: "Tawaf perpisahan sebelum meninggalkan Makkah" },
+          { id: "d", text: "Tawaf yang dilakukan sebagai pengganti dam (denda)" },
         ],
-        correctAnswer: "b",
-        explanation: "Sa'i adalah berjalan atau berlari-lari kecil antara bukit Shafa dan Marwah sebanyak 7 kali. Sa'i dimulai dari bukit Shafa dan berakhir di bukit Marwah."
+        correctAnswer: "c",
+        explanation: "Tawaf Wada adalah tawaf perpisahan yang dilakukan sebelum meninggalkan Makkah untuk pulang ke negeri masing-masing. Tawaf ini hukumnya wajib bagi jamaah haji dan umrah, kecuali bagi wanita yang sedang haid atau nifas."
       },
       {
         id: 7,
-        question: "Apa rukun umrah yang benar?",
+        question: "Apa yang dimaksud dengan Mabit di Muzdalifah?",
         options: [
-          { id: "a", text: "Ihram, Tawaf, Sa'i, Tahallul" },
-          { id: "b", text: "Ihram, Wukuf, Tawaf, Sa'i, Tahallul" },
-          { id: "c", text: "Ihram, Tawaf, Tahallul" },
-          { id: "d", text: "Ihram, Sa'i, Tahallul" },
+          { id: "a", text: "Bermalam di Muzdalifah pada malam 10 Dzulhijjah" },
+          { id: "b", text: "Bermalam di Muzdalifah pada malam 9 Dzulhijjah" },
+          { id: "c", text: "Bermalam di Muzdalifah pada malam 11 Dzulhijjah" },
+          { id: "d", text: "Bermalam di Muzdalifah pada malam 12 Dzulhijjah" },
         ],
         correctAnswer: "a",
-        explanation: "Rukun umrah ada empat yaitu: Ihram (niat), Tawaf (mengelilingi Ka'bah), Sa'i (berlari kecil antara Shafa dan Marwah), dan Tahallul (mencukur atau memotong rambut)."
+        explanation: "Mabit di Muzdalifah adalah bermalam atau berhenti sejenak di Muzdalifah pada malam 10 Dzulhijjah (setelah wukuf di Arafah). Waktu mabit di Muzdalifah adalah setelah Maghrib hingga terbit fajar. Di Muzdalifah, jamaah haji melaksanakan shalat Maghrib dan Isya dengan jama' ta'khir dan mengumpulkan batu untuk melempar jumrah."
       },
       {
         id: 8,
-        question: "Apa yang dimaksud dengan ihram?",
+        question: "Apa yang dimaksud dengan Mabit di Mina?",
         options: [
-          { id: "a", text: "Pakaian khusus untuk ibadah haji dan umrah" },
-          { id: "b", text: "Niat dan memakai pakaian ihram" },
-          { id: "c", text: "Mencukur rambut setelah selesai ibadah" },
-          { id: "d", text: "Berdoa di Masjidil Haram" },
+          { id: "a", text: "Bermalam di Mina pada tanggal 8 Dzulhijjah" },
+          { id: "b", text: "Bermalam di Mina pada tanggal 9 Dzulhijjah" },
+          { id: "c", text: "Bermalam di Mina pada malam hari tasyriq (11, 12, dan 13 Dzulhijjah)" },
+          { id: "d", text: "Bermalam di Mina pada tanggal 10 Dzulhijjah" },
         ],
-        correctAnswer: "b",
-        explanation: "Ihram adalah niat untuk memulai ibadah haji atau umrah dan memakai pakaian ihram. Pakaian ihram untuk laki-laki berupa dua helai kain putih tidak berjahit, sedangkan untuk perempuan berupa pakaian yang menutup seluruh tubuh kecuali wajah dan telapak tangan."
+        correctAnswer: "c",
+        explanation: "Mabit di Mina adalah bermalam di Mina pada malam hari-hari tasyriq, yaitu malam 11, 12, dan 13 Dzulhijjah. Mabit di Mina hukumnya wajib bagi jamaah haji, dan bagi yang tidak melaksanakannya wajib membayar dam (denda)."
       },
       {
         id: 9,
-        question: "Apa yang dimaksud dengan tahallul?",
+        question: "Apa yang dimaksud dengan Tahallul dalam ibadah haji?",
         options: [
-          { id: "a", text: "Niat memulai ibadah haji atau umrah" },
-          { id: "b", text: "Berjalan mengelilingi Ka'bah" },
-          { id: "c", text: "Berlari kecil antara Shafa dan Marwah" },
-          { id: "d", text: "Mencukur atau memotong rambut sebagai tanda selesainya ibadah" },
+          { id: "a", text: "Niat untuk memulai ibadah haji" },
+          { id: "b", text: "Proses pengundian untuk mendapatkan kuota haji" },
+          { id: "c", text: "Keadaan diperbolehkannya melakukan hal-hal yang dilarang saat ihram" },
+          { id: "d", text: "Proses pembayaran biaya haji" },
         ],
-        correctAnswer: "d",
-        explanation: "Tahallul adalah mencukur atau memotong rambut sebagai tanda selesainya ibadah haji atau umrah. Dengan tahallul, larangan-larangan selama ihram menjadi halal kembali."
+        correctAnswer: "c",
+        explanation: "Tahallul adalah keadaan diperbolehkannya kembali melakukan hal-hal yang dilarang saat ihram setelah melakukan amalan-amalan tertentu. Dalam haji, ada tahallul awal (setelah melakukan dua dari tiga amalan: melempar jumrah aqabah, mencukur/memotong rambut, dan tawaf ifadah) dan tahallul tsani (setelah melakukan semua amalan tersebut)."
       },
       {
         id: 10,
-        question: "Apa hukuman bagi yang melanggar larangan ihram?",
+        question: "Apa yang dimaksud dengan Dam dalam konteks ibadah haji?",
         options: [
-          { id: "a", text: "Tidak ada hukuman" },
-          { id: "b", text: "Membayar dam (denda)" },
-          { id: "c", text: "Haji atau umrahnya batal" },
-          { id: "d", text: "Dilarang masuk Makkah" },
+          { id: "a", text: "Doa khusus yang dibaca saat tawaf" },
+          { id: "b", text: "Denda atau tebusan karena melanggar larangan ihram atau meninggalkan wajib haji" },
+          { id: "c", text: "Tempat khusus untuk bermalam di Mina" },
+          { id: "d", text: "Ritual khusus setelah melempar jumrah" },
         ],
         correctAnswer: "b",
-        explanation: "Hukuman bagi yang melanggar larangan ihram adalah membayar dam (denda). Besarnya dam tergantung pada jenis pelanggaran yang dilakukan."
+        explanation: "Dam adalah denda atau tebusan yang harus dibayarkan oleh jamaah haji atau umrah karena melanggar larangan ihram atau meninggalkan salah satu wajib haji/umrah. Dam dapat berupa menyembelih seekor kambing, berpuasa 10 hari, atau memberi makan 6 orang miskin, tergantung jenis pelanggarannya."
       },
       {
         id: 11,
-        question: "Apa yang dimaksud dengan Miqat?",
+        question: "Apa yang dimaksud dengan Jumrah dalam ibadah haji?",
         options: [
-          { id: "a", text: "Tempat bersuci sebelum melaksanakan ibadah haji" },
-          { id: "b", text: "Tempat memulai ihram" },
-          { id: "c", text: "Tempat bermalam di Mina" },
-          { id: "d", text: "Tempat melempar jumrah" },
+          { id: "a", text: "Tempat untuk bermalam di Mina" },
+          { id: "b", text: "Batu kecil yang digunakan untuk melempar" },
+          { id: "c", text: "Tiang atau tempat untuk melempar batu" },
+          { id: "d", text: "Ritual khusus setelah wukuf di Arafah" },
         ],
-        correctAnswer: "b",
-        explanation: "Miqat adalah tempat atau batas dimana jamaah haji atau umrah harus sudah berniat ihram. Ada miqat makani (tempat) dan miqat zamani (waktu)."
+        correctAnswer: "c",
+        explanation: "Jumrah adalah tiang atau tempat yang menjadi sasaran lemparan batu dalam ritual melempar jumrah pada ibadah haji. Ada tiga jumrah: Jumrah Ula (kecil), Jumrah Wustha (tengah), dan Jumrah Aqabah (besar). Ritual melempar jumrah dilakukan pada hari-hari tasyriq (11, 12, dan 13 Dzulhijjah) sebagai simbolisasi pengusiran setan."
       },
       {
         id: 12,
-        question: "Apa yang dimaksud dengan Tawaf Ifadah?",
+        question: "Apa yang dimaksud dengan Sa'i dalam ibadah haji dan umrah?",
+        options: [
+          { id: "a", text: "Berjalan mengelilingi Ka'bah sebanyak 7 kali" },
+          { id: "b", text: "Berjalan atau berlari-lari kecil antara bukit Shafa dan Marwah sebanyak 7 kali" },
+          { id: "c", text: "Berdiam diri di Arafah pada tanggal 9 Dzulhijjah" },
+          { id: "d", text: "Melempar jumrah pada hari-hari tasyriq" },
+        ],
+        correctAnswer: "b",
+        explanation: "Sa'i adalah berjalan atau berlari-lari kecil antara bukit Shafa dan Marwah sebanyak 7 kali. Sa'i dimulai dari bukit Shafa dan berakhir di bukit Marwah. Sa'i merupakan salah satu rukun haji dan umrah yang mengenang perjuangan Siti Hajar saat mencari air untuk putranya, Ismail."
+      },
+      {
+        id: 13,
+        question: "Apa yang dimaksud dengan Thawaf Ifadhah dalam ibadah haji?",
         options: [
           { id: "a", text: "Tawaf yang dilakukan saat pertama kali tiba di Makkah" },
           { id: "b", text: "Tawaf perpisahan sebelum meninggalkan Makkah" },
           { id: "c", text: "Tawaf yang dilakukan setelah wukuf di Arafah" },
-          { id: "d", text: "Tawaf sunnah yang boleh dilakukan kapan saja" },
+          { id: "d", text: "Tawaf yang dilakukan sebagai pengganti dam (denda)" },
         ],
         correctAnswer: "c",
-        explanation: "Tawaf Ifadah adalah tawaf yang dilakukan setelah wukuf di Arafah dan merupakan salah satu rukun haji. Tawaf ini dilakukan pada tanggal 10 Dzulhijjah atau hari-hari tasyriq."
-      },
-      {
-        id: 13,
-        question: "Apa yang dimaksud dengan Hari Tarwiyah?",
-        options: [
-          { id: "a", text: "Hari ke-8 Dzulhijjah" },
-          { id: "b", text: "Hari ke-9 Dzulhijjah" },
-          { id: "c", text: "Hari ke-10 Dzulhijjah" },
-          { id: "d", text: "Hari ke-11 Dzulhijjah" },
-        ],
-        correctAnswer: "a",
-        explanation: "Hari Tarwiyah adalah hari ke-8 Dzulhijjah, dimana jamaah haji bersiap-siap untuk melaksanakan wukuf dengan berangkat ke Mina. Kata 'tarwiyah' berarti menyiapkan air, karena pada zaman dahulu jamaah haji menyiapkan air untuk dibawa ke Arafah."
+        explanation: "Thawaf Ifadhah adalah tawaf yang dilakukan setelah wukuf di Arafah, biasanya pada tanggal 10 Dzulhijjah atau hari-hari tasyriq. Thawaf Ifadhah merupakan salah satu rukun haji, sehingga jika tidak dilaksanakan, maka hajinya tidak sah."
       },
       {
         id: 14,
-        question: "Apa yang dimaksud dengan Hari Tasyriq?",
+        question: "Apa yang dimaksud dengan Ihram dalam ibadah haji dan umrah?",
         options: [
-          { id: "a", text: "Tanggal 8, 9, dan 10 Dzulhijjah" },
-          { id: "b", text: "Tanggal 9, 10, dan 11 Dzulhijjah" },
-          { id: "c", text: "Tanggal 10, 11, dan 12 Dzulhijjah" },
-          { id: "d", text: "Tanggal 11, 12, dan 13 Dzulhijjah" },
+          { id: "a", text: "Pakaian khusus yang dikenakan saat melaksanakan haji dan umrah" },
+          { id: "b", text: "Niat untuk memulai ibadah haji atau umrah dan memakai pakaian ihram" },
+          { id: "c", text: "Ritual khusus sebelum memasuki kota Makkah" },
+          { id: "d", text: "Doa khusus yang dibaca saat memulai tawaf" },
         ],
-        correctAnswer: "d",
-        explanation: "Hari Tasyriq adalah tanggal 11, 12, dan 13 Dzulhijjah. Pada hari-hari ini, jamaah haji melakukan pelemparan jumrah dan bermalam di Mina."
+        correctAnswer: "b",
+        explanation: "Ihram adalah niat untuk memulai ibadah haji atau umrah dan memakai pakaian ihram. Pakaian ihram untuk laki-laki berupa dua helai kain putih tidak berjahit, sedangkan untuk perempuan berupa pakaian yang menutup seluruh tubuh kecuali wajah dan telapak tangan. Saat ihram, ada beberapa larangan yang harus dijauhi."
       },
       {
         id: 15,
-        question: "Apa hikmah dari ibadah haji dan umrah?",
+        question: "Apa hikmah dari ritual melempar jumrah dalam ibadah haji?",
         options: [
-          { id: "a", text: "Hanya untuk mendapatkan gelar haji" },
-          { id: "b", text: "Untuk berwisata ke luar negeri" },
-          { id: "c", text: "Untuk meningkatkan status sosial" },
-          { id: "d", text: "Untuk meningkatkan ketakwaan dan persaudaraan umat Islam" },
+          { id: "a", text: "Untuk melatih ketepatan dalam melempar" },
+          { id: "b", text: "Untuk menguji kesabaran jamaah haji" },
+          { id: "c", text: "Untuk mengenang perjuangan Nabi Ibrahim AS melawan godaan setan" },
+          { id: "d", text: "Untuk membersihkan diri dari dosa-dosa kecil" },
         ],
-        correctAnswer: "d",
-        explanation: "Hikmah dari ibadah haji dan umrah antara lain untuk meningkatkan ketakwaan kepada Allah SWT, mempererat persaudaraan umat Islam dari berbagai penjuru dunia, melatih kesabaran dan ketabahan, serta mengingatkan akan persamaan derajat manusia di hadapan Allah SWT."
+        correctAnswer: "c",
+        explanation: "Hikmah dari ritual melempar jumrah adalah untuk mengenang perjuangan Nabi Ibrahim AS ketika melawan godaan setan yang berusaha menghalanginya melaksanakan perintah Allah untuk menyembelih putranya, Ismail AS. Ritual ini juga melambangkan tekad kuat seorang muslim untuk melawan godaan setan dalam kehidupan sehari-hari."
       }
     ];
 
@@ -597,6 +731,7 @@
     let quizStarted = false;
     let quizFinished = false;
     let startTime;
+    let direction = 'next'; // For animation direction
 
     // DOM elements
     const startScreen = document.getElementById('start-screen');
@@ -604,6 +739,7 @@
     const resultsScreen = document.getElementById('results-screen');
     const answerReview = document.getElementById('answer-review');
     const shareDialog = document.getElementById('share-dialog');
+    const confettiContainer = document.getElementById('confetti-container');
     
     const startButton = document.getElementById('start-button');
     const prevButton = document.getElementById('prev-button');
@@ -618,10 +754,12 @@
     
     const totalQuestionsSpan = document.getElementById('total-questions');
     const currentQuestionSpan = document.getElementById('current-question');
+    const questionNumberSpan = document.getElementById('question-number');
     const questionTextElement = document.getElementById('question-text');
+    const questionContainer = document.getElementById('question-container');
     const optionsContainer = document.getElementById('options-container');
     const timerElement = document.getElementById('timer');
-    const progressBar = document.getElementById('progress-bar');
+    const timerBar = document.getElementById('timer-bar');
     const currentScoreSpan = document.getElementById('current-score');
     
     const percentageScoreSpan = document.getElementById('percentage-score');
@@ -629,6 +767,7 @@
     const wrongAnswersSpan = document.getElementById('wrong-answers');
     const timeSpentSpan = document.getElementById('time-spent');
     const passStatusSpan = document.getElementById('pass-status');
+    const statusCard = document.getElementById('status-card');
     const scoreCircle = document.getElementById('score-circle');
     const reviewContainer = document.getElementById('review-container');
 
@@ -638,43 +777,20 @@
       
       // Event listeners
       startButton.addEventListener('click', startQuiz);
-      prevButton.addEventListener('click', handlePrevQuestion);
-      nextButton.addEventListener('click', handleNextQuestion);
+      prevButton.addEventListener('click', () => {
+        direction = 'prev';
+        handlePrevQuestion();
+      });
+      nextButton.addEventListener('click', () => {
+        direction = 'next';
+        handleNextQuestion();
+      });
       shareButton.addEventListener('click', () => shareDialog.classList.remove('hidden'));
       reviewButton.addEventListener('click', toggleReviewSection);
       retryButton.addEventListener('click', handleRetry);
       cancelShareButton.addEventListener('click', () => shareDialog.classList.add('hidden'));
       whatsappShareButton.addEventListener('click', handleShareWhatsApp);
       copyResultButton.addEventListener('click', handleCopyResult);
-      
-      // Add ripple effect to buttons
-      document.querySelectorAll('button').forEach(button => {
-        button.addEventListener('click', createRipple);
-      });
-    }
-
-    // Create ripple effect
-    function createRipple(event) {
-      const button = event.currentTarget;
-      
-      if (!button.classList.contains('ripple')) return;
-      
-      const circle = document.createElement('span');
-      const diameter = Math.max(button.clientWidth, button.clientHeight);
-      const radius = diameter / 2;
-      
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
-      circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
-      circle.classList.add('ripple-effect');
-      
-      const ripple = button.getElementsByClassName('ripple-effect')[0];
-      
-      if (ripple) {
-        ripple.remove();
-      }
-      
-      button.appendChild(circle);
     }
 
     // Start quiz
@@ -684,6 +800,11 @@
       
       startScreen.classList.add('hidden');
       quizScreen.classList.remove('hidden');
+      
+      // Reset timer animation
+      timerBar.classList.remove('animate-progress');
+      void timerBar.offsetWidth; // Trigger reflow
+      timerBar.classList.add('animate-progress');
       
       // Start timer
       startTimer();
@@ -698,27 +819,30 @@
       
       // Update question number and text
       currentQuestionSpan.textContent = currentQuestionIndex + 1;
+      questionNumberSpan.textContent = currentQuestionIndex + 1;
       questionTextElement.textContent = question.question;
       
-      // Update progress bar
-      const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-      progressBar.style.width = `${progress}%`;
+      // Apply animation based on direction
+      questionContainer.classList.remove('animate-fadeInRight', 'animate-fadeInLeft');
+      void questionContainer.offsetWidth; //  'animate-fadeInLeft');
+      void questionContainer.offsetWidth; // Trigger reflow
+      questionContainer.classList.add(direction === 'next' ? 'animate-fadeInRight' : 'animate-fadeInLeft');
       
       // Clear options container
       optionsContainer.innerHTML = '';
       
-      // Add options
+      // Add options with animation
       question.options.forEach((option, index) => {
         const isSelected = selectedAnswers[question.id] === option.id;
         const optionElement = document.createElement('div');
-        optionElement.className = `p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 ${isSelected ? 'border-primary-500 bg-primary-50 option-selected' : 'border-slate-200 hover:border-primary-300 hover:bg-primary-50'} animate-fade-in`;
+        optionElement.className = `p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer option-hover ${isSelected ? 'border-brand-500 bg-brand-50 option-selected' : 'border-gray-200 hover:border-brand-300 hover:bg-brand-50'}`;
         optionElement.style.animationDelay = `${index * 0.1}s`;
         optionElement.innerHTML = `
-          <div class="flex items-center gap-3">
-            <div class="flex-shrink-0 w-8 h-8 rounded-full ${isSelected ? 'bg-primary-500 text-white' : 'bg-slate-100 text-slate-700'} flex items-center justify-center font-medium">
+          <div class="flex items-center gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-xl ${isSelected ? 'bg-brand-500 text-white' : 'bg-gray-100 text-gray-700'} flex items-center justify-center font-bold text-lg transition-all duration-300">
               ${option.id.toUpperCase()}
             </div>
-            <div class="flex-grow">${option.text}</div>
+            <div class="flex-grow text-lg">${option.text}</div>
           </div>
         `;
         
@@ -806,6 +930,48 @@
       return score;
     }
 
+    // Create confetti
+    function createConfetti() {
+      confettiContainer.classList.remove('hidden');
+      
+      const colors = ['#14b8a6', '#0d9488', '#0f766e', '#115e59', '#134e4a'];
+      const shapes = ['square', 'circle'];
+      
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        const size = Math.random() * 10 + 5;
+        
+        confetti.className = `confetti ${shape === 'circle' ? 'rounded-full' : ''}`;
+        confetti.style.width = `${size}px`;
+        confetti.style.height = `${size}px`;
+        confetti.style.backgroundColor = color;
+        confetti.style.left = `${Math.random() * 100}%`;
+        
+        const animationDuration = Math.random() * 3 + 2;
+        const animationDelay = Math.random() * 5;
+        
+        confetti.style.animationDuration = `${animationDuration}s`;
+        confetti.style.animationDelay = `${animationDelay}s`;
+        
+        if (Math.random() > 0.7) {
+          confetti.classList.add('confetti--animation-slow');
+        } else if (Math.random() > 0.4) {
+          confetti.classList.add('confetti--animation-medium');
+        } else {
+          confetti.classList.add('confetti--animation-fast');
+        }
+        
+        confettiContainer.appendChild(confetti);
+      }
+      
+      setTimeout(() => {
+        confettiContainer.classList.add('hidden');
+        confettiContainer.innerHTML = '';
+      }, 8000);
+    }
+
     // Finish quiz
     function finishQuiz() {
       quizFinished = true;
@@ -833,14 +999,23 @@
       if (percentage >= 70) {
         passStatusSpan.textContent = 'Lulus';
         passStatusSpan.classList.add('text-emerald-600');
+        statusCard.classList.add('bg-emerald-50', 'border-emerald-100');
+        statusCard.querySelector('div').classList.add('bg-emerald-100');
+        statusCard.querySelector('svg').classList.add('text-emerald-600');
+        
+        // Show confetti for passing
+        createConfetti();
       } else {
         passStatusSpan.textContent = 'Belum Lulus';
         passStatusSpan.classList.add('text-rose-600');
+        statusCard.classList.add('bg-rose-50', 'border-rose-100');
+        statusCard.querySelector('div').classList.add('bg-rose-100');
+        statusCard.querySelector('svg').classList.add('text-rose-600');
       }
       
       // Animate score circle
       setTimeout(() => {
-        scoreCircle.style.strokeDasharray = `${(percentage / 100) * 251.2} 251.2`;
+        scoreCircle.style.strokeDasharray = `${(percentage / 100) * 289} 289`;
       }, 500);
       
       // Populate review section
@@ -856,32 +1031,32 @@
         const isCorrect = userAnswer === question.correctAnswer;
         
         const reviewItem = document.createElement('div');
-        reviewItem.className = 'py-4 animate-fade-in';
+        reviewItem.className = 'py-6 animate-fadeInUp';
         reviewItem.style.animationDelay = `${index * 0.1}s`;
         
         reviewItem.innerHTML = `
-          <div class="flex items-start gap-3 mb-3">
-            <div class="flex-shrink-0 w-8 h-8 rounded-full ${isCorrect ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'} flex items-center justify-center font-medium mt-1">
+          <div class="flex items-start gap-4 mb-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-xl ${isCorrect ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'} flex items-center justify-center font-bold text-lg mt-1">
               ${index + 1}
             </div>
             <div class="flex-grow">
-              <h3 class="font-medium text-slate-800 mb-2">${question.question}</h3>
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">${question.question}</h3>
               
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
                 ${question.options.map(option => {
-                  let optionClass = 'border rounded-lg p-2 flex items-center gap-2';
+                  let optionClass = 'border-2 rounded-xl p-3 flex items-center gap-3';
                   
                   if (option.id === question.correctAnswer) {
                     optionClass += ' bg-emerald-50 border-emerald-200 text-emerald-800';
                   } else if (option.id === userAnswer && option.id !== question.correctAnswer) {
                     optionClass += ' bg-rose-50 border-rose-200 text-rose-800';
                   } else {
-                    optionClass += ' border-slate-200 text-slate-600';
+                    optionClass += ' border-gray-200 text-gray-600';
                   }
                   
                   return `
                     <div class="${optionClass}">
-                      <div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center font-medium ${option.id === question.correctAnswer ? 'bg-emerald-200 text-emerald-800' : (option.id === userAnswer && option.id !== question.correctAnswer ? 'bg-rose-200 text-rose-800' : 'bg-slate-200 text-slate-700')}">
+                      <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center font-medium ${option.id === question.correctAnswer ? 'bg-emerald-200 text-emerald-800' : (option.id === userAnswer && option.id !== question.correctAnswer ? 'bg-rose-200 text-rose-800' : 'bg-gray-200 text-gray-700')}">
                         ${option.id.toUpperCase()}
                       </div>
                       <span>${option.text}</span>
@@ -891,8 +1066,8 @@
                 }).join('')}
               </div>
               
-              <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-amber-800">
-                <div class="font-medium mb-1 flex items-center gap-2">
+              <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-amber-800">
+                <div class="font-medium mb-2 flex items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -940,7 +1115,7 @@
       
       navigator.clipboard.writeText(text).then(() => {
         copyResultButton.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
           </svg>
           <span class="font-medium">Tersalin!</span>
@@ -948,7 +1123,7 @@
         
         setTimeout(() => {
           copyResultButton.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
             </svg>
             <span class="font-medium">Salin Hasil</span>
