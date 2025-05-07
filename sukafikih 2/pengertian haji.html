@@ -105,7 +105,18 @@
         max-width: 600px;
     }
 }
+body {
+        background-image: url('../image/umrah\ baru.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
 
+    /* Tetap pertahankan warna latar belakang abu jika perlu fallback */
+    .bg-gray-50 {
+        background-color: rgba(249, 250, 251, 0.85); /* semi-transparan jika ingin elemen tetap terlihat */
+    }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -117,15 +128,13 @@
         <div class="p-6 h-full flex flex-col">
             <!-- Logo -->
             <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                </div>
-                <h1 class="text-xl font-display font-bold">
-                    <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
-                </h1>
-            </div>
+              <div class="w-15 h-15 rounded-xl flex items-center justify-center">
+                  <img id="logo-icon" src="../image/logo skf 2.png" alt="logo" class="h-10 w-10 text-white" />
+              </div>
+              <h1 class="text-xl font-display font-bold">
+                  <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+              </h1>
+          </div>
 
             <!-- Navigation -->
             <nav class="space-y-1 flex-1 overflow-y-auto">
@@ -370,12 +379,12 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div class="bg-blue-50 p-5 rounded-lg border border-blue-100 icon-container">
                   <div class="flex items-center mb-3">
-                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                      <i class="bx bx-heart text-blue-500 text-xl"></i>
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                      <i class="bx bx-heart text-blue-500 text-xl font-bold">A</i>
                     </div>
                     <h4 class="font-bold text-blue-700">Hikmah Spiritual</h4>
                   </div>
-                  <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                  <ul class="list-decimal pl-5 space-y-2 text-gray-700">
                     <li><span class="font-semibold">Pemurnian Tauhid</span>: Haji merupakan bentuk pengabdian total kepada Allah SWT, menjauhkan diri dari segala bentuk kesyirikan.</li>
                     <li><span class="font-semibold">Penghapusan Dosa</span>: Haji yang mabrur dapat menghapus dosa-dosa yang telah lalu.</li>
                     <li><span class="font-semibold">Peningkatan Ketakwaan</span>: Berbagai ritual haji melatih kesabaran, ketaatan, dan ketakwaan kepada Allah SWT.</li>
@@ -386,11 +395,11 @@
                 <div class="bg-green-50 p-5 rounded-lg border border-green-100 icon-container">
                   <div class="flex items-center mb-3">
                     <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                      <i class="bx bx-group text-green-500 text-xl"></i>
+                      <i class="bx bx-group text-green-500 text-xl font-bold">B</i>
                     </div>
                     <h4 class="font-bold text-green-700">Hikmah Sosial</h4>
                   </div>
-                  <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                  <ul class="list-decimal pl-5 space-y-2 text-gray-700">
                     <li><span class="font-semibold">Persatuan Umat</span>: Haji mempersatukan umat Islam dari berbagai latar belakang, ras, dan bangsa.</li>
                     <li><span class="font-semibold">Kesetaraan</span>: Semua jamaah mengenakan pakaian ihram yang sama, menghilangkan perbedaan status sosial.</li>
                     <li><span class="font-semibold">Solidaritas</span>: Haji menumbuhkan rasa persaudaraan dan solidaritas antar sesama muslim.</li>
@@ -401,11 +410,11 @@
                 <div class="bg-amber-50 p-5 rounded-lg border border-amber-100 icon-container">
                   <div class="flex items-center mb-3">
                     <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-3">
-                      <i class="bx bx-coin-stack text-amber-500 text-xl"></i>
+                      <i class="bx bx-coin-stack text-amber-500 text-xl font-bold">C</i>
                     </div>
                     <h4 class="font-bold text-amber-700">Hikmah Ekonomi</h4>
                   </div>
-                  <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                  <ul class="list-decimal pl-5 space-y-2 text-gray-700">
                     <li><span class="font-semibold">Distribusi Kekayaan</span>: Haji mendorong distribusi kekayaan dari orang kaya kepada yang membutuhkan.</li>
                     <li><span class="font-semibold">Pengembangan Ekonomi</span>: Aktivitas haji memberikan dampak ekonomi positif bagi masyarakat di sekitar tempat ibadah.</li>
                     <li><span class="font-semibold">Pengorbanan Harta</span>: Haji mengajarkan pengorbanan harta di jalan Allah SWT.</li>
@@ -416,11 +425,11 @@
                 <div class="bg-purple-50 p-5 rounded-lg border border-purple-100 icon-container">
                   <div class="flex items-center mb-3">
                     <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
-                      <i class="bx bx-book-open text-purple-500 text-xl"></i>
+                      <i class="bx bx-book-open text-purple-500 text-xl font-bold">D</i>
                     </div>
                     <h4 class="font-bold text-purple-700">Hikmah Pendidikan</h4>
                   </div>
-                  <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                  <ul class="list-decimal pl-5 space-y-2 text-gray-700">
                     <li><span class="font-semibold">Pembelajaran Sejarah</span>: Haji mengingatkan pada sejarah para nabi, khususnya Nabi Ibrahim AS dan keluarganya.</li>
                     <li><span class="font-semibold">Disiplin</span>: Pelaksanaan haji melatih kedisiplinan dalam mengikuti aturan dan waktu.</li>
                     <li><span class="font-semibold">Manajemen</span>: Persiapan dan pelaksanaan haji mengajarkan manajemen waktu, tenaga, dan harta.</li>
@@ -443,7 +452,7 @@
                 <ul class="space-y-3 text-gray-700">
                   <li class="flex items-start">
                     <div class="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                      <i class="bx bx-calendar text-blue-500"></i>
+                      <i class="bx-calendar text-blue-500 font-bold">1</i>
                     </div>
                     <div>
                       <span class="font-semibold">Syawal</span>: Bulan ke-10 dalam kalender Hijriah
@@ -451,7 +460,7 @@
                   </li>
                   <li class="flex items-start">
                     <div class="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                      <i class="bx bx-calendar text-blue-500"></i>
+                      <i class="bx bx-calendar text-blue-500">2</i>
                     </div>
                     <div>
                       <span class="font-semibold">Dzulqa'dah</span>: Bulan ke-11 dalam kalender Hijriah
@@ -459,7 +468,7 @@
                   </li>
                   <li class="flex items-start">
                     <div class="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                      <i class="bx bx-calendar text-blue-500"></i>
+                      <i class="bx bx-calendar text-blue-500">3</i>
                     </div>
                     <div>
                       <span class="font-semibold">Dzulhijjah</span>: Bulan ke-12 dalam kalender Hijriah (Puncak ibadah haji dilaksanakan pada tanggal 8-13 Dzulhijjah)

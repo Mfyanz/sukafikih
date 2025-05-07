@@ -1,320 +1,1262 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sukafikih - Materi Haji</title>
-  <meta name="description" content="Pelajari materi seputar ibadah haji secara lengkap dan mudah dipahami">
-  
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Configure Tailwind -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            blue: {
-              50: '#f0f7ff',
-              100: '#e0efff',
-              500: '#0066cc',
-              600: '#0055b3',
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rukun Haji</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Sora', 'sans-serif'],
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        secondary: {
+                            600: '#475569',
+                            800: '#1e293b',
+                        }
+                    }
+                }
             }
-          }
         }
-      }
+    </script>
+    <style>
+        .menu-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+        
+        .menu-content.active {
+            max-height: 500px;
+            opacity: 1;
+        }
+        
+        /* Transition for sidebar */
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .sidebar.active {
+            transform: translateX(0);
+        }
+        .chevron {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .chevron.active {
+            transform: rotate(180deg);
+        }
+
+        .backdrop {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        
+        .backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        body {
+        background-image: url('../image/umrah\ baru.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
-  </script>
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
+
+    /* Tetap pertahankan warna latar belakang abu jika perlu fallback */
+    .bg-gray-50 {
+        background-color: rgba(249, 250, 251, 0.85); /* semi-transparan jika ingin elemen tetap terlihat */
     }
-    
-    .transition-all {
-      transition: all 0.3s ease;
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+        background-color: rgba(0, 0, 0, 0.5);
+        align-items: center;
+        justify-content: center;
     }
-    
-    .card-icon {
-      width: 45%;
-      aspect-ratio: 1/1;
+
+    .modal.active {
+        display: flex;
+        animation: fadeIn 0.3s ease-out forwards;
     }
-    
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+
+    .modal-content {
+        background-color: white;
+        border-radius: 0.75rem;
+        max-width: 800px;
+        width: 90%;
+        max-height: 90vh;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     }
-  </style>
+
+    /* Video container styles */
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    /* Improved video button styles */
+    .video-btn {
+        transition: all 0.3s ease;
+        width: 160px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        margin-top: 12px;
+    }
+
+    .video-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Ensure consistent button size on mobile */
+    @media (max-width: 640px) {
+        .video-btn {
+            width: 140px;
+            height: 40px;
+            font-size: 0.875rem;
+        }
+    }
+    </style>
 </head>
-<body class="bg-gray-50">
-  <div class="flex min-h-screen">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white shadow-lg hidden md:block">
-      <div class="p-4 border-b">
-        <div class="flex items-center gap-2">
-          <div class="bg-blue-600 text-white p-2 rounded-md">
-            <!-- Book Open Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Same sidebar as index.html -->
+    <div id="backdrop" class="fixed inset-0 bg-black/50 z-40 backdrop lg:hidden"></div>
+    
+    <aside id="sidebar" class="fixed z-50 w-72 bg-white border-r border-gray-200 h-screen sidebar lg:transform-none lg:shadow-none">
+        <!-- Sidebar content same as index.html -->
+        <div class="p-6 h-full flex flex-col">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-15 h-15 rounded-xl flex items-center justify-center">
+                  <img id="logo-icon" src="../image/logo skf 2.png" alt="logo" class="h-10 w-10 text-white" />
+              </div>
+              <h1 class="text-xl font-display font-bold">
+                  <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+              </h1>
           </div>
-          <h1 class="text-blue-600 font-bold text-xl">sukafikih</h1>
-        </div>
-      </div>
-
-      <nav class="p-2">
-        <a href="#" class="flex items-center gap-2 p-3 rounded-md hover:bg-blue-50 text-gray-700">
-          <!-- Home Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home">
-            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-          </svg>
-          <span>Beranda</span>
-        </a>
-
-        <div class="mt-2">
-          <div class="flex items-center justify-between p-3 rounded-md hover:bg-blue-50 text-blue-600 font-medium cursor-pointer">
-            <div class="flex items-center gap-2">
-              <!-- Book Icon -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book">
-                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
-              </svg>
-              <span>Materi Haji</span>
+            
+            <!-- Navigation -->
+            <nav class="space-y-1 flex-1 overflow-y-auto">
+              <a href="./menu.html" class="flex items-center gap-3 px-4 py-3 text-secondary-600 hover:bg-gray-100 rounded-xl font-medium transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                  <span>Beranda</span>
+              </a>
+              
+              <!-- Haji Menu -->
+              <div class="menu-item">
+                  <button class="w-full flex items-center justify-between px-4 py-3 text-primary-600 hover:bg-primary-50 rounded-xl font-medium transition-colors">
+                      <div class="flex items-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                          <span>Materi Haji</span>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 chevron active" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                  </button>
+                  <div class="menu-content active pl-12 mt-1 space-y-1">
+                      <a href="./pengertian haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Pengertian Haji</a>
+                      <a href="./dalil haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Dalil Haji</a>
+                      <a href="./hukum haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Hukum Haji</a>
+                      <a href="./rukun haji.html" class="block px-4 py-2 text-sm text-primary-600 bg-primary-50 rounded-lg">Rukun Haji</a>
+                      <a href="./syarat wajib dan sah haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Syarat Haji</a>
+                      <a href="./sunnah haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Sunnah Haji</a>
+                      <a href="./wajib haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Wajib Haji</a>
+                      <a href="./macam haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Macam-macam Haji</a>
+                      <a href="./larangan haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Larangan Haji</a>
+                      <a href="./tata cara haji.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Tata Cara Haji</a>
+                  </div>
+              </div>
+              
+              <!-- Umrah Menu -->
+              <div class="menu-item">
+                  <button class="w-full flex items-center justify-between px-4 py-3 text-primary-600 hover:bg-primary-50 rounded-xl font-medium transition-colors">
+                      <div class="flex items-center gap-3">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                          </svg>
+                          <span>Materi Umrah</span>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 chevron active" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                  </button>
+                  <div class="menu-content active pl-12 mt-1 space-y-1">
+                      <a href="./pengertian umrah.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Pengertian Umrah</a>
+                      <a href="./dalil umrah.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Dalil dan Hukum Umrah</a>
+                      <a href="./rukun umrah.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Rukun Umrah</a>
+                      <a href="./syarat umrah.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Syarat-Syarat Umrah</a>
+                      <a href="./sunnah umrah.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Sunnah Umrah</a>
+                      <a href="./larangan umrah.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Larangan Umrah</a>
+                  </div>
+              </div>
+              
+              <!-- Latihan Menu -->
+              <div class="menu-item">
+                <button class="w-full flex items-center justify-between px-4 text-primary-600 hover:bg-primary-50 rounded-xl font-medium transition-colors mt-2">
+                    <div class="flex items-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                        <span>Ayo Latihan</span>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 chevron active" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="menu-content active pl-12 mt-1 space-y-1">
+                    <a href="./uji pemahaman.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Latihan I</a>
+                    <a href="./uji Pemahaman 2.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Latihan II</a>
+                    <a href="./mini game.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Mini Game 1</a>
+                    <a href="./minigame 2.html" class="block px-4 py-2 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg">Mini Game 2</a>
+                </div>
             </div>
-            <!-- Chevron Down Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
-              <path d="m6 9 6 6 6-6"></path>
-            </svg>
-          </div>
-
-          <div class="ml-7 mt-1 space-y-1">
-            <a href="#" class="block p-2 text-sm hover:text-blue-600 text-gray-600">
-              Pengertian Haji
-            </a>
-            <a href="#" class="block p-2 text-sm hover:text-blue-600 text-gray-600">
-              Dalil Haji
-            </a>
-            <a href="#" class="block p-2 text-sm hover:text-blue-600 text-gray-600">
-              Hukum Haji
-            </a>
-            <a href="#" class="block p-2 text-sm hover:text-blue-600 text-gray-600">
-              Rukun Haji
-            </a>
-            <a href="#" class="block p-2 text-sm hover:text-blue-600 text-gray-600">
-              Syarat Haji
-            </a>
-            <a href="#" class="block p-2 text-sm hover:text-blue-600 text-gray-600">
-              Sunnah Haji
-            </a>
-            <a href="#" class="block p-2 text-sm hover:text-blue-600 text-gray-600">
-              Wajib Haji
-            </a>
-            <a href="#" class="block p-2 text-sm hover:text-blue-600 text-gray-600">
-              Macam-macam Haji
-            </a>
-            <a href="#" class="block p-2 text-sm hover:text-blue-600 text-gray-600">
-              Larangan Haji
-            </a>
-            <a href="#" class="block p-2 text-sm hover:text-blue-600 text-gray-600">
-              Tata Cara Haji
-            </a>
-          </div>
+          </nav>
         </div>
-
-        <div class="mt-2">
-          <div class="flex items-center justify-between p-3 rounded-md hover:bg-blue-50 text-gray-700 cursor-pointer">
-            <div class="flex items-center gap-2">
-              <!-- Book Icon -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book">
-                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
-              </svg>
-              <span>Materi Umrah</span>
-            </div>
-            <!-- Chevron Down Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
-              <path d="m6 9 6 6 6-6"></path>
-            </svg>
-          </div>
-        </div>
-      </nav>
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1">
-      <!-- Mobile Header -->
-      <div class="md:hidden bg-white p-4 flex items-center justify-between shadow-sm">
-        <div class="flex items-center gap-2">
-          <div class="bg-blue-600 text-white p-1.5 rounded-md">
-            <!-- Book Open Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg>
-          </div>
-          <h1 class="text-blue-600 font-bold text-lg">sukafikih</h1>
-        </div>
-        <button class="p-2 rounded-md hover:bg-gray-100">
-          <!-- Menu Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
-            <line x1="4" x2="20" y1="12" y2="12"></line>
-            <line x1="4" x2="20" y1="6" y2="6"></line>
-            <line x1="4" x2="20" y1="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Content -->
-      <div class="p-4 md:p-8">
+    <div class="lg:pl-72">
         <!-- Header -->
-        <div class="bg-blue-600 text-white p-6 md:p-8 rounded-xl mb-8">
-          <h1 class="text-2xl md:text-3xl font-bold mb-2">Materi Haji</h1>
-          <p class="opacity-90">Pelajari materi seputar ibadah haji secara lengkap dan mudah dipahami</p>
+        <header class="bg-white border-b sticky top-0 z-30">
+            <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <button id="menuToggle" class="p-2 hover:bg-gray-100 rounded-lg lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <h1 class="text-xl font-display font-bold lg:hidden">
+                        <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+                    </h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <main class="flex-1 overflow-y-auto p-4">
+            <!-- Breadcrumb -->
+            <div class="flex items-center text-sm text-gray-500 mb-6">
+              <a href="#" class="hover:text-blue-500">Beranda</a>
+              <span class="mx-2">&gt;</span>
+              <a href="#" class="hover:text-blue-500">Materi Haji</a>
+              <span class="mx-2">&gt;</span>
+              <span class="text-blue-500">Rukun Haji</span>
+            </div>
+    
+            <!-- Title -->
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Rukun Haji</h1>
+            <p class="text-gray-600 mb-8">Memahami rukun-rukun wajib dalam ibadah haji</p>
+    
+            <!-- Content -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-6">
+                <!-- Pengertian Section -->
+                <section id="pengertian" class="p-4 border-b border-gray-100">
+                  <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                      <i class="text-3xl font-bold text-gray-800">A</i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Pengertian Rukun Haji</h2>
+                  </div>
+                  
+                  <div class="space-y-6">
+                    <div class="bg-gradient-to-r from-primary-50 to-primary-100 p-6 rounded-xl border border-primary-200 animate-fadeIn">
+                      <h3 class="text-xl font-bold text-primary-700 mb-3">Apa itu Rukun Haji?</h3>
+                      <p class="text-gray-700 mb-4">
+                        <span class="font-bold text-primary-600">Rukun Haji</span> adalah amalan-amalan pokok yang wajib dilaksanakan dalam ibadah haji. Jika salah satu rukun haji ditinggalkan, maka ibadah haji tidak sah dan tidak dapat diganti dengan dam (denda).
+                      </p>
+                      <p class="text-gray-700">
+                        Rukun haji merupakan inti dari ibadah haji yang harus dilaksanakan oleh setiap jamaah haji. Berbeda dengan wajib haji yang jika ditinggalkan dapat diganti dengan membayar dam, rukun haji tidak dapat diganti dengan apapun dan harus dilaksanakan.
+                      </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="p-5 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
+                          <h4 class="font-bold text-primary-700">Perbedaan Rukun, Wajib, dan Sunnah Haji</h4>
+                        </div>
+                        <div class="p-5">
+                          <div class="overflow-x-auto">
+                            <table class="min-w-full">
+                              <thead>
+                                <tr class="border-b border-gray-200">
+                                  <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Aspek</th>
+                                  <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Rukun Haji</th>
+                                  <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Wajib Haji</th>
+                                  <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Sunnah Haji</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="border-b border-gray-200">
+                                  <td class="py-2 px-3 text-sm text-gray-700 font-medium">Pengertian</td>
+                                  <td class="py-2 px-3 text-sm text-gray-600">Amalan pokok yang harus dilakukan</td>
+                                  <td class="py-2 px-3 text-sm text-gray-600">Amalan yang harus dilakukan</td>
+                                  <td class="py-2 px-3 text-sm text-gray-600">Amalan yang dianjurkan</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                  <td class="py-2 px-3 text-sm text-gray-700 font-medium">Konsekuensi jika tidak dilakukan</td>
+                                  <td class="py-2 px-3 text-sm text-gray-600">Haji tidak sah dan harus diulang</td>
+                                  <td class="py-2 px-3 text-sm text-gray-600">Haji tetap sah, tapi wajib membayar dam</td>
+                                  <td class="py-2 px-3 text-sm text-gray-600">Haji tetap sah, hanya kehilangan keutamaan</td>
+                                </tr>
+                                <tr>
+                                  <td class="py-2 px-3 text-sm text-gray-700 font-medium">Contoh</td>
+                                  <td class="py-2 px-3 text-sm text-gray-600">Ihram, wukuf, thawaf ifadhah, sa'i, tahallul</td>
+                                  <td class="py-2 px-3 text-sm text-gray-600">Ihram dari miqat, mabit di Muzdalifah, mabit di Mina, melempar jumrah</td>
+                                  <td class="py-2 px-3 text-sm text-gray-600">Mandi sebelum ihram, shalat sunnah ihram, membaca talbiyah</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="p-5 bg-gradient-to-r from-accent-50 to-white border-b border-gray-200">
+                          <h4 class="font-bold text-accent-700">Hikmah Adanya Rukun Haji</h4>
+                        </div>
+                        <div class="p-5">
+                          <ul class="space-y-3">
+                            <li class="flex items-start">
+                              <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                <i class="font-semibold text-gray-800">1</i>
+                              </div>
+                              <div>
+                                <span class="font-semibold text-gray-800">Kesempurnaan Ibadah</span>
+                                <p class="text-sm text-gray-600 mt-1">Rukun haji memastikan bahwa ibadah haji dilaksanakan dengan sempurna sesuai dengan tuntunan syariat.</p>
+                              </div>
+                            </li>
+                            <li class="flex items-start">
+                              <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                <i class="font-semibold text-gray-800">2</i>
+                              </div>
+                              <div>
+                                <span class="font-semibold text-gray-800">Keseragaman Ibadah</span>
+                                <p class="text-sm text-gray-600 mt-1">Rukun haji menjadikan ibadah haji seragam bagi seluruh umat Islam di seluruh dunia, sehingga mencerminkan persatuan umat.</p>
+                              </div>
+                            </li>
+                            <li class="flex items-start">
+                              <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                <i class="font-semibold text-gray-800">3</i>
+                              </div>
+                              <div>
+                                <span class="font-semibold text-gray-800">Mengikuti Sunnah Rasulullah</span>
+                                <p class="text-sm text-gray-600 mt-1">Rukun haji merupakan amalan yang dilakukan oleh Rasulullah SAW dalam haji wada' (haji perpisahan), sehingga melaksanakannya berarti mengikuti sunnah beliau.</p>
+                              </div>
+                            </li>
+                            <li class="flex items-start">
+                              <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                <i class="font-semibold text-gray-800">4</i>
+                              </div>
+                              <div>
+                                <span class="font-semibold text-gray-800">Memahami Prioritas Ibadah</span>
+                                <p class="text-sm text-gray-600 mt-1">Pembagian amalan haji menjadi rukun, wajib, dan sunnah membantu jamaah memahami prioritas dalam ibadah haji.</p>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                </section>
+                
+                <!-- Rukun Haji Section -->
+                <section id="rukun-haji" class="p-4 border-b border-gray-100">
+                  <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mr-4">
+                      <i class="text-3xl font-bold text-gray-800">B</i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Rukun-rukun Haji</h2>
+                  </div>
+                  
+                  <div class="space-y-8">
+                    <p class="text-gray-700">
+                      Para ulama berbeda pendapat tentang jumlah rukun haji. Menurut mayoritas ulama, rukun haji ada lima atau enam. Berikut adalah rukun-rukun haji menurut pendapat mayoritas ulama:
+                    </p>
+                    
+                    <!-- Rukun 1: Ihram -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                      <div class="p-6 bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+                        <div class="flex items-center">
+                          <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                            <i class="text-2xl font-bold">1</i>
+                          </div>
+                          <h3 class="text-2xl font-bold">Ihram</h3>
+                        </div>
+                      </div>
+                      
+                      <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          <div class="md:col-span-2 space-y-4">
+                            <p class="text-gray-700">
+                              <span class="font-bold text-primary-600">Ihram</span> adalah niat masuk ke dalam ibadah haji. Ihram merupakan rukun pertama dalam ibadah haji dan menjadi tanda dimulainya ibadah haji.
+                            </p>
+                            <div class="bg-primary-50 p-4 rounded-lg">
+                              <h4 class="font-bold text-primary-700 mb-2">Dalil</h4>
+                              <p class="text-gray-700 text-sm">
+                                Rasulullah SAW bersabda:
+                              </p>
+                              <div class="mt-2">
+                                <p class="text-right text-gray-800 font-arabic text-xl leading-loose">إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى</p>
+                                <p class="text-gray-600 text-sm mt-2">"Sesungguhnya setiap amalan tergantung pada niatnya, dan sesungguhnya setiap orang akan mendapatkan sesuai dengan apa yang ia niatkan." (HR. Bukhari dan Muslim)</p>
+                              </div>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                              <h5 class="font-bold text-yellow-800 mb-1">Tata Cara Ihram</h5>
+                              <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                                <li>Mandi sunnah ihram (disunnahkan)</li>
+                                <li>Memakai pakaian ihram (wajib bagi laki-laki, sunnah bagi perempuan)</li>
+                                <li>Shalat sunnah ihram dua rakaat (disunnahkan)</li>
+                                <li>Berniat haji dengan mengucapkan "Labbaik Allahumma hajjan" (wajib)</li>
+                                <li>Membaca talbiyah (disunnahkan)</li>
+                              </ol>
+                            </div>
+                          </div>
+                          
+                          <div>
+                            <img src="../image/ihram.webp" alt="Ilustrasi Ihram" class="w-full h-auto rounded-lg shadow-md">
+                            <div class="mt-4 space-y-2">
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Rukun pertama haji</p>
+                              </div>
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Niat adalah inti dari ihram</p>
+                              </div>
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Berlaku selama ibadah haji</p>
+                              </div>
+                            </div>
+                            <!-- Video Button moved below image -->
+                            <button class="video-btn bg-white text-blue-600 hover:bg-gray-100 border border-gray-200 rounded-lg flex items-center gap-2 shadow-lg mx-auto" onclick="openModal('video-ihram')">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              <span>Tonton Video</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Rukun 2: Wukuf di Arafah -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                      <div class="p-6 bg-gradient-to-r from-secondary-600 to-secondary-700 text-white">
+                        <div class="flex items-center">
+                          <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                            <i class="text-2xl font-bold">2</i>
+                          </div>
+                          <h3 class="text-2xl font-bold">Wukuf di Arafah</h3>
+                        </div>
+                      </div>
+                      
+                      <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          <div class="md:col-span-2 space-y-4">
+                            <p class="text-gray-700">
+                              <span class="font-bold text-secondary-600">Wukuf di Arafah</span> adalah berdiam diri di padang Arafah pada tanggal 9 Dzulhijjah, mulai dari tergelincirnya matahari (waktu Dzuhur) hingga terbenamnya matahari (waktu Maghrib). Wukuf merupakan rukun haji yang paling utama.
+                            </p>
+                            <div class="bg-secondary-50 p-4 rounded-lg">
+                              <h4 class="font-bold text-secondary-700 mb-2">Dalil</h4>
+                              <p class="text-gray-700 text-sm">
+                                Rasulullah SAW bersabda:
+                              </p>
+                              <div class="mt-2">
+                                <p class="text-right text-gray-800 font-arabic text-xl leading-loose">الْحَجُّ عَرَفَةُ</p>
+                                <p class="text-gray-600 text-sm mt-2">"Haji itu adalah wukuf di Arafah." (HR. Ahmad, Abu Dawud, Tirmidzi, Ibnu Majah, dan lainnya)</p>
+                              </div>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                              <h5 class="font-bold text-yellow-800 mb-1">Tata Cara Wukuf</h5>
+                              <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                                <li>Berada di padang Arafah pada tanggal 9 Dzulhijjah</li>
+                                <li>Berdiam diri di Arafah mulai dari tergelincirnya matahari hingga terbenamnya matahari</li>
+                                <li>Memperbanyak doa, dzikir, istighfar, dan membaca Al-Qur'an</li>
+                                <li>Shalat Dzuhur dan Ashar dijamak taqdim dan diqashar</li>
+                              </ol>
+                            </div>
+                          </div>
+                          
+                          <div>
+                            <img src="../image/wukuf.webp" alt="Ilustrasi Wukuf di Arafah" class="w-full h-auto rounded-lg shadow-md">
+                            <div class="mt-4 space-y-2">
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Rukun utama haji</p>
+                              </div>
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Tanggal 9 Dzulhijjah</p>
+                              </div>
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Waktu doa mustajab</p>
+                              </div>
+                            </div>
+                            <!-- Video Button moved below image -->
+                            <button class="video-btn bg-white text-blue-600 hover:bg-gray-100 border border-gray-200 rounded-lg flex items-center gap-2 shadow-lg mx-auto" onclick="openModal('video-wukuf')">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              <span>Tonton Video</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Rukun 3: Thawaf Ifadhah -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                      <div class="p-6 bg-gradient-to-r from-secondary-600 to-secondary-700 text-white">
+                        <div class="flex items-center">
+                          <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                            <i class="text-2xl font-bold">3</i>
+                          </div>
+                          <h3 class="text-2xl font-bold">Tawaf Ifadhah</h3>
+                        </div>
+                      </div>
+                      
+                      <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          <div class="md:col-span-2 space-y-4">
+                            <p class="text-gray-700">
+                              <span class="font-bold text-accent-600">Thawaf Ifadhah</span> adalah mengelilingi Ka'bah sebanyak tujuh kali putaran, dimulai dari Hajar Aswad dan berakhir di Hajar Aswad. Thawaf Ifadhah dilakukan setelah wukuf di Arafah dan mabit di Muzdalifah.
+                            </p>
+                            <div class="bg-accent-50 p-4 rounded-lg">
+                              <h4 class="font-bold text-accent-700 mb-2">Dalil</h4>
+                              <p class="text-gray-700 text-sm">
+                                Allah SWT berfirman dalam Al-Qur'an:
+                              </p>
+                              <div class="mt-2">
+                                <p class="text-right text-gray-800 font-arabic text-xl leading-loose">وَلْيَطَّوَّفُوا بِالْبَيْتِ الْعَتِيقِ</p>
+                                <p class="text-gray-600 text-sm mt-2">"Dan hendaklah mereka melakukan thawaf sekeliling rumah yang tua itu (Baitullah)." (QS. Al-Hajj: 29)</p>
+                              </div>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                              <h5 class="font-bold text-yellow-800 mb-1">Tata Cara Thawaf Ifadhah</h5>
+                              <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                                <li>Memulai thawaf dari Hajar Aswad dengan menghadap ke arahnya</li>
+                                <li>Mengelilingi Ka'bah sebanyak tujuh kali putaran dengan posisi Ka'bah berada di sebelah kiri</li>
+                                <li>Setiap kali melewati Hajar Aswad, disunnahkan untuk menghadap ke arahnya dan mengucapkan takbir</li>
+                                <li>Disunnahkan untuk berdoa selama thawaf</li>
+                                <li>Setelah selesai thawaf, disunnahkan untuk shalat dua rakaat di belakang Maqam Ibrahim</li>
+                              </ol>
+                            </div>
+                          </div>
+                          
+                          <div>
+                            <img src="../image/tawaf.webp" alt="Ilustrasi Thawaf Ifadhah" class="w-full h-auto rounded-lg shadow-md">
+                            <div class="mt-4 space-y-2">
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Tujuh putaran mengelilingi Ka'bah</p>
+                              </div>
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Dilakukan setelah wukuf</p>
+                              </div>
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Ka'bah berada di sebelah kiri</p>
+                              </div>
+                            </div>
+                            <!-- Video Button moved below image -->
+                            <button class="video-btn bg-white text-blue-600 hover:bg-gray-100 border border-gray-200 rounded-lg flex items-center gap-2 shadow-lg mx-auto" onclick="openModal('video-tawaf')">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              <span>Tonton Video</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Rukun 4: Sa'i -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                      <div class="p-6 bg-gradient-to-r from-green-600 to-green-700 text-white">
+                        <div class="flex items-center">
+                          <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                            <i class="text-2xl font-bold">4</i>
+                          </div>
+                          <h3 class="text-2xl font-bold">Sa'i</h3>
+                        </div>
+                      </div>
+                      
+                      <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          <div class="md:col-span-2 space-y-4">
+                            <p class="text-gray-700">
+                              <span class="font-bold text-green-600">Sa'i</span> adalah berjalan atau berlari-lari kecil bolak-balik antara bukit Shafa dan Marwah sebanyak tujuh kali. Sa'i dimulai dari bukit Shafa dan berakhir di bukit Marwah.
+                            </p>
+                            <div class="bg-green-50 p-4 rounded-lg">
+                              <h4 class="font-bold text-green-700 mb-2">Dalil</h4>
+                              <p class="text-gray-700 text-sm">
+                                Allah SWT berfirman dalam Al-Qur'an:
+                              </p>
+                              <div class="mt-2">
+                                <p class="text-right text-gray-800 font-arabic text-xl leading-loose">إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ ۖ فَمَنْ حَجَّ الْبَيْتَ أَوِ اعْتَمَرَ فَلَا جُنَاحَ عَلَيْهِ أَنْ يَطَّوَّفَ بِهِمَا</p>
+                                <p class="text-gray-600 text-sm mt-2">"Sesungguhnya Shafa dan Marwah adalah sebagian dari syiar Allah. Maka barangsiapa yang beribadah haji ke Baitullah atau berumrah, maka tidak ada dosa baginya untuk melakukan sa'i antara keduanya." (QS. Al-Baqarah: 158)</p>
+                              </div>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                              <h5 class="font-bold text-yellow-800 mb-1">Tata Cara Sa'i</h5>
+                              <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                                <li>Memulai sa'i dari bukit Shafa dengan menghadap ke arah Ka'bah dan mengucapkan takbir dan doa</li>
+                                <li>Berjalan dari Shafa menuju Marwah (dihitung satu kali)</li>
+                                <li>Disunnahkan untuk berlari-lari kecil di antara dua tanda hijau bagi laki-laki</li>
+                                <li>Setelah sampai di Marwah, menghadap ke arah Ka'bah dan mengucapkan takbir dan doa</li>
+                                <li>Berjalan dari Marwah menuju Shafa (dihitung dua kali)</li>
+                                <li>Melakukan hal yang sama hingga tujuh kali (berakhir di Marwah)</li>
+                              </ol>
+                            </div>
+                          </div>
+                          
+                          <div>
+                            <img src="../image/sa'i.webp" alt="Ilustrasi Sa'i" class="w-full h-auto rounded-lg shadow-md">
+                            <div class="mt-4 space-y-2">
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Tujuh kali bolak-balik</p>
+                              </div>
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Dimulai dari Shafa</p>
+                              </div>
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Berakhir di Marwah</p>
+                              </div>
+                            </div>
+                            <!-- Video Button moved below image -->
+                            <button class="video-btn bg-white text-blue-600 hover:bg-gray-100 border border-gray-200 rounded-lg flex items-center gap-2 shadow-lg mx-auto" onclick="openModal('video-sai')">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              <span>Tonton Video</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Rukun 5: Tahallul -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                      <div class="p-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                        <div class="flex items-center">
+                          <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                            <i class="text-2xl font-bold">5</i>
+                          </div>
+                          <h3 class="text-2xl font-bold">Tahallul</h3>
+                        </div>
+                      </div>
+                      
+                      <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          <div class="md:col-span-2 space-y-4">
+                            <p class="text-gray-700">
+                              <span class="font-bold text-blue-600">Tahallul</span> adalah mencukur atau memotong sebagian rambut kepala sebagai tanda berakhirnya sebagian atau seluruh larangan ihram. Tahallul dilakukan setelah melakukan sebagian atau seluruh rangkaian ibadah haji.
+                            </p>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                              <h4 class="font-bold text-blue-700 mb-2">Dalil</h4>
+                              <p class="text-gray-700 text-sm">
+                                Allah SWT berfirman dalam Al-Qur'an:
+                              </p>
+                              <div class="mt-2">
+                                <p class="text-right text-gray-800 font-arabic text-xl leading-loose">مُحَلِّقِينَ رُءُوسَكُمْ وَمُقَصِّرِينَ</p>
+                                <p class="text-gray-600 text-sm mt-2">"Dengan mencukur rambut kepala kalian dan memendekkannya." (QS. Al-Fath: 27)</p>
+                              </div>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                              <h5 class="font-bold text-yellow-800 mb-1">Jenis-jenis Tahallul</h5>
+                              <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+                                <li><span class="font-bold">Tahallul Awal:</span> Dilakukan setelah melakukan dua dari tiga amalan berikut: melempar jumrah Aqabah, mencukur atau memotong rambut, dan thawaf ifadhah. Setelah tahallul awal, larangan ihram yang boleh dilakukan adalah memakai pakaian biasa, memakai wewangian, dan memotong kuku.</li>
+                                <li><span class="font-bold">Tahallul Tsani (Tahallul Akhir):</span> Dilakukan setelah melakukan semua amalan haji. Setelah tahallul tsani, semua larangan ihram boleh dilakukan, termasuk hubungan suami istri.</li>
+                              </ul>
+                            </div>
+                          </div>
+                          
+                          <div>
+                            <img src="../image/Tahallul.webp" alt="Ilustrasi Tahallul" class="w-full h-auto rounded-lg shadow-md">
+                            <div class="mt-4 space-y-2">
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Tanda berakhirnya larangan ihram</p>
+                              </div>
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Ada tahallul awal dan akhir</p>
+                              </div>
+                            </div>
+                            <!-- Video Button moved below image -->
+                            <button class="video-btn bg-white text-blue-600 hover:bg-gray-100 border border-gray-200 rounded-lg flex items-center gap-2 shadow-lg mx-auto" onclick="openModal('video-tahallul')">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              <span>Tonton Video</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Rukun 6: Tertib -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 card-hover">
+                      <div class="p-6 bg-gradient-to-r from-red-600 to-red-700 text-white">
+                        <div class="flex items-center">
+                          <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                            <i class="text-2xl font-bold">6</i>
+                          </div>
+                          <h3 class="text-2xl font-bold">Tertib</h3>
+                        </div>
+                      </div>
+                      
+                      <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          <div class="md:col-span-2 space-y-4">
+                            <p class="text-gray-700">
+                              <span class="font-bold text-red-600">Tertib</span> adalah melaksanakan rukun-rukun haji sesuai dengan urutannya. Menurut sebagian ulama, tertib merupakan rukun haji yang keenam.
+                            </p>
+                            <div class="bg-red-50 p-4 rounded-lg">
+                              <h4 class="font-bold text-red-700 mb-2">Dalil</h4>
+                              <p class="text-gray-700 text-sm">
+                                Rasulullah SAW bersabda:
+                              </p>
+                              <div class="mt-2">
+                                <p class="text-right text-gray-800 font-arabic text-xl leading-loose">خُذُوا عَنِّي مَنَاسِكَكُمْ</p>
+                                <p class="text-gray-600 text-sm mt-2">"Ambillah dariku manasik (tata cara) ibadah kalian." (HR. Muslim)</p>
+                              </div>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                              <h5 class="font-bold text-yellow-800 mb-1">Urutan Rukun Haji</h5>
+                              <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                                <li>Ihram</li>
+                                <li>Wukuf di Arafah</li>
+                                <li>Thawaf Ifadhah</li>
+                                <li>Sa'i</li>
+                                <li>Tahallul</li>
+                              </ol>
+                              <p class="text-gray-700 text-sm mt-2">
+                                Urutan ini harus diikuti, kecuali dalam beberapa kondisi tertentu yang diperbolehkan untuk mendahulukan atau mengakhirkan sebagian rukun dengan alasan yang dibenarkan syariat.
+                              </p>
+                            </div>
+                          </div>
+                          
+                          <div>
+                            <img src="../image/tertib.webp" alt="Ilustrasi Tertib" class="w-full h-auto rounded-lg shadow-md">
+                            <div class="mt-4 space-y-2">
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Melaksanakan rukun sesuai urutan</p>
+                              </div>
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Mengikuti sunnah Rasulullah</p>
+                              </div>
+                              <div class="flex items-center">
+                                <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
+                                  <i class="bx bx-check text-success-500"></i>
+                                </div>
+                                <p class="text-sm text-gray-700">Ada pengecualian dalam kondisi tertentu</p>
+                              </div>
+                            </div>
+                            <!-- Video Button moved below image -->
+                            <button class="video-btn bg-white text-blue-600 hover:bg-gray-100 border border-gray-200 rounded-lg flex items-center gap-2 shadow-lg mx-auto" onclick="openModal('video-tertib')">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              <span>Tonton Video</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                
+                <!-- Perbedaan Rukun dan Wajib Haji Section -->
+                <section id="perbedaan" class="p-4">
+                  <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mr-4">
+                      <i class="text-3xl font-bold text-gray-800">C</i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Perbedaan Rukun dan Wajib Haji</h2>
+                  </div>
+                  
+                  <div class="space-y-6">
+                    <p class="text-gray-700 mb-4">
+                      Dalam ibadah haji, terdapat perbedaan antara rukun haji dan wajib haji. Perbedaan ini penting untuk dipahami karena memiliki konsekuensi yang berbeda jika ditinggalkan.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="p-5 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
+                          <h4 class="font-bold text-primary-700">Rukun Haji</h4>
+                        </div>
+                        <div class="p-5 space-y-4">
+                          <p class="text-gray-700">
+                            <span class="font-bold text-primary-600">Pengertian:</span> Rukun haji adalah amalan-amalan pokok yang wajib dilaksanakan dalam ibadah haji. Jika salah satu rukun haji ditinggalkan, maka ibadah haji tidak sah dan tidak dapat diganti dengan dam (denda).
+                          </p>
+                          <p class="text-gray-700">
+                            <span class="font-bold text-primary-600">Konsekuensi jika ditinggalkan:</span> Haji tidak sah dan harus diulang pada tahun berikutnya.
+                          </p>
+                          <p class="text-gray-700">
+                            <span class="font-bold text-primary-600">Rukun-rukun Haji:</span>
+                          </p>
+                          <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                            <li>Ihram</li>
+                            <li>Wukuf di Arafah</li>
+                            <li>Thawaf Ifadhah</li>
+                            <li>Sa'i</li>
+                            <li>Tahallul</li>
+                            <li>Tertib (menurut sebagian ulama)</li>
+                          </ol>
+                          <div class="bg-primary-50 p-3 rounded-md">
+                            <p class="text-gray-700 text-sm italic">
+                              "Rukun haji adalah amalan yang tidak dapat ditinggalkan dan tidak dapat diganti dengan dam. Jika ditinggalkan, maka haji tidak sah." - Imam Nawawi dalam kitab Al-Majmu'.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="p-5 bg-gradient-to-r from-secondary-50 to-white border-b border-gray-200">
+                          <h4 class="font-bold text-secondary-700">Wajib Haji</h4>
+                        </div>
+                        <div class="p-5 space-y-4">
+                          <p class="text-gray-700">
+                            <span class="font-bold text-secondary-600">Pengertian:</span> Wajib haji adalah amalan-amalan yang wajib dilaksanakan dalam ibadah haji, tetapi jika ditinggalkan dapat diganti dengan membayar dam (denda).
+                          </p>
+                          <p class="text-gray-700">
+                            <span class="font-bold text-secondary-600">Konsekuensi jika ditinggalkan:</span> Haji tetap sah, tetapi wajib membayar dam (denda) berupa menyembelih seekor kambing atau puasa 10 hari.
+                          </p>
+                          <p class="text-gray-700">
+                            <span class="font-bold text-secondary-600">Wajib-wajib Haji:</span>
+                          </p>
+                          <ol class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
+                            <li>Ihram dari miqat</li>
+                            <li>Mabit (bermalam) di Muzdalifah</li>
+                            <li>Mabit (bermalam) di Mina</li>
+                            <li>Melempar jumrah</li>
+                            <li>Thawaf wada' (perpisahan)</li>
+                            <li>Menghindari larangan-larangan ihram</li>
+                          </ol>
+                          <div class="bg-secondary-50 p-3 rounded-md">
+                            <p class="text-gray-700 text-sm italic">
+                              "Wajib haji adalah amalan yang wajib dilaksanakan, tetapi jika ditinggalkan karena udzur (alasan yang dibenarkan), maka dapat diganti dengan membayar dam." - Ibnu Qudamah dalam kitab Al-Mughni.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm p-6 card-hover">
+                      <h4 class="text-xl font-bold text-gray-800 mb-4">Perbedaan Pendapat Ulama tentang Rukun Haji</h4>
+                      <p class="text-gray-700 mb-4">
+                        Para ulama berbeda pendapat tentang jumlah rukun haji. Berikut adalah pendapat-pendapat utama dari berbagai mazhab fikih:
+                      </p>
+                      <div class="overflow-x-auto">
+                        <table class="min-w-full">
+                          <thead>
+                            <tr class="border-b border-gray-200">
+                              <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Mazhab</th>
+                              <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Jumlah Rukun</th>
+                              <th class="py-2 px-3 text-left text-sm font-semibold text-gray-700">Rukun-rukun Haji</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr class="border-b border-gray-200">
+                              <td class="py-2 px-3 text-sm text-gray-600 font-medium">Mazhab Hanafi</td>
+                              <td class="py-2 px-3 text-sm text-gray-600">2</td>
+                              <td class="py-2 px-3 text-sm text-gray-600">1. Wukuf di Arafah<br>2. Thawaf Ifadhah</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                              <td class="py-2 px-3 text-sm text-gray-600 font-medium">Mazhab Maliki</td>
+                              <td class="py-2 px-3 text-sm text-gray-600">4</td>
+                              <td class="py-2 px-3 text-sm text-gray-600">1. Ihram<br>2. Wukuf di Arafah<br>3. Thawaf Ifadhah<br>4. Sa'i</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                              <td class="py-2 px-3 text-sm text-gray-600 font-medium">Mazhab Syafi'i</td>
+                              <td class="py-2 px-3 text-sm text-gray-600">6</td>
+                              <td class="py-2 px-3 text-sm text-gray-600">1. Ihram<br>2. Wukuf di Arafah<br>3. Thawaf Ifadhah<br>4. Sa'i<br>5. Tahallul<br>6. Tertib</td>
+                            </tr>
+                            <tr>
+                              <td class="py-2 px-3 text-sm text-gray-600 font-medium">Mazhab Hanbali</td>
+                              <td class="py-2 px-3 text-sm text-gray-600">4</td>
+                              <td class="py-2 px-3 text-sm text-gray-600">1. Ihram<br>2. Wukuf di Arafah<br>3. Thawaf Ifadhah<br>4. Sa'i</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+                      <h4 class="text-xl font-bold text-yellow-800 mb-3">Konsekuensi Meninggalkan Rukun Haji</h4>
+                      <p class="text-gray-700 mb-4">
+                        Jika salah satu rukun haji ditinggalkan, maka ibadah haji tidak sah dan tidak dapat diganti dengan dam (denda). Berikut adalah konsekuensi meninggalkan masing-masing rukun haji:
+                      </p>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex items-start">
+                          <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="bx bx-user-voice text-yellow-600">1</i>
+                          </div>
+                          <div>
+                            <h5 class="font-semibold text-gray-800">Meninggalkan Ihram</h5>
+                            <p class="text-sm text-gray-700 mt-1">Jika seseorang tidak berniat ihram untuk haji, maka semua amalan yang dilakukannya tidak dianggap sebagai ibadah haji. Ia harus berniat ihram dan mengulang seluruh rangkaian ibadah haji.</p>
+                          </div>
+                        </div>
+                        <div class="flex items-start">
+                          <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="bx bx-map-alt text-yellow-600">2</i>
+                          </div>
+                          <div>
+                            <h5 class="font-semibold text-gray-800">Meninggalkan Wukuf di Arafah</h5>
+                            <p class="text-sm text-gray-700 mt-1">Jika seseorang tidak melakukan wukuf di Arafah pada tanggal 9 Dzulhijjah, maka hajinya tidak sah. Ia harus mengulang haji pada tahun berikutnya. Wukuf di Arafah adalah rukun haji yang paling utama.</p>
+                          </div>
+                        </div>
+                        <div class="flex items-start">
+                          <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="bx bx-cycling text-yellow-600">3</i>
+                          </div>
+                          <div>
+                            <h5 class="font-semibold text-gray-800">Meninggalkan Thawaf Ifadhah</h5>
+                            <p class="text-sm text-gray-700 mt-1">Jika seseorang tidak melakukan thawaf ifadhah, maka hajinya tidak sah. Ia tetap dalam keadaan ihram dan tidak boleh melakukan hal-hal yang dilarang selama ihram hingga ia melakukan thawaf ifadhah.</p>
+                          </div>
+                        </div>
+                        <div class="flex items-start">
+                          <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="bx bx-run text-yellow-600">4</i>
+                          </div>
+                          <div>
+                            <h5 class="font-semibold text-gray-800">Meninggalkan Sa'i</h5>
+                            <p class="text-sm text-gray-700 mt-1">Jika seseorang tidak melakukan sa'i, maka hajinya tidak sah menurut mayoritas ulama. Ia harus melakukan sa'i untuk menyempurnakan hajinya.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-primary-50 p-4 rounded-md border-l-4 border-primary-500">
+                      <p class="text-gray-700">
+                        <span class="font-bold text-primary-600">Catatan Penting:</span> Ketentuan rukun haji dapat berbeda-beda menurut madzhab fikih yang dianut. Penjelasan di atas mengacu pada pendapat mayoritas ulama. Jamaah haji disarankan untuk berkonsultasi dengan ulama atau pembimbing haji untuk mendapatkan penjelasan yang lebih rinci sesuai dengan madzhab yang dianut.
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t mt-12">
+            <div class="container mx-auto px-4 py-8">
+                <div class="text-center">
+                    <p class="text-secondary-500">© 2025 SukaFikih.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Video Modals -->
+    <!-- Modal for Ihram Video -->
+    <div id="video-ihram" class="modal">
+        <div class="modal-content">
+            <div class="p-4 bg-primary-600 text-white flex items-center justify-between">
+                <h3 class="text-xl font-bold">Video Penjelasan Ihram</h3>
+                <button onclick="closeModal('video-ihram')" class="text-white hover:bg-primary-700 rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/F-MiB4Z8jz0" allowfullscreen></iframe>
+                </div>
+                <div class="mt-4">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Tentang Ihram</h4>
+                    <p class="text-gray-700">
+                        Video ini menjelaskan tentang tata cara ihram yang benar sesuai dengan tuntunan Rasulullah SAW. Ihram merupakan rukun pertama dalam ibadah haji yang menandai dimulainya ibadah haji.
+                    </p>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <!-- Card 1 -->
-          <div class="bg-white rounded-xl shadow-sm transition-all card-hover border border-gray-100 group overflow-hidden cursor-pointer max-w-xs mx-auto w-full">
-            <div class="flex flex-col h-full">
-              <div class="bg-blue-50 p-3 flex items-center justify-center group-hover:bg-blue-100 transition-all">
-                <!-- Kaaba Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="card-icon opacity-80">
-                  <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                </svg>
-              </div>
-              <div class="p-4">
-                <h2 class="text-lg font-semibold text-gray-800 mb-1 group-hover:text-blue-600 transition-all">
-                  Pengertian Haji
-                </h2>
-                <p class="text-gray-600 text-sm">Definisi dan penjelasan dasar tentang ibadah haji</p>
-              </div>
+    <!-- Modal for Wukuf Video -->
+    <div id="video-wukuf" class="modal">
+        <div class="modal-content">
+            <div class="p-4 bg-secondary-600 text-white flex items-center justify-between">
+                <h3 class="text-xl font-bold">Video Penjelasan Wukuf di Arafah</h3>
+                <button onclick="closeModal('video-wukuf')" class="text-white hover:bg-secondary-700 rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="bg-white rounded-xl shadow-sm transition-all card-hover border border-gray-100 group overflow-hidden cursor-pointer max-w-xs mx-auto w-full">
-            <div class="flex flex-col h-full">
-              <div class="bg-blue-50 p-3 flex items-center justify-center group-hover:bg-blue-100 transition-all">
-                <!-- Kaaba Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="card-icon opacity-80">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
-                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-              </div>
-              <div class="p-4">
-                <h2 class="text-lg font-semibold text-gray-800 mb-1 group-hover:text-blue-600 transition-all">
-                  Hukum Haji
-                </h2>
-                <p class="text-gray-600 text-sm">Dasar hukum dan ketentuan ibadah haji dalam Islam</p>
-              </div>
+            <div class="p-6">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/S1nfwIR7eFQ" allowfullscreen></iframe>
+                </div>
+                <div class="mt-4">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Tentang Wukuf di Arafah</h4>
+                    <p class="text-gray-700">
+                        Video ini menjelaskan tentang tata cara wukuf di Arafah yang merupakan rukun utama dalam ibadah haji. Wukuf dilakukan pada tanggal 9 Dzulhijjah dari waktu Dzuhur hingga Maghrib.
+                    </p>
+                </div>
             </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="bg-white rounded-xl shadow-sm transition-all card-hover border border-gray-100 group overflow-hidden cursor-pointer max-w-xs mx-auto w-full">
-            <div class="flex flex-col h-full">
-              <div class="bg-blue-50 p-3 flex items-center justify-center group-hover:bg-blue-100 transition-all">
-                <!-- Rukun Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="card-icon opacity-80">
-                  <path d="M18 20V10M12 20V4M6 20v-6"></path>
-                </svg>
-              </div>
-              <div class="p-4">
-                <h2 class="text-lg font-semibold text-gray-800 mb-1 group-hover:text-blue-600 transition-all">
-                  Rukun Haji
-                </h2>
-                <p class="text-gray-600 text-sm">Rukun-rukun yang wajib dilaksanakan dalam ibadah haji</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="bg-white rounded-xl shadow-sm transition-all card-hover border border-gray-100 group overflow-hidden cursor-pointer max-w-xs mx-auto w-full">
-            <div class="flex flex-col h-full">
-              <div class="bg-blue-50 p-3 flex items-center justify-center group-hover:bg-blue-100 transition-all">
-                <!-- Hajj Requirements Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="card-icon opacity-80">
-                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
-                  <path d="m9 12 2 2 4-4"></path>
-                </svg>
-              </div>
-              <div class="p-4">
-                <h2 class="text-lg font-semibold text-gray-800 mb-1 group-hover:text-blue-600 transition-all">
-                  Syarat Sah & Wajib Haji
-                </h2>
-                <p class="text-gray-600 text-sm">Persyaratan yang harus dipenuhi untuk ibadah haji</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="bg-white rounded-xl shadow-sm transition-all card-hover border border-gray-100 group overflow-hidden cursor-pointer max-w-xs mx-auto w-full">
-            <div class="flex flex-col h-full">
-              <div class="bg-blue-50 p-3 flex items-center justify-center group-hover:bg-blue-100 transition-all">
-                <!-- Wajib Haji Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="card-icon opacity-80">
-                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
-                  <path d="M12 8v4"></path>
-                  <path d="M12 16h.01"></path>
-                </svg>
-              </div>
-              <div class="p-4">
-                <h2 class="text-lg font-semibold text-gray-800 mb-1 group-hover:text-blue-600 transition-all">
-                  Wajib Haji
-                </h2>
-                <p class="text-gray-600 text-sm">Amalan-amalan wajib dalam pelaksanaan ibadah haji</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="bg-white rounded-xl shadow-sm transition-all card-hover border border-gray-100 group overflow-hidden cursor-pointer max-w-xs mx-auto w-full">
-            <div class="flex flex-col h-full">
-              <div class="bg-blue-50 p-3 flex items-center justify-center group-hover:bg-blue-100 transition-all">
-                <!-- Sunnah Haji Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="card-icon opacity-80">
-                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
-                  <path d="M8 12h8"></path>
-                  <path d="M12 16V8"></path>
-                </svg>
-              </div>
-              <div class="p-4">
-                <h2 class="text-lg font-semibold text-gray-800 mb-1 group-hover:text-blue-600 transition-all">
-                  Sunnah Haji
-                </h2>
-                <p class="text-gray-600 text-sm">Amalan-amalan sunnah dalam pelaksanaan ibadah haji</p>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </main>
-  </div>
+    </div>
 
-  <!-- Simple JavaScript for Mobile Menu Toggle -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuButton = document.querySelector('.md\\:hidden button');
-      const sidebar = document.querySelector('aside');
-      
-      if (menuButton && sidebar) {
-        menuButton.addEventListener('click', function() {
-          // Toggle sidebar visibility on mobile
-          if (sidebar.classList.contains('hidden')) {
-            sidebar.classList.remove('hidden');
-            sidebar.classList.add('fixed', 'top-0', 'left-0', 'h-full', 'z-50');
-          } else {
-            sidebar.classList.add('hidden');
-            sidebar.classList.remove('fixed', 'top-0', 'left-0', 'h-full', 'z-50');
-          }
+    <!-- Modal for Tawaf Video -->
+    <div id="video-tawaf" class="modal">
+        <div class="modal-content">
+            <div class="p-4 bg-secondary-600 text-white flex items-center justify-between">
+                <h3 class="text-xl font-bold">Video Penjelasan Tawaf Ifadhah</h3>
+                <button onclick="closeModal('video-tawaf')" class="text-white hover:bg-secondary-700 rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/6-2ALHO5mno" allowfullscreen></iframe>
+                </div>
+                <div class="mt-4">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Tentang Tawaf Ifadhah</h4>
+                    <p class="text-gray-700">
+                        Video ini menjelaskan tentang tata cara tawaf ifadhah yang merupakan salah satu rukun haji. Tawaf ifadhah dilakukan dengan mengelilingi Ka'bah sebanyak tujuh kali putaran.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Sa'i Video -->
+    <div id="video-sai" class="modal">
+        <div class="modal-content">
+            <div class="p-4 bg-green-600 text-white flex items-center justify-between">
+                <h3 class="text-xl font-bold">Video Penjelasan Sa'i</h3>
+                <button onclick="closeModal('video-sai')" class="text-white hover:bg-green-700 rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/RvH6tTx6PCI" allowfullscreen></iframe>
+                </div>
+                <div class="mt-4">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Tentang Sa'i</h4>
+                    <p class="text-gray-700">
+                        Video ini menjelaskan tentang tata cara sa'i yang merupakan salah satu rukun haji. Sa'i dilakukan dengan berjalan atau berlari-lari kecil antara bukit Shafa dan Marwah sebanyak tujuh kali.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Tahallul Video -->
+    <div id="video-tahallul" class="modal">
+        <div class="modal-content">
+            <div class="p-4 bg-blue-600 text-white flex items-center justify-between">
+                <h3 class="text-xl font-bold">Video Penjelasan Tahallul</h3>
+                <button onclick="closeModal('video-tahallul')" class="text-white hover:bg-blue-700 rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/e67-lifCkk0" allowfullscreen></iframe>
+                </div>
+                <div class="mt-4">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Tentang Tahallul</h4>
+                    <p class="text-gray-700">
+                        Video ini menjelaskan tentang tata cara tahallul yang merupakan salah satu rukun haji. Tahallul dilakukan dengan mencukur atau memotong sebagian rambut kepala sebagai tanda berakhirnya sebagian atau seluruh larangan ihram.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Tertib Video -->
+    <div id="video-tertib" class="modal">
+        <div class="modal-content">
+            <div class="p-4 bg-red-600 text-white flex items-center justify-between">
+                <h3 class="text-xl font-bold">Video Penjelasan Tertib</h3>
+                <button onclick="closeModal('video-tertib')" class="text-white hover:bg-red-700 rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/Nh1ebJJV0DQ" allowfullscreen></iframe>
+                </div>
+                <div class="mt-4">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Tentang Tertib</h4>
+                    <p class="text-gray-700">
+                        Video ini menjelaskan tentang tertib dalam pelaksanaan rukun-rukun haji. Tertib adalah melaksanakan rukun-rukun haji sesuai dengan urutannya sebagaimana yang diajarkan oleh Rasulullah SAW.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         // Toggle sidebar
+         const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('backdrop');
+        
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            backdrop.classList.toggle('active');
         });
-      }
-    });
-  </script>
+        
+        backdrop.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            backdrop.classList.remove('active');
+        });
+        
+        // Toggle dropdown menus
+        const menuItems = document.querySelectorAll('.menu-item');
+        
+        menuItems.forEach(item => {
+            const button = item.querySelector('button');
+            const dropdown = item.querySelector('.menu-content');
+            const chevron = button.querySelector('.chevron');
+            
+            button.addEventListener('click', function() {
+                dropdown.classList.toggle('active');
+                chevron.classList.toggle('active');
+            });
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside of modal content
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                modals.forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>

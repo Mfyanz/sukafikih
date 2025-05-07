@@ -79,6 +79,18 @@
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
+        body {
+        background-image: url('../image/umrah\ baru.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    /* Tetap pertahankan warna latar belakang abu jika perlu fallback */
+    .bg-gray-50 {
+        background-color: rgba(249, 250, 251, 0.85); /* semi-transparan jika ingin elemen tetap terlihat */
+    }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -90,15 +102,13 @@
         <div class="p-6 h-full flex flex-col">
             <!-- Logo -->
             <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                </div>
-                <h1 class="text-xl font-display font-bold">
-                    <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
-                </h1>
-            </div>
+              <div class="w-15 h-15 rounded-xl flex items-center justify-center">
+                  <img id="logo-icon" src="../image/logo skf 2.png" alt="logo" class="h-10 w-10 text-white" />
+              </div>
+              <h1 class="text-xl font-display font-bold">
+                  <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+              </h1>
+          </div>
    
             <!-- Navigation -->
             <nav class="space-y-1 flex-1 overflow-y-auto">
@@ -342,7 +352,7 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
                   <h4 class="font-bold text-blue-700 mb-2">Manfaat Spiritual</h4>
-                  <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                  <ul class="list-decimal pl-5 space-y-1 text-gray-700">
                     <li>Mendapatkan <span class="font-bold text-blue-600">pahala tambahan</span></li>
                     <li>Meningkatkan <span class="font-bold text-blue-600">kualitas ibadah</span> haji</li>
                     <li>Menambah <span class="font-bold text-blue-600">kekhusyukan</span> dalam beribadah</li>
@@ -351,7 +361,7 @@
                 </div>
                 <div class="bg-green-50 p-4 rounded-lg border border-green-100">
                   <h4 class="font-bold text-green-700 mb-2">Manfaat Praktis</h4>
-                  <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                  <ul class="list-decimal pl-5 space-y-1 text-gray-700">
                     <li>Mengikuti <span class="font-bold text-green-600">sunnah Rasulullah</span> SAW</li>
                     <li>Menjaga <span class="font-bold text-green-600">kebersihan dan kesucian</span> diri</li>
                     <li>Memudahkan <span class="font-bold text-green-600">pelaksanaan</span> ibadah haji</li>
@@ -365,7 +375,7 @@
                 Adanya ketentuan sunnah haji dalam ibadah haji mengandung berbagai hikmah, di antaranya:
               </p>
               
-              <ul class="list-disc pl-5 space-y-2 text-gray-700 mb-4">
+              <ul class="list-decimal pl-5 space-y-2 text-gray-700 mb-4">
                 <li>Memberikan <span class="font-bold text-purple-600">kesempatan</span> bagi jamaah haji untuk meningkatkan kualitas ibadahnya</li>
                 <li>Mengajarkan <span class="font-bold text-purple-600">keseimbangan</span> antara kewajiban dan amalan tambahan</li>
                 <li>Menumbuhkan <span class="font-bold text-purple-600">kecintaan</span> kepada sunnah Rasulullah SAW</li>

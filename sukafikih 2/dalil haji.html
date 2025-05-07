@@ -91,6 +91,18 @@
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
+        body {
+        background-image: url('../image/umrah\ baru.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    /* Tetap pertahankan warna latar belakang abu jika perlu fallback */
+    .bg-gray-50 {
+        background-color: rgba(249, 250, 251, 0.85); /* semi-transparan jika ingin elemen tetap terlihat */
+    }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen font-sans">
@@ -103,15 +115,14 @@
         <div class="p-6 h-full flex flex-col">
             <!-- Logo -->
             <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
+                <div class="w-15 h-15 rounded-xl flex items-center justify-center">
+                    <img id="logo-icon" src="../image/logo skf 2.png" alt="logo" class="h-10 w-10 text-white" />
                 </div>
                 <h1 class="text-xl font-display font-bold">
                     <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
                 </h1>
             </div>
+            
            
             <!-- Navigation -->
             <nav class="space-y-1 flex-1 overflow-y-auto">

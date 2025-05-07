@@ -79,6 +79,18 @@
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
+        body {
+        background-image: url('../image/ihram.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    /* Tetap pertahankan warna latar belakang abu jika perlu fallback */
+    .bg-gray-50 {
+        background-color: rgba(249, 250, 251, 0.85); /* semi-transparan jika ingin elemen tetap terlihat */
+    }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -90,15 +102,13 @@
         <div class="p-6 h-full flex flex-col">
             <!-- Logo -->
             <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                </div>
-                <h1 class="text-xl font-display font-bold">
-                    <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
-                </h1>
-            </div>
+              <div class="w-15 h-15 rounded-xl flex items-center justify-center">
+                  <img id="logo-icon" src="../image/logo skf 2.png" alt="logo" class="h-10 w-10 text-white" />
+              </div>
+              <h1 class="text-xl font-display font-bold">
+                  <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+              </h1>
+          </div>
             
             <!-- Navigation -->
             <nav class="space-y-1 flex-1 overflow-y-auto">
@@ -222,7 +232,7 @@
               <section id="pengertian" class="p-4 border-b border-gray-100">
                 <div class="flex items-center mb-6">
                   <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="bx bx-info-circle text-primary-500 text-2xl">A</i>
+                    <i class="text-3xl font-bold text-gray-800">A</i>
                   </div>
                   <h2 class="text-3xl font-bold text-gray-800">Pengertian Sunnah Umrah</h2>
                 </div>
@@ -240,8 +250,8 @@
                   
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
-                      <div class="p-5 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
-                        <h4 class="font-bold text-primary-700">Perbedaan Rukun, Wajib, dan Sunnah Umrah</h4>
+                      <div class="p-5 bg-gradient-to-r from-accent-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-accent-700">Perbedaan Rukun, Wajib, dan Sunnah Umrah</h4>
                       </div>
                       <div class="p-5">
                         <div class="overflow-x-auto">
@@ -322,7 +332,7 @@
               <section id="macam" class="p-4 border-b border-gray-100">
                 <div class="flex items-center mb-6">
                   <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="bx bx-list-check text-secondary-500 text-2xl">B</i>
+                    <i class="text-3xl font-bold text-gray-800">B</i>
                   </div>
                   <h2 class="text-3xl font-bold text-gray-800">Macam-macam Sunnah Umrah</h2>
                 </div>
@@ -337,7 +347,7 @@
                     <div class="p-6 bg-gradient-to-r from-primary-600 to-primary-700 text-white">
                       <div class="flex items-center">
                         <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
-                          <i class="bx bx-shower text-white text-xl">a</i>
+                          <i class="text-2xl font-bold">a</i>
                         </div>
                         <h3 class="text-2xl font-bold">Sunnah Sebelum Ihram</h3>
                       </div>
@@ -402,7 +412,7 @@
                     <div class="p-6 bg-gradient-to-r from-secondary-600 to-secondary-700 text-white">
                       <div class="flex items-center">
                         <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
-                          <i class="bx bx-microphone text-white text-xl">b</i>
+                          <i class="text-2xl font-bold">b</i>
                         </div>
                         <h3 class="text-2xl font-bold">Sunnah Saat Ihram</h3>
                       </div>
@@ -464,7 +474,7 @@
                     <div class="p-6 bg-gradient-to-r from-blue-600 to-accent-700 text-white">
                       <div class="flex items-center">
                         <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
-                          <i class="bx bx-cycling text-white text-xl">c</i>
+                          <i class="text-2xl font-bold">c</i>
                         </div>
                         <h3 class="text-2xl font-bold">Sunnah Saat Thawaf</h3>
                       </div>
@@ -546,7 +556,7 @@
                     <div class="p-6 bg-gradient-to-r from-green-500 to-success-600 text-white">
                       <div class="flex items-center">
                         <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
-                          <i class="bx bx-run text-white text-xl">d</i>
+                          <i class="text-2xl font-bold">d</i>
                         </div>
                         <h3 class="text-2xl font-bold">Sunnah Saat Sa'i</h3>
                       </div>
@@ -623,7 +633,7 @@
                     <div class="p-6 bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
                       <div class="flex items-center">
                         <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
-                          <i class="bx bx-cut text-white text-xl">e</i>
+                          <i class="text-2xl font-bold">e</i>
                         </div>
                         <h3 class="text-2xl font-bold">Sunnah Saat Tahallul</h3>
                       </div>
@@ -685,7 +695,7 @@
               <section id="manfaat" class="p-4">
                 <div class="flex items-center mb-6">
                   <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="bx bx-heart text-accent-500 text-2xl">C</i>
+                    <i class="text-3xl font-bold text-gray-800">C</i>
                   </div>
                   <h2 class="text-3xl font-bold text-gray-800">Manfaat dan Hikmah Sunnah Umrah</h2>
                 </div>
@@ -704,7 +714,7 @@
                         <ul class="space-y-3">
                           <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                              <i class="bx bx-check text-primary-500">1</i>
+                              <i class="font-semibold text-gray-800">1</i>
                             </div>
                             <div>
                               <span class="font-semibold text-gray-800">Mendapatkan Pahala Tambahan</span>
@@ -713,7 +723,7 @@
                           </li>
                           <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                              <i class="bx bx-check text-primary-500">2</i>
+                              <i class="font-semibold text-gray-800">2</i>
                             </div>
                             <div>
                               <span class="font-semibold text-gray-800">Meningkatkan Kualitas Ibadah</span>
@@ -722,7 +732,7 @@
                           </li>
                           <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                              <i class="bx bx-check text-primary-500">3</i>
+                              <i class="font-semibold text-gray-800">3</i>
                             </div>
                             <div>
                               <span class="font-semibold text-gray-800">Mengikuti Sunnah Rasulullah SAW</span>
@@ -731,7 +741,7 @@
                           </li>
                           <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                              <i class="bx bx-check text-primary-500">4</i>
+                              <i class="font-semibold text-gray-800">4</i>
                             </div>
                             <div>
                               <span class="font-semibold text-gray-800">Menjaga Kebersihan dan Kesucian</span>
@@ -750,7 +760,7 @@
                         <ul class="space-y-3">
                           <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                              <i class="bx bx-check text-accent-500">1</i>
+                              <i class="font-semibold text-gray-800">1</i>
                             </div>
                             <div>
                               <span class="font-semibold text-gray-800">Keseimbangan dalam Beribadah</span>
@@ -759,7 +769,7 @@
                           </li>
                           <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                              <i class="bx bx-check text-accent-500">2</i>
+                              <i class="font-semibold text-gray-800">2</i>
                             </div>
                             <div>
                               <span class="font-semibold text-gray-800">Keikhlasan dalam Beribadah</span>
@@ -768,7 +778,7 @@
                           </li>
                           <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                              <i class="bx bx-check text-accent-500">3</i>
+                              <i class="font-semibold text-gray-800">3</i>
                             </div>
                             <div>
                               <span class="font-semibold text-gray-800">Kemudahan dalam Beribadah</span>
@@ -777,7 +787,7 @@
                           </li>
                           <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                              <i class="bx bx-check text-accent-500">4</i>
+                              <i class="font-semibold text-gray-800">4</i>
                             </div>
                             <div>
                               <span class="font-semibold text-gray-800">Penghayatan Makna Ibadah</span>
@@ -794,7 +804,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div class="flex items-start">
                         <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
-                          <i class="bx bx-book-reader text-yellow-600">1</i>
+                          <i class="font-semibold text-gray-800">1</i>
                         </div>
                         <div>
                           <h5 class="font-semibold text-gray-800">Pelajari dengan Baik</h5>
@@ -803,7 +813,7 @@
                       </div>
                       <div class="flex items-start">
                         <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
-                          <i class="bx bx-group text-yellow-600">2</i>
+                          <i class="font-semibold text-gray-800">2</i>
                         </div>
                         <div>
                           <h5 class="font-semibold text-gray-800">Ikuti Pembimbing</h5>
@@ -812,7 +822,7 @@
                       </div>
                       <div class="flex items-start">
                         <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
-                          <i class="bx bx-check-shield text-yellow-600">3</i>
+                          <i class="font-semibold text-gray-800">3</i>
                         </div>
                         <div>
                           <h5 class="font-semibold text-gray-800">Fokus dan Khusyuk</h5>
@@ -821,7 +831,7 @@
                       </div>
                       <div class="flex items-start">
                         <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
-                          <i class="bx bx-notepad text-yellow-600">4</i>
+                          <i class="font-semibold text-gray-800">4</i>
                         </div>
                         <div>
                           <h5 class="font-semibold text-gray-800">Bawa Catatan Ringkas</h5>

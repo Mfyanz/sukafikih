@@ -79,6 +79,18 @@
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
+        body {
+        background-image: url('../image/ihram.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    /* Tetap pertahankan warna latar belakang abu jika perlu fallback */
+    .bg-gray-50 {
+        background-color: rgba(249, 250, 251, 0.85); /* semi-transparan jika ingin elemen tetap terlihat */
+    }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -90,15 +102,13 @@
         <div class="p-6 h-full flex flex-col">
             <!-- Logo -->
             <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                </div>
-                <h1 class="text-xl font-display font-bold">
-                    <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
-                </h1>
-            </div>
+              <div class="w-15 h-15 rounded-xl flex items-center justify-center">
+                  <img id="logo-icon" src="../image/logo skf 2.png" alt="logo" class="h-10 w-10 text-white" />
+              </div>
+              <h1 class="text-xl font-display font-bold">
+                  <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+              </h1>
+          </div>
          
             <!-- Navigation -->
             <nav class="space-y-1 flex-1 overflow-y-auto">
@@ -224,7 +234,7 @@
               <section id="dalil" class="p-4 border-b border-gray-100">
                 <div class="flex items-center mb-6">
                   <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="bx bx-book-open text-primary-500 text-2xl">1</i>
+                    <i class="text-3xl font-bold text-gray-800">1</i>
                   </div>
                   <h2 class="text-3xl font-bold text-gray-800">Dalil-dalil Umrah</h2>
                 </div>
@@ -273,8 +283,8 @@
                     </div>
                     
                     <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
-                      <div class="p-5 bg-gradient-to-r from-secondary-50 to-white border-b border-gray-200">
-                        <h4 class="font-bold text-secondary-700">Dalil dari Hadits</h4>
+                      <div class="p-4 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-primary-700">Dalil dari Hadits</h4>
                       </div>
                       <div class="p-5 space-y-4">
                         <div class="bg-secondary-50 p-4 rounded-lg">
@@ -342,7 +352,7 @@
               <section id="hukum" class="p-3 border-b border-gray-100">
                 <div class="flex items-center mb-6">
                   <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="bx bx-gavel text-secondary-500 text-2xl">2</i>
+                    <i class="text-3xl font-bold text-gray-800">2</i>
                   </div>
                   <h2 class="text-center text-3xl font-bold text-gray-800">Hukum Umrah</h2>
                 </div>
@@ -370,7 +380,7 @@
                         <p class="text-gray-700 mb-4">
                           <span class="font-bold">Dalil-dalil yang digunakan:</span>
                         </p>
-                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                        <ul class="list-decimal pl-5 space-y-2 text-gray-700">
                           <li>
                             Firman Allah SWT dalam Surah Al-Baqarah ayat 196: <span class="italic">"Dan sempurnakanlah ibadah haji dan umrah karena Allah."</span> Mereka menafsirkan kata "atimmu" (sempurnakanlah) sebagai perintah yang menunjukkan kewajiban.
                           </li>
@@ -398,7 +408,7 @@
                         <p class="text-gray-700 mb-4">
                           <span class="font-bold">Dalil-dalil yang digunakan:</span>
                         </p>
-                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                        <ul class="list-decimal pl-5 space-y-2 text-gray-700">
                           <li>
                             Hadits yang menyebutkan rukun Islam tidak menyertakan umrah, hanya menyebutkan haji.
                           </li>
@@ -454,7 +464,7 @@
               <section id="pendapat" class="p-4">
                 <div class="flex items-center mb-6">
                   <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="bx bx-conversation text-accent-500 text-2xl">3</i>
+                    <i class="text-3xl font-bold text-gray-800">3</i>
                   </div>
                   <h2 class="text-3xl font-bold text-gray-800">Pendapat Ulama tentang Umrah</h2>
                 </div>
@@ -476,7 +486,7 @@
                         <p class="text-gray-700">
                           <span class="font-bold text-primary-600">Dalil:</span>
                         </p>
-                        <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+                        <ul class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
                           <li>Firman Allah SWT: "Dan sempurnakanlah ibadah haji dan umrah karena Allah." (QS. Al-Baqarah: 196)</li>
                           <li>Hadits dari Aisyah r.a. bahwa Nabi SAW bersabda: "Jihad bagi wanita adalah haji dan umrah."</li>
                         </ul>
@@ -492,8 +502,8 @@
                     </div>
                     
                     <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
-                      <div class="p-5 bg-gradient-to-r from-secondary-50 to-white border-b border-gray-200">
-                        <h4 class="font-bold text-secondary-700">Mazhab Hanbali</h4>
+                      <div class="p-5 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-primary-700">Mazhab Hanbali</h4>
                       </div>
                       <div class="p-5 space-y-4">
                         <p class="text-gray-700">
@@ -502,7 +512,7 @@
                         <p class="text-gray-700">
                           <span class="font-bold text-secondary-600">Dalil:</span>
                         </p>
-                        <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+                        <ul class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
                           <li>Firman Allah SWT: "Dan sempurnakanlah ibadah haji dan umrah karena Allah." (QS. Al-Baqarah: 196)</li>
                           <li>Hadits dari Umar bin Khattab bahwa Nabi SAW ditanya tentang Islam, beliau menyebutkan umrah sebagai bagian dari ibadah yang wajib.</li>
                         </ul>
@@ -518,8 +528,8 @@
                     </div>
                     
                     <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
-                      <div class="p-5 bg-gradient-to-r from-accent-50 to-white border-b border-gray-200">
-                        <h4 class="font-bold text-accent-700">Mazhab Hanafi</h4>
+                      <div class="p-5 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-primary-700">Mazhab Hanafi</h4>
                       </div>
                       <div class="p-5 space-y-4">
                         <p class="text-gray-700">
@@ -528,7 +538,7 @@
                         <p class="text-gray-700">
                           <span class="font-bold text-accent-600">Dalil:</span>
                         </p>
-                        <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+                        <ul class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
                           <li>Hadits yang menyebutkan rukun Islam tidak menyertakan umrah, hanya menyebutkan haji.</li>
                           <li>Penafsiran kata "atimmu" (sempurnakanlah) dalam Surah Al-Baqarah ayat 196 sebagai perintah untuk menyempurnakan umrah setelah memulainya, bukan kewajiban untuk memulainya.</li>
                         </ul>
@@ -544,8 +554,8 @@
                     </div>
                     
                     <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm card-hover">
-                      <div class="p-5 bg-gradient-to-r from-green-50 to-white border-b border-gray-200">
-                        <h4 class="font-bold text-green-700">Mazhab Maliki</h4>
+                      <div class="p-5 bg-gradient-to-r from-primary-50 to-white border-b border-gray-200">
+                        <h4 class="font-bold text-primary-700">Mazhab Maliki</h4>
                       </div>
                       <div class="p-5 space-y-4">
                         <p class="text-gray-700">
@@ -554,7 +564,7 @@
                         <p class="text-gray-700">
                           <span class="font-bold text-green-600">Dalil:</span>
                         </p>
-                        <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+                        <ul class="list-decimal pl-5 space-y-1 text-gray-700 text-sm">
                           <li>Hadits dari Jabir r.a. bahwa Nabi SAW ditanya: "Apakah umrah wajib?" Beliau menjawab: "Tidak, tetapi jika kamu berumrah, itu lebih baik bagimu." (HR. Tirmidzi)</li>
                           <li>Tidak adanya dalil yang jelas tentang kewajiban umrah seperti halnya haji.</li>
                         </ul>
@@ -575,7 +585,7 @@
                     <p class="text-gray-700 mb-4">
                       Meskipun para ulama berbeda pendapat tentang hukum umrah, mereka sepakat dalam beberapa hal berikut:
                     </p>
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                    <ul class="list-decimal pl-5 space-y-2 text-gray-700">
                       <li>
                         <span class="font-bold text-primary-600">Disyariatkannya Umrah:</span> Semua ulama sepakat bahwa umrah adalah ibadah yang disyariatkan dalam Islam dan memiliki keutamaan yang besar.
                       </li>
@@ -596,7 +606,7 @@
                     <p class="text-gray-700 mb-4">
                       Setelah mempelajari dalil-dalil dan pendapat para ulama, dapat disimpulkan bahwa kedua pendapat memiliki dalil yang kuat. Namun, pendapat yang mengatakan bahwa umrah hukumnya wajib (mazhab Syafi'i dan Hanbali) memiliki dalil yang lebih kuat, karena:
                     </p>
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                    <ul class="list-decimal pl-5 space-y-2 text-gray-700">
                       <li>
                         Firman Allah SWT: "Dan sempurnakanlah ibadah haji dan umrah karena Allah." (QS. Al-Baqarah: 196) adalah perintah yang menunjukkan kewajiban.
                       </li>

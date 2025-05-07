@@ -79,6 +79,18 @@
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
+        body {
+        background-image: url('../image/umrah\ baru.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    /* Tetap pertahankan warna latar belakang abu jika perlu fallback */
+    .bg-gray-50 {
+        background-color: rgba(249, 250, 251, 0.85); /* semi-transparan jika ingin elemen tetap terlihat */
+    }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -90,15 +102,13 @@
         <div class="p-6 h-full flex flex-col">
             <!-- Logo -->
             <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                </div>
-                <h1 class="text-xl font-display font-bold">
-                    <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
-                </h1>
-            </div>
+              <div class="w-15 h-15 rounded-xl flex items-center justify-center">
+                  <img id="logo-icon" src="../image/logo skf 2.png" alt="logo" class="h-10 w-10 text-white" />
+              </div>
+              <h1 class="text-xl font-display font-bold">
+                  <span class="text-primary-600">suka</span><span class="text-secondary-800">fikih</span>
+              </h1>
+          </div>
 
             <!-- Navigation -->
             <nav class="space-y-1 flex-1 overflow-y-auto">
@@ -222,7 +232,7 @@
               <section id="pengertian" class="p-4 border-b border-gray-100">
                 <div class="flex items-center mb-6">
                   <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="bx bx-info-circle text-primary-500 text-2xl">A</i>
+                    <i class="text-3xl font-bold text-gray-800">A</i>
                   </div>
                   <h2 class="text-3xl font-bold text-gray-800">Pengertian Larangan Haji</h2>
                 </div>
@@ -269,7 +279,7 @@
                         <ul class="space-y-3">
                           <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                              <i class="bx bx-check text-accent-500">a</i>
+                              <i class="font-semibold text-gray-800">a</i>
                             </div>
                             <div>
                               <span class="font-semibold text-gray-800">Melatih Kesabaran</span>
@@ -278,7 +288,7 @@
                           </li>
                           <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                              <i class="bx bx-check text-accent-500">b</i>
+                              <i class="font-semibold text-gray-800">b</i>
                             </div>
                             <div>
                               <span class="font-semibold text-gray-800">Kesetaraan dan Kesederhanaan</span>
@@ -287,7 +297,7 @@
                           </li>
                           <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                              <i class="bx bx-check text-accent-500">c</i>
+                              <i class="font-semibold text-gray-800">c</i>
                             </div>
                             <div>
                               <span class="font-semibold text-gray-800">Fokus pada Ibadah</span>
@@ -296,7 +306,7 @@
                           </li>
                           <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                              <i class="bx bx-check text-accent-500">d</i>
+                              <i class="font-semibold text-gray-800font-semibold text-gray-800">d</i>
                             </div>
                             <div>
                               <span class="font-semibold text-gray-800">Menjaga Keharmonisan</span>
@@ -313,7 +323,7 @@
               <section id="larangan-umum" class="p-4 border-b border-gray-100">
                 <div class="flex items-center mb-6">
                   <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="bx bx-block text-secondary-500 text-2xl">B</i>
+                    <i class="text-3xl font-bold text-gray-800">B</i>
                   </div>
                   <h2 class="text-3xl font-bold text-gray-800">Larangan Umum untuk Laki-laki dan Perempuan</h2>
                 </div>
@@ -328,7 +338,7 @@
                     <div class="p-6 bg-gradient-to-r from-primary-600 to-primary-700 text-white">
                       <div class="flex items-center">
                         <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
-                          <i class="bx bx-cut text-white text-xl">1</i>
+                          <i class="text-2xl font-bold">1</i>
                         </div>
                         <h3 class="text-2xl font-bold">Mencukur atau Memotong Rambut</h3>
                       </div>
@@ -395,7 +405,7 @@
                     <div class="p-6 bg-gradient-to-r from-secondary-600 to-secondary-700 text-white">
                       <div class="flex items-center">
                         <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
-                          <i class="bx bx-trim text-white text-xl">2</i>
+                          <i class="text-2xl font-bold">2</i>
                         </div>
                         <h3 class="text-2xl font-bold">Memotong Kuku</h3>
                       </div>
@@ -462,7 +472,7 @@
                     <div class="p-6 bg-gradient-to-r from-blue-600 to-accent-700 text-white">
                       <div class="flex items-center">
                         <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
-                          <i class="bx bx-spray-can text-white text-xl">3</i>
+                          <i class="text-2xl font-bold">3</i>
                         </div>
                         <h3 class="text-2xl font-bold">Memakai Wewangian</h3>
                       </div>
@@ -529,7 +539,7 @@
                     <div class="p-6 bg-gradient-to-r from-green-600 to-green-700 text-white">
                       <div class="flex items-center">
                         <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
-                          <i class="bx bx-heart text-white text-xl">4</i>
+                          <i class="text-2xl font-bold">4</i>
                         </div>
                         <h3 class="text-2xl font-bold">Akad Nikah</h3>
                       </div>
@@ -591,7 +601,7 @@
                     <div class="p-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
                       <div class="flex items-center">
                         <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
-                          <i class="bx bx-male-female text-white text-xl">5</i>
+                          <i class="text-2xl font-bold">5</i>
                         </div>
                         <h3 class="text-2xl font-bold">Hubungan Suami Istri</h3>
                       </div>
@@ -657,7 +667,7 @@
                     <div class="p-6 bg-gradient-to-r from-red-600 to-red-700 text-white">
                       <div class="flex items-center">
                         <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
-                          <i class="bx bx-target-lock text-white text-xl">6</i>
+                          <i class="text-2xl font-bold">6</i>
                         </div>
                         <h3 class="text-2xl font-bold">Berburu dan Membunuh Binatang Darat</h3>
                       </div>
@@ -729,7 +739,7 @@
               <section id="larangan-khusus" class="p-4">
                 <div class="flex items-center mb-6">
                   <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="bx bx-male-female text-accent-500 text-2xl">C</i>
+                    <i class="text-3xl font-bold text-gray-800">C</i>
                   </div>
                   <h2 class="text-3xl font-bold text-gray-800">Larangan Khusus untuk Laki-laki dan Perempuan</h2>
                 </div>
@@ -750,7 +760,7 @@
                       <div class="p-2 space-y-4">
                         <div class="bg-white border border-gray-200 rounded-lg p-4">
                           <h5 class="font-bold text-blue-700 flex items-center mb-3">
-                            <i class="bx bx-t-shirt mr-2"></i>
+                            <i class="bx bx-t-shirt mr-2">1.</i>
                             Memakai Pakaian Berjahit
                           </h5>
                           <p class="text-gray-700 mb-3">
@@ -765,7 +775,7 @@
                         
                         <div class="bg-white border border-gray-200 rounded-lg p-4">
                           <h5 class="font-bold text-blue-700 flex items-center mb-3">
-                            <i class="bx bx-hat mr-2"></i>
+                            <i class="bx bx-hat mr-2">2.</i>
                             Menutup Kepala
                           </h5>
                           <p class="text-gray-700 mb-3">
@@ -780,7 +790,7 @@
                         
                         <div class="bg-white border border-gray-200 rounded-lg p-4">
                           <h5 class="font-bold text-blue-700 flex items-center mb-3">
-                            <i class="bx bx-shoe mr-2"></i>
+                            <i class="bx bx-shoe mr-2">3.</i>
                             Memakai Khuff (Sepatu yang Menutupi Mata Kaki)
                           </h5>
                           <p class="text-gray-700 mb-3">
@@ -805,7 +815,7 @@
                       <div class="p-2 space-y-4">
                         <div class="bg-white border border-gray-200 rounded-lg p-4">
                           <h5 class="font-bold text-secondary-700 flex items-center mb-3">
-                            <i class="bx bx-mask mr-2"></i>
+                            <i class="bx bx-mask mr-2">1.</i>
                             Memakai Cadar atau Niqab
                           </h5>
                           <p class="text-gray-700 mb-3">
@@ -820,7 +830,7 @@
                         
                         <div class="bg-white border border-gray-200 rounded-lg p-4">
                           <h5 class="font-bold text-secondary-700 flex items-center mb-3">
-                            <i class="bx bx-hand mr-2"></i>
+                            <i class="bx bx-hand mr-2">2.</i>
                             Memakai Sarung Tangan
                           </h5>
                           <p class="text-gray-700 mb-3">
@@ -835,7 +845,7 @@
                         
                         <div class="bg-white border border-gray-200 rounded-lg p-4">
                           <h5 class="font-bold text-secondary-700 flex items-center mb-3">
-                            <i class="bx bx-diamond mr-2"></i>
+                            <i class="bx bx-diamond mr-2">3.</i>
                             Memakai Perhiasan yang Mencolok
                           </h5>
                           <p class="text-gray-700 mb-3">
@@ -904,7 +914,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div class="flex items-start">
                         <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
-                          <i class="bx bx-cut text-yellow-600">1</i>
+                          <i class="font-semibold text-gray-800">1</i>
                         </div>
                         <div>
                           <h5 class="font-semibold text-gray-800">Mencukur Rambut, Memotong Kuku, Memakai Wewangian</h5>
@@ -913,7 +923,7 @@
                       </div>
                       <div class="flex items-start">
                         <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
-                          <i class="bx bx-t-shirt text-yellow-600">2</i>
+                          <i class="font-semibold text-gray-800">2</i>
                         </div>
                         <div>
                           <h5 class="font-semibold text-gray-800">Memakai Pakaian Berjahit (Laki-laki)</h5>
@@ -922,7 +932,7 @@
                       </div>
                       <div class="flex items-start">
                         <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
-                          <i class="bx bx-target-lock text-yellow-600">3</i>
+                          <i class="font-semibold text-gray-800">3</i>
                         </div>
                         <div>
                           <h5 class="font-semibold text-gray-800">Berburu atau Membunuh Binatang Darat</h5>
@@ -931,7 +941,7 @@
                       </div>
                       <div class="flex items-start">
                         <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
-                          <i class="bx bx-male-female text-yellow-600">4</i>
+                          <i class="font-semibold text-gray-800">4</i>
                         </div>
                         <div>
                           <h5 class="font-semibold text-gray-800">Hubungan Suami Istri</h5>
