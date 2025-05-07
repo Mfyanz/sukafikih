@@ -25,6 +25,9 @@
                             600: '#475569',
                             800: '#1e293b',
                         }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -80,17 +83,122 @@
             animation: fadeIn 0.8s ease-out forwards;
         }
         body {
-        background-image: url('../image/ihram.webp');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
+            background-image: url('../image/ihram.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
 
-    /* Tetap pertahankan warna latar belakang abu jika perlu fallback */
-    .bg-gray-50 {
-        background-color: rgba(249, 250, 251, 0.85); /* semi-transparan jika ingin elemen tetap terlihat */
-    }
+        /* Tetap pertahankan warna latar belakang abu jika perlu fallback */
+        .bg-gray-50 {
+            background-color: rgba(249, 250, 251, 0.85); /* semi-transparan jika ingin elemen tetap terlihat */
+        }
+        
+        /* Glass effect video button styles */
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            outline: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+            z-index: -1;
+            transition: transform 0.5s ease;
+            transform: translateX(-100%);
+        }
+
+        .glass-btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .glass-btn:hover {
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            transform: translateY(-2px);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+        }
+
+        .glass-btn:active {
+            transform: translateY(1px);
+            border-color: rgba(255, 255, 255, 1);
+        }
+
+        .glass-btn:hover .btn-icon {
+            transform: translateX(3px) scale(1.1);
+        }
+        
+        .btn-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        /* Video modal styles */
+        .video-modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .video-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            transform: translateY(30px) scale(0.95);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .video-modal.active .modal-content {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        
+        /* Pulse animation for play button */
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+            80%, 100% {
+                opacity: 0;
+                transform: scale(1.5);
+            }
+        }
+        
+        @keyframes pulse-dot {
+            0% {
+                transform: scale(0.8);
+            }
+            50% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(0.8);
+            }
+        }
+        
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
+        
+        .pulse-dot {
+            animation: pulse-dot 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -396,6 +504,18 @@
                         
                         <div>
                           <img src="../image/ihram um.webp" alt="Ilustrasi Ihram" class="w-full h-auto rounded-lg shadow-md">
+                          <button 
+                            onclick="openVideoModal('Ihram', 'https://www.youtube.com/embed/EOCFzxLBThU?si=3YtkfHrPH4OtQHn8')"
+                            class="glass-btn mt-3 w-full flex items-center justify-center gap-2 py-2.5 sm:py-3 px-4 text-gray-800 rounded-lg transition-all duration-300 group"
+                          >
+                            <span class="relative flex h-5 w-5 items-center justify-center">
+                              <span class="absolute inline-flex h-full w-full rounded-full bg-primary-600/30 pulse-ring"></span>
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 btn-icon text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                              </svg>
+                            </span>
+                            <span class="font-medium">Tonton Video Ihram</span>
+                          </button>
                           <div class="mt-4 space-y-2">
                             <div class="flex items-center">
                               <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
@@ -486,6 +606,18 @@
                         
                         <div>
                           <img src="../image/tawaf um.webp" alt="Ilustrasi Thawaf" class="w-full h-auto rounded-lg shadow-md">
+                          <button 
+                            onclick="openVideoModal('Thawaf', 'https://www.youtube.com/embed/6-2ALHO5mno?si=PEnU7h81Zbeilog-')"
+                            class="glass-btn mt-3 w-full flex items-center justify-center gap-2 py-2.5 sm:py-3 px-4 text-gray-800 rounded-lg transition-all duration-300 group"
+                          >
+                            <span class="relative flex h-5 w-5 items-center justify-center">
+                              <span class="absolute inline-flex h-full w-full rounded-full bg-primary-600/30 pulse-ring"></span>
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 btn-icon text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                              </svg>
+                            </span>
+                            <span class="font-medium">Tonton Video Thawaf</span>
+                          </button>
                           <div class="mt-4 space-y-2">
                             <div class="flex items-center">
                               <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
@@ -569,6 +701,18 @@
                         
                         <div>
                           <img src="../image/sa'i.webp" alt="Ilustrasi Sa'i" class="w-full h-auto rounded-lg shadow-md">
+                          <button 
+                            onclick="openVideoModal('Sa\'i', 'https://www.youtube.com/embed/rj3ycVE9kMQ?si=DLOppO4G-cHzVGcW')"
+                            class="glass-btn mt-3 w-full flex items-center justify-center gap-2 py-2.5 sm:py-3 px-4 text-gray-800 rounded-lg transition-all duration-300 group"
+                          >
+                            <span class="relative flex h-5 w-5 items-center justify-center">
+                              <span class="absolute inline-flex h-full w-full rounded-full bg-primary-600/30 pulse-ring"></span>
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 btn-icon text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                              </svg>
+                            </span>
+                            <span class="font-medium">Tonton Video Sa'i</span>
+                          </button>
                           <div class="mt-4 space-y-2">
                             <div class="flex items-center">
                               <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
@@ -646,6 +790,18 @@
                         
                         <div>
                           <img src="../image/tahallul um.webp" alt="Ilustrasi Tahallul" class="w-full h-auto rounded-lg shadow-md">
+                          <button 
+                            onclick="openVideoModal('Tahallul', 'https://www.youtube.com/embed/Crs5YX2EfEw?si=jf0C90df13r2zpj5')"
+                            class="glass-btn mt-3 w-full flex items-center justify-center gap-2 py-2.5 sm:py-3 px-4 text-gray-800 rounded-lg transition-all duration-300 group"
+                          >
+                            <span class="relative flex h-5 w-5 items-center justify-center">
+                              <span class="absolute inline-flex h-full w-full rounded-full bg-primary-600/30 pulse-ring"></span>
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 btn-icon text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                              </svg>
+                            </span>
+                            <span class="font-medium">Tonton Video Tahallul</span>
+                          </button>
                           <div class="mt-4 space-y-2">
                             <div class="flex items-center">
                               <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
@@ -677,7 +833,7 @@
               <section id="kesalahan" class="p-4">
                 <div class="flex items-center mb-6">
                   <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
-                    <i class="text-3xl font-bold text-gray-800">B</i>
+                    <i class="text-3xl font-bold text-gray-800">C</i>
                   </div>
                   <h2 class="text-3xl font-bold text-gray-800">Kesalahan Umum dalam Rukun Umrah</h2>
                 </div>
@@ -878,6 +1034,39 @@
         </footer>
     </div>
 
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div class="modal-content bg-white rounded-xl shadow-xl w-full max-w-3xl overflow-hidden">
+            <div class="flex items-center justify-between p-4 border-b">
+                <h3 id="videoTitle" class="text-lg font-semibold text-gray-800">Judul Video</h3>
+                <button 
+                    onclick="closeVideoModal()"
+                    class="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="relative pt-[56.25%] bg-gray-900">
+                <iframe 
+                    id="videoFrame"
+                    class="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
+            <div class="p-4 bg-gray-50">
+                <button 
+                    onclick="closeVideoModal()"
+                    class="glass-btn w-full py-2 px-4 text-gray-800 rounded-lg transition-all duration-300"
+                >
+                    Tutup Video
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Toggle sidebar
         const menuToggle = document.getElementById('menuToggle');
@@ -907,6 +1096,22 @@
                 chevron.classList.toggle('active');
             });
         });
+        
+        // Video Modal Functions
+        function openVideoModal(title, videoSrc) {
+            document.getElementById('videoTitle').textContent = title;
+            document.getElementById('videoFrame').src = videoSrc;
+            document.getElementById('videoModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeVideoModal() {
+            document.getElementById('videoModal').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('videoFrame').src = '';
+                document.body.style.overflow = '';
+            }, 300);
+        }
     </script>
 </body>
 </html>

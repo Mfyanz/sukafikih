@@ -31,7 +31,7 @@
         }
     </script>
     <style>
-.menu-content {
+        .menu-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -80,17 +80,40 @@
             animation: fadeIn 0.8s ease-out forwards;
         }
         body {
-        background-image: url('../image/umrah\ baru.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
+            background-image: url('../image/umrah\ baru.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
 
-    /* Tetap pertahankan warna latar belakang abu jika perlu fallback */
-    .bg-gray-50 {
-        background-color: rgba(249, 250, 251, 0.85); /* semi-transparan jika ingin elemen tetap terlihat */
-    }
+        /* Tetap pertahankan warna latar belakang abu jika perlu fallback */
+        .bg-gray-50 {
+            background-color: rgba(249, 250, 251, 0.85); /* semi-transparan jika ingin elemen tetap terlihat */
+        }
+        
+        /* Video modal styles */
+        .video-modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .video-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .video-modal.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -388,6 +411,16 @@
                         
                         <div>
                           <img src="../image/ihram dari miqat.webp" alt="Ilustrasi Miqat" class="w-full h-auto rounded-lg shadow-md">
+                          <button 
+                            onclick="openVideoModal('Ihram dari Miqat', 'https://www.youtube.com/embed/8dGaRxDhL94?si=c38z46XLLtCI4LLN')"
+                            class="mt-3 w-full flex items-center justify-center gap-2 py-2 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Tonton Video</span>
+                          </button>
                           <div class="mt-4 space-y-2">
                             <div class="flex items-center">
                               <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
@@ -454,6 +487,16 @@
                         
                         <div>
                           <img src="../image/mabit muzdalifah.webp" alt="Ilustrasi Mabit di Muzdalifah" class="w-full h-auto rounded-lg shadow-md">
+                          <button 
+                            onclick="openVideoModal('Mabit di Muzdalifah', 'https://www.youtube.com/embed/Rrctdn1zT0w?si=wLY2vKDplkqL_pFc')"
+                            class="mt-3 w-full flex items-center justify-center gap-2 py-2 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Tonton Video</span>
+                          </button>
                           <div class="mt-4 space-y-2">
                             <div class="flex items-center">
                               <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
@@ -520,6 +563,16 @@
                         
                         <div>
                           <img src="../image/mabit mina.webp" alt="Ilustrasi Mabit di Mina" class="w-full h-auto rounded-lg shadow-md">
+                          <button 
+                            onclick="openVideoModal('Mabit di Mina', 'https://www.youtube.com/embed/3srUHvTZs3Y?si=8XJS5_C8asOW_1Z6')"
+                            class="mt-3 w-full flex items-center justify-center gap-2 py-2 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Tonton Video</span>
+                          </button>
                           <div class="mt-4 space-y-2">
                             <div class="flex items-center">
                               <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
@@ -586,6 +639,16 @@
                         
                         <div>
                           <img src="../image/gambar lontar jumrah.png" alt="Ilustrasi Melempar Jumrah" class="w-full h-auto rounded-lg shadow-md">
+                          <button 
+                            onclick="openVideoModal('Melempar Jumrah', 'https://www.youtube.com/embed/dQw4w9WgXcQ')"
+                            class="mt-3 w-full flex items-center justify-center gap-2 py-2 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Tonton Video</span>
+                          </button>
                           <div class="mt-4 space-y-2">
                             <div class="flex items-center">
                               <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
@@ -652,6 +715,16 @@
                         
                         <div>
                           <img src="../image/tawaf.png" alt="Ilustrasi Thawaf Wada'" class="w-full h-auto rounded-lg shadow-md">
+                          <button 
+                            onclick="openVideoModal('Thawaf Wada\'', 'https://www.youtube.com/embed/EiJ18IIkWBY?si=XJx6UPB8qsKwyb2R')"
+                            class="mt-3 w-full flex items-center justify-center gap-2 py-2 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Tonton Video</span>
+                          </button>
                           <div class="mt-4 space-y-2">
                             <div class="flex items-center">
                               <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
@@ -716,6 +789,16 @@
                         
                         <div>
                           <img src="../image/ihram.png" alt="Ilustrasi Larangan Ihram" class="w-full h-auto rounded-lg shadow-md">
+                          <button 
+                            onclick="openVideoModal('Menjauhi Larangan Ihram', 'https://www.youtube.com/embed/Lbv4Omlfi9I?si=ivLpQaxByYJ3aKbS')"
+                            class="mt-3 w-full flex items-center justify-center gap-2 py-2 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Tonton Video</span>
+                          </button>
                           <div class="mt-4 space-y-2">
                             <div class="flex items-center">
                               <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
@@ -784,6 +867,16 @@
                         
                         <div>
                           <img src="../image/tertib wajib.webp" alt="Ilustrasi Tertib dalam Pelaksanaan" class="w-full h-auto rounded-lg shadow-md">
+                          <button 
+                            onclick="openVideoModal('Tertib dalam Pelaksanaan', 'https://www.youtube.com/embed/_h0yPEvlDTw?si=20n8Rmdu8XASDkYB')"
+                            class="mt-3 w-full flex items-center justify-center gap-2 py-2 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Tonton Video</span>
+                          </button>
                           <div class="mt-4 space-y-2">
                             <div class="flex items-center">
                               <div class="w-6 h-6 bg-success-100 rounded-full flex items-center justify-center mr-2">
@@ -819,8 +912,6 @@
                   </div>
                   <h2 class="text-3xl font-bold text-gray-800">Perbedaan Rukun dan Wajib Haji</h2>
                 </div>
-                
-                  
                 
                 <div class="space-y-6">
                   <p class="text-gray-700 mb-4">
@@ -1022,9 +1113,42 @@
         </footer>
     </div>
 
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div class="modal-content bg-white rounded-xl shadow-xl w-full max-w-3xl overflow-hidden">
+            <div class="flex items-center justify-between p-4 border-b">
+                <h3 id="videoTitle" class="text-lg font-semibold text-gray-800">Judul Video</h3>
+                <button 
+                    onclick="closeVideoModal()"
+                    class="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="relative pt-[56.25%] bg-gray-900">
+                <iframe 
+                    id="videoFrame"
+                    class="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
+            <div class="p-4 bg-gray-50">
+                <button 
+                    onclick="closeVideoModal()"
+                    class="w-full py-2 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
+                >
+                    Tutup Video
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
-         // Toggle sidebar
-         const menuToggle = document.getElementById('menuToggle');
+        // Toggle sidebar
+        const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.getElementById('sidebar');
         const backdrop = document.getElementById('backdrop');
         
@@ -1051,6 +1175,22 @@
                 chevron.classList.toggle('active');
             });
         });
+        
+        // Video Modal Functions
+        function openVideoModal(title, videoSrc) {
+            document.getElementById('videoTitle').textContent = title;
+            document.getElementById('videoFrame').src = videoSrc;
+            document.getElementById('videoModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeVideoModal() {
+            document.getElementById('videoModal').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('videoFrame').src = '';
+                document.body.style.overflow = '';
+            }, 300);
+        }
     </script>
 </body>
 </html>
