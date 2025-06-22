@@ -192,6 +192,16 @@
     .confetti--animation-fast {
       animation: confetti-fast 1.5s linear 1 forwards;
     }
+
+    /* Back button styles */
+    .back-button {
+      transition: all 0.3s ease;
+    }
+    
+    .back-button:hover {
+      transform: translateX(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
   </style>
 </head>
 <body class="bg-pattern min-h-screen font-sans text-gray-800">
@@ -296,6 +306,16 @@
     
     <!-- Quiz Screen -->
     <div id="quiz-screen" class="hidden">
+      <!-- Back Button -->
+      <div class="mb-6 animate-fadeInUp">
+        <button id="back-to-start-quiz" class="back-button flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 hover:border-brand-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Kembali ke Awal
+        </button>
+      </div>
+
       <!-- Timer and Progress -->
       <div class="flex flex-col md:flex-row gap-4 mb-6">
         <div class="bg-white rounded-2xl p-4 card-shadow flex-grow animate-fadeInUp">
@@ -381,6 +401,16 @@
     
     <!-- Results Screen -->
     <div id="results-screen" class="hidden">
+      <!-- Back Button -->
+      <div class="mb-6 animate-fadeInUp">
+        <button id="back-to-start-results" class="back-button flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 hover:border-brand-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Kembali ke Awal
+        </button>
+      </div>
+
       <div class="bg-white rounded-3xl overflow-hidden card-shadow mb-8 animate-scaleIn">
         <div class="bg-gradient p-8 text-white text-center relative overflow-hidden">
           <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/4 -translate-y-1/4"></div>
@@ -752,6 +782,10 @@
     const whatsappShareButton = document.getElementById('whatsapp-share');
     const copyResultButton = document.getElementById('copy-result');
     
+    // Back buttons
+    const backToStartQuizButton = document.getElementById('back-to-start-quiz');
+    const backToStartResultsButton = document.getElementById('back-to-start-results');
+    
     const totalQuestionsSpan = document.getElementById('total-questions');
     const currentQuestionSpan = document.getElementById('current-question');
     const questionNumberSpan = document.getElementById('question-number');
@@ -791,6 +825,49 @@
       cancelShareButton.addEventListener('click', () => shareDialog.classList.add('hidden'));
       whatsappShareButton.addEventListener('click', handleShareWhatsApp);
       copyResultButton.addEventListener('click', handleCopyResult);
+      
+      // Back button event listeners
+      backToStartQuizButton.addEventListener('click', handleBackToStart);
+      backToStartResultsButton.addEventListener('click', handleBackToStart);
+    }
+
+    // Handle back to start
+    function handleBackToStart() {
+      // Reset quiz state
+      currentQuestionIndex = 0;
+      selectedAnswers = {};
+      timeLeft = 15 * 60;
+      quizStarted = false;
+      quizFinished = false;
+      direction = 'next';
+      
+      // Clear timer
+      if (timerInterval) {
+        clearInterval(timerInterval);
+      }
+      
+      // Reset UI
+      quizScreen.classList.add('hidden');
+      resultsScreen.classList.add('hidden');
+      answerReview.classList.add('hidden');
+      shareDialog.classList.add('hidden');
+      startScreen.classList.remove('hidden');
+      
+      // Reset timer display
+      timerElement.classList.remove('text-rose-600');
+      timerElement.parentElement.classList.remove('animate-pulse');
+      timerElement.textContent = '15:00';
+      
+      // Reset timer bar
+      timerBar.classList.remove('animate-progress');
+      timerBar.style.width = '0%';
+      
+      // Reset score display
+      currentScoreSpan.textContent = '0';
+      
+      // Hide confetti
+      confettiContainer.classList.add('hidden');
+      confettiContainer.innerHTML = '';
     }
 
     // Start quiz
@@ -803,6 +880,7 @@
       
       // Reset timer animation
       timerBar.classList.remove('animate-progress');
+      timerBar.style.width = '0%';
       void timerBar.offsetWidth; // Trigger reflow
       timerBar.classList.add('animate-progress');
       
@@ -824,7 +902,6 @@
       
       // Apply animation based on direction
       questionContainer.classList.remove('animate-fadeInRight', 'animate-fadeInLeft');
-      void questionContainer.offsetWidth; //  'animate-fadeInLeft');
       void questionContainer.offsetWidth; // Trigger reflow
       questionContainer.classList.add(direction === 'next' ? 'animate-fadeInRight' : 'animate-fadeInLeft');
       
@@ -1136,21 +1213,7 @@
 
     // Handle retry
     function handleRetry() {
-      // Reset quiz state
-      currentQuestionIndex = 0;
-      selectedAnswers = {};
-      timeLeft = 15 * 60;
-      quizStarted = false;
-      quizFinished = false;
-      
-      // Reset UI
-      resultsScreen.classList.add('hidden');
-      answerReview.classList.add('hidden');
-      startScreen.classList.remove('hidden');
-      
-      // Reset timer display
-      timerElement.classList.remove('text-rose-600');
-      timerElement.parentElement.classList.remove('animate-pulse');
+      handleBackToStart();
     }
 
     // Initialize the app

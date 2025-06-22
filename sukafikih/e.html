@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sukafikih - Portal Pembelajaran Haji dan Umrah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.min.css">
+    <!-- SoundCloud API -->
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Typography improvements */
+        h1, h2, h3, h4, h5, h6 {
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+        }
+
+        p, li {
+            line-height: 1.7;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes slideOutRight {
+            from { transform: translateX(0); }
+            to { transform: translateX(100%); }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Apply animations */
+        .animate-fade-in {
+            animation: fadeIn 0.7s ease forwards;
+        }
+
+        .animate-slide-down {
+            animation: slideInDown 0.5s ease forwards;
+        }
+
+        .animate-slide-up {
+            animation: slideInUp 0.7s ease forwards;
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.7s ease forwards;
+        }
+
+        .animate-spin {
+            animation: spin 1.5s linear infinite;
+        }
+
+        /* Animation delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
+        .delay-900 { animation-delay: 0.9s; }
+        .delay-1000 { animation-delay: 1s; }
+
+        /* Hover effects */
+        .hover-scale {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .hover-scale-sm:hover {
+            transform: scale(1.03);
+        }
+
+        .hover-scale-sm:active {
+            transform: scale(0.97);
+        }
+
+        /* Logo styling */
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3), -1px -1px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo .suka {
+            color: #3b82f6;
+        }
+
+        .logo .fikih {
+            color: #1e40af;
+        }
+
+        /* Modal scrolling */
+        .modal-content {
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 75%;
+            max-width: 300px;
+            height: 100vh;
+            background: linear-gradient(to bottom, #1e3a8a, #1e40af);
+            z-index: 100;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .loading-spinner {
+            width: 64px;
+            height: 64px;
+            border: 4px solid #dbeafe;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+        }
+
+        /* Modal animation */
+        @keyframes modal-appear {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .modal-card {
+            animation: modal-appear 0.3s ease-out forwards;
+        }
+        
+        /* Text improvements */
+        .text-balance {
+            text-wrap: balance;
+        }
+        
+        .text-pretty {
+            text-wrap: pretty;
+        }
+
+        /* Responsive table */
+        @media (max-width: 640px) {
+            .responsive-table {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .responsive-table table {
+                width: 100%;
+                min-width: 500px;
+            }
+        }
+
+        /* Minimalist Music Player Styles */
+        .music-player {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px -2px rgba(59, 130, 246, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .music-player:hover {
+            box-shadow: 0 8px 16px -4px rgba(59, 130, 246, 0.4);
+        }
+
+        .progress-container {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .progress {
+            background: #fff;
+            border-radius: 3px;
+            height: 100%;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .music-controls button {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .music-controls button:hover {
+            transform: scale(1.1);
+        }
+
+        .music-controls button:active {
+            transform: scale(0.95);
+        }
+
+        .play-btn {
+            background: rgba(255, 255, 255, 0.2) !important;
+            border-radius: 50%;
+        }
+
+        .play-btn:hover {
+            background: rgba(255, 255, 255, 0.3) !important;
+        }
+
+        /* Volume slider */
+        .volume-container {
+            position: relative;
+            margin-left: 10px;
+        }
+
+        .volume-slider {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            width: 80px;
+            height: 15px;
+            background: white;
+            border-radius: 15px;
+            padding: 0 7px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .volume-container:hover .volume-slider {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: all;
+        }
+
+        .volume-slider input {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* Playlist styles */
+        .playlist {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .playlist.show {
+            max-height: 200px;
+        }
+
+        .playlist-item {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 6px 10px;
+            border-radius: 4px;
+            margin-bottom: 2px;
+        }
+
+        .playlist-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .playlist-item.active {
+            background: rgba(255, 255, 255, 0.15);
+            font-weight: 500;
+        }
+
+        /* Fixed mini player */
+        .mini-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: none;
+            background: rgba(30, 58, 138, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 50px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: white;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .mini-player.active {
+            display: flex;
+        }
+
+        .mini-player:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hide SoundCloud iframe but keep it in DOM */
+        #soundcloud-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 1px;
+            height: 1px;
+            opacity: 0.01;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* SPA Page Transitions */
+        .page-container {
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        .page {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: none;
+        }
+        
+        .page.active {
+            opacity: 1;
+            position: relative;
+            display: block;
+        }
+        
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link.active {
+            color: #3b82f6;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+    <!-- Header with Navigation -->
+    <header class="fixed w-full top-0 z-50 bg-gradient-to-r from-blue-900 to-black backdrop-blur-lg shadow-lg animate-slide-down">
+        <div class="container mx-auto px-4 py-3 sm:py-4 flex justify-between items-center">
+            <div class="logo text-xl sm:text-2xl">
+                <span class="suka">suka</span><span class="fikih">fikih</span>
+            </div>
+            
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#home" class="nav-link text-white hover:text-blue-200 transition-colors" data-page="home">Beranda</a>
+                <a href="#belajar" class="nav-link text-white hover:text-blue-200 transition-colors" data-page="belajar">Belajar</a>
+                <a href="#materi" class="nav-link text-white hover:text-blue-200 transition-colors" data-page="materi">Materi</a>
+                <a href="#tentang" class="nav-link text-white hover:text-blue-200 transition-colors" data-page="tentang">Tentang</a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="p-5">
+            <div class="flex justify-between items-center mb-6">
+                <div class="logo text-xl">
+                    <span class="suka">suka</span><span class="fikih">fikih</span>
+                </div>
+                <button id="close-menu-button" class="text-white focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-4">
+                <a href="#home" class="text-white hover:text-blue-200 transition-colors py-2 px-4 rounded-lg hover:bg-white/10" data-page="home">Beranda</a>
+                <a href="#belajar" class="text-white hover:text-blue-200 transition-colors py-2 px-4 rounded-lg hover:bg-white/10" data-page="belajar">Belajar</a>
+                <a href="#materi" class="text-white hover:text-blue-200 transition-colors py-2 px-4 rounded-lg hover:bg-white/10" data-page="materi">Materi</a>
+                <a href="#tentang" class="text-white hover:text-blue-200 transition-colors py-2 px-4 rounded-lg hover:bg-white/10" data-page="tentang">Tentang</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- SPA Container -->
+    <div class="page-container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <!-- Main Content -->
+            <main class="pt-20 sm:pt-24 md:pt-28 px-4 md:px-6 lg:px-8 container mx-auto">
+                <!-- Welcome Section -->
+                <div class="text-center mb-10 sm:mb-14 animate-slide-up delay-200">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-5 gradient-text tracking-tight">
+                        Selamat Datang di Sukafikih
+                    </h1>
+                    <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+                        Sukafikih hadir untuk membantu memahami konsep haji dan umrah
+                    </p>
+                </div>
+
+                <!-- Hero Section -->
+                <div class="relative rounded-xl sm:rounded-2xl overflow-hidden mb-10 sm:mb-16 shadow-xl sm:shadow-2xl group animate-scale-in delay-400">
+                    <div class="absolute inset-0 bg-blue-900/20 group-hover:bg-blue-900/30 transition-colors duration-300 z-10"></div>
+                    <img src="https://placehold.co/1200x500/blue/white?text=Mekkah" alt="Haji Theme" class="w-full h-[250px] sm:h-[300px] md:h-[400px] object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 text-white z-20 bg-gradient-to-t from-black/80 to-transparent">
+                    </div>
+                </div>
+
+                <!-- Minimalist Music Player Section -->
+                <div class="mb-10 sm:mb-14 animate-slide-up delay-500">
+                    <div class="music-player p-3 sm:p-4" id="main-player">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white mr-2">
+                                    <path d="M9 18V5l12-2v13"></path>
+                                    <circle cx="6" cy="18" r="3"></circle>
+                                    <circle cx="18" cy="16" r="3"></circle>
+                                </svg>
+                                <div>
+                                    <h3 id="song-title" class="text-white font-medium text-sm">Labbaik Allahumma Labbaik</h3>
+                                    <p id="song-artist" class="text-blue-100 text-xs">Talbiyah Haji</p>
+                                </div>
+                            </div>
+                            <button id="toggle-playlist" class="text-white hover:text-blue-100 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="progress-container mb-2" id="progress-container">
+                            <div class="progress" id="progress"></div>
+                        </div>
+
+                        <div class="flex justify-between items-center text-xs text-white mb-2">
+                            <span id="current-time">0:00</span>
+                            <span id="duration">0:00</span>
+                        </div>
+
+                        <div class="music-controls flex justify-center items-center">
+                            <button id="prev-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                                    <line x1="5" y1="19" x2="5" y2="5"></line>
+                                </svg>
+                            </button>
+                            <button id="play-btn" class="play-btn mx-2 p-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="play-icon">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </button>
+                            <button id="next-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                                    <line x1="19" y1="5" x2="19" y2="19"></line>
+                                </svg>
+                            </button>
+                            <div class="volume-container">
+                                <button id="volume-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                    </svg>
+                                </button>
+                                <div class="volume-slider">
+                                    <input type="range" id="volume" min="0" max="100" step="10" value="70">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="playlist mt-2" id="playlist">
+                            <div class="playlist-item active flex items-center" data-index="0">
+                                <span class="w-4 h-4 flex items-center justify-center mr-2 text-white bg-blue-500 rounded-full text-xs">1</span>
+                                <div class="text-white text-xs">Labbaik Allahumma Labbaik</div>
+                            </div>
+                            <div class="playlist-item flex items-center" data-index="1">
+                                <span class="w-4 h-4 flex items-center justify-center mr-2 text-white bg-blue-500 rounded-full text-xs">2</span>
+                                <div class="text-white text-xs">Rahman Ya Rahman</div>
+                            </div>
+                            <div class="playlist-item flex items-center" data-index="2">
+                                <span class="w-4 h-4 flex items-center justify-center mr-2 text-white bg-blue-500 rounded-full text-xs">3</span>
+                                <div class="text-white text-xs">Maulana Ya Maulana</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two Buttons -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-16 animate-slide-up delay-600">
+                    <button id="btn-tujuan" class="text-xl font-bold bg-gradient-to-r from-blue-700 to-blue-500 text-white py-4 sm:py-5 px-4 sm:px-6 rounded-xl text-base sm:text-lg font-semibold shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover-scale-sm">
+                        <i class="lucide-book-open w-5 h-5"></i>
+                        <span>Tujuan Pembelajaran</span>
+                    </button>
+                
+                    <button id="btn-indikator" class="text-xl font-bold bg-gradient-to-r from-blue-700 to-blue-500 text-white py-4 sm:py-5 px-4 sm:px-6 rounded-xl text-base sm:text-lg font-semibold shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover-scale-sm">
+                        <i class="lucide-award w-5 h-5"></i>
+                        <span>Indikator</span>
+                    </button>
+                </div>
+
+                <!-- Prayer Time Section -->
+                <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl overflow-hidden mb-10 sm:mb-16 hover:shadow-2xl transition-shadow duration-300 animate-slide-up delay-800">
+                    <div class="bg-gradient-to-r from-blue-900 to-blue-700 p-4 sm:p-5">
+                        <div class="flex items-center justify-center gap-2 sm:gap-3 text-white">
+                            <i class="lucide-clock w-5 h-5 sm:w-6 sm:h-6"></i>
+                            <h2 class="text-xl sm:text-2xl font-semibold text-center">Jadwal Sholat Hari Ini</h2>
+                        </div>
+                        <div class="flex items-center justify-center text-blue-100 mt-1 sm:mt-2 text-sm sm:text-base">
+                            <i class="lucide-calendar w-4 h-4 mr-2"></i>
+                            <span id="current-date" class="font-medium">Loading...</span>
+                        </div>
+                    </div>
+
+                    <div class="responsive-table">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-blue-50">
+                                    <th class="py-3 sm:py-4 px-4 sm:px-6 text-center text-blue-800 font-semibold">Sholat</th>
+                                    <th class="py-3 sm:py-4 px-4 sm:px-6 text-center text-blue-800 font-semibold">Waktu</th>
+                                    <th class="py-3 sm:py-4 px-4 sm:px-6 text-center text-blue-800 font-semibold">Countdown</th>
+                                </tr>
+                            </thead>
+                            <tbody id="prayer-times-body">
+                                <!-- Prayer times will be inserted here by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Start Learning Button -->
+                <div class="text-center w-full max-w-4xl mx-auto mb-12 sm:mb-20 animate-slide-up delay-1000">
+                    <a href="../sukafikih 2/haji.html" class="spa-link" data-page="belajar">
+                        <button id="start-learning-btn" class="bg-gradient-to-r from-blue-900 to-blue-600 text-white py-4 sm:py-6 px-8 sm:px-14 rounded-full text-lg sm:text-xl font-bold shadow-lg hover:shadow-blue-500/30 transition-all duration-300 flex items-center justify-center gap-3 mx-auto hover-scale text-center">
+                            <i class="lucide-book-open w-5 h-5 sm:w-6 sm:h-6"></i>
+                            Mulai Belajar !
+                        </button>
+                    </a>
+                </div>
+            </main>
+        </div>
+        
+        <!-- Belajar Page -->
+        <div id="belajar" class="page">
+            <main class="pt-20 sm:pt-24 md:pt-28 px-4 md:px-6 lg:px-8 container mx-auto">
+                <div class="text-center mb-10 sm:mb-14 animate-slide-up">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-5 gradient-text tracking-tight">
+                        Belajar Haji dan Umrah
+                    </h1>
+                    <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+                        Pilih materi pembelajaran yang ingin Anda pelajari
+                    </p>
+                </div>
+                
+                <!-- Learning Modules -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                    <!-- Module 1 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover-scale">
+                        <div class="h-40 bg-blue-800 relative">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="lucide-book-open text-white w-16 h-16 opacity-30"></i>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-blue-900 to-transparent">
+                                <h3 class="text-xl font-bold text-white">Pengertian Haji dan Umrah</h3>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-gray-600 mb-4">Pelajari definisi, sejarah, dan perbedaan antara haji dan umrah.</p>
+                            <a href="../sukafikih 2/pengertian haji.html" class="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                                Mulai Belajar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 2 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover-scale">
+                        <div class="h-40 bg-blue-700 relative">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="lucide-list-checks text-white w-16 h-16 opacity-30"></i>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-blue-900 to-transparent">
+                                <h3 class="text-xl font-bold text-white">Rukun dan Syarat</h3>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-gray-600 mb-4">Pelajari rukun, wajib, dan syarat-syarat haji dan umrah.</p>
+                            <a href="#" class="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                                Mulai Belajar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 3 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover-scale">
+                        <div class="h-40 bg-blue-600 relative">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="lucide-map text-white w-16 h-16 opacity-30"></i>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-blue-900 to-transparent">
+                                <h3 class="text-xl font-bold text-white">Tata Cara Pelaksanaan</h3>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-gray-600 mb-4">Pelajari langkah-langkah pelaksanaan ibadah haji dan umrah.</p>
+                            <a href="#" class="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                                Mulai Belajar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Back to Home Button -->
+                <div class="text-center mb-16">
+                    <a href="#home" class="spa-link" data-page="home">
+                        <button class="bg-blue-100 text-blue-800 py-3 px-6 rounded-lg hover:bg-blue-200 transition-colors">
+                            <i class="lucide-arrow-left mr-2"></i>
+                            Kembali ke Beranda
+                        </button>
+                    </a>
+                </div>
+            </main>
+        </div>
+        
+        <!-- Materi Page -->
+        <div id="materi" class="page">
+            <main class="pt-20 sm:pt-24 md:pt-28 px-4 md:px-6 lg:px-8 container mx-auto">
+                <div class="text-center mb-10 sm:mb-14 animate-slide-up">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-5 gradient-text tracking-tight">
+                        Materi Pembelajaran
+                    </h1>
+                    <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+                        Kumpulan materi lengkap tentang haji dan umrah
+                    </p>
+                </div>
+                
+                <!-- Materials List -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-16">
+                    <h2 class="text-2xl font-bold text-blue-900 mb-6">Daftar Materi</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Material 1 -->
+                        <div class="border-b border-gray-200 pb-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-blue-800">Pengertian Haji dan Umrah</h3>
+                                    <p class="text-gray-600 mt-1">Definisi, sejarah, dan perbedaan antara haji dan umrah.</p>
+                                    <div class="mt-2">
+                                        <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors text-sm font-medium">
+                                            Baca Selengkapnya <i class="lucide-arrow-right w-3 h-3 inline-block ml-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Material 2 -->
+                        <div class="border-b border-gray-200 pb-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-blue-800">Syarat Wajib Haji dan Umrah</h3>
+                                    <p class="text-gray-600 mt-1">Penjelasan tentang syarat-syarat yang harus dipenuhi untuk melaksanakan haji dan umrah.</p>
+                                    <div class="mt-2">
+                                        <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors text-sm font-medium">
+                                            Baca Selengkapnya <i class="lucide-arrow-right w-3 h-3 inline-block ml-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Material 3 -->
+                        <div class="border-b border-gray-200 pb-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1 flex-shrink-0">3</div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-blue-800">Rukun Haji dan Umrah</h3>
+                                    <p class="text-gray-600 mt-1">Penjelasan tentang rukun-rukun yang harus dilaksanakan dalam ibadah haji dan umrah.</p>
+                                    <div class="mt-2">
+                                        <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors text-sm font-medium">
+                                            Baca Selengkapnya <i class="lucide-arrow-right w-3 h-3 inline-block ml-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Material 4 -->
+                        <div class="border-b border-gray-200 pb-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1 flex-shrink-0">4</div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-blue-800">Wajib Haji dan Umrah</h3>
+                                    <p class="text-gray-600 mt-1">Penjelasan tentang hal-hal yang wajib dilaksanakan dalam ibadah haji dan umrah.</p>
+                                    <div class="mt-2">
+                                        <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors text-sm font-medium">
+                                            Baca Selengkapnya <i class="lucide-arrow-right w-3 h-3 inline-block ml-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Material 5 -->
+                        <div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1 flex-shrink-0">5</div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-blue-800">Hikmah Haji dan Umrah</h3>
+                                    <p class="text-gray-600 mt-1">Penjelasan tentang hikmah dan manfaat melaksanakan ibadah haji dan umrah.</p>
+                                    <div class="mt-2">
+                                        <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors text-sm font-medium">
+                                            Baca Selengkapnya <i class="lucide-arrow-right w-3 h-3 inline-block ml-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Back to Home Button -->
+                <div class="text-center mb-16">
+                    <a href="#home" class="spa-link" data-page="home">
+                        <button class="bg-blue-100 text-blue-800 py-3 px-6 rounded-lg hover:bg-blue-200 transition-colors">
+                            <i class="lucide-arrow-left mr-2"></i>
+                            Kembali ke Beranda
+                        </button>
+                    </a>
+                </div>
+            </main>
+        </div>
+        
+        <!-- Tentang Page -->
+        <div id="tentang" class="page">
+            <main class="pt-20 sm:pt-24 md:pt-28 px-4 md:px-6 lg:px-8 container mx-auto">
+                <div class="text-center mb-10 sm:mb-14 animate-slide-up">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-5 gradient-text tracking-tight">
+                        Tentang Sukafikih
+                    </h1>
+                    <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+                        Mengenal lebih dekat dengan platform pembelajaran Sukafikih
+                    </p>
+                </div>
+                
+                <!-- About Content -->
+                <div class="bg-white rounded-xl shadow-lg p-6 sm:p-8 mb-16">
+                    <div class="prose prose-blue max-w-none">
+                        <h2>Visi dan Misi</h2>
+                        <p>Sukafikih hadir dengan visi untuk menjadi platform pembelajaran fikih yang terpercaya, mudah diakses, dan komprehensif bagi seluruh umat Muslim di Indonesia. Kami berkomitmen untuk menyediakan materi pembelajaran yang akurat, mudah dipahami, dan sesuai dengan ajaran Islam yang benar.</p>
+                        
+                        <h2 class="mt-8">Tentang Platform</h2>
+                        <p>Sukafikih adalah platform pembelajaran fikih berbasis web yang dikembangkan untuk memudahkan umat Muslim dalam mempelajari dan memahami berbagai aspek fikih, khususnya terkait ibadah haji dan umrah. Platform ini dirancang dengan pendekatan yang interaktif, menarik, dan mudah digunakan untuk semua kalangan.</p>
+                        
+                        <h2 class="mt-8">Tim Pengembang</h2>
+                        <p>Platform Sukafikih dikembangkan oleh tim yang terdiri dari para ahli fikih, pendidik, dan pengembang web yang berpengalaman. Kami berkomitmen untuk terus mengembangkan dan memperbaiki platform ini agar dapat memberikan pengalaman belajar yang optimal bagi pengguna.</p>
+                        
+                        <h2 class="mt-8">Kontak</h2>
+                        <p>Jika Anda memiliki pertanyaan, saran, atau masukan terkait platform Sukafikih, silakan hubungi kami melalui:</p>
+                        <ul>
+                            <li>Email: info@sukafikih.com</li>
+                            <li>Telepon: +62 123 4567 890</li>
+                            <li>Alamat: Jl. Pendidikan No. 123, Yogyakarta, Indonesia</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Back to Home Button -->
+                <div class="text-center mb-16">
+                    <a href="#home" class="spa-link" data-page="home">
+                        <button class="bg-blue-100 text-blue-800 py-3 px-6 rounded-lg hover:bg-blue-200 transition-colors">
+                            <i class="lucide-arrow-left mr-2"></i>
+                            Kembali ke Beranda
+                        </button>
+                    </a>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Hidden SoundCloud iframe that will be controlled by our custom player -->
+    <div id="soundcloud-player"></div>
+
+    <!-- Mini Player (appears when scrolling) -->
+    <div class="mini-player" id="mini-player">
+        <button id="mini-play-btn" class="mr-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+        </button>
+        <div class="mr-2 text-xs max-w-[120px] truncate">
+            <span id="mini-song-title">Labbaik Allahumma Labbaik</span>
+        </div>
+        <button id="mini-next-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                <line x1="19" y1="5" x2="19" y2="19"></line>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-900 to-black text-white py-2">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <div class="logo text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
+                    <span class="text-blue-400">suka</span><span class="text-blue-200">fikih</span>
+                </div>
+            <div class="mt-2 sm:mt-8 text-center text-blue-300 text-xs sm:text-sm">
+                &copy; <span id="current-year"></span> Sukafikih.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Tujuan Modal -->
+    <div id="modal-tujuan" class="fixed inset-0 z-50 hidden">
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" id="tujuan-overlay"></div>
+        <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl sm:rounded-2xl p-5 sm:p-8 shadow-2xl max-w-md w-[95%] sm:w-[90%] modal-card">
+            <div class="bg-blue-100 text-blue-800 p-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 sm:mb-5">
+                <i class="lucide-book-open w-6 h-6"></i>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-center text-blue-900 mb-4 sm:mb-5">Tujuan Pembelajaran</h2>
+            <div class="modal-content pr-2">
+                <!-- Adding more content to demonstrate scrolling -->
+                <div class="space-y-5 sm:space-y-6">
+                    <ul class="list-decimal pl-5 space-y-2 sm:space-y-3 text-gray-700 text-sm sm:text-base">
+                        <li>Peserta didik mampu membedakan pengertian haji dan umrah</li>
+                        <li>Peserta didik mampu memahami ketentuan islam tentang haji dan umrah.</li>
+                        <li>Peserta didik mampu menjelaskan hikmah melaksanakan ibadah haji dan umrah.</li>
+                        <li>Peserta didik mampu Membedakan wajib haji dan rukun haji</li>
+                        <li>Peserta didik mampu memecahkan problematika pelaksanaan haji</li>
+                    </ul>
+                    <h3 class="text-lg sm:text-xl font-semibold text-blue-800">Manfaat Pembelajaran</h3>
+                    <p class="text-gray-700 text-pretty text-sm text-base justify-center">
+                        Dengan memahami konsep dan tata cara haji dan umrah dengan baik, peserta didik akan memiliki bekal pengetahuan yang cukup untuk melaksanakan ibadah haji dan umrah dengan benar ketika mereka berkesempatan untuk menunaikannya. Selain itu, pemahaman ini juga akan membantu mereka dalam memberikan informasi yang benar kepada keluarga atau masyarakat sekitar tentang ibadah haji dan umrah.
+                    </p>
+                </div>
+            </div>
+            <button id="close-tujuan" class="mt-6 sm:mt-8 w-full py-3 bg-gradient-to-r from-blue-700 to-blue-500 text-white rounded-lg font-semibold hover-scale-sm">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- Indikator Modal -->
+    <div id="modal-indikator" class="fixed inset-0 z-50 hidden">
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" id="indikator-overlay"></div>
+        <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl sm:rounded-2xl p-5 sm:p-8 shadow-2xl max-w-md w-[95%] sm:w-[90%] modal-card">
+            <div class="bg-blue-100 text-blue-800 p-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 sm:mb-5">
+                <i class="lucide-award w-6 h-6"></i>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-center text-blue-900 mb-4 sm:mb-5">Indikator</h2>
+            <div class="modal-content pr-2">
+                <ul class="space-y-3 sm:space-y-4 text-gray-700 text-sm sm:text-base">
+                    <li class="flex items-start">
+                        <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">1</span>
+                        <span>Peserta didik mampu menjelaskan pengertian haji dan umrah</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">2</span>
+                        <span>Peserta didik mampu menjelaskan ketentuan islam tentang haji dan umrah</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">3</span>
+                        <span>Peserta didik mampu menjelaskan hikmah melaksanakan ibadah haji dan umrah.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">4</span>
+                        <span>Peserta didik mampu menjelaskan problematika pelaksanaan haji.</span>
+                    </li>
+                </ul>
+                
+                <!-- Adding more content to demonstrate scrolling -->
+                <div class="mt-6 sm:mt-8 space-y-5 sm:space-y-6">
+                    <h3 class="text-lg sm:text-xl font-semibold text-blue-800">Detail Indikator Pembelajaran</h3>
+                    
+                    <div class="space-y-3 sm:space-y-4">
+                        <h4 class="text-base sm:text-lg font-medium text-blue-700">1. Pengertian Haji dan Umrah</h4>
+                        <ul class="space-y-1 sm:space-y-2 text-gray-700 text-sm sm:text-base">
+                            <li>Menjelaskan definisi haji secara bahasa dan istilah</li>
+                            <li>Menjelaskan definisi umrah secara bahasa dan istilah</li>
+                            <li>Membedakan antara haji dan umrah</li>
+                            <li>Menjelaskan sejarah disyariatkannya haji dan umrah</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="space-y-3 sm:space-y-4">
+                        <h4 class="text-base sm:text-lg font-medium text-blue-700">2. Ketentuan Islam tentang Haji dan Umrah</h4>
+                        <ul class="list-disc pl-5 space-y-1 sm:space-y-2 text-gray-700 text-sm sm:text-base">
+                            <li>Menjelaskan hukum haji dan umrah</li>
+                            <li>Menjelaskan syarat wajib haji dan umrah</li>
+                            <li>Menjelaskan rukun haji dan umrah</li>
+                            <li>Menjelaskan wajib haji dan umrah</li>
+                            <li>Menjelaskan sunnah haji dan umrah</li>
+                            <li>Menjelaskan larangan-larangan selama ihram</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button id="close-indikator" class="mt-6 sm:mt-8 w-full py-3 bg-gradient-to-r from-blue-700 to-blue-500 text-white rounded-lg font-semibold hover-scale-sm">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner animate-spin"></div>
+        <p class="mt-4 text-blue-600 font-semibold text-lg">Memuat...</p>
+    </div>
+
+    <script>
+        // Set current date and year
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date
+            const currentDate = new Date();
+            document.getElementById('current-date').textContent = currentDate.toLocaleDateString('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            // Set current year in footer
+            document.getElementById('current-year').textContent = currentDate.getFullYear();
+            
+            // Fetch prayer times
+            fetchPrayerTimes();
+            
+            // Set up modal functionality
+            setupModals();
+            
+            // Set up mobile menu
+            setupMobileMenu();
+            
+            // Set up SPA navigation
+            setupSPA();
+            
+            // Set up music player
+            setupMusicPlayer();
+            
+            // Check if music was playing before page load
+            checkMusicState();
+            
+            // Show mini player on scroll
+            window.addEventListener('scroll', toggleMiniPlayer);
+        });
+        
+        // SPA Navigation
+        function setupSPA() {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('[data-page]');
+            const pages = document.querySelectorAll('.page');
+            
+            // Add click event to each link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetPageId = this.getAttribute('data-page');
+                    navigateToPage(targetPageId);
+                    
+                    // Update URL hash without scrolling
+                    const scrollPosition = window.scrollY;
+                    window.location.hash = targetPageId;
+                    window.scrollTo(0, scrollPosition);
+                    
+                    // Update active nav link
+                    updateActiveNavLink(targetPageId);
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+                    if (mobileMenu && mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+            
+            // Handle initial page load based on URL hash
+            function handleInitialPage() {
+                const hash = window.location.hash.substring(1);
+                if (hash && document.getElementById(hash)) {
+                    navigateToPage(hash);
+                    updateActiveNavLink(hash);
+                } else {
+                    // Default to home page
+                    navigateToPage('home');
+                    updateActiveNavLink('home');
+                }
+            }
+            
+            // Navigate to a specific page
+            function navigateToPage(pageId) {
+                // Hide all pages
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show target page
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    window.scrollTo(0, 0);
+                }
+            }
+            
+            // Update active nav link
+            function updateActiveNavLink(pageId) {
+                // Remove active class from all nav links
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Add active class to matching nav links
+                document.querySelectorAll(`[data-page="${pageId}"]`).forEach(link => {
+                    link.classList.add('active');
+                });
+            }
+            
+            // Initialize SPA
+            handleInitialPage();
+            
+            // Listen for hash changes
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.substring(1);
+                if (hash && document.getElementById(hash)) {
+                    navigateToPage(hash);
+                    updateActiveNavLink(hash);
+                }
+            });
+        }
+        
+        // Mobile menu functionality
+        function setupMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileMenuLinks = document.querySelectorAll('#mobile-menu nav a');
+            
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.add('active');
+                    mobileMenuOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            }
+            
+            function closeMenu() {
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = ''; // Re-enable scrolling
+                }
+            }
+            
+            if (closeMenuButton) {
+                closeMenuButton.addEventListener('click', closeMenu);
+            }
+            
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', closeMenu);
+            }
+            
+            // Close menu when clicking on links
+            if (mobileMenuLinks) {
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+            }
+            
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+        }
+        
+        // Prayer times functionality
+        function fetchPrayerTimes() {
+            const apiUrl = 'https://api.aladhan.com/v1/timingsByCity?city=Yogyakarta&country=Indonesia&method=2';
+            
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code === 200) {
+                        const timings = data.data.timings;
+                        const prayers = [
+                            { name: 'Subuh', time: timings.Fajr },
+                            { name: 'Dzuhur', time: timings.Dhuhr },
+                            { name: 'Ashar', time: timings.Asr },
+                            { name: 'Maghrib', time: timings.Maghrib },
+                            { name: 'Isya', time: timings.Isha }
+                        ];
+                        
+                        renderPrayerTimes(prayers);
+                        
+                        // Update countdown every second
+                        setInterval(() => updateCountdowns(prayers), 1000);
+                    } else {
+                        console.error('Error fetching prayer times');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        
+        function renderPrayerTimes(prayers) {
+            const tableBody = document.getElementById('prayer-times-body');
+            tableBody.innerHTML = '';
+            
+            prayers.forEach((prayer, index) => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-blue-50 transition-colors duration-200';
+                row.innerHTML = `
+                    <td class="py-3 sm:py-4 px-4 sm:px-6 text-center font-medium text-blue-900">${prayer.name}</td>
+                    <td class="py-3 sm:py-4 px-4 sm:px-6 text-center">${prayer.time}</td>
+                    <td class="py-3 sm:py-4 px-4 sm:px-6 text-center font-mono" id="${prayer.name.toLowerCase()}-countdown">Calculating...</td>
+                `;
+                tableBody.appendChild(row);
+                
+                // Add animation with delay
+                row.style.opacity = '0';
+                row.style.transform = 'translateX(-20px)';
+                row.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                row.style.transitionDelay = `${0.9 + index * 0.1}s`;
+                
+                setTimeout(() => {
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateX(0)';
+                }, 100);
+            });
+            
+            // Initial countdown update
+            updateCountdowns(prayers);
+        }
+        
+        function updateCountdowns(prayers) {
+            prayers.forEach(prayer => {
+                const countdownElement = document.getElementById(`${prayer.name.toLowerCase()}-countdown`);
+                if (countdownElement) {
+                    countdownElement.textContent = calculateCountdown(prayer.time);
+                }
+            });
+        }
+        
+        function calculateCountdown(prayerTime) {
+            if (!prayerTime) return "Loading...";
+            
+            const now = new Date();
+            const prayerDate = new Date(`${now.toDateString()} ${prayerTime}`);
+            
+            let countdown = prayerDate.getTime() - now.getTime();
+            
+            if (countdown < 0) {
+                prayerDate.setDate(prayerDate.getDate() + 1);
+                countdown = prayerDate.getTime() - now.getTime();
+            }
+            
+            const hours = Math.floor(countdown / (1000 * 60 * 60));
+            const minutes = Math.floor((countdown % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((countdown % (1000 * 60)) / 1000);
+            
+            return `${hours}h ${minutes}m ${seconds}s`;
+        }
+        
+        // Modal functionality
+        function setupModals() {
+            // Tujuan Modal
+            const btnTujuan = document.getElementById('btn-tujuan');
+            const modalTujuan = document.getElementById('modal-tujuan');
+            const closeTujuan = document.getElementById('close-tujuan');
+            const tujuanOverlay = document.getElementById('tujuan-overlay');
+            
+            btnTujuan.addEventListener('click', () => {
+                modalTujuan.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+            
+            closeTujuan.addEventListener('click', () => {
+                modalTujuan.classList.add('hidden');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            });
+            
+            tujuanOverlay.addEventListener('click', () => {
+                modalTujuan.classList.add('hidden');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            });
+            
+            // Indikator Modal
+            const btnIndikator = document.getElementById('btn-indikator');
+            const modalIndikator = document.getElementById('modal-indikator');
+            const closeIndikator = document.getElementById('close-indikator');
+            const indikatorOverlay = document.getElementById('indikator-overlay');
+            
+            btnIndikator.addEventListener('click', () => {
+                modalIndikator.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+            
+            closeIndikator.addEventListener('click', () => {
+                modalIndikator.classList.add('hidden');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            });
+            
+            indikatorOverlay.addEventListener('click', () => {
+                modalIndikator.classList.add('hidden');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            });
+            
+            // Add keyboard support for closing modals with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    modalTujuan.classList.add('hidden');
+                    modalIndikator.classList.add('hidden');
+                    document.body.style.overflow = ''; // Re-enable scrolling
+                }
+            });
+        }
+
+        // Music Player functionality with SoundCloud integration and persistence
+        function setupMusicPlayer() {
+            // Music tracks data with SoundCloud URLs
+            const musicTracks = [
+                {
+                    title: 'Labbaik Allahumma Labbaik',
+                    artist: 'Talbiyah Haji',
+                    url: 'https://soundcloud.com/nady7407/labaik-allah-huma-labaik',
+                    duration: 180 // Duration in seconds (3 minutes)
+                },
+                {
+                    title: 'Rahman Ya Rahman',
+                    artist: 'Mishary Rashid',
+                    url: 'https://soundcloud.com/fairmawlove/mishary-alafasy-nasheed-rahman',
+                    duration: 240 // Duration in seconds (4 minutes)
+                },
+                {
+                    title: 'Maulana Ya Maulana',
+                    artist: 'Nissa Sabyan',
+                    url: 'https://soundcloud.com/nato-limit-editions/ya-maulana-sabyan',
+                    duration: 210 // Duration in seconds (3.5 minutes)
+                }
+            ];
+
+            // DOM Elements
+            const playBtn = document.getElementById('play-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const progressContainer = document.getElementById('progress-container');
+            const progress = document.getElementById('progress');
+            const currentTimeEl = document.getElementById('current-time');
+            const durationEl = document.getElementById('duration');
+            const songTitle = document.getElementById('song-title');
+            const songArtist = document.getElementById('song-artist');
+            const volumeBtn = document.getElementById('volume-btn');
+            const volumeSlider = document.getElementById('volume');
+            const togglePlaylistBtn = document.getElementById('toggle-playlist');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = document.querySelectorAll('.playlist-item');
+            const soundcloudPlayerContainer = document.getElementById('soundcloud-player');
+            const miniPlayer = document.getElementById('mini-player');
+            const miniPlayBtn = document.getElementById('mini-play-btn');
+            const miniNextBtn = document.getElementById('mini-next-btn');
+            const miniSongTitle = document.getElementById('mini-song-title');
+
+            // Variables
+            let currentTrack = 0;
+            let isPlaying = false;
+            let updateTimer;
+            let widget = null;
+
+            // Initialize SoundCloud Widget
+            function initSoundCloudWidget(trackUrl) {
+                // Clear previous widget if exists
+                soundcloudPlayerContainer.innerHTML = '';
+                
+                // Create iframe for SoundCloud
+                const iframe = document.createElement('iframe');
+                iframe.id = 'sc-widget';
+                iframe.width = '100%';
+                iframe.height = '166';
+                iframe.scrolling = 'no';
+                iframe.frameBorder = 'no';
+                iframe.allow = 'autoplay';
+                iframe.src = `https://w.soundcloud.com/player/?url=${trackUrl}&color=%233b82f6&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false`;
+                
+                soundcloudPlayerContainer.appendChild(iframe);
+                
+                // Initialize widget API
+                widget = SC.Widget(iframe);
+                
+                // Set up event listeners
+                widget.bind(SC.Widget.Events.READY, function() {
+                    widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(data) {
+                        updateProgressBar(data.currentPosition / 1000);
+                        
+                        // Save current position to localStorage
+                        localStorage.setItem('musicPosition', data.currentPosition);
+                    });
+                    
+                    widget.bind(SC.Widget.Events.FINISH, function() {
+                        nextSong();
+                    });
+                    
+                    // Set volume
+                    widget.setVolume(volumeSlider.value);
+                    
+                    // Get duration
+                    widget.getDuration(function(duration) {
+                        const minutes = Math.floor(duration / 60000);
+                        const seconds = Math.floor((duration % 60000) / 1000);
+                        durationEl.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+                    });
+                    
+                    // Check if we should resume from a saved position
+                    const savedPosition = localStorage.getItem('musicPosition');
+                    if (savedPosition) {
+                        widget.seekTo(parseInt(savedPosition));
+                    }
+                    
+                    // Auto-play if it was playing before
+                    const wasPlaying = localStorage.getItem('musicPlaying') === 'true';
+                    if (wasPlaying) {
+                        setTimeout(() => {
+                            playSong();
+                        }, 1000); // Give time for the widget to load
+                    }
+                });
+            }
+
+            // Load track
+            function loadTrack(trackIndex) {
+                clearInterval(updateTimer);
+                resetPlayer();
+
+                currentTrack = trackIndex;
+                const track = musicTracks[currentTrack];
+                
+                // Save current track to localStorage
+                localStorage.setItem('currentTrack', currentTrack);
+                
+                // Initialize SoundCloud widget with the track URL
+                initSoundCloudWidget(track.url);
+                
+                songTitle.textContent = track.title;
+                songArtist.textContent = track.artist;
+                miniSongTitle.textContent = track.title;
+                
+                // Update active playlist item
+                playlistItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelector(`.playlist-item[data-index="${currentTrack}"]`).classList.add('active');
+            }
+
+            function resetPlayer() {
+                currentTimeEl.textContent = '0:00';
+                progress.style.width = '0%';
+            }
+
+            function playSong() {
+                if (widget) {
+                    widget.play();
+                    isPlaying = true;
+                    
+                    // Save playing state to localStorage
+                    localStorage.setItem('musicPlaying', 'true');
+                    
+                    // Update play button to show pause icon
+                    playBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="6" y="4" width="4" height="16"></rect>
+                            <rect x="14" y="4" width="4" height="16"></rect>
+                        </svg>
+                    `;
+                    
+                    miniPlayBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="6" y="4" width="4" height="16"></rect>
+                            <rect x="14" y="4" width="4" height="16"></rect>
+                        </svg>
+                    `;
+                }
+            }
+
+            function pauseSong() {
+                if (widget) {
+                    widget.pause();
+                    isPlaying = false;
+                    
+                    // Save playing state to localStorage
+                    localStorage.setItem('musicPlaying', 'false');
+                    
+                    // Update pause button to show play icon
+                    playBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    `;
+                    
+                    miniPlayBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    `;
+                }
+            }
+
+            function updateProgressBar(currentTime) {
+                if (!widget) return;
+                
+                widget.getDuration(function(duration) {
+                    const progressPercent = (currentTime * 1000 / duration) * 100;
+                    progress.style.width = `${progressPercent}%`;
+                    
+                    // Update current time display
+                    const minutes = Math.floor(currentTime / 60);
+                    const seconds = Math.floor(currentTime % 60);
+                    currentTimeEl.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+                });
+            }
+
+            function setProgress(e) {
+                if (!widget) return;
+                
+                const width = this.clientWidth;
+                const clickX = e.offsetX;
+                
+                widget.getDuration(function(duration) {
+                    const seekPosition = (clickX / width) * (duration / 1000);
+                    widget.seekTo(seekPosition * 1000);
+                });
+            }
+
+            function prevSong() {
+                currentTrack = (currentTrack - 1 + musicTracks.length) % musicTracks.length;
+                loadTrack(currentTrack);
+                
+                // Auto-play when changing tracks
+                setTimeout(() => {
+                    playSong();
+                }, 1000); // Give time for the widget to load
+            }
+
+            function nextSong() {
+                currentTrack = (currentTrack + 1) % musicTracks.length;
+                loadTrack(currentTrack);
+                
+                // Auto-play when changing tracks
+                setTimeout(() => {
+                    playSong();
+                }, 1000); // Give time for the widget to load
+            }
+
+            function setVolume() {
+                if (widget) {
+                    widget.setVolume(volumeSlider.value);
+                }
+                
+                // Save volume to localStorage
+                localStorage.setItem('musicVolume', volumeSlider.value);
+                
+                // Update volume icon based on level
+                const volume = volumeSlider.value;
+                if (volume > 70) {
+                    volumeBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                        </svg>
+                    `;
+                } else if (volume > 10) {
+                    volumeBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                    `;
+                } else if (volume > 0) {
+                    volumeBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        </svg>
+                    `;
+                } else {
+                    volumeBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <line x1="23" y1="9" x2="17" y2="15"></line>
+                            <line x1="17" y1="9" x2="23" y2="15"></line>
+                        </svg>
+                    `;
+                }
+            }
+
+            function toggleMute() {
+                if (volumeSlider.value > 0) {
+                    volumeSlider.dataset.lastVolume = volumeSlider.value;
+                    volumeSlider.value = 0;
+                } else {
+                    volumeSlider.value = volumeSlider.dataset.lastVolume || 70;
+                }
+                setVolume();
+            }
+
+            function togglePlaylist() {
+                playlist.classList.toggle('show');
+            }
+            
+            // Save music state before page unload
+            function saveMusicState() {
+                if (widget) {
+                    widget.getPosition(function(position) {
+                        localStorage.setItem('musicPosition', position);
+                    });
+                    localStorage.setItem('musicPlaying', isPlaying.toString());
+                    localStorage.setItem('currentTrack', currentTrack.toString());
+                    localStorage.setItem('musicVolume', volumeSlider.value);
+                }
+            }
+            
+            // Check if music was playing before page load
+            function checkMusicState() {
+                const savedTrack = localStorage.getItem('currentTrack');
+                if (savedTrack !== null) {
+                    currentTrack = parseInt(savedTrack);
+                    loadTrack(currentTrack);
+                    
+                    // Restore volume
+                    const savedVolume = localStorage.getItem('musicVolume');
+                    if (savedVolume !== null) {
+                        volumeSlider.value = savedVolume;
+                        setVolume();
+                    }
+                } else {
+                    // First time visit, load first track
+                    loadTrack(0);
+                }
+            }
+            
+            // Toggle mini player visibility based on scroll position
+            function toggleMiniPlayer() {
+                const mainPlayer = document.getElementById('main-player');
+                const mainPlayerRect = mainPlayer.getBoundingClientRect();
+                
+                if (mainPlayerRect.bottom < 0) {
+                    // Main player is scrolled out of view, show mini player
+                    miniPlayer.classList.add('active');
+                } else {
+                    // Main player is in view, hide mini player
+                    miniPlayer.classList.remove('active');
+                }
+            }
+
+            // Event Listeners
+            playBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    pauseSong();
+                } else {
+                    playSong();
+                }
+            });
+            
+            miniPlayBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    pauseSong();
+                } else {
+                    playSong();
+                }
+            });
+
+            prevBtn.addEventListener('click', prevSong);
+            nextBtn.addEventListener('click', nextSong);
+            miniNextBtn.addEventListener('click', nextSong);
+            progressContainer.addEventListener('click', setProgress);
+            volumeSlider.addEventListener('input', setVolume);
+            volumeBtn.addEventListener('click', toggleMute);
+            togglePlaylistBtn.addEventListener('click', togglePlaylist);
+
+            // Playlist item click
+            playlistItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const index = parseInt(item.dataset.index);
+                    if (currentTrack !== index) {
+                        currentTrack = index;
+                        loadTrack(currentTrack);
+                        
+                        // Auto-play when selecting a track from playlist
+                        setTimeout(() => {
+                            playSong();
+                        }, 1000); // Give time for the widget to load
+                    }
+                });
+            });
+            
+            // Save music state before page unload
+            window.addEventListener('beforeunload', saveMusicState);
+            
+            // Initialize player with first track
+            loadTrack(0);
+        }
+        
+        // Check if music was playing before page load and restore state
+        function checkMusicState() {
+            const wasPlaying = localStorage.getItem('musicPlaying') === 'true';
+            const savedTrack = localStorage.getItem('currentTrack');
+            
+            if (savedTrack !== null) {
+                // Music state exists, will be handled in setupMusicPlayer
+                console.log('Restoring music from track:', savedTrack, 'Playing:', wasPlaying);
+            }
+        }
+    </script>
+</body>
+</html>
